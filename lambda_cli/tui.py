@@ -45,7 +45,7 @@ class TerminalApp:
             height=2, prompt=" › ", multiline=False, wrap_lines=False, style="class:input",
             history=InMemoryHistory(), accept_handler=self.submit,
             completer=WordCompleter(["/chat", "/tokens", "/model", "/stats", "/temperature",
-                                     "/limit", "/topk", "/new", "/save", "/update", "/help", "/exit"]),
+                                     "/limit", "/topk", "/new", "/save", "/update", "/intent", "/help", "/exit"]),
             complete_while_typing=True,
         )
         self.input.buffer.on_text_changed += self.input_changed
@@ -171,6 +171,8 @@ class TerminalApp:
                 text = self.session.tokens_text(value)
             elif self.view == "help":
                 text = HELP
+            elif self.view == 'intent':
+                text = self.session.intent_text()
             else:
                 text = self.chat_text()
         except ValueError as error:
@@ -255,6 +257,8 @@ class TerminalApp:
             )
             self.session.complete(result)
             state = "Cancelled" if result.finish_reason == "cancelled" else "Done"
+            if result.intent:
+                state += ' · ' + result.intent.title()
             self.notice = (f"{state} · input {len(result.prompt_ids)} tok · output {len(result.generated)} tok"
                            f" · {result.seconds:.2f} s · {result.tokens_per_second:.0f} tok/s")
             if result.context_dropped:

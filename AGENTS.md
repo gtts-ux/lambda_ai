@@ -1,8 +1,10 @@
 # Lambda AI maintenance instructions
 
 - The app, its UI, documentation, default prompts and bundled model must be English.
-- The approved model names are **lambda 1.0** (`lambda-1.0`) and
-  **lambda 1.5** (`lambda-1.5`).
+- The approved model names are **lambda 1.0** (`lambda-1.0`),
+  **lambda 1.5** (`lambda-1.5`), and **lambda 1.6** (`lambda-1.6`).
+- Lambda 1.6 has exactly 2,614,528 parameters including its learned intent head;
+  its v2 inference format requires app 0.2.0 or newer. Keep v1 models supported.
 - The owner will supply the name of every future model. If a new model is requested
   without a name, ask the owner before assigning or publishing one. Never invent a name.
 - Do not ship training scripts, training data or optimizer state in this repository.

@@ -2,8 +2,8 @@
 
 Repository: https://github.com/gtts-ux/lambda_ai
 
-The approved model names are **lambda 1.0** (`lambda-1.0`) and
-**lambda 1.5** (`lambda-1.5`).
+The approved model names are **lambda 1.0** (`lambda-1.0`),
+**lambda 1.5** (`lambda-1.5`), and **lambda 1.6** (`lambda-1.6`).
 The owner will name future models. **Ask the owner if a new model is requested
 without a name; do not invent or automatically increment model names.**
 
@@ -30,6 +30,12 @@ Its URL points to this repository's `main` branch. Keep the model file in
 the repository at that path; compatible downloaded files are limited to 50 MiB.
 Set `--min-app-version` when a model needs newer app support. A different
 architecture requires an engine change and an app update before publication.
+
+The v2 format used by lambda 1.6 includes a learned mode-conditioned bias and
+an intent classifier. The final model also uses fixed hashed question features
+in chat mode, learned through the generator's existing first layer. Export it
+with `--router /path/to/router.npz --question-features` and register
+it with `--min-app-version 0.2.0`. Count both generator and router weights.
 
 To replace the default bundled model, export to `lambda_cli/assets/model.npz`
 and register that file with the approved ID/name. Update its model card too.

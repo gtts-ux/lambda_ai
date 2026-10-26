@@ -14,6 +14,7 @@ os.environ.setdefault("OMP_NUM_THREADS", "2")
 import numpy as np
 
 from .tokenizer import Tokenizer
+from .intent import IntentRouter
 
 DEFAULT_MODEL = Path(__file__).resolve().parent / "assets" / "model.npz"
 STOP_MARKERS = ("\n\n", "\nQuestion:", "\nAnswer:")
@@ -51,6 +52,8 @@ class Result:
     context_dropped: int
     finish_reason: str
     charged_tokens: int = 0
+    intent: str | None = None
+    intent_math_probability: float | None = None
 
     @property
     def tokens_per_second(self):
@@ -64,6 +67,7 @@ class Result:
             "tokens_per_second": round(self.tokens_per_second, 2),
             "finish_reason": self.finish_reason,
             "charged_tokens": self.charged_tokens,
+            "intent": self.intent, "intent_math_probability": self.intent_math_probability,
             "prompt_token_ids": self.prompt_ids,
             "output_tokens": [{"id": t.id, "text": t.piece} for t in self.generated],
         }
@@ -76,11 +80,15 @@ def prompt_for(question):
 class Engine:
     def __init__(self, path=None):
         self.path = Path(path or os.environ.get("LAMBDA_MODEL", DEFAULT_MODEL)).expanduser().resolve()
+        self.router = None
+        self.router_weights = {}
+        self.question_features = None
         try:
             with np.load(self.path, allow_pickle=False) as data:
                 self.metadata = json.loads(str(data["metadata"].item()))
-                if self.metadata.get("format") != "lambda-ai-inference-v1":
-                    raise ValueError("Expected a model in lambda-ai-inference-v1 format.")
+                format_name = self.metadata.get("format")
+                if format_name not in ("lambda-ai-inference-v1", "lambda-ai-inference-v2"):
+                    raise ValueError("Expected a supported Lambda inference model (v1 or v2).")
                 info = self.metadata
                 self.context = int(info["context"])
                 self.embedding = int(info["embedding"])
@@ -92,6 +100,8 @@ class Engine:
                 shapes = {"E": (v, self.embedding), "W1": (self.context*self.embedding, self.hidden),
                           "b1": (self.hidden,), "W2": (self.hidden, self.hidden),
                           "b2": (self.hidden,), "W3": (self.hidden, v), "b3": (v,)}
+                if format_name == "lambda-ai-inference-v2":
+                    shapes["mode_bias"] = (2, self.hidden)
                 self.weights = {}
                 for key, shape in shapes.items():
                     array = np.asarray(data[key], dtype=np.float32)
@@ -99,32 +109,65 @@ class Engine:
                         raise ValueError(f"Invalid weight matrix: {key}.")
                     array.flags.writeable = False
                     self.weights[key] = array
+                if format_name == "lambda-ai-inference-v2":
+                    config = info["router"]
+                    if not isinstance(config, dict) or config.get("feature_version") != 1 or config.get('labels') != ['chat','math']:
+                        raise ValueError("Unsupported intent feature format. Upgrade the app.")
+                    self.router = IntentRouter(data["intent_W"], data["intent_b"], config["threshold"])
+                    if len(self.router.weights) != config["features"]:
+                        raise ValueError("Intent feature count does not match the weights.")
+                    self.router_weights = {"intent_W": self.router.weights, "intent_b": self.router.bias}
+                    self.question_features = info.get('question_features')
+                    if self.question_features is not None and self.question_features != {
+                        'version':1,'dimensions':768,'scale':4.0,'context':64,'mode':'chat'
+                    }:
+                        raise ValueError('Unsupported question feature format. Upgrade the app.')
+                    if self.question_features and (self.context < 64 or self.context*self.embedding < 768):
+                        raise ValueError('Question features exceed the model input dimensions.')
                 self.pad = self.tokenizer.ids["\n"]
         except (KeyError, TypeError, json.JSONDecodeError) as error:
             raise ValueError("Invalid model file contents.") from error
 
     @property
     def parameter_count(self):
-        return sum(w.size for w in self.weights.values())
+        return sum(w.size for w in self.all_weights.values())
+
+    @property
+    def all_weights(self):
+        return {**self.weights, **self.router_weights}
+
+    def classify(self, question):
+        return self.router.predict(question).to_dict() if self.router else {
+            "intent": None, "math_probability": None}
 
     def info(self):
         return {
             "name": self.metadata.get("name", "Lambda"),
-            "architecture": "Autoregressive MLP · 2 × tanh",
+            "architecture": "Mode-conditioned MLP + learned intent router" if self.router else "Autoregressive MLP · 2 × tanh",
             "parameters": self.parameter_count, "vocabulary": len(self.tokenizer.tokens),
             "context": self.context, "embedding": self.embedding, "hidden": self.hidden,
             "training_step": self.metadata.get("training_step", 0),
-            "weight_bytes": sum(w.nbytes for w in self.weights.values()),
+            "weight_bytes": sum(w.nbytes for w in self.all_weights.values()),
             "file_bytes": self.path.stat().st_size, "path": str(self.path),
             "dtype": "float32", "device": "CPU", "tokenizer": "BPE · locally learned vocabulary",
             "language": self.metadata.get("language", "en"), "model_id": self.metadata.get("model_id", "lambda-1.0"),
+            "generator_parameters": sum(w.size for w in self.weights.values()),
+            "router_parameters": sum(w.size for w in self.router_weights.values()),
+            "intent_routing": self.router is not None,
+            "question_features": self.question_features,
         }
 
-    def logits(self, ids):
+    def logits(self, ids, mode=0, question_features=None):
         x = np.asarray([ids[-self.context:]], dtype=np.int32)
         w = self.weights
         flat = w["E"][x].reshape(1, -1)
-        h1 = np.tanh(flat @ w["W1"] + w["b1"])
+        if question_features is not None:
+            flat = flat.copy()
+            flat[0,:768] += 4.0 * question_features
+        activation = flat @ w["W1"] + w["b1"]
+        if self.router is not None:
+            activation += w["mode_bias"][mode]
+        h1 = np.tanh(activation)
         h2 = np.tanh(h1 @ w["W2"] + w["b2"])
         return (h2 @ w["W3"] + w["b3"])[0]
 
@@ -133,6 +176,13 @@ class Engine:
         settings.validate()
         start = perf_counter()
         prompt_ids = self.tokenizer.encode(prompt)
+        question = prompt[10:-9] if prompt.startswith("Question: ") and prompt.endswith("\nAnswer: ") else prompt
+        decision = self.router.predict(question) if self.router else None
+        mode = decision.index if decision else 0
+        features = None
+        if self.question_features and mode == 0:
+            bounded = self.tokenizer.decode(self.tokenizer.encode(question)[-64:])
+            features = IntentRouter.features(bounded,768)
         ids = [self.pad] * max(0, self.context-len(prompt_ids)) + prompt_ids
         rng = np.random.default_rng(settings.seed)
         generated = []
@@ -143,7 +193,7 @@ class Engine:
             if cancel is not None and cancel.is_set():
                 reason = "cancelled"
                 break
-            values = self.logits(ids).astype(np.float64) / settings.temperature
+            values = self.logits(ids, mode, features).astype(np.float64) / settings.temperature
             if 0 < settings.top_k < len(values):
                 keep = np.argpartition(values, -settings.top_k)[-settings.top_k:]
                 masked = np.full_like(values, -np.inf)
@@ -176,4 +226,6 @@ class Engine:
         if on_text:
             on_text(visible, len(generated))
         return Result(visible, prompt_ids, generated, perf_counter()-start,
-                      min(len(prompt_ids), self.context), max(0, len(prompt_ids)-self.context), reason)
+                      min(len(prompt_ids), self.context), max(0, len(prompt_ids)-self.context), reason,
+                      intent=decision.name if decision else None,
+                      intent_math_probability=decision.math_probability if decision else None)

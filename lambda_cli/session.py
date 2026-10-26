@@ -23,6 +23,7 @@ COMMANDS
 
 /chat                     Return to chat
 /tokens [text]            Inspect BPE tokens
+/intent [text]            Inspect learned chat/math routing
 /model                    List models and show parameters
 /model use lambda-1.0     Switch models (install if needed)
 /model install <id>       Download a listed model
@@ -141,10 +142,15 @@ class Session:
                   f"  Precision            {info['dtype']}", f"  Weights in RAM       {info['weight_bytes']/1048576:.2f} MiB",
                   f"  Model file           {info['file_bytes']/1048576:.2f} MiB", f"  Checkpoint step      {info['training_step']:,}",
                   "", "  MATRICES", ""]
-        for name, weights in self.engine.weights.items():
+        for name, weights in self.engine.all_weights.items():
             shape = " × ".join(str(n) for n in weights.shape)
             lines.append(f"  {name:<5} {shape:<22} {weights.size:>10,} parameters")
         lines += ["", "  Experimental English model. Responses can be incorrect.", "  Chat never changes model weights."]
+        if info['intent_routing']:
+            lines += [f"  Intent classifier: {info['router_parameters']:,} learned parameters.",
+                      "  Routing probability describes intent, not answer correctness."]
+        if info['question_features']:
+            lines += ['  Chat topic features use the last 64 question tokens; no conversation memory.']
         return "\n".join(lines)
 
     def stats_text(self):
@@ -164,6 +170,9 @@ class Session:
                       f"  Used context          {r.context_used}/{self.engine.context}", f"  Dropped from start    {r.context_dropped}",
                       f"  Generated tokens      {len(r.generated)}", f"  Charged to allowance  {r.charged_tokens}",
                       f"  Speed                 {r.tokens_per_second:.1f} tok/s", f"  Finish reason         {r.finish_reason}"]
+            if r.intent:
+                lines += [f"  Detected intent       {r.intent}",
+                          f"  Math intent score     {r.intent_math_probability:.1%}"]
         lines += ["", "  Charged tokens = used input context + actual generated tokens, including stop tokens.",
                   "  Padding and discarded input are not charged. /new does not reset the allowance."]
         return "\n".join(lines)
@@ -180,6 +189,18 @@ class Session:
                       token_table(self.engine.tokenizer, [t.id for t in self.last_result.generated]),
                       "", "  Includes the tokens that ended the response."]
         return "\n".join(lines)
+
+    def intent_text(self):
+        text = self.inspected_text or self.last_question
+        if not text:
+            return 'Use /intent Your question to inspect its purpose.'
+        result = self.engine.classify(text)
+        if result['intent'] is None:
+            return 'This model has no explicit intent classifier. Select lambda 1.6 to use one.'
+        return (f"INTENT / {result['intent'].upper()}\n\n  Question: {text}\n"
+                f"  Math probability: {result['math_probability']:.1%}\n\n"
+                '  A calculation asks for a result. A chat question can contain numbers.\n'
+                '  This score does not measure whether the answer is correct.')
 
     def command(self, text):
         command, _, value = text.partition(" ")
@@ -203,6 +224,9 @@ class Session:
         if command == "/tokens":
             self.inspected_text = value or self.last_question
             return "tokens", ""
+        if command == '/intent':
+            self.inspected_text = value or self.last_question
+            return 'intent', ''
         if command == "/exit":
             return "exit", ""
         if command == "/new":

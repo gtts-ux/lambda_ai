@@ -26,6 +26,9 @@ def parser():
     tokens = sub.add_parser("tokens", help="Inspect BPE token IDs and pieces")
     tokens.add_argument("text", nargs="?")
     tokens.add_argument("--json", action="store_true")
+    intent = sub.add_parser('intent', help='Inspect learned chat/calculation intent')
+    intent.add_argument('text')
+    intent.add_argument('--json', action='store_true')
     usage = sub.add_parser("usage", help="Show remaining tokens and the 10-hour reset")
     usage.add_argument("--json", action="store_true")
     sub.add_parser("update", help="Refresh the catalog and update installed models")
@@ -57,7 +60,7 @@ def plain_chat(session):
                     print(session.model_text())
                     continue
                 content = {"help":lambda:HELP, "model":session.model_text,
-                           "stats":session.stats_text, "tokens":session.tokens_text}
+                           "stats":session.stats_text, "tokens":session.tokens_text, "intent":session.intent_text}
                 if view in content:
                     print(content[view]())
                 if notice:
@@ -67,8 +70,9 @@ def plain_chat(session):
             result = session.generate(question)
             session.complete(result)
             print("λ ›", result.text or "[Empty response]")
+            mode = f" · {result.intent.title()}" if result.intent else ""
             print(f"    {len(result.prompt_ids)} → {len(result.generated)} tok · "
-                  f"{result.seconds:.2f} s · {session.quota.status()['remaining']:,} tokens left\n")
+                  f"{result.seconds:.2f} s · {session.quota.status()['remaining']:,} tokens left{mode}\n")
         except KeyboardInterrupt:
             print("\nCancelled.")
         except (ValueError, OSError) as error:
@@ -87,6 +91,13 @@ def main(argv=None):
         settings = Settings(getattr(args,"temperature",0.4), getattr(args,"max_tokens",120),
                             getattr(args,"top_k",8), getattr(args,"seed",None))
         session = Session(engine, settings, manager=manager)
+        if args.command == 'intent':
+            if args.json:
+                print(json.dumps(engine.classify(args.text), indent=2))
+            else:
+                session.inspected_text = args.text
+                print(session.intent_text())
+            return 0
         if args.command == "info":
             print(json.dumps(engine.info(),indent=2) if args.json else session.model_text())
             return 0

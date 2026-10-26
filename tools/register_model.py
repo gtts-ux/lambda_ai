@@ -27,7 +27,7 @@ def main():
     catalog_path = ROOT/"models/catalog.json"
     catalog = json.loads(catalog_path.read_text()) if catalog_path.exists() else {"schema":1,"models":[]}
     entry = {"id":args.id,"name":args.name,"revision":args.revision,"language":"en",
-             "min_app_version":args.min_app_version,"format":"lambda-ai-inference-v1",
+             "min_app_version":args.min_app_version,"format":engine.metadata['format'],
              "sha256":hashlib.sha256(path.read_bytes()).hexdigest(),"bytes":path.stat().st_size,
              "url":"https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/"+relative,
              "description":"Small English language model trained from random weights."}

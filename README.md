@@ -75,6 +75,7 @@ and the input supports session history with the arrow keys.
 ```text
 /help
 /tokens What is a cat?
+/intent Explain Python 3
 /model
 /model use lambda-1.0
 /update
@@ -87,9 +88,9 @@ and the input supports session history with the arrow keys.
 /exit
 ```
 
-`/model` offers **lambda 1.0** and **lambda 1.5**. In that view, enter a model's
+`/model` offers **lambda 1.0**, **lambda 1.5**, and **lambda 1.6**. In that view, enter a model's
 number or use `/model use <id>`. Lambda 1.0 remains included with the app;
-lambda 1.5 is an optional download. Future models appear after `/update` when
+lambda 1.5 and 1.6 are optional downloads. Future models appear after `/update` when
 the maintainer adds them to the catalog. New models are not given automatic names.
 
 ### lambda 1.5: elementary mathematics
@@ -105,9 +106,45 @@ model; no calculator or answer lookup is used during generation.
 ```
 
 The same commands work in an existing installation; the inference format is
-compatible with app 0.1.0. Both models remain selectable. Arithmetic is still
+compatible with app 0.1.0. Earlier models remain selectable. Arithmetic is still
 fallible: see the [lambda 1.5 model card](models/lambda-1.5.md) and its measured
 benchmark results before relying on it. Switching models preserves the allowance.
+
+### lambda 1.6: conversational intent
+
+Lambda 1.6 has **2,614,528 learned parameters — exactly 3.5× lambda 1.0**.
+It continues the owner's locally trained lambda 1.5 with wider layers, an
+80-token context, an expanded vocabulary, and a small learned intent head.
+In chat mode, fixed text features also feed the existing learned first layer
+to help recognize topics across different word orders. This adds no answer lookup.
+
+The intent head distinguishes a calculation from a conversation that happens
+to contain numbers. For example, `2+2` asks for math, while `Explain Python 3`
+and `I have 2 cats` call for conversational responses. Its prediction conditions
+the language model; it does not evaluate expressions or look up answers.
+The detected mode appears in the status line and response JSON.
+
+**Lambda 1.6 needs app 0.2.0 or newer.** Upgrade an existing checkout first:
+
+```bash
+git pull
+bash install.sh
+lambda
+```
+
+Then select the model:
+
+```text
+/update
+/model use lambda-1.6
+/intent Explain Python 3
+```
+
+The command-line inspector is `lambda intent "Explain Python 3" --json`.
+Routing probabilities concern the type of request, not whether an answer is true.
+Classification, arithmetic and conversation remain fallible; see the
+[lambda 1.6 model card](models/lambda-1.6.md) for measured results and limitations.
+Models 1.0 and 1.5 remain supported by app 0.2.0.
 
 ## Token allowance
 
@@ -129,7 +166,7 @@ subscription shared across devices. State is stored under
 `XDG_DATA_HOME` and `LAMBDA_DATA_HOME` can set the application data location.
 No account, API key, telemetry or paid text-generation API is used.
 
-The model's **64-token context** is separate from the allowance. A larger
+The model's context (**64 tokens in 1.0/1.5; 80 in 1.6**) is separate from the allowance. A larger
 allowance does not increase how much of one question the model can see.
 
 ## Model updates
@@ -160,6 +197,7 @@ to upgrade the app itself. Current model names and future release rules are in
 lambda ask "What is a cat?"
 lambda ask "What is the internet?" --seed 7 --json
 lambda tokens "Hello, world!" --json
+lambda intent "Explain Python 3" --json
 lambda info --json
 lambda usage --json
 lambda chat --plain
