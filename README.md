@@ -87,10 +87,27 @@ and the input supports session history with the arrow keys.
 /exit
 ```
 
-`/model` initially offers only **lambda 1.0**. In that view, enter its number
-or use `/model use lambda-1.0`. Future models appear after `/update` when the
-maintainer adds them to the published catalog. New models are not given
-automatic names.
+`/model` offers **lambda 1.0** and **lambda 1.5**. In that view, enter a model's
+number or use `/model use <id>`. Lambda 1.0 remains included with the app;
+lambda 1.5 is an optional download. Future models appear after `/update` when
+the maintainer adds them to the catalog. New models are not given automatic names.
+
+### lambda 1.5: elementary mathematics
+
+Lambda 1.5 has **1,867,520 parameters — exactly 2.5× lambda 1.0**. Its English
+training includes small integer addition, subtraction, multiplication and exact
+division, with digits tokenized individually. Answers come from the neural
+model; no calculator or answer lookup is used during generation.
+
+```text
+/update
+/model use lambda-1.5
+```
+
+The same commands work in an existing installation; the inference format is
+compatible with app 0.1.0. Both models remain selectable. Arithmetic is still
+fallible: see the [lambda 1.5 model card](models/lambda-1.5.md) and its measured
+benchmark results before relying on it. Switching models preserves the allowance.
 
 ## Token allowance
 

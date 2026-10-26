@@ -1,7 +1,8 @@
 # Lambda AI maintenance instructions
 
 - The app, its UI, documentation, default prompts and bundled model must be English.
-- The currently approved model name is **lambda 1.0**, ID `lambda-1.0`.
+- The approved model names are **lambda 1.0** (`lambda-1.0`) and
+  **lambda 1.5** (`lambda-1.5`).
 - The owner will supply the name of every future model. If a new model is requested
   without a name, ask the owner before assigning or publishing one. Never invent a name.
 - Do not ship training scripts, training data or optimizer state in this repository.

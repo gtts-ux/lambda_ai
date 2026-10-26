@@ -12,6 +12,18 @@
       "bytes": 2783090,
       "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/lambda_cli/assets/model.npz",
       "description": "Small English language model trained from random weights."
+    },
+    {
+      "id": "lambda-1.5",
+      "name": "lambda 1.5",
+      "revision": 1,
+      "language": "en",
+      "min_app_version": "0.1.0",
+      "format": "lambda-ai-inference-v1",
+      "sha256": "40ca86699b5441a2f496dd3029a115ced588eb1e4dfa2cb56c9b8137c7b567da",
+      "bytes": 6949456,
+      "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-1.5.npz",
+      "description": "Small English language model trained from random weights."
     }
   ]
 }

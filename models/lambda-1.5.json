@@ -1,0 +1,8 @@
+{
+  "filename": "lambda-1.5.npz",
+  "sha256": "40ca86699b5441a2f496dd3029a115ced588eb1e4dfa2cb56c9b8137c7b567da",
+  "bytes": 6949456,
+  "training_step": 37500,
+  "parameters": 1867520,
+  "format": "lambda-ai-inference-v1"
+}

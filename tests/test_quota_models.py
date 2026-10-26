@@ -90,9 +90,10 @@ class ModelUpdateTests(unittest.TestCase):
         self.addCleanup(self.directory.cleanup)
         self.manager = ModelManager(self.directory.name)
 
-    def test_only_approved_initial_model_exists(self):
+    def test_catalog_contains_owner_approved_models(self):
         entries = self.manager.entries()
-        self.assertEqual([(e["id"],e["name"]) for e in entries],[("lambda-1.0","lambda 1.0")])
+        self.assertEqual([(e["id"],e["name"]) for e in entries],
+                         [("lambda-1.0","lambda 1.0"),("lambda-1.5","lambda 1.5")])
         self.assertEqual(self.manager.resolve(),DEFAULT_MODEL)
 
     def revision(self):

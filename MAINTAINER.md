@@ -2,7 +2,8 @@
 
 Repository: https://github.com/gtts-ux/lambda_ai
 
-The only currently approved model name is **lambda 1.0**, ID `lambda-1.0`.
+The approved model names are **lambda 1.0** (`lambda-1.0`) and
+**lambda 1.5** (`lambda-1.5`).
 The owner will name future models. **Ask the owner if a new model is requested
 without a name; do not invent or automatically increment model names.**
 
