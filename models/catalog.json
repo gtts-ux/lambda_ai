@@ -36,6 +36,18 @@
       "bytes": 9724680,
       "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-1.6.npz",
       "description": "Small English language model trained from random weights."
+    },
+    {
+      "id": "lambda-2",
+      "name": "lambda 2",
+      "revision": 1,
+      "language": "en",
+      "min_app_version": "0.2.0",
+      "format": "lambda-ai-inference-v2",
+      "sha256": "d66e73f446ad01eb68c42d17e6003fb3e344a680c1791159863045c01d16dbca",
+      "bytes": 16934294,
+      "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-2.npz",
+      "description": "English model continued from lambda 1.6, with 4,553,728 parameters and 100,000 additional training steps."
     }
   ]
 }

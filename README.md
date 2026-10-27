@@ -88,9 +88,9 @@ and the input supports session history with the arrow keys.
 /exit
 ```
 
-`/model` offers **lambda 1.0**, **lambda 1.5**, and **lambda 1.6**. In that view, enter a model's
+`/model` offers **lambda 1.0**, **lambda 1.5**, **lambda 1.6**, and **lambda 2**. In that view, enter a model's
 number or use `/model use <id>`. Lambda 1.0 remains included with the app;
-lambda 1.5 and 1.6 are optional downloads. Future models appear after `/update` when
+lambda 1.5, 1.6 and 2 are optional downloads. Future models appear after `/update` when
 the maintainer adds them to the catalog. New models are not given automatic names.
 
 ### lambda 1.5: elementary mathematics
@@ -146,6 +146,25 @@ Classification, arithmetic and conversation remain fallible; see the
 [lambda 1.6 model card](models/lambda-1.6.md) for measured results and limitations.
 Models 1.0 and 1.5 remain supported by app 0.2.0.
 
+### lambda 2: continued local training
+
+Lambda 2 has **4,553,728 learned parameters**, two 1,024-unit hidden layers,
+and 100,000 additional generator training steps from the owner's lambda 1.6.
+It keeps an 80-token context, learned Chat/Math routing and English generation.
+It works with **app 0.2.0 or newer**, so existing 0.2.0 users can select it directly:
+
+```text
+/update
+/model use lambda-2
+```
+
+CLI equivalent: `lambda update`, then `lambda model use lambda-2`.
+The release contains the trained final checkpoint, rather than the step-0
+baseline originally selected by the validation criterion. It remains experimental;
+more training does not guarantee better answers. See the
+[lambda 2 model card](models/lambda-2.md) for the checkpoint decision, comparison
+with 1.6, and known regressions. All earlier models and the shared allowance remain available.
+
 ## Token allowance
 
 Each local OS user receives **1,000,000 tokens per 10-hour window**. The window
@@ -166,7 +185,7 @@ subscription shared across devices. State is stored under
 `XDG_DATA_HOME` and `LAMBDA_DATA_HOME` can set the application data location.
 No account, API key, telemetry or paid text-generation API is used.
 
-The model's context (**64 tokens in 1.0/1.5; 80 in 1.6**) is separate from the allowance. A larger
+The model's context (**64 tokens in 1.0/1.5; 80 in 1.6/2**) is separate from the allowance. A larger
 allowance does not increase how much of one question the model can see.
 
 ## Model updates

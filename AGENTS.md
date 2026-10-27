@@ -2,7 +2,9 @@
 
 - The app, its UI, documentation, default prompts and bundled model must be English.
 - The approved model names are **lambda 1.0** (`lambda-1.0`),
-  **lambda 1.5** (`lambda-1.5`), and **lambda 1.6** (`lambda-1.6`).
+  **lambda 1.5** (`lambda-1.5`), **lambda 1.6** (`lambda-1.6`), and **lambda 2** (`lambda-2`).
+- Lambda 2 has 4,553,728 parameters and uses the compatible v2 format (app >=0.2.0).
+  Release its trained step-100000 checkpoint; the old step-0 export is not the release.
 - Lambda 1.6 has exactly 2,614,528 parameters including its learned intent head;
   its v2 inference format requires app 0.2.0 or newer. Keep v1 models supported.
 - The owner will supply the name of every future model. If a new model is requested

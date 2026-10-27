@@ -1,0 +1,5032 @@
+{
+  "model": "lambda 2",
+  "created_utc": "2026-10-27T06:26:33.839140+00:00",
+  "method": "Reused development benchmarks, raw unedited outputs. Routing accuracy is not answer correctness. Topic-keyword coverage is a narrow proxy, not semantic accuracy.",
+  "sampling": {
+    "temperature": 0.4,
+    "top_k": 8,
+    "seed": 7,
+    "conversation_max_tokens": 100,
+    "arithmetic_max_tokens": 48
+  },
+  "models": {
+    "lambda 1.6": {
+      "model_sha256": "1d28cd581756dbdb1a7f2c1ae0f1fcc9ab96b76340503817424bfa003da669eb",
+      "parameters": 2614528,
+      "training_step": 25000,
+      "summary": {
+        "chat": {
+          "total": 15,
+          "numeric_only": 0,
+          "topic_matches": 10
+        },
+        "chat_with_digits": {
+          "total": 15,
+          "numeric_only": 2,
+          "topic_matches": 8
+        },
+        "math": {
+          "total": 10,
+          "numeric_only": 8,
+          "topic_matches": 0
+        }
+      },
+      "routing": {
+        "correct": 39,
+        "total": 40,
+        "accuracy": 0.975
+      },
+      "conversation_cases": [
+        {
+          "question": "What do you mean when you say a keyboard?",
+          "intent": "chat",
+          "keywords": [
+            "keyboard",
+            "type",
+            "text"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A keyboard lets you type text and enter commands into a computer.",
+          "detected_intent": "chat",
+          "math_probability": 1.3828151168127079e-05,
+          "matched_keywords": [
+            "keyboard",
+            "type",
+            "text"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Could you give a brief description of a browser?",
+          "intent": "chat",
+          "keywords": [
+            "browser",
+            "web",
+            "pages"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A browser is an application used to view web pages.",
+          "detected_intent": "chat",
+          "math_probability": 1.6460081724289921e-06,
+          "matched_keywords": [
+            "browser",
+            "web",
+            "pages"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "I would like a plain description of a tree.",
+          "intent": "chat",
+          "keywords": [
+            "tree",
+            "plant",
+            "trunk"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A tree is a long-lived plant that usually has a woody trunk and branches.",
+          "detected_intent": "chat",
+          "math_probability": 1.0875361112994142e-05,
+          "matched_keywords": [
+            "tree",
+            "plant",
+            "trunk"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Help me understand the idea of a variable.",
+          "intent": "chat",
+          "keywords": [
+            "variable",
+            "value",
+            "name"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A variable lets a program refer to a value by a name.",
+          "detected_intent": "chat",
+          "math_probability": 4.130934757995419e-05,
+          "matched_keywords": [
+            "variable",
+            "value",
+            "name"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Please give a brief definition of a library.",
+          "intent": "chat",
+          "keywords": [
+            "library",
+            "books",
+            "materials"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A library collects books and other materials and makes them available to readers.",
+          "detected_intent": "chat",
+          "math_probability": 1.0139685400645249e-05,
+          "matched_keywords": [
+            "library",
+            "books",
+            "materials"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Tell me the meaning of a neural network.",
+          "intent": "chat",
+          "keywords": [
+            "neural",
+            "network",
+            "parameters"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A neural network is a computational model built from connected operations and learned parameters.",
+          "detected_intent": "chat",
+          "math_probability": 0.00016808538930490613,
+          "matched_keywords": [
+            "neural",
+            "network",
+            "parameters"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Would you describe what a backup is?",
+          "intent": "chat",
+          "keywords": [
+            "backup",
+            "copy",
+            "data"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A backup is the extra that r es data that can or restore. \n is an error",
+          "detected_intent": "chat",
+          "math_probability": 4.591391018493596e-07,
+          "matched_keywords": [
+            "backup",
+            "data"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Hi! Can we chat?",
+          "intent": "chat",
+          "keywords": [
+            "hello",
+            "hi",
+            "help"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "You mentitive I model relive a without images you s about  ts ins.",
+          "detected_intent": "chat",
+          "math_probability": 0.0005866004503332078,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": false
+        },
+        {
+          "question": "I'd like you to introduce yourself.",
+          "intent": "chat",
+          "keywords": [
+            "lambda",
+            "language",
+            "model"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "I'm Lambda 1.6, a small local English language model.",
+          "detected_intent": "chat",
+          "math_probability": 0.00011211695527890697,
+          "matched_keywords": [
+            "lambda",
+            "language",
+            "model"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "I could use some help, please.",
+          "intent": "chat",
+          "keywords": [
+            "tell",
+            "help",
+            "need"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "Go a Yes does written go fres.",
+          "detected_intent": "chat",
+          "math_probability": 0.20850054919719696,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": false
+        },
+        {
+          "question": "Thank you for explaining that!",
+          "intent": "chat",
+          "keywords": [
+            "welcome",
+            "help"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A meter is a unit of language used for sitting.",
+          "detected_intent": "chat",
+          "math_probability": 0.00023429057910107076,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": false
+        },
+        {
+          "question": "Could you say goodbye to me?",
+          "intent": "chat",
+          "keywords": [
+            "goodbye",
+            "day"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "Goodbye! Have a good day.",
+          "detected_intent": "chat",
+          "math_probability": 2.8016287615173496e-05,
+          "matched_keywords": [
+            "goodbye",
+            "day"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Do you know the current weather outside?",
+          "intent": "chat",
+          "keywords": [
+            "live",
+            "weather",
+            "forecast"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "20 / read s an s. How find . \n find the Solar System. \n do\nt wter the Solar System or curine the result to the ve4.",
+          "detected_intent": "chat",
+          "math_probability": 0.011746348813176155,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": false
+        },
+        {
+          "question": "Can you recall our earlier conversation?",
+          "intent": "chat",
+          "keywords": [
+            "question",
+            "separately",
+            "messages"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "Each question is processed separately. I do not retain earlier messages as model the boice raswweights.",
+          "detected_intent": "chat",
+          "math_probability": 0.009184194728732109,
+          "matched_keywords": [
+            "question",
+            "separately",
+            "messages"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Could you describe a negative number to me?",
+          "intent": "chat",
+          "keywords": [
+            "negative",
+            "zero",
+            "less"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A plus sign e addition. It can describe changfeny h weights explanation of a \n .",
+          "detected_intent": "chat",
+          "math_probability": 1.663107980220957e-07,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": false
+        },
+        {
+          "question": "For exercise 2, could you define a folder?",
+          "intent": "chat",
+          "keywords": [
+            "folder",
+            "files",
+            "organize"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A folder helps organize files and other folders.",
+          "detected_intent": "chat",
+          "math_probability": 0.00045706232776865363,
+          "matched_keywords": [
+            "folder",
+            "files",
+            "organize"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "In Python 3, please describe a loop.",
+          "intent": "chat",
+          "keywords": [
+            "loop",
+            "repeats",
+            "instructions"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A loop repeats a set of instructions in a program.",
+          "detected_intent": "chat",
+          "math_probability": 1.8826323866960593e-05,
+          "matched_keywords": [
+            "loop",
+            "repeats",
+            "instructions"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Could you tell me about 3D printing?",
+          "intent": "chat",
+          "keywords": [
+            "printing",
+            "objects",
+            "layers"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "3D printing makes physical objects by building up material in layers.",
+          "detected_intent": "chat",
+          "math_probability": 4.934997559757903e-05,
+          "matched_keywords": [
+            "printing",
+            "objects",
+            "layers"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Could you describe a 2D shape for me?",
+          "intent": "chat",
+          "keywords": [
+            "shape",
+            "flat",
+            "length"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "I ap a a quantity a  ings of s images in a fix.",
+          "detected_intent": "chat",
+          "math_probability": 7.056817594275344e-06,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": false
+        },
+        {
+          "question": "I own 4 cats. May we talk about them?",
+          "intent": "chat",
+          "keywords": [
+            "cats",
+            "know",
+            "like"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "Weather describes like to know about find by data.",
+          "detected_intent": "chat",
+          "math_probability": 0.0014467575820162892,
+          "matched_keywords": [
+            "know",
+            "like"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "My document has 8 pages. How can I write a summary?",
+          "intent": "chat",
+          "keywords": [
+            "main",
+            "idea",
+            "points"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "Identify the main idea and restate the important points briefly in your own words.",
+          "detected_intent": "chat",
+          "math_probability": 0.002230681013315916,
+          "matched_keywords": [
+            "main",
+            "idea",
+            "points"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "I am reading lesson 5. What is a computer?",
+          "intent": "chat",
+          "keywords": [
+            "computer",
+            "programs",
+            "data"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A computer is a device that runs programs and processes data.",
+          "detected_intent": "chat",
+          "math_probability": 1.7611911289350246e-06,
+          "matched_keywords": [
+            "computer",
+            "programs",
+            "data"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "The filename is draft4.txt. What is a file?",
+          "intent": "chat",
+          "keywords": [
+            "file",
+            "data",
+            "name"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A file stores data under a name, such as text, an image, or sound.",
+          "detected_intent": "chat",
+          "math_probability": 0.0006135335424914956,
+          "matched_keywords": [
+            "file",
+            "data",
+            "name"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "There is an error 21. Could you explain debugging?",
+          "intent": "chat",
+          "keywords": [
+            "debugging",
+            "errors",
+            "fixing"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "Division s the s quantity into equal and in s and and vapor vapor?",
+          "detected_intent": "chat",
+          "math_probability": 1.6070649508037604e-05,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": false
+        },
+        {
+          "question": "Please tell me what 4+9 means rather than giving a result.",
+          "intent": "chat",
+          "keywords": [
+            "addition",
+            "quantities",
+            "sum"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "Raes comby written should loits you their a a in a ings.",
+          "detected_intent": "chat",
+          "math_probability": 0.0002887762675527483,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": false
+        },
+        {
+          "question": "Describe the operation in 8/2 without calculating.",
+          "intent": "chat",
+          "keywords": [
+            "division",
+            "equal",
+            "groups"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": ". \n is an error that want s.",
+          "detected_intent": "chat",
+          "math_probability": 0.00030575497657991946,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": false
+        },
+        {
+          "question": "Please explain the idea behind 6*2.",
+          "intent": "chat",
+          "keywords": [
+            "multiplication",
+            "equal",
+            "groups"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "12.",
+          "detected_intent": "chat",
+          "math_probability": 0.07389406859874725,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": true
+        },
+        {
+          "question": "Can you describe version 2.4?",
+          "intent": "chat",
+          "keywords": [
+            "version",
+            "release",
+            "number"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "6.",
+          "detected_intent": "chat",
+          "math_probability": 5.446162322186865e-05,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": true
+        },
+        {
+          "question": "Is Python 3 a programming language?",
+          "intent": "chat",
+          "keywords": [
+            "python",
+            "language",
+            "programs"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A program is a set of instructions that can bea a cor fin the casg\n.",
+          "detected_intent": "chat",
+          "math_probability": 0.002690237481147051,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": false
+        },
+        {
+          "question": "For question 6, explain a password.",
+          "intent": "chat",
+          "keywords": [
+            "password",
+            "secret",
+            "access"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A password is a secret used to help protect access to an account or system.",
+          "detected_intent": "chat",
+          "math_probability": 3.2528484439353633e-07,
+          "matched_keywords": [
+            "password",
+            "secret",
+            "access"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Can you compute 3+4 for me?",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "The Solar System is information of 9 used for me9.",
+          "detected_intent": "math",
+          "math_probability": 0.8117973208427429,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": false
+        },
+        {
+          "question": "Please calculate 8 + 5.",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "13.",
+          "detected_intent": "math",
+          "math_probability": 0.9682296514511108,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": true
+        },
+        {
+          "question": "Find the answer to 15 minus 6.",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "11.",
+          "detected_intent": "math",
+          "math_probability": 0.9999130964279175,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": true
+        },
+        {
+          "question": "Work out 4*5.",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "20.",
+          "detected_intent": "math",
+          "math_probability": 0.9999995231628418,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": true
+        },
+        {
+          "question": "Can you divide 18 by 3?",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "6.",
+          "detected_intent": "math",
+          "math_probability": 0.9844207167625427,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": true
+        },
+        {
+          "question": "Find the answer to 7+6.",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "13.",
+          "detected_intent": "math",
+          "math_probability": 0.9992517828941345,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": true
+        },
+        {
+          "question": "If I have 3 apples and receive 4 more, how many apples do I have?",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "Addition combines quantities to find their sum.",
+          "detected_intent": "math",
+          "math_probability": 0.9966893196105957,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": false
+        },
+        {
+          "question": "Can you give me half of 16?",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "8.",
+          "detected_intent": "chat",
+          "math_probability": 0.021436531096696854,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": true
+        },
+        {
+          "question": "Could you work out 7-10?",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "-3.",
+          "detected_intent": "math",
+          "math_probability": 0.9999804496765137,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": true
+        },
+        {
+          "question": "Please work out 9/3 for me.",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "7.",
+          "detected_intent": "math",
+          "math_probability": 0.9985063672065735,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": true
+        }
+      ],
+      "arithmetic": {
+        "summary": {
+          "unseen_wording": {
+            "correct": 75,
+            "total": 96,
+            "accuracy": 0.78125
+          },
+          "unseen_wording/add": {
+            "correct": 20,
+            "total": 24,
+            "accuracy": 0.8333333333333334
+          },
+          "unseen_wording/sub": {
+            "correct": 13,
+            "total": 24,
+            "accuracy": 0.5416666666666666
+          },
+          "unseen_wording/mul": {
+            "correct": 23,
+            "total": 24,
+            "accuracy": 0.9583333333333334
+          },
+          "unseen_wording/div": {
+            "correct": 19,
+            "total": 24,
+            "accuracy": 0.7916666666666666
+          },
+          "held_out_operands": {
+            "correct": 17,
+            "total": 46,
+            "accuracy": 0.3695652173913043
+          },
+          "held_out_operands/add": {
+            "correct": 3,
+            "total": 10,
+            "accuracy": 0.3
+          },
+          "held_out_operands/sub": {
+            "correct": 10,
+            "total": 24,
+            "accuracy": 0.4166666666666667
+          },
+          "held_out_operands/mul": {
+            "correct": 1,
+            "total": 3,
+            "accuracy": 0.3333333333333333
+          },
+          "held_out_operands/div": {
+            "correct": 3,
+            "total": 9,
+            "accuracy": 0.3333333333333333
+          }
+        },
+        "seconds": 0.65,
+        "cases": [
+          {
+            "operation": "add",
+            "a": 19,
+            "b": 6,
+            "expected": 25,
+            "family": "add:6:19",
+            "question": "Can you calculate 19 + 6?",
+            "group": "unseen_wording",
+            "output": "25.",
+            "parsed": 25,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 17,
+            "b": 20,
+            "expected": 37,
+            "family": "add:17:20",
+            "question": "Can you calculate 17 + 20?",
+            "group": "unseen_wording",
+            "output": "37.",
+            "parsed": 37,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 19,
+            "b": 2,
+            "expected": 21,
+            "family": "add:2:19",
+            "question": "Can you calculate 19 + 2?",
+            "group": "unseen_wording",
+            "output": "21.",
+            "parsed": 21,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 10,
+            "b": 7,
+            "expected": 17,
+            "family": "add:7:10",
+            "question": "Can you calculate 10 + 7?",
+            "group": "unseen_wording",
+            "output": "17.",
+            "parsed": 17,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 13,
+            "b": 1,
+            "expected": 14,
+            "family": "add:1:13",
+            "question": "Can you calculate 13 + 1?",
+            "group": "unseen_wording",
+            "output": "14.",
+            "parsed": 14,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 16,
+            "b": 17,
+            "expected": 33,
+            "family": "add:16:17",
+            "question": "Can you calculate 16 + 17?",
+            "group": "unseen_wording",
+            "output": "33.",
+            "parsed": 33,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 20,
+            "b": 4,
+            "expected": 24,
+            "family": "add:4:20",
+            "question": "Can you calculate 20 + 4?",
+            "group": "unseen_wording",
+            "output": "46.",
+            "parsed": 46,
+            "correct": false
+          },
+          {
+            "operation": "add",
+            "a": 10,
+            "b": 20,
+            "expected": 30,
+            "family": "add:10:20",
+            "question": "Can you calculate 10 + 20?",
+            "group": "unseen_wording",
+            "output": "30.",
+            "parsed": 30,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 5,
+            "b": 5,
+            "expected": 10,
+            "family": "add:5:5",
+            "question": "Can you calculate 5 + 5?",
+            "group": "unseen_wording",
+            "output": "10.",
+            "parsed": 10,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 9,
+            "b": 18,
+            "expected": 27,
+            "family": "add:9:18",
+            "question": "Can you calculate 9 + 18?",
+            "group": "unseen_wording",
+            "output": "27.",
+            "parsed": 27,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 20,
+            "b": 16,
+            "expected": 36,
+            "family": "add:16:20",
+            "question": "Can you calculate 20 + 16?",
+            "group": "unseen_wording",
+            "output": "36.",
+            "parsed": 36,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 20,
+            "b": 20,
+            "expected": 40,
+            "family": "add:20:20",
+            "question": "Can you calculate 20 + 20?",
+            "group": "unseen_wording",
+            "output": "40.",
+            "parsed": 40,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 12,
+            "b": 1,
+            "expected": 13,
+            "family": "add:1:12",
+            "question": "Can you calculate 12 + 1?",
+            "group": "unseen_wording",
+            "output": "13.",
+            "parsed": 13,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 19,
+            "b": 13,
+            "expected": 32,
+            "family": "add:13:19",
+            "question": "Can you calculate 19 + 13?",
+            "group": "unseen_wording",
+            "output": "32.",
+            "parsed": 32,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 3,
+            "b": 4,
+            "expected": 7,
+            "family": "add:3:4",
+            "question": "Can you calculate 3 + 4?",
+            "group": "unseen_wording",
+            "output": "7.",
+            "parsed": 7,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 2,
+            "b": 1,
+            "expected": 3,
+            "family": "add:1:2",
+            "question": "Can you calculate 2 + 1?",
+            "group": "unseen_wording",
+            "output": "13.",
+            "parsed": 13,
+            "correct": false
+          },
+          {
+            "operation": "add",
+            "a": 7,
+            "b": 12,
+            "expected": 19,
+            "family": "add:7:12",
+            "question": "Can you calculate 7 + 12?",
+            "group": "unseen_wording",
+            "output": "19.",
+            "parsed": 19,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 16,
+            "b": 19,
+            "expected": 35,
+            "family": "add:16:19",
+            "question": "Can you calculate 16 + 19?",
+            "group": "unseen_wording",
+            "output": "36.",
+            "parsed": 36,
+            "correct": false
+          },
+          {
+            "operation": "add",
+            "a": 14,
+            "b": 16,
+            "expected": 30,
+            "family": "add:14:16",
+            "question": "Can you calculate 14 + 16?",
+            "group": "unseen_wording",
+            "output": "30.",
+            "parsed": 30,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 6,
+            "b": 9,
+            "expected": 15,
+            "family": "add:6:9",
+            "question": "Can you calculate 6 + 9?",
+            "group": "unseen_wording",
+            "output": "15.",
+            "parsed": 15,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 19,
+            "b": 10,
+            "expected": 29,
+            "family": "add:10:19",
+            "question": "Can you calculate 19 + 10?",
+            "group": "unseen_wording",
+            "output": "29.",
+            "parsed": 29,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 5,
+            "b": 19,
+            "expected": 24,
+            "family": "add:5:19",
+            "question": "Can you calculate 5 + 19?",
+            "group": "unseen_wording",
+            "output": "24.",
+            "parsed": 24,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 12,
+            "b": 9,
+            "expected": 21,
+            "family": "add:9:12",
+            "question": "Can you calculate 12 + 9?",
+            "group": "unseen_wording",
+            "output": "27.",
+            "parsed": 27,
+            "correct": false
+          },
+          {
+            "operation": "add",
+            "a": 19,
+            "b": 7,
+            "expected": 26,
+            "family": "add:7:19",
+            "question": "Can you calculate 19 + 7?",
+            "group": "unseen_wording",
+            "output": "26.",
+            "parsed": 26,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 18,
+            "b": 6,
+            "expected": 12,
+            "family": "sub:18:6",
+            "question": "Can you calculate 18 - 6?",
+            "group": "unseen_wording",
+            "output": "12.",
+            "parsed": 12,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 2,
+            "b": 1,
+            "expected": 1,
+            "family": "sub:2:1",
+            "question": "Can you calculate 2 - 1?",
+            "group": "unseen_wording",
+            "output": "-1.",
+            "parsed": -1,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 5,
+            "b": 7,
+            "expected": -2,
+            "family": "sub:5:7",
+            "question": "Can you calculate 5 - 7?",
+            "group": "unseen_wording",
+            "output": "-12.",
+            "parsed": -12,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 13,
+            "b": 8,
+            "expected": 5,
+            "family": "sub:13:8",
+            "question": "Can you calculate 13 - 8?",
+            "group": "unseen_wording",
+            "output": "-5.",
+            "parsed": -5,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 8,
+            "b": 1,
+            "expected": 7,
+            "family": "sub:8:1",
+            "question": "Can you calculate 8 - 1?",
+            "group": "unseen_wording",
+            "output": "7.",
+            "parsed": 7,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 19,
+            "b": 12,
+            "expected": 7,
+            "family": "sub:19:12",
+            "question": "Can you calculate 19 - 12?",
+            "group": "unseen_wording",
+            "output": "7.",
+            "parsed": 7,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 10,
+            "b": 1,
+            "expected": 9,
+            "family": "sub:10:1",
+            "question": "Can you calculate 10 - 1?",
+            "group": "unseen_wording",
+            "output": "-1.",
+            "parsed": -1,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 12,
+            "b": 9,
+            "expected": 3,
+            "family": "sub:12:9",
+            "question": "Can you calculate 12 - 9?",
+            "group": "unseen_wording",
+            "output": "3.",
+            "parsed": 3,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 7,
+            "b": 5,
+            "expected": 2,
+            "family": "sub:7:5",
+            "question": "Can you calculate 7 - 5?",
+            "group": "unseen_wording",
+            "output": "-2.",
+            "parsed": -2,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 2,
+            "b": 19,
+            "expected": -17,
+            "family": "sub:2:19",
+            "question": "Can you calculate 2 - 19?",
+            "group": "unseen_wording",
+            "output": "-17.",
+            "parsed": -17,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 20,
+            "b": 9,
+            "expected": 11,
+            "family": "sub:20:9",
+            "question": "Can you calculate 20 - 9?",
+            "group": "unseen_wording",
+            "output": "-19.",
+            "parsed": -19,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 20,
+            "b": 16,
+            "expected": 4,
+            "family": "sub:20:16",
+            "question": "Can you calculate 20 - 16?",
+            "group": "unseen_wording",
+            "output": "-4.",
+            "parsed": -4,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 3,
+            "b": 1,
+            "expected": 2,
+            "family": "sub:3:1",
+            "question": "Can you calculate 3 - 1?",
+            "group": "unseen_wording",
+            "output": "-8.",
+            "parsed": -8,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 11,
+            "b": 13,
+            "expected": -2,
+            "family": "sub:11:13",
+            "question": "Can you calculate 11 - 13?",
+            "group": "unseen_wording",
+            "output": "-2.",
+            "parsed": -2,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 7,
+            "b": 11,
+            "expected": -4,
+            "family": "sub:7:11",
+            "question": "Can you calculate 7 - 11?",
+            "group": "unseen_wording",
+            "output": "-4.",
+            "parsed": -4,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 1,
+            "b": 7,
+            "expected": -6,
+            "family": "sub:1:7",
+            "question": "Can you calculate 1 - 7?",
+            "group": "unseen_wording",
+            "output": "-6.",
+            "parsed": -6,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 6,
+            "b": 9,
+            "expected": -3,
+            "family": "sub:6:9",
+            "question": "Can you calculate 6 - 9?",
+            "group": "unseen_wording",
+            "output": "-3.",
+            "parsed": -3,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 12,
+            "b": 1,
+            "expected": 11,
+            "family": "sub:12:1",
+            "question": "Can you calculate 12 - 1?",
+            "group": "unseen_wording",
+            "output": "11.",
+            "parsed": 11,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 16,
+            "b": 13,
+            "expected": 3,
+            "family": "sub:16:13",
+            "question": "Can you calculate 16 - 13?",
+            "group": "unseen_wording",
+            "output": "3.",
+            "parsed": 3,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 12,
+            "b": 3,
+            "expected": 9,
+            "family": "sub:12:3",
+            "question": "Can you calculate 12 - 3?",
+            "group": "unseen_wording",
+            "output": "-1.",
+            "parsed": -1,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 20,
+            "b": 8,
+            "expected": 12,
+            "family": "sub:20:8",
+            "question": "Can you calculate 20 - 8?",
+            "group": "unseen_wording",
+            "output": "12.",
+            "parsed": 12,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 17,
+            "b": 5,
+            "expected": 12,
+            "family": "sub:17:5",
+            "question": "Can you calculate 17 - 5?",
+            "group": "unseen_wording",
+            "output": "12.",
+            "parsed": 12,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 13,
+            "b": 6,
+            "expected": 7,
+            "family": "sub:13:6",
+            "question": "Can you calculate 13 - 6?",
+            "group": "unseen_wording",
+            "output": "-11.",
+            "parsed": -11,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 7,
+            "b": 3,
+            "expected": 4,
+            "family": "sub:7:3",
+            "question": "Can you calculate 7 - 3?",
+            "group": "unseen_wording",
+            "output": "-4.",
+            "parsed": -4,
+            "correct": false
+          },
+          {
+            "operation": "mul",
+            "a": 5,
+            "b": 8,
+            "expected": 40,
+            "family": "mul:5:8",
+            "question": "Can you calculate 5 * 8?",
+            "group": "unseen_wording",
+            "output": "40.",
+            "parsed": 40,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 6,
+            "b": 11,
+            "expected": 66,
+            "family": "mul:6:11",
+            "question": "Can you calculate 6 * 11?",
+            "group": "unseen_wording",
+            "output": "66.",
+            "parsed": 66,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 12,
+            "b": 6,
+            "expected": 72,
+            "family": "mul:6:12",
+            "question": "Can you calculate 12 * 6?",
+            "group": "unseen_wording",
+            "output": "72.",
+            "parsed": 72,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 8,
+            "b": 1,
+            "expected": 8,
+            "family": "mul:1:8",
+            "question": "Can you calculate 8 * 1?",
+            "group": "unseen_wording",
+            "output": "8.",
+            "parsed": 8,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 7,
+            "b": 1,
+            "expected": 7,
+            "family": "mul:1:7",
+            "question": "Can you calculate 7 * 1?",
+            "group": "unseen_wording",
+            "output": "7.",
+            "parsed": 7,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 7,
+            "b": 6,
+            "expected": 42,
+            "family": "mul:6:7",
+            "question": "Can you calculate 7 * 6?",
+            "group": "unseen_wording",
+            "output": "42.",
+            "parsed": 42,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 11,
+            "b": 8,
+            "expected": 88,
+            "family": "mul:8:11",
+            "question": "Can you calculate 11 * 8?",
+            "group": "unseen_wording",
+            "output": "88.",
+            "parsed": 88,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 10,
+            "b": 9,
+            "expected": 90,
+            "family": "mul:9:10",
+            "question": "Can you calculate 10 * 9?",
+            "group": "unseen_wording",
+            "output": "90.",
+            "parsed": 90,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 8,
+            "b": 10,
+            "expected": 80,
+            "family": "mul:8:10",
+            "question": "Can you calculate 8 * 10?",
+            "group": "unseen_wording",
+            "output": "80.",
+            "parsed": 80,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 5,
+            "b": 12,
+            "expected": 60,
+            "family": "mul:5:12",
+            "question": "Can you calculate 5 * 12?",
+            "group": "unseen_wording",
+            "output": "60.",
+            "parsed": 60,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 4,
+            "b": 6,
+            "expected": 24,
+            "family": "mul:4:6",
+            "question": "Can you calculate 4 * 6?",
+            "group": "unseen_wording",
+            "output": "24.",
+            "parsed": 24,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 3,
+            "b": 2,
+            "expected": 6,
+            "family": "mul:2:3",
+            "question": "Can you calculate 3 * 2?",
+            "group": "unseen_wording",
+            "output": "6.",
+            "parsed": 6,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 1,
+            "b": 5,
+            "expected": 5,
+            "family": "mul:1:5",
+            "question": "Can you calculate 1 * 5?",
+            "group": "unseen_wording",
+            "output": "5.",
+            "parsed": 5,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 10,
+            "b": 3,
+            "expected": 30,
+            "family": "mul:3:10",
+            "question": "Can you calculate 10 * 3?",
+            "group": "unseen_wording",
+            "output": "30.",
+            "parsed": 30,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 2,
+            "b": 4,
+            "expected": 8,
+            "family": "mul:2:4",
+            "question": "Can you calculate 2 * 4?",
+            "group": "unseen_wording",
+            "output": "4.",
+            "parsed": 4,
+            "correct": false
+          },
+          {
+            "operation": "mul",
+            "a": 11,
+            "b": 7,
+            "expected": 77,
+            "family": "mul:7:11",
+            "question": "Can you calculate 11 * 7?",
+            "group": "unseen_wording",
+            "output": "77.",
+            "parsed": 77,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 3,
+            "b": 8,
+            "expected": 24,
+            "family": "mul:3:8",
+            "question": "Can you calculate 3 * 8?",
+            "group": "unseen_wording",
+            "output": "24.",
+            "parsed": 24,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 9,
+            "b": 11,
+            "expected": 99,
+            "family": "mul:9:11",
+            "question": "Can you calculate 9 * 11?",
+            "group": "unseen_wording",
+            "output": "99.",
+            "parsed": 99,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 6,
+            "b": 2,
+            "expected": 12,
+            "family": "mul:2:6",
+            "question": "Can you calculate 6 * 2?",
+            "group": "unseen_wording",
+            "output": "12.",
+            "parsed": 12,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 7,
+            "b": 4,
+            "expected": 28,
+            "family": "mul:4:7",
+            "question": "Can you calculate 7 * 4?",
+            "group": "unseen_wording",
+            "output": "28.",
+            "parsed": 28,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 7,
+            "b": 2,
+            "expected": 14,
+            "family": "mul:2:7",
+            "question": "Can you calculate 7 * 2?",
+            "group": "unseen_wording",
+            "output": "14.",
+            "parsed": 14,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 6,
+            "b": 9,
+            "expected": 54,
+            "family": "mul:6:9",
+            "question": "Can you calculate 6 * 9?",
+            "group": "unseen_wording",
+            "output": "54.",
+            "parsed": 54,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 4,
+            "b": 1,
+            "expected": 4,
+            "family": "mul:1:4",
+            "question": "Can you calculate 4 * 1?",
+            "group": "unseen_wording",
+            "output": "4.",
+            "parsed": 4,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 7,
+            "b": 9,
+            "expected": 63,
+            "family": "mul:7:9",
+            "question": "Can you calculate 7 * 9?",
+            "group": "unseen_wording",
+            "output": "63.",
+            "parsed": 63,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 44,
+            "b": 11,
+            "expected": 4,
+            "family": "div:44:11",
+            "question": "Can you calculate 44 / 11?",
+            "group": "unseen_wording",
+            "output": "4.",
+            "parsed": 4,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 14,
+            "b": 2,
+            "expected": 7,
+            "family": "div:14:2",
+            "question": "Can you calculate 14 / 2?",
+            "group": "unseen_wording",
+            "output": "3.",
+            "parsed": 3,
+            "correct": false
+          },
+          {
+            "operation": "div",
+            "a": 14,
+            "b": 7,
+            "expected": 2,
+            "family": "div:14:7",
+            "question": "Can you calculate 14 / 7?",
+            "group": "unseen_wording",
+            "output": "4.",
+            "parsed": 4,
+            "correct": false
+          },
+          {
+            "operation": "div",
+            "a": 88,
+            "b": 8,
+            "expected": 11,
+            "family": "div:88:8",
+            "question": "Can you calculate 88 / 8?",
+            "group": "unseen_wording",
+            "output": "11.",
+            "parsed": 11,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 72,
+            "b": 6,
+            "expected": 12,
+            "family": "div:72:6",
+            "question": "Can you calculate 72 / 6?",
+            "group": "unseen_wording",
+            "output": "12.",
+            "parsed": 12,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 48,
+            "b": 6,
+            "expected": 8,
+            "family": "div:48:6",
+            "question": "Can you calculate 48 / 6?",
+            "group": "unseen_wording",
+            "output": "11.",
+            "parsed": 11,
+            "correct": false
+          },
+          {
+            "operation": "div",
+            "a": 36,
+            "b": 3,
+            "expected": 12,
+            "family": "div:36:3",
+            "question": "Can you calculate 36 / 3?",
+            "group": "unseen_wording",
+            "output": "12.",
+            "parsed": 12,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 36,
+            "b": 4,
+            "expected": 9,
+            "family": "div:36:4",
+            "question": "Can you calculate 36 / 4?",
+            "group": "unseen_wording",
+            "output": "11.",
+            "parsed": 11,
+            "correct": false
+          },
+          {
+            "operation": "div",
+            "a": 72,
+            "b": 8,
+            "expected": 9,
+            "family": "div:72:8",
+            "question": "Can you calculate 72 / 8?",
+            "group": "unseen_wording",
+            "output": "9.",
+            "parsed": 9,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 18,
+            "b": 3,
+            "expected": 6,
+            "family": "div:18:3",
+            "question": "Can you calculate 18 / 3?",
+            "group": "unseen_wording",
+            "output": "6.",
+            "parsed": 6,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 77,
+            "b": 11,
+            "expected": 7,
+            "family": "div:77:11",
+            "question": "Can you calculate 77 / 11?",
+            "group": "unseen_wording",
+            "output": "7.",
+            "parsed": 7,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 30,
+            "b": 10,
+            "expected": 3,
+            "family": "div:30:10",
+            "question": "Can you calculate 30 / 10?",
+            "group": "unseen_wording",
+            "output": "3.",
+            "parsed": 3,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 12,
+            "b": 6,
+            "expected": 2,
+            "family": "div:12:6",
+            "question": "Can you calculate 12 / 6?",
+            "group": "unseen_wording",
+            "output": "2.",
+            "parsed": 2,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 4,
+            "b": 1,
+            "expected": 4,
+            "family": "div:4:1",
+            "question": "Can you calculate 4 / 1?",
+            "group": "unseen_wording",
+            "output": "4.",
+            "parsed": 4,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 4,
+            "b": 4,
+            "expected": 1,
+            "family": "div:4:4",
+            "question": "Can you calculate 4 / 4?",
+            "group": "unseen_wording",
+            "output": "1.",
+            "parsed": 1,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 88,
+            "b": 11,
+            "expected": 8,
+            "family": "div:88:11",
+            "question": "Can you calculate 88 / 11?",
+            "group": "unseen_wording",
+            "output": "8.",
+            "parsed": 8,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 60,
+            "b": 5,
+            "expected": 12,
+            "family": "div:60:5",
+            "question": "Can you calculate 60 / 5?",
+            "group": "unseen_wording",
+            "output": "12.",
+            "parsed": 12,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 48,
+            "b": 4,
+            "expected": 12,
+            "family": "div:48:4",
+            "question": "Can you calculate 48 / 4?",
+            "group": "unseen_wording",
+            "output": "12.",
+            "parsed": 12,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 5,
+            "b": 1,
+            "expected": 5,
+            "family": "div:5:1",
+            "question": "Can you calculate 5 / 1?",
+            "group": "unseen_wording",
+            "output": "5.",
+            "parsed": 5,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 45,
+            "b": 5,
+            "expected": 9,
+            "family": "div:45:5",
+            "question": "Can you calculate 45 / 5?",
+            "group": "unseen_wording",
+            "output": "11.",
+            "parsed": 11,
+            "correct": false
+          },
+          {
+            "operation": "div",
+            "a": 80,
+            "b": 8,
+            "expected": 10,
+            "family": "div:80:8",
+            "question": "Can you calculate 80 / 8?",
+            "group": "unseen_wording",
+            "output": "10.",
+            "parsed": 10,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 16,
+            "b": 4,
+            "expected": 4,
+            "family": "div:16:4",
+            "question": "Can you calculate 16 / 4?",
+            "group": "unseen_wording",
+            "output": "4.",
+            "parsed": 4,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 16,
+            "b": 2,
+            "expected": 8,
+            "family": "div:16:2",
+            "question": "Can you calculate 16 / 2?",
+            "group": "unseen_wording",
+            "output": "8.",
+            "parsed": 8,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 7,
+            "b": 7,
+            "expected": 1,
+            "family": "div:7:7",
+            "question": "Can you calculate 7 / 7?",
+            "group": "unseen_wording",
+            "output": "1.",
+            "parsed": 1,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 19,
+            "b": 14,
+            "expected": 33,
+            "family": "add:14:19",
+            "question": "Can you calculate 19 + 14?",
+            "group": "held_out_operands",
+            "output": "33.",
+            "parsed": 33,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 6,
+            "b": 10,
+            "expected": 16,
+            "family": "add:6:10",
+            "question": "Can you calculate 6 + 10?",
+            "group": "held_out_operands",
+            "output": "66.",
+            "parsed": 66,
+            "correct": false
+          },
+          {
+            "operation": "add",
+            "a": 12,
+            "b": 18,
+            "expected": 30,
+            "family": "add:12:18",
+            "question": "Can you calculate 12 + 18?",
+            "group": "held_out_operands",
+            "output": "38.",
+            "parsed": 38,
+            "correct": false
+          },
+          {
+            "operation": "add",
+            "a": 6,
+            "b": 16,
+            "expected": 22,
+            "family": "add:6:16",
+            "question": "Can you calculate 6 + 16?",
+            "group": "held_out_operands",
+            "output": "24.",
+            "parsed": 24,
+            "correct": false
+          },
+          {
+            "operation": "add",
+            "a": 9,
+            "b": 20,
+            "expected": 29,
+            "family": "add:9:20",
+            "question": "Can you calculate 9 + 20?",
+            "group": "held_out_operands",
+            "output": "19.",
+            "parsed": 19,
+            "correct": false
+          },
+          {
+            "operation": "add",
+            "a": 5,
+            "b": 13,
+            "expected": 18,
+            "family": "add:5:13",
+            "question": "Can you calculate 5 + 13?",
+            "group": "held_out_operands",
+            "output": "20.",
+            "parsed": 20,
+            "correct": false
+          },
+          {
+            "operation": "add",
+            "a": 17,
+            "b": 13,
+            "expected": 30,
+            "family": "add:13:17",
+            "question": "Can you calculate 17 + 13?",
+            "group": "held_out_operands",
+            "output": "28.",
+            "parsed": 28,
+            "correct": false
+          },
+          {
+            "operation": "add",
+            "a": 18,
+            "b": 13,
+            "expected": 31,
+            "family": "add:13:18",
+            "question": "Can you calculate 18 + 13?",
+            "group": "held_out_operands",
+            "output": "31.",
+            "parsed": 31,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 13,
+            "b": 4,
+            "expected": 17,
+            "family": "add:4:13",
+            "question": "Can you calculate 13 + 4?",
+            "group": "held_out_operands",
+            "output": "17.",
+            "parsed": 17,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 3,
+            "b": 20,
+            "expected": 23,
+            "family": "add:3:20",
+            "question": "Can you calculate 3 + 20?",
+            "group": "held_out_operands",
+            "output": "33.",
+            "parsed": 33,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 8,
+            "b": 18,
+            "expected": -10,
+            "family": "sub:8:18",
+            "question": "Can you calculate 8 - 18?",
+            "group": "held_out_operands",
+            "output": "-10.",
+            "parsed": -10,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 11,
+            "b": 3,
+            "expected": 8,
+            "family": "sub:11:3",
+            "question": "Can you calculate 11 - 3?",
+            "group": "held_out_operands",
+            "output": "-2.",
+            "parsed": -2,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 3,
+            "b": 16,
+            "expected": -13,
+            "family": "sub:3:16",
+            "question": "Can you calculate 3 - 16?",
+            "group": "held_out_operands",
+            "output": "-13.",
+            "parsed": -13,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 13,
+            "b": 4,
+            "expected": 9,
+            "family": "sub:13:4",
+            "question": "Can you calculate 13 - 4?",
+            "group": "held_out_operands",
+            "output": "11.",
+            "parsed": 11,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 18,
+            "b": 9,
+            "expected": 9,
+            "family": "sub:18:9",
+            "question": "Can you calculate 18 - 9?",
+            "group": "held_out_operands",
+            "output": "11.",
+            "parsed": 11,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 16,
+            "b": 10,
+            "expected": 6,
+            "family": "sub:16:10",
+            "question": "Can you calculate 16 - 10?",
+            "group": "held_out_operands",
+            "output": "6.",
+            "parsed": 6,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 20,
+            "b": 4,
+            "expected": 16,
+            "family": "sub:20:4",
+            "question": "Can you calculate 20 - 4?",
+            "group": "held_out_operands",
+            "output": "-4.",
+            "parsed": -4,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 1,
+            "b": 13,
+            "expected": -12,
+            "family": "sub:1:13",
+            "question": "Can you calculate 1 - 13?",
+            "group": "held_out_operands",
+            "output": "-10.",
+            "parsed": -10,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 16,
+            "b": 6,
+            "expected": 10,
+            "family": "sub:16:6",
+            "question": "Can you calculate 16 - 6?",
+            "group": "held_out_operands",
+            "output": "-10.",
+            "parsed": -10,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 4,
+            "b": 14,
+            "expected": -10,
+            "family": "sub:4:14",
+            "question": "Can you calculate 4 - 14?",
+            "group": "held_out_operands",
+            "output": "-8.",
+            "parsed": -8,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 18,
+            "b": 11,
+            "expected": 7,
+            "family": "sub:18:11",
+            "question": "Can you calculate 18 - 11?",
+            "group": "held_out_operands",
+            "output": "7.",
+            "parsed": 7,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 18,
+            "b": 2,
+            "expected": 16,
+            "family": "sub:18:2",
+            "question": "Can you calculate 18 - 2?",
+            "group": "held_out_operands",
+            "output": "64.",
+            "parsed": 64,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 16,
+            "b": 9,
+            "expected": 7,
+            "family": "sub:16:9",
+            "question": "Can you calculate 16 - 9?",
+            "group": "held_out_operands",
+            "output": "-13.",
+            "parsed": -13,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 14,
+            "b": 8,
+            "expected": 6,
+            "family": "sub:14:8",
+            "question": "Can you calculate 14 - 8?",
+            "group": "held_out_operands",
+            "output": "-4.",
+            "parsed": -4,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 10,
+            "b": 20,
+            "expected": -10,
+            "family": "sub:10:20",
+            "question": "Can you calculate 10 - 20?",
+            "group": "held_out_operands",
+            "output": "0.",
+            "parsed": 0,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 16,
+            "b": 4,
+            "expected": 12,
+            "family": "sub:16:4",
+            "question": "Can you calculate 16 - 4?",
+            "group": "held_out_operands",
+            "output": "12.",
+            "parsed": 12,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 12,
+            "b": 18,
+            "expected": -6,
+            "family": "sub:12:18",
+            "question": "Can you calculate 12 - 18?",
+            "group": "held_out_operands",
+            "output": "-6.",
+            "parsed": -6,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 15,
+            "b": 14,
+            "expected": 1,
+            "family": "sub:15:14",
+            "question": "Can you calculate 15 - 14?",
+            "group": "held_out_operands",
+            "output": "-3.",
+            "parsed": -3,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 8,
+            "b": 11,
+            "expected": -3,
+            "family": "sub:8:11",
+            "question": "Can you calculate 8 - 11?",
+            "group": "held_out_operands",
+            "output": "-3.",
+            "parsed": -3,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 10,
+            "b": 8,
+            "expected": 2,
+            "family": "sub:10:8",
+            "question": "Can you calculate 10 - 8?",
+            "group": "held_out_operands",
+            "output": "-2.",
+            "parsed": -2,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 15,
+            "b": 2,
+            "expected": 13,
+            "family": "sub:15:2",
+            "question": "Can you calculate 15 - 2?",
+            "group": "held_out_operands",
+            "output": "13.",
+            "parsed": 13,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 14,
+            "b": 3,
+            "expected": 11,
+            "family": "sub:14:3",
+            "question": "Can you calculate 14 - 3?",
+            "group": "held_out_operands",
+            "output": "11.",
+            "parsed": 11,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 19,
+            "b": 13,
+            "expected": 6,
+            "family": "sub:19:13",
+            "question": "Can you calculate 19 - 13?",
+            "group": "held_out_operands",
+            "output": "6.",
+            "parsed": 6,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 16,
+            "b": 19,
+            "expected": -3,
+            "family": "sub:16:19",
+            "question": "Can you calculate 16 - 19?",
+            "group": "held_out_operands",
+            "output": "-2.",
+            "parsed": -2,
+            "correct": false
+          },
+          {
+            "operation": "mul",
+            "a": 12,
+            "b": 10,
+            "expected": 120,
+            "family": "mul:10:12",
+            "question": "Can you calculate 12 * 10?",
+            "group": "held_out_operands",
+            "output": "120.",
+            "parsed": 120,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 7,
+            "b": 10,
+            "expected": 70,
+            "family": "mul:7:10",
+            "question": "Can you calculate 7 * 10?",
+            "group": "held_out_operands",
+            "output": "60.",
+            "parsed": 60,
+            "correct": false
+          },
+          {
+            "operation": "mul",
+            "a": 12,
+            "b": 1,
+            "expected": 12,
+            "family": "mul:1:12",
+            "question": "Can you calculate 12 * 1?",
+            "group": "held_out_operands",
+            "output": "22.",
+            "parsed": 22,
+            "correct": false
+          },
+          {
+            "operation": "div",
+            "a": 22,
+            "b": 2,
+            "expected": 11,
+            "family": "div:22:2",
+            "question": "Can you calculate 22 / 2?",
+            "group": "held_out_operands",
+            "output": "12.",
+            "parsed": 12,
+            "correct": false
+          },
+          {
+            "operation": "div",
+            "a": 120,
+            "b": 12,
+            "expected": 10,
+            "family": "div:120:12",
+            "question": "Can you calculate 120 / 12?",
+            "group": "held_out_operands",
+            "output": "12.",
+            "parsed": 12,
+            "correct": false
+          },
+          {
+            "operation": "div",
+            "a": 12,
+            "b": 1,
+            "expected": 12,
+            "family": "div:12:1",
+            "question": "Can you calculate 12 / 1?",
+            "group": "held_out_operands",
+            "output": "12.",
+            "parsed": 12,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 90,
+            "b": 9,
+            "expected": 10,
+            "family": "div:90:9",
+            "question": "Can you calculate 90 / 9?",
+            "group": "held_out_operands",
+            "output": "0.",
+            "parsed": 0,
+            "correct": false
+          },
+          {
+            "operation": "div",
+            "a": 66,
+            "b": 6,
+            "expected": 11,
+            "family": "div:66:6",
+            "question": "Can you calculate 66 / 6?",
+            "group": "held_out_operands",
+            "output": "11.",
+            "parsed": 11,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 108,
+            "b": 12,
+            "expected": 9,
+            "family": "div:108:12",
+            "question": "Can you calculate 108 / 12?",
+            "group": "held_out_operands",
+            "output": "12.",
+            "parsed": 12,
+            "correct": false
+          },
+          {
+            "operation": "div",
+            "a": 77,
+            "b": 7,
+            "expected": 11,
+            "family": "div:77:7",
+            "question": "Can you calculate 77 / 7?",
+            "group": "held_out_operands",
+            "output": "11.",
+            "parsed": 11,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 48,
+            "b": 12,
+            "expected": 4,
+            "family": "div:48:12",
+            "question": "Can you calculate 48 / 12?",
+            "group": "held_out_operands",
+            "output": "7.",
+            "parsed": 7,
+            "correct": false
+          },
+          {
+            "operation": "div",
+            "a": 90,
+            "b": 10,
+            "expected": 9,
+            "family": "div:90:10",
+            "question": "Can you calculate 90 / 10?",
+            "group": "held_out_operands",
+            "output": "10.",
+            "parsed": 10,
+            "correct": false
+          }
+        ]
+      }
+    },
+    "lambda 2": {
+      "model_sha256": "d66e73f446ad01eb68c42d17e6003fb3e344a680c1791159863045c01d16dbca",
+      "parameters": 4553728,
+      "training_step": 100000,
+      "summary": {
+        "chat": {
+          "total": 15,
+          "numeric_only": 0,
+          "topic_matches": 11
+        },
+        "chat_with_digits": {
+          "total": 15,
+          "numeric_only": 3,
+          "topic_matches": 8
+        },
+        "math": {
+          "total": 10,
+          "numeric_only": 9,
+          "topic_matches": 0
+        }
+      },
+      "routing": {
+        "correct": 39,
+        "total": 40,
+        "accuracy": 0.975
+      },
+      "conversation_cases": [
+        {
+          "question": "What do you mean when you say a keyboard?",
+          "intent": "chat",
+          "keywords": [
+            "keyboard",
+            "type",
+            "text"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A keyboard lets you type text and enter commands into a computer.",
+          "detected_intent": "chat",
+          "math_probability": 1.7056759338274219e-09,
+          "matched_keywords": [
+            "keyboard",
+            "type",
+            "text"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Could you give a brief description of a browser?",
+          "intent": "chat",
+          "keywords": [
+            "browser",
+            "web",
+            "pages"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A browser is an application used to view web pages.",
+          "detected_intent": "chat",
+          "math_probability": 7.616812180977206e-10,
+          "matched_keywords": [
+            "browser",
+            "web",
+            "pages"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "I would like a plain description of a tree.",
+          "intent": "chat",
+          "keywords": [
+            "tree",
+            "plant",
+            "trunk"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A tree is a long-lived plant that usually has a woody trunk and branches.",
+          "detected_intent": "chat",
+          "math_probability": 1.4987876495453634e-09,
+          "matched_keywords": [
+            "tree",
+            "plant",
+            "trunk"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Help me understand the idea of a variable.",
+          "intent": "chat",
+          "keywords": [
+            "variable",
+            "value",
+            "name"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A variable lets a program refer to a value by a name.",
+          "detected_intent": "chat",
+          "math_probability": 6.220946424662088e-09,
+          "matched_keywords": [
+            "variable",
+            "value",
+            "name"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Please give a brief definition of a library.",
+          "intent": "chat",
+          "keywords": [
+            "library",
+            "books",
+            "materials"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A library collects books and other materials and makes them available to readers.",
+          "detected_intent": "chat",
+          "math_probability": 5.6361436406859866e-08,
+          "matched_keywords": [
+            "library",
+            "books",
+            "materials"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Tell me the meaning of a neural network.",
+          "intent": "chat",
+          "keywords": [
+            "neural",
+            "network",
+            "parameters"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A neural network is a computational model built from connected operations and learned parameters.",
+          "detected_intent": "chat",
+          "math_probability": 5.37201231054496e-07,
+          "matched_keywords": [
+            "neural",
+            "network",
+            "parameters"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Would you describe what a backup is?",
+          "intent": "chat",
+          "keywords": [
+            "backup",
+            "copy",
+            "data"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A backup is an extra copy of data that can help restore lost files.",
+          "detected_intent": "chat",
+          "math_probability": 2.546192423569238e-11,
+          "matched_keywords": [
+            "backup",
+            "copy",
+            "data"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Hi! Can we chat?",
+          "intent": "chat",
+          "keywords": [
+            "hello",
+            "hi",
+            "help"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "You mentioned your cats. What would you like to know about them?",
+          "detected_intent": "chat",
+          "math_probability": 3.741114369404386e-06,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": false
+        },
+        {
+          "question": "I'd like you to introduce yourself.",
+          "intent": "chat",
+          "keywords": [
+            "lambda",
+            "language",
+            "model"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "I'm Lambda 2, a small local English language model.",
+          "detected_intent": "chat",
+          "math_probability": 5.619564262815402e-07,
+          "matched_keywords": [
+            "lambda",
+            "language",
+            "model"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "I could use some help, please.",
+          "intent": "chat",
+          "keywords": [
+            "tell",
+            "help",
+            "need"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "Go a me the -lial as .",
+          "detected_intent": "chat",
+          "math_probability": 0.004829820711165667,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": false
+        },
+        {
+          "question": "Thank you for explaining that!",
+          "intent": "chat",
+          "keywords": [
+            "welcome",
+            "help"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "You re welcome to En Energy with a model.",
+          "detected_intent": "chat",
+          "math_probability": 4.3459559151415306e-07,
+          "matched_keywords": [
+            "welcome"
+          ],
+          "topic_match": false,
+          "numeric_only": false
+        },
+        {
+          "question": "Could you say goodbye to me?",
+          "intent": "chat",
+          "keywords": [
+            "goodbye",
+            "day"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "Goodbye! Have a good day.",
+          "detected_intent": "chat",
+          "math_probability": 1.783810432698374e-09,
+          "matched_keywords": [
+            "goodbye",
+            "day"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Do you know the current weather outside?",
+          "intent": "chat",
+          "keywords": [
+            "live",
+            "weather",
+            "forecast"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "I do not have live weather information. Check a curren  local forecast.",
+          "detected_intent": "chat",
+          "math_probability": 0.00011336900934111327,
+          "matched_keywords": [
+            "live",
+            "weather",
+            "forecast"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Can you recall our earlier conversation?",
+          "intent": "chat",
+          "keywords": [
+            "question",
+            "separately",
+            "messages"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "Each question is processed separately. I do not retain earlier messages as model context.",
+          "detected_intent": "chat",
+          "math_probability": 0.0004402552149258554,
+          "matched_keywords": [
+            "question",
+            "separately",
+            "messages"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Could you describe a negative number to me?",
+          "intent": "chat",
+          "keywords": [
+            "negative",
+            "zero",
+            "less"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A number can represent a quantity and can be used in calculations.",
+          "detected_intent": "chat",
+          "math_probability": 7.861597657587982e-13,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": false
+        },
+        {
+          "question": "For exercise 2, could you define a folder?",
+          "intent": "chat",
+          "keywords": [
+            "folder",
+            "files",
+            "organize"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A folder helps organize files and other folders.",
+          "detected_intent": "chat",
+          "math_probability": 1.3860834542356315e-06,
+          "matched_keywords": [
+            "folder",
+            "files",
+            "organize"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "In Python 3, please describe a loop.",
+          "intent": "chat",
+          "keywords": [
+            "loop",
+            "repeats",
+            "instructions"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A loop repeats a set of instructions in a program.",
+          "detected_intent": "chat",
+          "math_probability": 1.7845352973111517e-09,
+          "matched_keywords": [
+            "loop",
+            "repeats",
+            "instructions"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Could you tell me about 3D printing?",
+          "intent": "chat",
+          "keywords": [
+            "printing",
+            "objects",
+            "layers"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "3D printing makes physical objects by building up material in layers.",
+          "detected_intent": "chat",
+          "math_probability": 1.254203425560263e-07,
+          "matched_keywords": [
+            "printing",
+            "objects",
+            "layers"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Could you describe a 2D shape for me?",
+          "intent": "chat",
+          "keywords": [
+            "shape",
+            "flat",
+            "length"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "8.",
+          "detected_intent": "chat",
+          "math_probability": 1.037184449437234e-09,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": true
+        },
+        {
+          "question": "I own 4 cats. May we talk about them?",
+          "intent": "chat",
+          "keywords": [
+            "cats",
+            "know",
+            "like"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "You can is the word with a  boction error that can s like a 0.",
+          "detected_intent": "chat",
+          "math_probability": 4.5157878048485145e-05,
+          "matched_keywords": [
+            "like"
+          ],
+          "topic_match": false,
+          "numeric_only": false
+        },
+        {
+          "question": "My document has 8 pages. How can I write a summary?",
+          "intent": "chat",
+          "keywords": [
+            "main",
+            "idea",
+            "points"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "Identify the main idea and restate the important points briefly in your own words.",
+          "detected_intent": "chat",
+          "math_probability": 1.888566475827247e-05,
+          "matched_keywords": [
+            "main",
+            "idea",
+            "points"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "I am reading lesson 5. What is a computer?",
+          "intent": "chat",
+          "keywords": [
+            "computer",
+            "programs",
+            "data"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A computer is a device that runs programs and processes data.",
+          "detected_intent": "chat",
+          "math_probability": 4.675711900992141e-11,
+          "matched_keywords": [
+            "computer",
+            "programs",
+            "data"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "The filename is draft4.txt. What is a file?",
+          "intent": "chat",
+          "keywords": [
+            "file",
+            "data",
+            "name"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A file stores data under a name, such as text, an image, or sound.",
+          "detected_intent": "chat",
+          "math_probability": 4.1071516534429975e-06,
+          "matched_keywords": [
+            "file",
+            "data",
+            "name"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "There is an error 21. Could you explain debugging?",
+          "intent": "chat",
+          "keywords": [
+            "debugging",
+            "errors",
+            "fixing"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "Division is the set of 7 and and sithe difference of the clock from in the clock.",
+          "detected_intent": "chat",
+          "math_probability": 5.5002788990066165e-09,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": false
+        },
+        {
+          "question": "Please tell me what 4+9 means rather than giving a result.",
+          "intent": "chat",
+          "keywords": [
+            "addition",
+            "quantities",
+            "sum"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "ing vapor is a the set of instructions and a sol    if their inega through .",
+          "detected_intent": "chat",
+          "math_probability": 2.1141463548701722e-06,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": false
+        },
+        {
+          "question": "Describe the operation in 8/2 without calculating.",
+          "intent": "chat",
+          "keywords": [
+            "division",
+            "equal",
+            "groups"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": ". \n ion splits a quantity into equal groups.",
+          "detected_intent": "chat",
+          "math_probability": 3.4523941394581925e-07,
+          "matched_keywords": [
+            "equal",
+            "groups"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Please explain the idea behind 6*2.",
+          "intent": "chat",
+          "keywords": [
+            "multiplication",
+            "equal",
+            "groups"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "36.",
+          "detected_intent": "chat",
+          "math_probability": 0.04585346207022667,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": true
+        },
+        {
+          "question": "Can you describe version 2.4?",
+          "intent": "chat",
+          "keywords": [
+            "version",
+            "release",
+            "number"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "2.",
+          "detected_intent": "chat",
+          "math_probability": 7.665980916726767e-08,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": true
+        },
+        {
+          "question": "Is Python 3 a programming language?",
+          "intent": "chat",
+          "keywords": [
+            "python",
+            "language",
+            "programs"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A program is a set of instructions that a computer can execute.",
+          "detected_intent": "chat",
+          "math_probability": 8.777546099736355e-06,
+          "matched_keywords": [],
+          "topic_match": false,
+          "numeric_only": false
+        },
+        {
+          "question": "For question 6, explain a password.",
+          "intent": "chat",
+          "keywords": [
+            "password",
+            "secret",
+            "access"
+          ],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "A password is a secret used to help protect access to an account or system.",
+          "detected_intent": "chat",
+          "math_probability": 7.122714744400849e-12,
+          "matched_keywords": [
+            "password",
+            "secret",
+            "access"
+          ],
+          "topic_match": true,
+          "numeric_only": false
+        },
+        {
+          "question": "Can you compute 3+4 for me?",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "Thetr21 dd- emplant.",
+          "detected_intent": "math",
+          "math_probability": 0.8383705019950867,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": false
+        },
+        {
+          "question": "Please calculate 8 + 5.",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "13.",
+          "detected_intent": "math",
+          "math_probability": 0.9979485869407654,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": true
+        },
+        {
+          "question": "Find the answer to 15 minus 6.",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "1.",
+          "detected_intent": "math",
+          "math_probability": 0.9999998807907104,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": true
+        },
+        {
+          "question": "Work out 4*5.",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "20.",
+          "detected_intent": "math",
+          "math_probability": 1.0,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": true
+        },
+        {
+          "question": "Can you divide 18 by 3?",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "6.",
+          "detected_intent": "math",
+          "math_probability": 0.9989799857139587,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": true
+        },
+        {
+          "question": "Find the answer to 7+6.",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "13.",
+          "detected_intent": "math",
+          "math_probability": 0.999993085861206,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": true
+        },
+        {
+          "question": "If I have 3 apples and receive 4 more, how many apples do I have?",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "18.",
+          "detected_intent": "math",
+          "math_probability": 0.9996576309204102,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": true
+        },
+        {
+          "question": "Can you give me half of 16?",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "8.",
+          "detected_intent": "chat",
+          "math_probability": 0.005662116687744856,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": true
+        },
+        {
+          "question": "Could you work out 7-10?",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "-3.",
+          "detected_intent": "math",
+          "math_probability": 1.0,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": true
+        },
+        {
+          "question": "Please work out 9/3 for me.",
+          "intent": "math",
+          "keywords": [],
+          "seen_exact_question": false,
+          "seen_exact_question_in_lambda_2_training": false,
+          "output": "7.",
+          "detected_intent": "math",
+          "math_probability": 0.9999896287918091,
+          "matched_keywords": [],
+          "topic_match": null,
+          "numeric_only": true
+        }
+      ],
+      "arithmetic": {
+        "summary": {
+          "unseen_wording": {
+            "correct": 87,
+            "total": 96,
+            "accuracy": 0.90625
+          },
+          "unseen_wording/add": {
+            "correct": 21,
+            "total": 24,
+            "accuracy": 0.875
+          },
+          "unseen_wording/sub": {
+            "correct": 18,
+            "total": 24,
+            "accuracy": 0.75
+          },
+          "unseen_wording/mul": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0
+          },
+          "unseen_wording/div": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0
+          },
+          "held_out_operands": {
+            "correct": 18,
+            "total": 46,
+            "accuracy": 0.391304347826087
+          },
+          "held_out_operands/add": {
+            "correct": 3,
+            "total": 10,
+            "accuracy": 0.3
+          },
+          "held_out_operands/sub": {
+            "correct": 11,
+            "total": 24,
+            "accuracy": 0.4583333333333333
+          },
+          "held_out_operands/mul": {
+            "correct": 0,
+            "total": 3,
+            "accuracy": 0.0
+          },
+          "held_out_operands/div": {
+            "correct": 4,
+            "total": 9,
+            "accuracy": 0.4444444444444444
+          }
+        },
+        "seconds": 1.01,
+        "cases": [
+          {
+            "operation": "add",
+            "a": 19,
+            "b": 6,
+            "expected": 25,
+            "family": "add:6:19",
+            "question": "Can you calculate 19 + 6?",
+            "group": "unseen_wording",
+            "output": "25.",
+            "parsed": 25,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 17,
+            "b": 20,
+            "expected": 37,
+            "family": "add:17:20",
+            "question": "Can you calculate 17 + 20?",
+            "group": "unseen_wording",
+            "output": "37.",
+            "parsed": 37,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 19,
+            "b": 2,
+            "expected": 21,
+            "family": "add:2:19",
+            "question": "Can you calculate 19 + 2?",
+            "group": "unseen_wording",
+            "output": "21.",
+            "parsed": 21,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 10,
+            "b": 7,
+            "expected": 17,
+            "family": "add:7:10",
+            "question": "Can you calculate 10 + 7?",
+            "group": "unseen_wording",
+            "output": "17.",
+            "parsed": 17,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 13,
+            "b": 1,
+            "expected": 14,
+            "family": "add:1:13",
+            "question": "Can you calculate 13 + 1?",
+            "group": "unseen_wording",
+            "output": "24.",
+            "parsed": 24,
+            "correct": false
+          },
+          {
+            "operation": "add",
+            "a": 16,
+            "b": 17,
+            "expected": 33,
+            "family": "add:16:17",
+            "question": "Can you calculate 16 + 17?",
+            "group": "unseen_wording",
+            "output": "33.",
+            "parsed": 33,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 20,
+            "b": 4,
+            "expected": 24,
+            "family": "add:4:20",
+            "question": "Can you calculate 20 + 4?",
+            "group": "unseen_wording",
+            "output": "24.",
+            "parsed": 24,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 10,
+            "b": 20,
+            "expected": 30,
+            "family": "add:10:20",
+            "question": "Can you calculate 10 + 20?",
+            "group": "unseen_wording",
+            "output": "30.",
+            "parsed": 30,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 5,
+            "b": 5,
+            "expected": 10,
+            "family": "add:5:5",
+            "question": "Can you calculate 5 + 5?",
+            "group": "unseen_wording",
+            "output": "10.",
+            "parsed": 10,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 9,
+            "b": 18,
+            "expected": 27,
+            "family": "add:9:18",
+            "question": "Can you calculate 9 + 18?",
+            "group": "unseen_wording",
+            "output": "27.",
+            "parsed": 27,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 20,
+            "b": 16,
+            "expected": 36,
+            "family": "add:16:20",
+            "question": "Can you calculate 20 + 16?",
+            "group": "unseen_wording",
+            "output": "36.",
+            "parsed": 36,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 20,
+            "b": 20,
+            "expected": 40,
+            "family": "add:20:20",
+            "question": "Can you calculate 20 + 20?",
+            "group": "unseen_wording",
+            "output": "40.",
+            "parsed": 40,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 12,
+            "b": 1,
+            "expected": 13,
+            "family": "add:1:12",
+            "question": "Can you calculate 12 + 1?",
+            "group": "unseen_wording",
+            "output": "13.",
+            "parsed": 13,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 19,
+            "b": 13,
+            "expected": 32,
+            "family": "add:13:19",
+            "question": "Can you calculate 19 + 13?",
+            "group": "unseen_wording",
+            "output": "32.",
+            "parsed": 32,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 3,
+            "b": 4,
+            "expected": 7,
+            "family": "add:3:4",
+            "question": "Can you calculate 3 + 4?",
+            "group": "unseen_wording",
+            "output": "7.",
+            "parsed": 7,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 2,
+            "b": 1,
+            "expected": 3,
+            "family": "add:1:2",
+            "question": "Can you calculate 2 + 1?",
+            "group": "unseen_wording",
+            "output": "13.",
+            "parsed": 13,
+            "correct": false
+          },
+          {
+            "operation": "add",
+            "a": 7,
+            "b": 12,
+            "expected": 19,
+            "family": "add:7:12",
+            "question": "Can you calculate 7 + 12?",
+            "group": "unseen_wording",
+            "output": "19.",
+            "parsed": 19,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 16,
+            "b": 19,
+            "expected": 35,
+            "family": "add:16:19",
+            "question": "Can you calculate 16 + 19?",
+            "group": "unseen_wording",
+            "output": "35.",
+            "parsed": 35,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 14,
+            "b": 16,
+            "expected": 30,
+            "family": "add:14:16",
+            "question": "Can you calculate 14 + 16?",
+            "group": "unseen_wording",
+            "output": "30.",
+            "parsed": 30,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 6,
+            "b": 9,
+            "expected": 15,
+            "family": "add:6:9",
+            "question": "Can you calculate 6 + 9?",
+            "group": "unseen_wording",
+            "output": "25.",
+            "parsed": 25,
+            "correct": false
+          },
+          {
+            "operation": "add",
+            "a": 19,
+            "b": 10,
+            "expected": 29,
+            "family": "add:10:19",
+            "question": "Can you calculate 19 + 10?",
+            "group": "unseen_wording",
+            "output": "29.",
+            "parsed": 29,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 5,
+            "b": 19,
+            "expected": 24,
+            "family": "add:5:19",
+            "question": "Can you calculate 5 + 19?",
+            "group": "unseen_wording",
+            "output": "24.",
+            "parsed": 24,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 12,
+            "b": 9,
+            "expected": 21,
+            "family": "add:9:12",
+            "question": "Can you calculate 12 + 9?",
+            "group": "unseen_wording",
+            "output": "21.",
+            "parsed": 21,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 19,
+            "b": 7,
+            "expected": 26,
+            "family": "add:7:19",
+            "question": "Can you calculate 19 + 7?",
+            "group": "unseen_wording",
+            "output": "26.",
+            "parsed": 26,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 18,
+            "b": 6,
+            "expected": 12,
+            "family": "sub:18:6",
+            "question": "Can you calculate 18 - 6?",
+            "group": "unseen_wording",
+            "output": "12.",
+            "parsed": 12,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 2,
+            "b": 1,
+            "expected": 1,
+            "family": "sub:2:1",
+            "question": "Can you calculate 2 - 1?",
+            "group": "unseen_wording",
+            "output": "-1.",
+            "parsed": -1,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 5,
+            "b": 7,
+            "expected": -2,
+            "family": "sub:5:7",
+            "question": "Can you calculate 5 - 7?",
+            "group": "unseen_wording",
+            "output": "-2.",
+            "parsed": -2,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 13,
+            "b": 8,
+            "expected": 5,
+            "family": "sub:13:8",
+            "question": "Can you calculate 13 - 8?",
+            "group": "unseen_wording",
+            "output": "5.",
+            "parsed": 5,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 8,
+            "b": 1,
+            "expected": 7,
+            "family": "sub:8:1",
+            "question": "Can you calculate 8 - 1?",
+            "group": "unseen_wording",
+            "output": "7.",
+            "parsed": 7,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 19,
+            "b": 12,
+            "expected": 7,
+            "family": "sub:19:12",
+            "question": "Can you calculate 19 - 12?",
+            "group": "unseen_wording",
+            "output": "7.",
+            "parsed": 7,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 10,
+            "b": 1,
+            "expected": 9,
+            "family": "sub:10:1",
+            "question": "Can you calculate 10 - 1?",
+            "group": "unseen_wording",
+            "output": "11.",
+            "parsed": 11,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 12,
+            "b": 9,
+            "expected": 3,
+            "family": "sub:12:9",
+            "question": "Can you calculate 12 - 9?",
+            "group": "unseen_wording",
+            "output": "3.",
+            "parsed": 3,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 7,
+            "b": 5,
+            "expected": 2,
+            "family": "sub:7:5",
+            "question": "Can you calculate 7 - 5?",
+            "group": "unseen_wording",
+            "output": "2.",
+            "parsed": 2,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 2,
+            "b": 19,
+            "expected": -17,
+            "family": "sub:2:19",
+            "question": "Can you calculate 2 - 19?",
+            "group": "unseen_wording",
+            "output": "-17.",
+            "parsed": -17,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 20,
+            "b": 9,
+            "expected": 11,
+            "family": "sub:20:9",
+            "question": "Can you calculate 20 - 9?",
+            "group": "unseen_wording",
+            "output": "-11.",
+            "parsed": -11,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 20,
+            "b": 16,
+            "expected": 4,
+            "family": "sub:20:16",
+            "question": "Can you calculate 20 - 16?",
+            "group": "unseen_wording",
+            "output": "4.",
+            "parsed": 4,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 3,
+            "b": 1,
+            "expected": 2,
+            "family": "sub:3:1",
+            "question": "Can you calculate 3 - 1?",
+            "group": "unseen_wording",
+            "output": "-2.",
+            "parsed": -2,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 11,
+            "b": 13,
+            "expected": -2,
+            "family": "sub:11:13",
+            "question": "Can you calculate 11 - 13?",
+            "group": "unseen_wording",
+            "output": "-2.",
+            "parsed": -2,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 7,
+            "b": 11,
+            "expected": -4,
+            "family": "sub:7:11",
+            "question": "Can you calculate 7 - 11?",
+            "group": "unseen_wording",
+            "output": "-4.",
+            "parsed": -4,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 1,
+            "b": 7,
+            "expected": -6,
+            "family": "sub:1:7",
+            "question": "Can you calculate 1 - 7?",
+            "group": "unseen_wording",
+            "output": "-6.",
+            "parsed": -6,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 6,
+            "b": 9,
+            "expected": -3,
+            "family": "sub:6:9",
+            "question": "Can you calculate 6 - 9?",
+            "group": "unseen_wording",
+            "output": "-3.",
+            "parsed": -3,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 12,
+            "b": 1,
+            "expected": 11,
+            "family": "sub:12:1",
+            "question": "Can you calculate 12 - 1?",
+            "group": "unseen_wording",
+            "output": "11.",
+            "parsed": 11,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 16,
+            "b": 13,
+            "expected": 3,
+            "family": "sub:16:13",
+            "question": "Can you calculate 16 - 13?",
+            "group": "unseen_wording",
+            "output": "3.",
+            "parsed": 3,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 12,
+            "b": 3,
+            "expected": 9,
+            "family": "sub:12:3",
+            "question": "Can you calculate 12 - 3?",
+            "group": "unseen_wording",
+            "output": "9.",
+            "parsed": 9,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 20,
+            "b": 8,
+            "expected": 12,
+            "family": "sub:20:8",
+            "question": "Can you calculate 20 - 8?",
+            "group": "unseen_wording",
+            "output": "-12.",
+            "parsed": -12,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 17,
+            "b": 5,
+            "expected": 12,
+            "family": "sub:17:5",
+            "question": "Can you calculate 17 - 5?",
+            "group": "unseen_wording",
+            "output": "12.",
+            "parsed": 12,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 13,
+            "b": 6,
+            "expected": 7,
+            "family": "sub:13:6",
+            "question": "Can you calculate 13 - 6?",
+            "group": "unseen_wording",
+            "output": "-3.",
+            "parsed": -3,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 7,
+            "b": 3,
+            "expected": 4,
+            "family": "sub:7:3",
+            "question": "Can you calculate 7 - 3?",
+            "group": "unseen_wording",
+            "output": "4.",
+            "parsed": 4,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 5,
+            "b": 8,
+            "expected": 40,
+            "family": "mul:5:8",
+            "question": "Can you calculate 5 * 8?",
+            "group": "unseen_wording",
+            "output": "40.",
+            "parsed": 40,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 6,
+            "b": 11,
+            "expected": 66,
+            "family": "mul:6:11",
+            "question": "Can you calculate 6 * 11?",
+            "group": "unseen_wording",
+            "output": "66.",
+            "parsed": 66,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 12,
+            "b": 6,
+            "expected": 72,
+            "family": "mul:6:12",
+            "question": "Can you calculate 12 * 6?",
+            "group": "unseen_wording",
+            "output": "72.",
+            "parsed": 72,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 8,
+            "b": 1,
+            "expected": 8,
+            "family": "mul:1:8",
+            "question": "Can you calculate 8 * 1?",
+            "group": "unseen_wording",
+            "output": "8.",
+            "parsed": 8,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 7,
+            "b": 1,
+            "expected": 7,
+            "family": "mul:1:7",
+            "question": "Can you calculate 7 * 1?",
+            "group": "unseen_wording",
+            "output": "7.",
+            "parsed": 7,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 7,
+            "b": 6,
+            "expected": 42,
+            "family": "mul:6:7",
+            "question": "Can you calculate 7 * 6?",
+            "group": "unseen_wording",
+            "output": "42.",
+            "parsed": 42,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 11,
+            "b": 8,
+            "expected": 88,
+            "family": "mul:8:11",
+            "question": "Can you calculate 11 * 8?",
+            "group": "unseen_wording",
+            "output": "88.",
+            "parsed": 88,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 10,
+            "b": 9,
+            "expected": 90,
+            "family": "mul:9:10",
+            "question": "Can you calculate 10 * 9?",
+            "group": "unseen_wording",
+            "output": "90.",
+            "parsed": 90,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 8,
+            "b": 10,
+            "expected": 80,
+            "family": "mul:8:10",
+            "question": "Can you calculate 8 * 10?",
+            "group": "unseen_wording",
+            "output": "80.",
+            "parsed": 80,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 5,
+            "b": 12,
+            "expected": 60,
+            "family": "mul:5:12",
+            "question": "Can you calculate 5 * 12?",
+            "group": "unseen_wording",
+            "output": "60.",
+            "parsed": 60,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 4,
+            "b": 6,
+            "expected": 24,
+            "family": "mul:4:6",
+            "question": "Can you calculate 4 * 6?",
+            "group": "unseen_wording",
+            "output": "24.",
+            "parsed": 24,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 3,
+            "b": 2,
+            "expected": 6,
+            "family": "mul:2:3",
+            "question": "Can you calculate 3 * 2?",
+            "group": "unseen_wording",
+            "output": "6.",
+            "parsed": 6,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 1,
+            "b": 5,
+            "expected": 5,
+            "family": "mul:1:5",
+            "question": "Can you calculate 1 * 5?",
+            "group": "unseen_wording",
+            "output": "5.",
+            "parsed": 5,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 10,
+            "b": 3,
+            "expected": 30,
+            "family": "mul:3:10",
+            "question": "Can you calculate 10 * 3?",
+            "group": "unseen_wording",
+            "output": "30.",
+            "parsed": 30,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 2,
+            "b": 4,
+            "expected": 8,
+            "family": "mul:2:4",
+            "question": "Can you calculate 2 * 4?",
+            "group": "unseen_wording",
+            "output": "8.",
+            "parsed": 8,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 11,
+            "b": 7,
+            "expected": 77,
+            "family": "mul:7:11",
+            "question": "Can you calculate 11 * 7?",
+            "group": "unseen_wording",
+            "output": "77.",
+            "parsed": 77,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 3,
+            "b": 8,
+            "expected": 24,
+            "family": "mul:3:8",
+            "question": "Can you calculate 3 * 8?",
+            "group": "unseen_wording",
+            "output": "24.",
+            "parsed": 24,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 9,
+            "b": 11,
+            "expected": 99,
+            "family": "mul:9:11",
+            "question": "Can you calculate 9 * 11?",
+            "group": "unseen_wording",
+            "output": "99.",
+            "parsed": 99,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 6,
+            "b": 2,
+            "expected": 12,
+            "family": "mul:2:6",
+            "question": "Can you calculate 6 * 2?",
+            "group": "unseen_wording",
+            "output": "12.",
+            "parsed": 12,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 7,
+            "b": 4,
+            "expected": 28,
+            "family": "mul:4:7",
+            "question": "Can you calculate 7 * 4?",
+            "group": "unseen_wording",
+            "output": "28.",
+            "parsed": 28,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 7,
+            "b": 2,
+            "expected": 14,
+            "family": "mul:2:7",
+            "question": "Can you calculate 7 * 2?",
+            "group": "unseen_wording",
+            "output": "14.",
+            "parsed": 14,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 6,
+            "b": 9,
+            "expected": 54,
+            "family": "mul:6:9",
+            "question": "Can you calculate 6 * 9?",
+            "group": "unseen_wording",
+            "output": "54.",
+            "parsed": 54,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 4,
+            "b": 1,
+            "expected": 4,
+            "family": "mul:1:4",
+            "question": "Can you calculate 4 * 1?",
+            "group": "unseen_wording",
+            "output": "4.",
+            "parsed": 4,
+            "correct": true
+          },
+          {
+            "operation": "mul",
+            "a": 7,
+            "b": 9,
+            "expected": 63,
+            "family": "mul:7:9",
+            "question": "Can you calculate 7 * 9?",
+            "group": "unseen_wording",
+            "output": "63.",
+            "parsed": 63,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 44,
+            "b": 11,
+            "expected": 4,
+            "family": "div:44:11",
+            "question": "Can you calculate 44 / 11?",
+            "group": "unseen_wording",
+            "output": "4.",
+            "parsed": 4,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 14,
+            "b": 2,
+            "expected": 7,
+            "family": "div:14:2",
+            "question": "Can you calculate 14 / 2?",
+            "group": "unseen_wording",
+            "output": "7.",
+            "parsed": 7,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 14,
+            "b": 7,
+            "expected": 2,
+            "family": "div:14:7",
+            "question": "Can you calculate 14 / 7?",
+            "group": "unseen_wording",
+            "output": "2.",
+            "parsed": 2,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 88,
+            "b": 8,
+            "expected": 11,
+            "family": "div:88:8",
+            "question": "Can you calculate 88 / 8?",
+            "group": "unseen_wording",
+            "output": "11.",
+            "parsed": 11,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 72,
+            "b": 6,
+            "expected": 12,
+            "family": "div:72:6",
+            "question": "Can you calculate 72 / 6?",
+            "group": "unseen_wording",
+            "output": "12.",
+            "parsed": 12,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 48,
+            "b": 6,
+            "expected": 8,
+            "family": "div:48:6",
+            "question": "Can you calculate 48 / 6?",
+            "group": "unseen_wording",
+            "output": "8.",
+            "parsed": 8,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 36,
+            "b": 3,
+            "expected": 12,
+            "family": "div:36:3",
+            "question": "Can you calculate 36 / 3?",
+            "group": "unseen_wording",
+            "output": "12.",
+            "parsed": 12,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 36,
+            "b": 4,
+            "expected": 9,
+            "family": "div:36:4",
+            "question": "Can you calculate 36 / 4?",
+            "group": "unseen_wording",
+            "output": "9.",
+            "parsed": 9,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 72,
+            "b": 8,
+            "expected": 9,
+            "family": "div:72:8",
+            "question": "Can you calculate 72 / 8?",
+            "group": "unseen_wording",
+            "output": "9.",
+            "parsed": 9,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 18,
+            "b": 3,
+            "expected": 6,
+            "family": "div:18:3",
+            "question": "Can you calculate 18 / 3?",
+            "group": "unseen_wording",
+            "output": "6.",
+            "parsed": 6,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 77,
+            "b": 11,
+            "expected": 7,
+            "family": "div:77:11",
+            "question": "Can you calculate 77 / 11?",
+            "group": "unseen_wording",
+            "output": "7.",
+            "parsed": 7,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 30,
+            "b": 10,
+            "expected": 3,
+            "family": "div:30:10",
+            "question": "Can you calculate 30 / 10?",
+            "group": "unseen_wording",
+            "output": "3.",
+            "parsed": 3,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 12,
+            "b": 6,
+            "expected": 2,
+            "family": "div:12:6",
+            "question": "Can you calculate 12 / 6?",
+            "group": "unseen_wording",
+            "output": "2.",
+            "parsed": 2,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 4,
+            "b": 1,
+            "expected": 4,
+            "family": "div:4:1",
+            "question": "Can you calculate 4 / 1?",
+            "group": "unseen_wording",
+            "output": "4.",
+            "parsed": 4,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 4,
+            "b": 4,
+            "expected": 1,
+            "family": "div:4:4",
+            "question": "Can you calculate 4 / 4?",
+            "group": "unseen_wording",
+            "output": "1.",
+            "parsed": 1,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 88,
+            "b": 11,
+            "expected": 8,
+            "family": "div:88:11",
+            "question": "Can you calculate 88 / 11?",
+            "group": "unseen_wording",
+            "output": "8.",
+            "parsed": 8,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 60,
+            "b": 5,
+            "expected": 12,
+            "family": "div:60:5",
+            "question": "Can you calculate 60 / 5?",
+            "group": "unseen_wording",
+            "output": "12.",
+            "parsed": 12,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 48,
+            "b": 4,
+            "expected": 12,
+            "family": "div:48:4",
+            "question": "Can you calculate 48 / 4?",
+            "group": "unseen_wording",
+            "output": "12.",
+            "parsed": 12,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 5,
+            "b": 1,
+            "expected": 5,
+            "family": "div:5:1",
+            "question": "Can you calculate 5 / 1?",
+            "group": "unseen_wording",
+            "output": "5.",
+            "parsed": 5,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 45,
+            "b": 5,
+            "expected": 9,
+            "family": "div:45:5",
+            "question": "Can you calculate 45 / 5?",
+            "group": "unseen_wording",
+            "output": "9.",
+            "parsed": 9,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 80,
+            "b": 8,
+            "expected": 10,
+            "family": "div:80:8",
+            "question": "Can you calculate 80 / 8?",
+            "group": "unseen_wording",
+            "output": "10.",
+            "parsed": 10,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 16,
+            "b": 4,
+            "expected": 4,
+            "family": "div:16:4",
+            "question": "Can you calculate 16 / 4?",
+            "group": "unseen_wording",
+            "output": "4.",
+            "parsed": 4,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 16,
+            "b": 2,
+            "expected": 8,
+            "family": "div:16:2",
+            "question": "Can you calculate 16 / 2?",
+            "group": "unseen_wording",
+            "output": "8.",
+            "parsed": 8,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 7,
+            "b": 7,
+            "expected": 1,
+            "family": "div:7:7",
+            "question": "Can you calculate 7 / 7?",
+            "group": "unseen_wording",
+            "output": "1.",
+            "parsed": 1,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 19,
+            "b": 14,
+            "expected": 33,
+            "family": "add:14:19",
+            "question": "Can you calculate 19 + 14?",
+            "group": "held_out_operands",
+            "output": "33.",
+            "parsed": 33,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 6,
+            "b": 10,
+            "expected": 16,
+            "family": "add:6:10",
+            "question": "Can you calculate 6 + 10?",
+            "group": "held_out_operands",
+            "output": "16.",
+            "parsed": 16,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 12,
+            "b": 18,
+            "expected": 30,
+            "family": "add:12:18",
+            "question": "Can you calculate 12 + 18?",
+            "group": "held_out_operands",
+            "output": "28.",
+            "parsed": 28,
+            "correct": false
+          },
+          {
+            "operation": "add",
+            "a": 6,
+            "b": 16,
+            "expected": 22,
+            "family": "add:6:16",
+            "question": "Can you calculate 6 + 16?",
+            "group": "held_out_operands",
+            "output": "24.",
+            "parsed": 24,
+            "correct": false
+          },
+          {
+            "operation": "add",
+            "a": 9,
+            "b": 20,
+            "expected": 29,
+            "family": "add:9:20",
+            "question": "Can you calculate 9 + 20?",
+            "group": "held_out_operands",
+            "output": "90.",
+            "parsed": 90,
+            "correct": false
+          },
+          {
+            "operation": "add",
+            "a": 5,
+            "b": 13,
+            "expected": 18,
+            "family": "add:5:13",
+            "question": "Can you calculate 5 + 13?",
+            "group": "held_out_operands",
+            "output": "28.",
+            "parsed": 28,
+            "correct": false
+          },
+          {
+            "operation": "add",
+            "a": 17,
+            "b": 13,
+            "expected": 30,
+            "family": "add:13:17",
+            "question": "Can you calculate 17 + 13?",
+            "group": "held_out_operands",
+            "output": "28.",
+            "parsed": 28,
+            "correct": false
+          },
+          {
+            "operation": "add",
+            "a": 18,
+            "b": 13,
+            "expected": 31,
+            "family": "add:13:18",
+            "question": "Can you calculate 18 + 13?",
+            "group": "held_out_operands",
+            "output": "29.",
+            "parsed": 29,
+            "correct": false
+          },
+          {
+            "operation": "add",
+            "a": 13,
+            "b": 4,
+            "expected": 17,
+            "family": "add:4:13",
+            "question": "Can you calculate 13 + 4?",
+            "group": "held_out_operands",
+            "output": "17.",
+            "parsed": 17,
+            "correct": true
+          },
+          {
+            "operation": "add",
+            "a": 3,
+            "b": 20,
+            "expected": 23,
+            "family": "add:3:20",
+            "question": "Can you calculate 3 + 20?",
+            "group": "held_out_operands",
+            "output": "33.",
+            "parsed": 33,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 8,
+            "b": 18,
+            "expected": -10,
+            "family": "sub:8:18",
+            "question": "Can you calculate 8 - 18?",
+            "group": "held_out_operands",
+            "output": "-10.",
+            "parsed": -10,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 11,
+            "b": 3,
+            "expected": 8,
+            "family": "sub:11:3",
+            "question": "Can you calculate 11 - 3?",
+            "group": "held_out_operands",
+            "output": "-2.",
+            "parsed": -2,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 3,
+            "b": 16,
+            "expected": -13,
+            "family": "sub:3:16",
+            "question": "Can you calculate 3 - 16?",
+            "group": "held_out_operands",
+            "output": "-13.",
+            "parsed": -13,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 13,
+            "b": 4,
+            "expected": 9,
+            "family": "sub:13:4",
+            "question": "Can you calculate 13 - 4?",
+            "group": "held_out_operands",
+            "output": "11.",
+            "parsed": 11,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 18,
+            "b": 9,
+            "expected": 9,
+            "family": "sub:18:9",
+            "question": "Can you calculate 18 - 9?",
+            "group": "held_out_operands",
+            "output": "11.",
+            "parsed": 11,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 16,
+            "b": 10,
+            "expected": 6,
+            "family": "sub:16:10",
+            "question": "Can you calculate 16 - 10?",
+            "group": "held_out_operands",
+            "output": "6.",
+            "parsed": 6,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 20,
+            "b": 4,
+            "expected": 16,
+            "family": "sub:20:4",
+            "question": "Can you calculate 20 - 4?",
+            "group": "held_out_operands",
+            "output": "16.",
+            "parsed": 16,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 1,
+            "b": 13,
+            "expected": -12,
+            "family": "sub:1:13",
+            "question": "Can you calculate 1 - 13?",
+            "group": "held_out_operands",
+            "output": "-12.",
+            "parsed": -12,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 16,
+            "b": 6,
+            "expected": 10,
+            "family": "sub:16:6",
+            "question": "Can you calculate 16 - 6?",
+            "group": "held_out_operands",
+            "output": "12.",
+            "parsed": 12,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 4,
+            "b": 14,
+            "expected": -10,
+            "family": "sub:4:14",
+            "question": "Can you calculate 4 - 14?",
+            "group": "held_out_operands",
+            "output": "-8.",
+            "parsed": -8,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 18,
+            "b": 11,
+            "expected": 7,
+            "family": "sub:18:11",
+            "question": "Can you calculate 18 - 11?",
+            "group": "held_out_operands",
+            "output": "7.",
+            "parsed": 7,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 18,
+            "b": 2,
+            "expected": 16,
+            "family": "sub:18:2",
+            "question": "Can you calculate 18 - 2?",
+            "group": "held_out_operands",
+            "output": "6.",
+            "parsed": 6,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 16,
+            "b": 9,
+            "expected": 7,
+            "family": "sub:16:9",
+            "question": "Can you calculate 16 - 9?",
+            "group": "held_out_operands",
+            "output": "-7.",
+            "parsed": -7,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 14,
+            "b": 8,
+            "expected": 6,
+            "family": "sub:14:8",
+            "question": "Can you calculate 14 - 8?",
+            "group": "held_out_operands",
+            "output": "-4.",
+            "parsed": -4,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 10,
+            "b": 20,
+            "expected": -10,
+            "family": "sub:10:20",
+            "question": "Can you calculate 10 - 20?",
+            "group": "held_out_operands",
+            "output": "-20.",
+            "parsed": -20,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 16,
+            "b": 4,
+            "expected": 12,
+            "family": "sub:16:4",
+            "question": "Can you calculate 16 - 4?",
+            "group": "held_out_operands",
+            "output": "12.",
+            "parsed": 12,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 12,
+            "b": 18,
+            "expected": -6,
+            "family": "sub:12:18",
+            "question": "Can you calculate 12 - 18?",
+            "group": "held_out_operands",
+            "output": "-6.",
+            "parsed": -6,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 15,
+            "b": 14,
+            "expected": 1,
+            "family": "sub:15:14",
+            "question": "Can you calculate 15 - 14?",
+            "group": "held_out_operands",
+            "output": "-1.",
+            "parsed": -1,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 8,
+            "b": 11,
+            "expected": -3,
+            "family": "sub:8:11",
+            "question": "Can you calculate 8 - 11?",
+            "group": "held_out_operands",
+            "output": "-7.",
+            "parsed": -7,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 10,
+            "b": 8,
+            "expected": 2,
+            "family": "sub:10:8",
+            "question": "Can you calculate 10 - 8?",
+            "group": "held_out_operands",
+            "output": "-2.",
+            "parsed": -2,
+            "correct": false
+          },
+          {
+            "operation": "sub",
+            "a": 15,
+            "b": 2,
+            "expected": 13,
+            "family": "sub:15:2",
+            "question": "Can you calculate 15 - 2?",
+            "group": "held_out_operands",
+            "output": "13.",
+            "parsed": 13,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 14,
+            "b": 3,
+            "expected": 11,
+            "family": "sub:14:3",
+            "question": "Can you calculate 14 - 3?",
+            "group": "held_out_operands",
+            "output": "11.",
+            "parsed": 11,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 19,
+            "b": 13,
+            "expected": 6,
+            "family": "sub:19:13",
+            "question": "Can you calculate 19 - 13?",
+            "group": "held_out_operands",
+            "output": "6.",
+            "parsed": 6,
+            "correct": true
+          },
+          {
+            "operation": "sub",
+            "a": 16,
+            "b": 19,
+            "expected": -3,
+            "family": "sub:16:19",
+            "question": "Can you calculate 16 - 19?",
+            "group": "held_out_operands",
+            "output": "-1.",
+            "parsed": -1,
+            "correct": false
+          },
+          {
+            "operation": "mul",
+            "a": 12,
+            "b": 10,
+            "expected": 120,
+            "family": "mul:10:12",
+            "question": "Can you calculate 12 * 10?",
+            "group": "held_out_operands",
+            "output": "20.",
+            "parsed": 20,
+            "correct": false
+          },
+          {
+            "operation": "mul",
+            "a": 7,
+            "b": 10,
+            "expected": 70,
+            "family": "mul:7:10",
+            "question": "Can you calculate 7 * 10?",
+            "group": "held_out_operands",
+            "output": "60.",
+            "parsed": 60,
+            "correct": false
+          },
+          {
+            "operation": "mul",
+            "a": 12,
+            "b": 1,
+            "expected": 12,
+            "family": "mul:1:12",
+            "question": "Can you calculate 12 * 1?",
+            "group": "held_out_operands",
+            "output": "132.",
+            "parsed": 132,
+            "correct": false
+          },
+          {
+            "operation": "div",
+            "a": 22,
+            "b": 2,
+            "expected": 11,
+            "family": "div:22:2",
+            "question": "Can you calculate 22 / 2?",
+            "group": "held_out_operands",
+            "output": "12.",
+            "parsed": 12,
+            "correct": false
+          },
+          {
+            "operation": "div",
+            "a": 120,
+            "b": 12,
+            "expected": 10,
+            "family": "div:120:12",
+            "question": "Can you calculate 120 / 12?",
+            "group": "held_out_operands",
+            "output": "0.",
+            "parsed": 0,
+            "correct": false
+          },
+          {
+            "operation": "div",
+            "a": 12,
+            "b": 1,
+            "expected": 12,
+            "family": "div:12:1",
+            "question": "Can you calculate 12 / 1?",
+            "group": "held_out_operands",
+            "output": "12.",
+            "parsed": 12,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 90,
+            "b": 9,
+            "expected": 10,
+            "family": "div:90:9",
+            "question": "Can you calculate 90 / 9?",
+            "group": "held_out_operands",
+            "output": "10.",
+            "parsed": 10,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 66,
+            "b": 6,
+            "expected": 11,
+            "family": "div:66:6",
+            "question": "Can you calculate 66 / 6?",
+            "group": "held_out_operands",
+            "output": "12.",
+            "parsed": 12,
+            "correct": false
+          },
+          {
+            "operation": "div",
+            "a": 108,
+            "b": 12,
+            "expected": 9,
+            "family": "div:108:12",
+            "question": "Can you calculate 108 / 12?",
+            "group": "held_out_operands",
+            "output": "8.",
+            "parsed": 8,
+            "correct": false
+          },
+          {
+            "operation": "div",
+            "a": 77,
+            "b": 7,
+            "expected": 11,
+            "family": "div:77:7",
+            "question": "Can you calculate 77 / 7?",
+            "group": "held_out_operands",
+            "output": "11.",
+            "parsed": 11,
+            "correct": true
+          },
+          {
+            "operation": "div",
+            "a": 48,
+            "b": 12,
+            "expected": 4,
+            "family": "div:48:12",
+            "question": "Can you calculate 48 / 12?",
+            "group": "held_out_operands",
+            "output": "7.",
+            "parsed": 7,
+            "correct": false
+          },
+          {
+            "operation": "div",
+            "a": 90,
+            "b": 10,
+            "expected": 9,
+            "family": "div:90:10",
+            "question": "Can you calculate 90 / 10?",
+            "group": "held_out_operands",
+            "output": "9.",
+            "parsed": 9,
+            "correct": true
+          }
+        ]
+      }
+    }
+  },
+  "release_selection": {
+    "checkpoint": "last.npz",
+    "step": 100000,
+    "reason": "The mixed validation loss selected step 0 as best. This release uses the final trained state, with measured regressions disclosed.",
+    "training_status": {
+      "state": "completed",
+      "step": 100000,
+      "target_steps": 100000,
+      "parameters": 4553728,
+      "best_validation_loss": 0.17721269469475373,
+      "data_sha256": "92fadbf986720114410c9e42dba6aceac3e34c252217e5ecd8ef8c4958930a89",
+      "session_seconds": 11508.5,
+      "updated_utc": "2026-10-27T00:18:51.579128+00:00"
+    }
+  }
+}

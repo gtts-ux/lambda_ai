@@ -1,0 +1,10 @@
+{
+  "filename": "lambda-2.npz",
+  "format": "lambda-ai-inference-v2",
+  "parameters": 4553728,
+  "training_step": 100000,
+  "sha256": "d66e73f446ad01eb68c42d17e6003fb3e344a680c1791159863045c01d16dbca",
+  "bytes": 16934294,
+  "min_app_version": "0.2.0",
+  "checkpoint_selection": "Final trained checkpoint at step 100000. The step-0 validation baseline was not released."
+}

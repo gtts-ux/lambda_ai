@@ -3,7 +3,7 @@
 Repository: https://github.com/gtts-ux/lambda_ai
 
 The approved model names are **lambda 1.0** (`lambda-1.0`),
-**lambda 1.5** (`lambda-1.5`), and **lambda 1.6** (`lambda-1.6`).
+**lambda 1.5** (`lambda-1.5`), **lambda 1.6** (`lambda-1.6`), and **lambda 2** (`lambda-2`).
 The owner will name future models. **Ask the owner if a new model is requested
 without a name; do not invent or automatically increment model names.**
 
@@ -36,6 +36,12 @@ an intent classifier. The final model also uses fixed hashed question features
 in chat mode, learned through the generator's existing first layer. Export it
 with `--router /path/to/router.npz --question-features` and register
 it with `--min-app-version 0.2.0`. Count both generator and router weights.
+
+Lambda 2 uses the same v2 format and minimum app version. Its released file is
+the final trained checkpoint at step 100,000. The mixed validation criterion
+preferred the untrained step-0 expansion; do not accidentally distribute that
+baseline as the trained release. Preserve the selection explanation and measured
+regressions in its model card. The bundled default remains lambda 1.0.
 
 To replace the default bundled model, export to `lambda_cli/assets/model.npz`
 and register that file with the approved ID/name. Update its model card too.
