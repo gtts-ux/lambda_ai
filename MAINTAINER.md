@@ -61,3 +61,10 @@ Verify the published catalog and download after pushing. Never force-push.
 
 Model updates do not reset usage or alter the 1,000,000-token / 10-hour rule.
 The local allowance is intentionally not presented as a server-enforced plan.
+
+Lambda 2.1 is the owner-authorized experimental conversation release (v4, app >=0.4.0).
+It supersedes the private 2.5 trial name. The owner explicitly requested publication
+despite failed automatic quality gates; retain that fact and the raw benchmark.
+See models/lambda-2.1.md for selection, provenance and measured limitations.
+Do not publish training data, optimizer state or the frozen training teacher.
+Keep older models, the default selection and shared quota intact.

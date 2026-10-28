@@ -33,6 +33,7 @@ COMMANDS
 /limit 120                Set output limit: 1–2048 tokens
 /topk 8                   Set top-k; 0 uses all tokens
 /new                      Clear session history (allowance stays unchanged)
+/memory                   Show whether this model uses conversation context
 /save [filename.json]     Export this conversation
 /help                     Show this help
 /exit                     Exit
@@ -40,7 +41,8 @@ COMMANDS
 Allowance: 1,000,000 input + generated tokens per OS user every 10 hours,
 starting with the first message. This is roughly 5,000 messages at 200 tokens
 per exchange. Input is charged only for the context actually used.
-Each question is processed separately; displayed history is not model memory.
+Transformer models use recent completed exchanges within their context window.
+Older MLP models process each question separately. /memory shows the current mode.
 """
 
 
@@ -63,11 +65,13 @@ class Session:
         self.messages, self.turns = [], []
         self.last_question = self.inspected_text = ""
         self.last_result = None
+        self.memory_start = 0
 
     def add_user(self, question):
         if len(question) > 20000:
             raise ValueError("A question may contain at most 20,000 characters.")
-        ids = self.engine.tokenizer.encode(prompt_for(question))
+        prompt = self.build_prompt(question)
+        ids = prompt if isinstance(prompt, list) else self.engine.tokenizer.encode(prompt)
         status = self.quota.status()
         if status["remaining"] <= min(len(ids), self.engine.context):
             from .quota import QuotaExceeded
@@ -76,8 +80,9 @@ class Session:
         self.messages.append(("You", question))
 
     def generate(self, question, on_text=None, cancel=None):
-        prompt = prompt_for(question)
-        input_tokens = min(len(self.engine.tokenizer.encode(prompt)), self.engine.context)
+        prompt = self.build_prompt(question)
+        ids = prompt if isinstance(prompt, list) else self.engine.tokenizer.encode(prompt)
+        input_tokens = min(len(ids), self.engine.context)
         reservation = self.quota.reserve(input_tokens, self.settings.max_tokens)
         settings = Settings(**asdict(self.settings))
         settings.max_tokens = reservation.max_output
@@ -101,6 +106,24 @@ class Session:
         self.turns.append({"question": self.last_question, "model": self.engine.metadata.get("model_id"), **result.to_dict()})
         self.messages.append(("Lambda", result.text or "[Empty response]"))
 
+    def build_prompt(self, question):
+        if getattr(self.engine, "supports_memory", False):
+            from .byte_tokenizer import conversation_prompt
+            turns = [(t["question"], t["text"]) for t in self.turns[self.memory_start:]
+                     if t.get("finish_reason") != "cancelled" and t.get("text")]
+            return conversation_prompt(self.engine.tokenizer, turns, question, self.engine.context)
+        return prompt_for(question)
+
+    def memory_text(self):
+        if not getattr(self.engine, "supports_memory", False):
+            return "This MLP model processes each question separately. Select a trained Transformer for conversation context."
+        return (f"CONVERSATION CONTEXT / {self.engine.context} TOKENS\n\n"
+                "  Recent completed questions and answers are included with each message.\n"
+                "  Old exchanges are dropped when the context window is full.\n"
+                "  /new clears this conversation. Exiting the app also clears it.\n"
+                "  /save exports it to a file; it does not create permanent model memory.\n"
+                "  Included history uses the existing token allowance. Weights never change during chat.")
+
     def totals(self):
         seconds = sum(t["seconds"] for t in self.turns)
         output = sum(t["generated_tokens"] for t in self.turns)
@@ -109,6 +132,7 @@ class Session:
 
     def reload_model(self):
         self.engine = Engine(self.manager.resolve())
+        self.memory_start = len(self.turns)
         # A new model can have a different vocabulary. Do not decode old IDs with it.
         self.last_result = None
         self.inspected_text = ""
@@ -122,6 +146,7 @@ class Session:
         self.manager.install(identifier, progress, cancel)
         if verb == "use":
             self.engine = self.manager.activate(identifier)
+            self.memory_start = len(self.turns)
             self.last_result = None
             return f"Using {self.engine.metadata.get('name', identifier)}."
         return f"Installed {identifier}. Use /model use {identifier} to switch."
@@ -138,7 +163,9 @@ class Session:
                   "  Type a choice number here or use /model use <id>.", "", f"CURRENT MODEL / {info['name']}", "",
                   f"  Architecture         {info['architecture']}", f"  Parameters           {info['parameters']:,}",
                   f"  Vocabulary           {info['vocabulary']:,} BPE tokens", f"  Context              {info['context']} tokens",
-                  f"  Embedding            {info['embedding']}", f"  Hidden layers        {info['hidden']} → {info['hidden']}",
+                  f"  Embedding            {info['embedding']}",
+                  (f"  Transformer blocks   {info['layers']} × width {info['hidden']}" if info.get('conversation_memory')
+                   else f"  Hidden layers        {info['hidden']} → {info['hidden']}"),
                   f"  Precision            {info['dtype']}", f"  Weights in RAM       {info['weight_bytes']/1048576:.2f} MiB",
                   f"  Model file           {info['file_bytes']/1048576:.2f} MiB", f"  Checkpoint step      {info['training_step']:,}",
                   "", "  MATRICES", ""]
@@ -151,6 +178,8 @@ class Session:
                       "  Routing probability describes intent, not answer correctness."]
         if info['question_features']:
             lines += ['  Chat topic features use the last 64 question tokens; no conversation memory.']
+        if info.get('conversation_memory'):
+            lines += [f"  Conversation context: up to {self.engine.context} tokens, current session only."]
         return "\n".join(lines)
 
     def stats_text(self):
@@ -166,7 +195,7 @@ class Session:
                  f"  Average speed         {totals['speed']:.1f} tok/s"]
         if self.last_result:
             r = self.last_result
-            lines += ["", "LAST RESPONSE", "", f"  Prompt tokens         {len(r.prompt_ids)} (includes question/answer labels)",
+            lines += ["", "LAST RESPONSE", "", f"  Prompt tokens         {len(r.prompt_ids)} (includes role labels and any used history)",
                       f"  Used context          {r.context_used}/{self.engine.context}", f"  Dropped from start    {r.context_dropped}",
                       f"  Generated tokens      {len(r.generated)}", f"  Charged to allowance  {r.charged_tokens}",
                       f"  Speed                 {r.tokens_per_second:.1f} tok/s", f"  Finish reason         {r.finish_reason}"]
@@ -229,8 +258,11 @@ class Session:
             return 'intent', ''
         if command == "/exit":
             return "exit", ""
+        if command == "/memory":
+            return "", self.memory_text()
         if command == "/new":
             self.messages.clear(); self.turns.clear()
+            self.memory_start = 0
             self.last_result = None
             self.last_question = self.inspected_text = ""
             return "chat", "New session. Your token allowance is unchanged."

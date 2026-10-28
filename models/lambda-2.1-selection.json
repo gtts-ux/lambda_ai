@@ -1,0 +1,4114 @@
+{
+  "selected": "conversation_pilot",
+  "criterion": "Highest mean of math, chat and memory accuracies on identical 56 development cases, retaining baseline 1.6 arithmetic regression accuracy. This is development-based selection, not a new unbiased test.",
+  "candidates": {
+    "repair": {
+      "scores": {
+        "math": {
+          "correct": 9,
+          "total": 32,
+          "accuracy": 0.28125
+        },
+        "math_familiar": {
+          "correct": 3,
+          "total": 16,
+          "accuracy": 0.1875
+        },
+        "chat": {
+          "correct": 7,
+          "total": 8,
+          "accuracy": 0.875
+        },
+        "math_regression": {
+          "correct": 6,
+          "total": 8,
+          "accuracy": 0.75
+        },
+        "memory": {
+          "correct": 1,
+          "total": 16,
+          "accuracy": 0.0625
+        }
+      },
+      "balanced_score": 0.40625,
+      "outputs": [
+        {
+          "category": "math",
+          "question": "Please evaluate 0 + 0 for me?",
+          "expected": "0.",
+          "answer": "5.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Find the value of 1+13 for me?",
+          "expected": "14.",
+          "answer": "14.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For this exercise, please compute 3 + 6?",
+          "expected": "9.",
+          "answer": "I do not have not have live. the quantity and somedo not have not told me your age.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Please find the value of 4 + 20?",
+          "expected": "24.",
+          "answer": "6.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Could you find the value of 6 plus 13 using these numbers?",
+          "expected": "19.",
+          "answer": "The Soma.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For this exercise, please compute 8 + 6?",
+          "expected": "14.",
+          "answer": "10.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Can you determine the result of 9 plus 20 for me?",
+          "expected": "29.",
+          "answer": "A ummk and changes from a usether.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Evaluate 11 plus 13?",
+          "expected": "24.",
+          "answer": "24.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Tell me the answer to 13+6 using these numbers?",
+          "expected": "19.",
+          "answer": "10. You have not told me your age.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Can you give the numerical result of 14 + 20 using these numbers?",
+          "expected": "34.",
+          "answer": "It is 0.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For this exercise, please calculate 16 + 13 for me?",
+          "expected": "29.",
+          "answer": "67.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Could you determine the result of 18 + 6 for me?",
+          "expected": "24.",
+          "answer": "15.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Can you compute 19 plus 20 using these numbers?",
+          "expected": "39.",
+          "answer": "Nok you can mes or0.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For my lesson, can you evaluate 12 / 4 for me?",
+          "expected": "3.",
+          "answer": "Division splits a quantity into equal groups.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Find the value of 12/1 for me?",
+          "expected": "12.",
+          "answer": "12.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Could you evaluate 200/10 using these numbers?",
+          "expected": "20.",
+          "answer": "2.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Please give the numerical result of 46-76 using these numbers?",
+          "expected": "-30.",
+          "answer": "20.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Please find the value of 32 times 11 using these numbers?",
+          "expected": "352.",
+          "answer": "nenene, and can be name is Zne, and a name, and maro.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For my lesson, can you compute 61 plus 8 using these numbers?",
+          "expected": "69.",
+          "answer": "Your name is Rades can de.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Compute 41 times 9?",
+          "expected": "369.",
+          "answer": "66.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 0 marbles and am given 0 more. How many marbles do I have in total?",
+          "expected": "0.",
+          "answer": "Sino a white book.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 6 marbles and am given 20 more. How many marbles do I have in total?",
+          "expected": "26.",
+          "answer": "You have not told me your age.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 13 apples and am given 20 more. How many apples do I have in total?",
+          "expected": "33.",
+          "answer": "You now 3cats. What not told me your age.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 20 buttons and am given 20 more. How many buttons do I have in total?",
+          "expected": "40.",
+          "answer": "320.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Briefly describe a fish.",
+          "expected": "A fish is an animal that lives in water and usually breathes through gills.",
+          "answer": "A fish is an animal that lives in water and usually breathes through gills.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Help me understand a synonym.",
+          "expected": "A synonym is a word with a meaning similar to another word.",
+          "answer": "A synonym is a word with a meaning similar to another word.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "What should I know about a cloud?",
+          "expected": "A cloud is made of tiny water droplets or ice crystals suspended in the atmosphere.",
+          "answer": "A cloud is made of tiny water droplets or ice crystals suspended in the atmosphere.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "I am using Python 3. How would you define a training dataset?",
+          "expected": "A training dataset contains examples used to update a model's weights.",
+          "answer": "A training dataset contains examples used to update a model's weights.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Explain calendar.",
+          "expected": "A calendar organizes days, weeks, and months.",
+          "answer": "A calendar organizes days, weeks, and months.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Explain a paragraph in simple words.",
+          "expected": "A paragraph is a group of sentences that usually develops one main idea.",
+          "answer": "A paragraph is a group of sentences that usually develops one main idea.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Please describe the meaning of a tree.",
+          "expected": "A tree is a long-lived plant that usually has a woody trunk and branches.",
+          "answer": "A tree is a long-lived plant that usually has a woody trunk and branches.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Please describe the meaning of Python 3.",
+          "expected": "Python 3 is a major version of the Python programming language. It can be used to write programs.",
+          "answer": "A 4 contains sixty seconds.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 5 + 3?",
+          "expected": "8.",
+          "answer": "8.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 8 - 3?",
+          "expected": "5.",
+          "answer": "5.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 4 * 3?",
+          "expected": "12.",
+          "answer": "12.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 12 / 3?",
+          "expected": "4.",
+          "answer": "4.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Calculate 7 + 6.",
+          "expected": "13.",
+          "answer": "13.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 19 - 8?",
+          "expected": "11.",
+          "answer": "10.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "If I have 3 apples and receive 4 more, how many apples do I have?",
+          "expected": "7.",
+          "answer": "7.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 7 - 10?",
+          "expected": "-3.",
+          "answer": "-4.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please recall my name again?",
+          "expected": "Your name is Bamado.",
+          "answer": "Your name is Sidama.",
+          "history": [
+            [
+              "My name is Bamado.",
+              "Hello, Bamaama."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For my lesson, can you repeat my name from our conversation?",
+          "expected": "Your name is Zelada.",
+          "answer": "Your name is Zebe fomo.",
+          "history": [
+            [
+              "My name is Zelada.",
+              "Hello, Zela."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please remind me of my name and favorite color again?",
+          "expected": "Your name is Bamado, and your favorite color is blue.",
+          "answer": "Your name is Mama, and your your name is name favorite your blue.",
+          "history": [
+            [
+              "My name is Bamado. My favorite color is blue.",
+              "Your name is Bamama, and your favorite color is blue."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my name and favorite color again?",
+          "expected": "Your name is Banabi, and your favorite color is black.",
+          "answer": "Your name is Banemeban years, and your favorite color is black.",
+          "history": [
+            [
+              "My name is Banabi. My favorite color is black.",
+              "Your name is Banibanabane, black."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my room number from our conversation?",
+          "expected": "Your room number is 7.",
+          "answer": "Your name is and your favorite color is red.",
+          "history": [
+            [
+              "My room number is 7. My ticket number is 20.",
+              "Your name is Sobe, and your favorite color is red."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please tell me my ticket number?",
+          "expected": "Your ticket number is 20.",
+          "answer": "Your 0.",
+          "history": [
+            [
+              "My room number is 7. My ticket number is 20.",
+              "Your name is Sobe, and your favorite color is red."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Would you remind me of my current favorite color?",
+          "expected": "Your favorite color is now pink.",
+          "answer": "Your favorite red.",
+          "history": [
+            [
+              "My favorite color is red.",
+              "Your favorite color is red."
+            ],
+            [
+              "I changed my mind. My favorite color is now pink.",
+              "Your favorite color is red."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please repeat my current favorite color again?",
+          "expected": "Your favorite color is now red.",
+          "answer": "Your your favorite favorite your favorite silver silver your silver.",
+          "history": [
+            [
+              "My favorite color is silver.",
+              "Your name is silver."
+            ],
+            [
+              "I changed my mind. My favorite color is now red.",
+              "Your name is silver, and your favorite silver."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me the current location of the book from our conversation?",
+          "expected": "It is in the bedroom.",
+          "answer": "It is Live and garage.",
+          "history": [
+            [
+              "I left the book in the garage. My name is Kinovo.",
+              "Kinoto garage."
+            ],
+            [
+              "I moved the book to the bedroom.",
+              "Lto has the garage."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For my lesson, can you repeat the current location of the bag from our conversation?",
+          "expected": "It is in the library.",
+          "answer": "Your name is is bag.",
+          "history": [
+            [
+              "I left the bag in the kitchen. My name is Zomibi.",
+              "and is in the slikkor has a is the library."
+            ],
+            [
+              "I moved the bag to the library.",
+              "It is library."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Tell me what Sitibi has again?",
+          "expected": "Sitibi has a blue book.",
+          "answer": "Sa pink bag.",
+          "history": [
+            [
+              "Sitibi has a blue book. Zedida has a orange bag.",
+              "Your name is Va orange like to has a orange has a orange bag."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Please recall what Zedida has?",
+          "expected": "Zedida has a orange bag.",
+          "answer": "Your name is a orange orange bag.",
+          "history": [
+            [
+              "Sitibi has a blue book. Zedida has a orange bag.",
+              "Your name is Va orange like to has a orange has a orange bag."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my name from our conversation?",
+          "expected": "Your name is Zedida.",
+          "answer": "Your name name isebeebe.",
+          "history": [
+            [
+              "My name is Zedida.",
+              "Hello, Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zebe."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zebe."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zebe."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zebe."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zebe."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zebe."
+            ],
+            [
+              "What is a triangle?",
+              "Be."
+            ],
+            [
+              "What is a triangle?",
+              "Your Zebe."
+            ],
+            [
+              "What is a triangle?",
+              "Your name name ise."
+            ],
+            [
+              "What is a triangle?",
+              "Your name Zebeebe."
+            ],
+            [
+              "What is a triangle?",
+              "Your name ise."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my name again?",
+          "expected": "Your name is Bozoze.",
+          "answer": "Your Zzozozozozozozozozozozozo.",
+          "history": [
+            [
+              "My name is Bozoze.",
+              "Hello, Bozozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Bozozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zzozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zzozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your name Zzozozozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your Zozozozozozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is name Zzozozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your name isezozozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your is Zozozozozozozozozo."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Tell me my age again?",
+          "expected": "You have not told me your age.",
+          "answer": "You have not told me your age.",
+          "history": [
+            [
+              "My name is Sitibi. I like green.",
+              "Hello, Sitibi."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my age again?",
+          "expected": "You are 6 years old.",
+          "answer": "You have a years are 2 years old.",
+          "history": [
+            [
+              "My name is Sadodo. I like pink.",
+              "Hello, Sado."
+            ],
+            [
+              "I am 6 years old.",
+              "You are 22."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        }
+      ],
+      "note": "Strict answer match on a small fixed synthetic development set; semantic paraphrases may be valid despite failing exact match.",
+      "checkpoint_sha256": "3753574c1fa79b3d5da35263a71cb3a0343bbf9e6de77c6f5291ed9a667bbd85"
+    },
+    "language_pilot": {
+      "scores": {
+        "math": {
+          "correct": 16,
+          "total": 32,
+          "accuracy": 0.5
+        },
+        "math_familiar": {
+          "correct": 8,
+          "total": 16,
+          "accuracy": 0.5
+        },
+        "chat": {
+          "correct": 7,
+          "total": 8,
+          "accuracy": 0.875
+        },
+        "math_regression": {
+          "correct": 5,
+          "total": 8,
+          "accuracy": 0.625
+        },
+        "memory": {
+          "correct": 4,
+          "total": 16,
+          "accuracy": 0.25
+        }
+      },
+      "balanced_score": 0.5416666666666666,
+      "outputs": [
+        {
+          "category": "math",
+          "question": "Please evaluate 0 + 0 for me?",
+          "expected": "0.",
+          "answer": "0.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Find the value of 1+13 for me?",
+          "expected": "14.",
+          "answer": "14.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For this exercise, please compute 3 + 6?",
+          "expected": "9.",
+          "answer": "8.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Please find the value of 4 + 20?",
+          "expected": "24.",
+          "answer": "6.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Could you find the value of 6 plus 13 using these numbers?",
+          "expected": "19.",
+          "answer": "19.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For this exercise, please compute 8 + 6?",
+          "expected": "14.",
+          "answer": "14.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Can you determine the result of 9 plus 20 for me?",
+          "expected": "29.",
+          "answer": "11.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Evaluate 11 plus 13?",
+          "expected": "24.",
+          "answer": "14.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Tell me the answer to 13+6 using these numbers?",
+          "expected": "19.",
+          "answer": "29.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Can you give the numerical result of 14 + 20 using these numbers?",
+          "expected": "34.",
+          "answer": "26.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For this exercise, please calculate 16 + 13 for me?",
+          "expected": "29.",
+          "answer": "29.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Could you determine the result of 18 + 6 for me?",
+          "expected": "24.",
+          "answer": "24.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Can you compute 19 plus 20 using these numbers?",
+          "expected": "39.",
+          "answer": "39.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For my lesson, can you evaluate 12 / 4 for me?",
+          "expected": "3.",
+          "answer": "12.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Find the value of 12/1 for me?",
+          "expected": "12.",
+          "answer": "1.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Could you evaluate 200/10 using these numbers?",
+          "expected": "20.",
+          "answer": "20.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Please give the numerical result of 46-76 using these numbers?",
+          "expected": "-30.",
+          "answer": "-12.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Please find the value of 32 times 11 using these numbers?",
+          "expected": "352.",
+          "answer": "336.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For my lesson, can you compute 61 plus 8 using these numbers?",
+          "expected": "69.",
+          "answer": "12.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Compute 41 times 9?",
+          "expected": "369.",
+          "answer": "56.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 0 marbles and am given 0 more. How many marbles do I have in total?",
+          "expected": "0.",
+          "answer": "0.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 6 marbles and am given 20 more. How many marbles do I have in total?",
+          "expected": "26.",
+          "answer": "26.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 13 apples and am given 20 more. How many apples do I have in total?",
+          "expected": "33.",
+          "answer": "33.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 20 buttons and am given 20 more. How many buttons do I have in total?",
+          "expected": "40.",
+          "answer": "220.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Briefly describe a fish.",
+          "expected": "A fish is an animal that lives in water and usually breathes through gills.",
+          "answer": "A fish is an animal that lives in water and usually breathes through gills.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Help me understand a synonym.",
+          "expected": "A synonym is a word with a meaning similar to another word.",
+          "answer": "A synonym is a word with a meaning similar to another word.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "What should I know about a cloud?",
+          "expected": "A cloud is made of tiny water droplets or ice crystals suspended in the atmosphere.",
+          "answer": "A cloud is made of tiny water droplets or ice crystals suspended in the atmosphere.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "I am using Python 3. How would you define a training dataset?",
+          "expected": "A training dataset contains examples used to update a model's weights.",
+          "answer": "A training dataset contains examples used to update a model's weights.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Explain calendar.",
+          "expected": "A calendar organizes days, weeks, and months.",
+          "answer": "A calendar organizes days, weeks, and months.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Explain a paragraph in simple words.",
+          "expected": "A paragraph is a group of sentences that usually develops one main idea.",
+          "answer": "A paragraph is a group of sentences that usually develops one main idea.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Please describe the meaning of a tree.",
+          "expected": "A tree is a long-lived plant that usually has a woody trunk and branches.",
+          "answer": "A tree is a long-lived plant that usually has a woody trunk and branches.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Please describe the meaning of Python 3.",
+          "expected": "Python 3 is a major version of the Python programming language. It can be used to write programs.",
+          "answer": "A g is a physical quantity into three angles.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 5 + 3?",
+          "expected": "8.",
+          "answer": "8.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 8 - 3?",
+          "expected": "5.",
+          "answer": "5.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 4 * 3?",
+          "expected": "12.",
+          "answer": "12.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 12 / 3?",
+          "expected": "4.",
+          "answer": "1.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Calculate 7 + 6.",
+          "expected": "13.",
+          "answer": "13.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 19 - 8?",
+          "expected": "11.",
+          "answer": "11.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "If I have 3 apples and receive 4 more, how many apples do I have?",
+          "expected": "7.",
+          "answer": "1.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 7 - 10?",
+          "expected": "-3.",
+          "answer": "-7.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please recall my name again?",
+          "expected": "Your name is Bamado.",
+          "answer": "Your name is Bama.",
+          "history": [
+            [
+              "My name is Bamado.",
+              "Hello, Bamama."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For my lesson, can you repeat my name from our conversation?",
+          "expected": "Your name is Zelada.",
+          "answer": "Your name is Zelamo.",
+          "history": [
+            [
+              "My name is Zelada.",
+              "Hello, Zela."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please remind me of my name and favorite color again?",
+          "expected": "Your name is Bamado, and your favorite color is blue.",
+          "answer": "Your name is Bama, and your favorite color is Bama, and blue.",
+          "history": [
+            [
+              "My name is Bamado. My favorite color is blue.",
+              "Your name is Bama, and your favorite color is blue."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my name and favorite color again?",
+          "expected": "Your name is Banabi, and your favorite color is black.",
+          "answer": "Your name is Banibani, and your favorite color is black.",
+          "history": [
+            [
+              "My name is Banabi. My favorite color is black.",
+              "Your name is Banibani, and your favorite color is black."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my room number from our conversation?",
+          "expected": "Your room number is 7.",
+          "answer": "Your room number is 27.",
+          "history": [
+            [
+              "My room number is 7. My ticket number is 20.",
+              "Your ticket number is 27."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please tell me my ticket number?",
+          "expected": "Your ticket number is 20.",
+          "answer": "Your ticket number is 27.",
+          "history": [
+            [
+              "My room number is 7. My ticket number is 20.",
+              "Your ticket number is 27."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Would you remind me of my current favorite color?",
+          "expected": "Your favorite color is now pink.",
+          "answer": "Your favorite color is now pink.",
+          "history": [
+            [
+              "My favorite color is red.",
+              "Your favorite color is red."
+            ],
+            [
+              "I changed my mind. My favorite color is now pink.",
+              "Your favorite color is now pink."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please repeat my current favorite color again?",
+          "expected": "Your favorite color is now red.",
+          "answer": "Your favorite color is now red.",
+          "history": [
+            [
+              "My favorite color is silver.",
+              "Your favorite color is silver."
+            ],
+            [
+              "I changed my mind. My favorite color is now red.",
+              "Your favorite color is now red."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me the current location of the book from our conversation?",
+          "expected": "It is in the bedroom.",
+          "answer": "It is in the bedroom.",
+          "history": [
+            [
+              "I left the book in the garage. My name is Kinovo.",
+              "Your name is inininin."
+            ],
+            [
+              "I moved the book to the bedroom.",
+              "It is in the bedroom."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For my lesson, can you repeat the current location of the bag from our conversation?",
+          "expected": "It is in the library.",
+          "answer": "Your name is in the library.",
+          "history": [
+            [
+              "I left the bag in the kitchen. My name is Zomibi.",
+              "Hello, and your favorite color is pink."
+            ],
+            [
+              "I moved the bag to the library.",
+              "Your name is library."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Tell me what Sitibi has again?",
+          "expected": "Sitibi has a blue book.",
+          "answer": "Sidi has a blue bag.",
+          "history": [
+            [
+              "Sitibi has a blue book. Zedida has a orange bag.",
+              "Siza has a black bag."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Please recall what Zedida has?",
+          "expected": "Zedida has a orange bag.",
+          "answer": "Za has a orange book.",
+          "history": [
+            [
+              "Sitibi has a blue book. Zedida has a orange bag.",
+              "Siza has a black bag."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my name from our conversation?",
+          "expected": "Your name is Zedida.",
+          "answer": "Your Ze.",
+          "history": [
+            [
+              "My name is Zedida.",
+              "Hello, Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name name name is Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your Ze."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my name again?",
+          "expected": "Your name is Bozoze.",
+          "answer": "Your name Zozozozozozozozozozo.",
+          "history": [
+            [
+              "My name is Bozoze.",
+              "Hello, Bozezo."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Bozozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zzozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zzozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your name Zzozozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your name Zazozozozozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zzozozozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zzozozozozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your Zozozozozozozozozo."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Tell me my age again?",
+          "expected": "You have not told me your age.",
+          "answer": "You have not told me your age.",
+          "history": [
+            [
+              "My name is Sitibi. I like green.",
+              "Hello, Safi."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my age again?",
+          "expected": "You are 6 years old.",
+          "answer": "You are 44 years old.",
+          "history": [
+            [
+              "My name is Sadodo. I like pink.",
+              "Hello, Sado."
+            ],
+            [
+              "I am 6 years old.",
+              "You are 44 years old."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        }
+      ],
+      "note": "Strict answer match on a small fixed synthetic development set; semantic paraphrases may be valid despite failing exact match.",
+      "checkpoint_sha256": "5c2f2ebc2adec1b6b933bdf960972fd4352e8e5d9862f161266df69137eaac19"
+    },
+    "replay_pilot": {
+      "scores": {
+        "math": {
+          "correct": 18,
+          "total": 32,
+          "accuracy": 0.5625
+        },
+        "math_familiar": {
+          "correct": 9,
+          "total": 16,
+          "accuracy": 0.5625
+        },
+        "chat": {
+          "correct": 7,
+          "total": 8,
+          "accuracy": 0.875
+        },
+        "math_regression": {
+          "correct": 7,
+          "total": 8,
+          "accuracy": 0.875
+        },
+        "memory": {
+          "correct": 5,
+          "total": 16,
+          "accuracy": 0.3125
+        }
+      },
+      "balanced_score": 0.5833333333333334,
+      "outputs": [
+        {
+          "category": "math",
+          "question": "Please evaluate 0 + 0 for me?",
+          "expected": "0.",
+          "answer": "0.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Find the value of 1+13 for me?",
+          "expected": "14.",
+          "answer": "14.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For this exercise, please compute 3 + 6?",
+          "expected": "9.",
+          "answer": "8.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Please find the value of 4 + 20?",
+          "expected": "24.",
+          "answer": "24.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Could you find the value of 6 plus 13 using these numbers?",
+          "expected": "19.",
+          "answer": "19.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For this exercise, please compute 8 + 6?",
+          "expected": "14.",
+          "answer": "14.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Can you determine the result of 9 plus 20 for me?",
+          "expected": "29.",
+          "answer": "29.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Evaluate 11 plus 13?",
+          "expected": "24.",
+          "answer": "24.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Tell me the answer to 13+6 using these numbers?",
+          "expected": "19.",
+          "answer": "29.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Can you give the numerical result of 14 + 20 using these numbers?",
+          "expected": "34.",
+          "answer": "24.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For this exercise, please calculate 16 + 13 for me?",
+          "expected": "29.",
+          "answer": "39.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Could you determine the result of 18 + 6 for me?",
+          "expected": "24.",
+          "answer": "24.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Can you compute 19 plus 20 using these numbers?",
+          "expected": "39.",
+          "answer": "29.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For my lesson, can you evaluate 12 / 4 for me?",
+          "expected": "3.",
+          "answer": "12.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Find the value of 12/1 for me?",
+          "expected": "12.",
+          "answer": "1.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Could you evaluate 200/10 using these numbers?",
+          "expected": "20.",
+          "answer": "20.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Please give the numerical result of 46-76 using these numbers?",
+          "expected": "-30.",
+          "answer": "-11.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Please find the value of 32 times 11 using these numbers?",
+          "expected": "352.",
+          "answer": "236.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For my lesson, can you compute 61 plus 8 using these numbers?",
+          "expected": "69.",
+          "answer": "12.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Compute 41 times 9?",
+          "expected": "369.",
+          "answer": "76.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 0 marbles and am given 0 more. How many marbles do I have in total?",
+          "expected": "0.",
+          "answer": "10.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 6 marbles and am given 20 more. How many marbles do I have in total?",
+          "expected": "26.",
+          "answer": "26.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 13 apples and am given 20 more. How many apples do I have in total?",
+          "expected": "33.",
+          "answer": "33.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 20 buttons and am given 20 more. How many buttons do I have in total?",
+          "expected": "40.",
+          "answer": "22.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Briefly describe a fish.",
+          "expected": "A fish is an animal that lives in water and usually breathes through gills.",
+          "answer": "A fish is an animal that lives in water and usually breathes through gills.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Help me understand a synonym.",
+          "expected": "A synonym is a word with a meaning similar to another word.",
+          "answer": "A synonym is a word with a meaning similar to another word.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "What should I know about a cloud?",
+          "expected": "A cloud is made of tiny water droplets or ice crystals suspended in the atmosphere.",
+          "answer": "A cloud is made of tiny water droplets or ice crystals suspended in the atmosphere.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "I am using Python 3. How would you define a training dataset?",
+          "expected": "A training dataset contains examples used to update a model's weights.",
+          "answer": "A training dataset contains examples used to update a model's weights.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Explain calendar.",
+          "expected": "A calendar organizes days, weeks, and months.",
+          "answer": "A calendar organizes days, weeks, and months.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Explain a paragraph in simple words.",
+          "expected": "A paragraph is a group of sentences that usually develops one main idea.",
+          "answer": "A paragraph is a group of sentences that usually develops one main idea.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Please describe the meaning of a tree.",
+          "expected": "A tree is a long-lived plant that usually has a woody trunk and branches.",
+          "answer": "A tree is a long-lived plant that usually has a woody trunk and branches.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Please describe the meaning of Python 3.",
+          "expected": "Python 3 is a major version of the Python programming language. It can be used to write programs.",
+          "answer": "9.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 5 + 3?",
+          "expected": "8.",
+          "answer": "8.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 8 - 3?",
+          "expected": "5.",
+          "answer": "5.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 4 * 3?",
+          "expected": "12.",
+          "answer": "12.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 12 / 3?",
+          "expected": "4.",
+          "answer": "4.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Calculate 7 + 6.",
+          "expected": "13.",
+          "answer": "13.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 19 - 8?",
+          "expected": "11.",
+          "answer": "11.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "If I have 3 apples and receive 4 more, how many apples do I have?",
+          "expected": "7.",
+          "answer": "7.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 7 - 10?",
+          "expected": "-3.",
+          "answer": "-7.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please recall my name again?",
+          "expected": "Your name is Bamado.",
+          "answer": "Your name is Bama.",
+          "history": [
+            [
+              "My name is Bamado.",
+              "Hello, Bamama."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For my lesson, can you repeat my name from our conversation?",
+          "expected": "Your name is Zelada.",
+          "answer": "Your name is Zelamo.",
+          "history": [
+            [
+              "My name is Zelada.",
+              "Hello, Zedave."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please remind me of my name and favorite color again?",
+          "expected": "Your name is Bamado, and your favorite color is blue.",
+          "answer": "Your name is blue.",
+          "history": [
+            [
+              "My name is Bamado. My favorite color is blue.",
+              "Your name is Bama, and your favorite color is blue."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my name and favorite color again?",
+          "expected": "Your name is Banabi, and your favorite color is black.",
+          "answer": "Your name is Banibani, and your favorite color is black.",
+          "history": [
+            [
+              "My name is Banabi. My favorite color is black.",
+              "Your name is Banibani, and your favorite color is black."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my room number from our conversation?",
+          "expected": "Your room number is 7.",
+          "answer": "Your room number is 27.",
+          "history": [
+            [
+              "My room number is 7. My ticket number is 20.",
+              "Your ticket number is 27."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please tell me my ticket number?",
+          "expected": "Your ticket number is 20.",
+          "answer": "Your ticket number is 27.",
+          "history": [
+            [
+              "My room number is 7. My ticket number is 20.",
+              "Your ticket number is 27."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Would you remind me of my current favorite color?",
+          "expected": "Your favorite color is now pink.",
+          "answer": "Your favorite color is now pink.",
+          "history": [
+            [
+              "My favorite color is red.",
+              "Your favorite color is red."
+            ],
+            [
+              "I changed my mind. My favorite color is now pink.",
+              "Your favorite color is now pink."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please repeat my current favorite color again?",
+          "expected": "Your favorite color is now red.",
+          "answer": "Your favorite color is now red.",
+          "history": [
+            [
+              "My favorite color is silver.",
+              "Your favorite color is silver."
+            ],
+            [
+              "I changed my mind. My favorite color is now red.",
+              "Your favorite color is now red."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me the current location of the book from our conversation?",
+          "expected": "It is in the bedroom.",
+          "answer": "It is in the bedroom.",
+          "history": [
+            [
+              "I left the book in the garage. My name is Kinovo.",
+              "Your name is Lona."
+            ],
+            [
+              "I moved the book to the bedroom.",
+              "It is in."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For my lesson, can you repeat the current location of the bag from our conversation?",
+          "expected": "It is in the library.",
+          "answer": "It is in the library.",
+          "history": [
+            [
+              "I left the bag in the kitchen. My name is Zomibi.",
+              "Your name is Komi."
+            ],
+            [
+              "I moved the bag to the library.",
+              "It is inima."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Tell me what Sitibi has again?",
+          "expected": "Sitibi has a blue book.",
+          "answer": "Sidi has a blue book.",
+          "history": [
+            [
+              "Sitibi has a blue book. Zedida has a orange bag.",
+              "Siza has a black bag."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Please recall what Zedida has?",
+          "expected": "Zedida has a orange bag.",
+          "answer": "Za has a orange book.",
+          "history": [
+            [
+              "Sitibi has a blue book. Zedida has a orange bag.",
+              "Siza has a black bag."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my name from our conversation?",
+          "expected": "Your name is Zedida.",
+          "answer": "Your Ze.",
+          "history": [
+            [
+              "My name is Zedida.",
+              "Hello, Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your Ze."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my name again?",
+          "expected": "Your name is Bozoze.",
+          "answer": "Your Zezezero.",
+          "history": [
+            [
+              "My name is Bozoze.",
+              "Hello, Bozeze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Bozeze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zzeze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zeze."
+            ],
+            [
+              "What is a triangle?",
+              "Your Zezeze."
+            ],
+            [
+              "What is a triangle?",
+              "Your Zezeze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name Zzzeze."
+            ],
+            [
+              "What is a triangle?",
+              "Your Zezeze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name Zzezeze."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Tell me my age again?",
+          "expected": "You have not told me your age.",
+          "answer": "You have not told me your age.",
+          "history": [
+            [
+              "My name is Sitibi. I like green.",
+              "Hello, Sitibi."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my age again?",
+          "expected": "You are 6 years old.",
+          "answer": "You are 44 years old.",
+          "history": [
+            [
+              "My name is Sadodo. I like pink.",
+              "Hello, Sado."
+            ],
+            [
+              "I am 6 years old.",
+              "You are 44 years old."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        }
+      ],
+      "note": "Strict answer match on a small fixed synthetic development set; semantic paraphrases may be valid despite failing exact match.",
+      "checkpoint_sha256": "3d2e710bf42306f5be1b5c945c93ccae91957d101127eebdbe0f052a362d5d53"
+    },
+    "joint_pilot": {
+      "scores": {
+        "math": {
+          "correct": 19,
+          "total": 32,
+          "accuracy": 0.59375
+        },
+        "math_familiar": {
+          "correct": 10,
+          "total": 16,
+          "accuracy": 0.625
+        },
+        "chat": {
+          "correct": 7,
+          "total": 8,
+          "accuracy": 0.875
+        },
+        "math_regression": {
+          "correct": 7,
+          "total": 8,
+          "accuracy": 0.875
+        },
+        "memory": {
+          "correct": 8,
+          "total": 16,
+          "accuracy": 0.5
+        }
+      },
+      "balanced_score": 0.65625,
+      "outputs": [
+        {
+          "category": "math",
+          "question": "Please evaluate 0 + 0 for me?",
+          "expected": "0.",
+          "answer": "0.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Find the value of 1+13 for me?",
+          "expected": "14.",
+          "answer": "14.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For this exercise, please compute 3 + 6?",
+          "expected": "9.",
+          "answer": "8.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Please find the value of 4 + 20?",
+          "expected": "24.",
+          "answer": "24.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Could you find the value of 6 plus 13 using these numbers?",
+          "expected": "19.",
+          "answer": "19.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For this exercise, please compute 8 + 6?",
+          "expected": "14.",
+          "answer": "14.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Can you determine the result of 9 plus 20 for me?",
+          "expected": "29.",
+          "answer": "29.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Evaluate 11 plus 13?",
+          "expected": "24.",
+          "answer": "24.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Tell me the answer to 13+6 using these numbers?",
+          "expected": "19.",
+          "answer": "29.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Can you give the numerical result of 14 + 20 using these numbers?",
+          "expected": "34.",
+          "answer": "24.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For this exercise, please calculate 16 + 13 for me?",
+          "expected": "29.",
+          "answer": "29.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Could you determine the result of 18 + 6 for me?",
+          "expected": "24.",
+          "answer": "24.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Can you compute 19 plus 20 using these numbers?",
+          "expected": "39.",
+          "answer": "29.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For my lesson, can you evaluate 12 / 4 for me?",
+          "expected": "3.",
+          "answer": "12.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Find the value of 12/1 for me?",
+          "expected": "12.",
+          "answer": "1.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Could you evaluate 200/10 using these numbers?",
+          "expected": "20.",
+          "answer": "20.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Please give the numerical result of 46-76 using these numbers?",
+          "expected": "-30.",
+          "answer": "-11.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Please find the value of 32 times 11 using these numbers?",
+          "expected": "352.",
+          "answer": "266.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For my lesson, can you compute 61 plus 8 using these numbers?",
+          "expected": "69.",
+          "answer": "12.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Compute 41 times 9?",
+          "expected": "369.",
+          "answer": "66.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 0 marbles and am given 0 more. How many marbles do I have in total?",
+          "expected": "0.",
+          "answer": "10.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 6 marbles and am given 20 more. How many marbles do I have in total?",
+          "expected": "26.",
+          "answer": "26.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 13 apples and am given 20 more. How many apples do I have in total?",
+          "expected": "33.",
+          "answer": "33.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 20 buttons and am given 20 more. How many buttons do I have in total?",
+          "expected": "40.",
+          "answer": "22.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Briefly describe a fish.",
+          "expected": "A fish is an animal that lives in water and usually breathes through gills.",
+          "answer": "A fish is an animal that lives in water and usually breathes through gills.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Help me understand a synonym.",
+          "expected": "A synonym is a word with a meaning similar to another word.",
+          "answer": "A synonym is a word with a meaning similar to another word.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "What should I know about a cloud?",
+          "expected": "A cloud is made of tiny water droplets or ice crystals suspended in the atmosphere.",
+          "answer": "A cloud is made of tiny water droplets or ice crystals suspended in the atmosphere.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "I am using Python 3. How would you define a training dataset?",
+          "expected": "A training dataset contains examples used to update a model's weights.",
+          "answer": "A training dataset contains examples used to update a model's weights.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Explain calendar.",
+          "expected": "A calendar organizes days, weeks, and months.",
+          "answer": "A calendar organizes days, weeks, and months.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Explain a paragraph in simple words.",
+          "expected": "A paragraph is a group of sentences that usually develops one main idea.",
+          "answer": "A paragraph is a group of sentences that usually develops one main idea.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Please describe the meaning of a tree.",
+          "expected": "A tree is a long-lived plant that usually has a woody trunk and branches.",
+          "answer": "A tree is a long-lived plant that usually has a woody trunk and branches.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Please describe the meaning of Python 3.",
+          "expected": "Python 3 is a major version of the Python programming language. It can be used to write programs.",
+          "answer": "A 3is a plant organ that often captures light for photosynthesis.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 5 + 3?",
+          "expected": "8.",
+          "answer": "8.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 8 - 3?",
+          "expected": "5.",
+          "answer": "5.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 4 * 3?",
+          "expected": "12.",
+          "answer": "12.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 12 / 3?",
+          "expected": "4.",
+          "answer": "4.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Calculate 7 + 6.",
+          "expected": "13.",
+          "answer": "13.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 19 - 8?",
+          "expected": "11.",
+          "answer": "11.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "If I have 3 apples and receive 4 more, how many apples do I have?",
+          "expected": "7.",
+          "answer": "7.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 7 - 10?",
+          "expected": "-3.",
+          "answer": "-7.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please recall my name again?",
+          "expected": "Your name is Bamado.",
+          "answer": "Your name is Bama.",
+          "history": [
+            [
+              "My name is Bamado.",
+              "Hello, Bama."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For my lesson, can you repeat my name from our conversation?",
+          "expected": "Your name is Zelada.",
+          "answer": "Your name is Zela.",
+          "history": [
+            [
+              "My name is Zelada.",
+              "Hello, Zela"
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please remind me of my name and favorite color again?",
+          "expected": "Your name is Bamado, and your favorite color is blue.",
+          "answer": "Your name is Bama, and your favorite color is blue.",
+          "history": [
+            [
+              "My name is Bamado. My favorite color is blue.",
+              "Your name is Bama, color is blue."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my name and favorite color again?",
+          "expected": "Your name is Banabi, and your favorite color is black.",
+          "answer": "Your name is Bani, and your favorite color is black.",
+          "history": [
+            [
+              "My name is Banabi. My favorite color is black.",
+              "Your name is Banibani, and your favorite color is black."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my room number from our conversation?",
+          "expected": "Your room number is 7.",
+          "answer": "Your room number is 7.",
+          "history": [
+            [
+              "My room number is 7. My ticket number is 20.",
+              "Your ticket number is 20."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please tell me my ticket number?",
+          "expected": "Your ticket number is 20.",
+          "answer": "Your ticket number is 20.",
+          "history": [
+            [
+              "My room number is 7. My ticket number is 20.",
+              "Your ticket number is 20."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Would you remind me of my current favorite color?",
+          "expected": "Your favorite color is now pink.",
+          "answer": "Your favorite color is now pink.",
+          "history": [
+            [
+              "My favorite color is red.",
+              "Your favorite color is red."
+            ],
+            [
+              "I changed my mind. My favorite color is now pink.",
+              "Your favorite color is now pink."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please repeat my current favorite color again?",
+          "expected": "Your favorite color is now red.",
+          "answer": "Your favorite color is now red.",
+          "history": [
+            [
+              "My favorite color is silver.",
+              "Your favorite color is silver."
+            ],
+            [
+              "I changed my mind. My favorite color is now red.",
+              "Your favorite color is now red."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me the current location of the book from our conversation?",
+          "expected": "It is in the bedroom.",
+          "answer": "It is in the bedroom.",
+          "history": [
+            [
+              "I left the book in the garage. My name is Kinovo.",
+              "Your name is ino."
+            ],
+            [
+              "I moved the book to the bedroom.",
+              "It is in the bedroom."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For my lesson, can you repeat the current location of the bag from our conversation?",
+          "expected": "It is in the library.",
+          "answer": "It is in the library.",
+          "history": [
+            [
+              "I left the bag in the kitchen. My name is Zomibi.",
+              "Your name is Zomi."
+            ],
+            [
+              "I moved the bag to the library.",
+              "It is in the library."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Tell me what Sitibi has again?",
+          "expected": "Sitibi has a blue book.",
+          "answer": "Zi has a blue book.",
+          "history": [
+            [
+              "Sitibi has a blue book. Zedida has a orange bag.",
+              "Sebi has a blue book    book blue bag."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Please recall what Zedida has?",
+          "expected": "Zedida has a orange bag.",
+          "answer": "Ze has a blue book.",
+          "history": [
+            [
+              "Sitibi has a blue book. Zedida has a orange bag.",
+              "Sebi has a blue book    book blue bag."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my name from our conversation?",
+          "expected": "Your name is Zedida.",
+          "answer": "Your is Zedid.",
+          "history": [
+            [
+              "My name is Zedida.",
+              "Hello, Zedid"
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zedid."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zedid."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zedid."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zedid."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zedid."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zedid."
+            ],
+            [
+              "What is a triangle?",
+              "Your name name Zedid."
+            ],
+            [
+              "What is a triangle?",
+              "Your Zedid."
+            ],
+            [
+              "What is a triangle?",
+              "Your name Zedid."
+            ],
+            [
+              "What is a triangle?",
+              "Your name Zedid."
+            ],
+            [
+              "What is a triangle?",
+              "Your Zedid."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my name again?",
+          "expected": "Your name is Bozoze.",
+          "answer": "Your Bo.",
+          "history": [
+            [
+              "My name is Bozoze.",
+              "Hello, Bozozozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Bozozozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Bozozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Bo."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Bozozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your name Bozozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your name Bo."
+            ],
+            [
+              "What is a triangle?",
+              "Your Bozozozozo."
+            ],
+            [
+              "What is a triangle?",
+              "Your Bo."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Tell me my age again?",
+          "expected": "You have not told me your age.",
+          "answer": "You have not told me your age.",
+          "history": [
+            [
+              "My name is Sitibi. I like green.",
+              "Hello, Sitibi."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my age again?",
+          "expected": "You are 6 years old.",
+          "answer": "You are 6 years old.",
+          "history": [
+            [
+              "My name is Sadodo. I like pink.",
+              "Hello, Sado."
+            ],
+            [
+              "I am 6 years old.",
+              "You are 6 years old."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        }
+      ],
+      "note": "Strict answer match on a small fixed synthetic development set; semantic paraphrases may be valid despite failing exact match.",
+      "checkpoint_sha256": "85bc05913d7b39ff173e3f5160413c4239eb3ae89d4f74e63b4ba7a6d324f742"
+    },
+    "conversation_pilot": {
+      "scores": {
+        "math": {
+          "correct": 20,
+          "total": 32,
+          "accuracy": 0.625
+        },
+        "math_familiar": {
+          "correct": 11,
+          "total": 16,
+          "accuracy": 0.6875
+        },
+        "chat": {
+          "correct": 7,
+          "total": 8,
+          "accuracy": 0.875
+        },
+        "math_regression": {
+          "correct": 7,
+          "total": 8,
+          "accuracy": 0.875
+        },
+        "memory": {
+          "correct": 8,
+          "total": 16,
+          "accuracy": 0.5
+        }
+      },
+      "balanced_score": 0.6666666666666666,
+      "outputs": [
+        {
+          "category": "math",
+          "question": "Please evaluate 0 + 0 for me?",
+          "expected": "0.",
+          "answer": "0.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Find the value of 1+13 for me?",
+          "expected": "14.",
+          "answer": "14.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For this exercise, please compute 3 + 6?",
+          "expected": "9.",
+          "answer": "9.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Please find the value of 4 + 20?",
+          "expected": "24.",
+          "answer": "24.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Could you find the value of 6 plus 13 using these numbers?",
+          "expected": "19.",
+          "answer": "19.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For this exercise, please compute 8 + 6?",
+          "expected": "14.",
+          "answer": "14.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Can you determine the result of 9 plus 20 for me?",
+          "expected": "29.",
+          "answer": "29.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Evaluate 11 plus 13?",
+          "expected": "24.",
+          "answer": "24.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Tell me the answer to 13+6 using these numbers?",
+          "expected": "19.",
+          "answer": "29.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Can you give the numerical result of 14 + 20 using these numbers?",
+          "expected": "34.",
+          "answer": "24.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For this exercise, please calculate 16 + 13 for me?",
+          "expected": "29.",
+          "answer": "29.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Could you determine the result of 18 + 6 for me?",
+          "expected": "24.",
+          "answer": "24.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Can you compute 19 plus 20 using these numbers?",
+          "expected": "39.",
+          "answer": "29.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For my lesson, can you evaluate 12 / 4 for me?",
+          "expected": "3.",
+          "answer": "12.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Find the value of 12/1 for me?",
+          "expected": "12.",
+          "answer": "1.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Could you evaluate 200/10 using these numbers?",
+          "expected": "20.",
+          "answer": "20.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Please give the numerical result of 46-76 using these numbers?",
+          "expected": "-30.",
+          "answer": "-12.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Please find the value of 32 times 11 using these numbers?",
+          "expected": "352.",
+          "answer": "236.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "For my lesson, can you compute 61 plus 8 using these numbers?",
+          "expected": "69.",
+          "answer": "12.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Compute 41 times 9?",
+          "expected": "369.",
+          "answer": "76.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 0 marbles and am given 0 more. How many marbles do I have in total?",
+          "expected": "0.",
+          "answer": "10.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 6 marbles and am given 20 more. How many marbles do I have in total?",
+          "expected": "26.",
+          "answer": "26.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 13 apples and am given 20 more. How many apples do I have in total?",
+          "expected": "33.",
+          "answer": "33.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "In this story, I own 20 buttons and am given 20 more. How many buttons do I have in total?",
+          "expected": "40.",
+          "answer": "22.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Briefly describe a fish.",
+          "expected": "A fish is an animal that lives in water and usually breathes through gills.",
+          "answer": "A fish is an animal that lives in water and usually breathes through gills.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Help me understand a synonym.",
+          "expected": "A synonym is a word with a meaning similar to another word.",
+          "answer": "A synonym is a word with a meaning similar to another word.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "What should I know about a cloud?",
+          "expected": "A cloud is made of tiny water droplets or ice crystals suspended in the atmosphere.",
+          "answer": "A cloud is made of tiny water droplets or ice crystals suspended in the atmosphere.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "I am using Python 3. How would you define a training dataset?",
+          "expected": "A training dataset contains examples used to update a model's weights.",
+          "answer": "A training dataset contains examples used to update a model's weights.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Explain calendar.",
+          "expected": "A calendar organizes days, weeks, and months.",
+          "answer": "A calendar organizes days, weeks, and months.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Explain a paragraph in simple words.",
+          "expected": "A paragraph is a group of sentences that usually develops one main idea.",
+          "answer": "A paragraph is a group of sentences that usually develops one main idea.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Please describe the meaning of a tree.",
+          "expected": "A tree is a long-lived plant that usually has a woody trunk and branches.",
+          "answer": "A tree is a long-lived plant that usually has a woody trunk and branches.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "chat",
+          "question": "Please describe the meaning of Python 3.",
+          "expected": "Python 3 is a major version of the Python programming language. It can be used to write programs.",
+          "answer": "Python 3 is a mable that hmam such as air.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 5 + 3?",
+          "expected": "8.",
+          "answer": "8.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 8 - 3?",
+          "expected": "5.",
+          "answer": "5.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 4 * 3?",
+          "expected": "12.",
+          "answer": "12.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 12 / 3?",
+          "expected": "4.",
+          "answer": "4.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "Calculate 7 + 6.",
+          "expected": "13.",
+          "answer": "13.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 19 - 8?",
+          "expected": "11.",
+          "answer": "11.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "If I have 3 apples and receive 4 more, how many apples do I have?",
+          "expected": "7.",
+          "answer": "7.",
+          "history": [],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "math",
+          "question": "What is 7 - 10?",
+          "expected": "-3.",
+          "answer": "-7.",
+          "history": [],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please recall my name again?",
+          "expected": "Your name is Bamado.",
+          "answer": "Your name is Bama.",
+          "history": [
+            [
+              "My name is Bamado.",
+              "Hello, Bamama."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For my lesson, can you repeat my name from our conversation?",
+          "expected": "Your name is Zelada.",
+          "answer": "Your name is Zela.",
+          "history": [
+            [
+              "My name is Zelada.",
+              "Hello, Zelada."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please remind me of my name and favorite color again?",
+          "expected": "Your name is Bamado, and your favorite color is blue.",
+          "answer": "Your name is Bama, and your favorite color is color is and blue.",
+          "history": [
+            [
+              "My name is Bamado. My favorite color is blue.",
+              "Your name is Bamama, and your favorite color is blue."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my name and favorite color again?",
+          "expected": "Your name is Banabi, and your favorite color is black.",
+          "answer": "Your name is Banabi.",
+          "history": [
+            [
+              "My name is Banabi. My favorite color is black.",
+              "Your name is Bani and your favorite color is black."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my room number from our conversation?",
+          "expected": "Your room number is 7.",
+          "answer": "Your room number is 7.",
+          "history": [
+            [
+              "My room number is 7. My ticket number is 20.",
+              "I will keep those numbers separate."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please tell me my ticket number?",
+          "expected": "Your ticket number is 20.",
+          "answer": "Your ticket number is 20.",
+          "history": [
+            [
+              "My room number is 7. My ticket number is 20.",
+              "I will keep those numbers separate."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Would you remind me of my current favorite color?",
+          "expected": "Your favorite color is now pink.",
+          "answer": "Your favorite color is now pink.",
+          "history": [
+            [
+              "My favorite color is red.",
+              "Your favorite color is red."
+            ],
+            [
+              "I changed my mind. My favorite color is now pink.",
+              "Your favorite color is now pink."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For this exercise, please repeat my current favorite color again?",
+          "expected": "Your favorite color is now red.",
+          "answer": "Your favorite color is now red.",
+          "history": [
+            [
+              "My favorite color is silver.",
+              "Your favorite color is silver."
+            ],
+            [
+              "I changed my mind. My favorite color is now red.",
+              "Your favorite color is now red."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me the current location of the book from our conversation?",
+          "expected": "It is in the bedroom.",
+          "answer": "It is in the bedroom.",
+          "history": [
+            [
+              "I left the book in the garage. My name is Kinovo.",
+              "The book is in the garage."
+            ],
+            [
+              "I moved the book to the bedroom.",
+              "The book is in the bedroom."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "For my lesson, can you repeat the current location of the bag from our conversation?",
+          "expected": "It is in the library.",
+          "answer": "It is in the library.",
+          "history": [
+            [
+              "I left the bag in the kitchen. My name is Zomibi.",
+              "The bag is in the kitchen."
+            ],
+            [
+              "I moved the bag to the library.",
+              "It is in the library."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Tell me what Sitibi has again?",
+          "expected": "Sitibi has a blue book.",
+          "answer": "Siti has a orange book.",
+          "history": [
+            [
+              "Sitibi has a blue book. Zedida has a orange bag.",
+              "A name is a orange like and your favorite color is orange is orange."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Please recall what Zedida has?",
+          "expected": "Zedida has a orange bag.",
+          "answer": "A has a orange orange orange a orange orange orange used orange a orange orange bag.",
+          "history": [
+            [
+              "Sitibi has a blue book. Zedida has a orange bag.",
+              "A name is a orange like and your favorite color is orange is orange."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my name from our conversation?",
+          "expected": "Your name is Zedida.",
+          "answer": "Your did did did did did did did did did did did did did did did did did did did did did did did did did did did did did did did",
+          "history": [
+            [
+              "My name is Zedida.",
+              "Hello, Zedid did did did did did did did examples."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Zedid did is Zedid did did is Ze."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is a did did Zedid did did did did did did did did did did did did did did did did did did did did did did did did"
+            ],
+            [
+              "What is a triangle?",
+              "Your did did did did did did did did did did did did did did did did did did did did did did did did did did did did did did did"
+            ],
+            [
+              "What is a triangle?",
+              "Your did did did did did did did did did did did did did did did did did did did did did did did did did did did did did did did"
+            ],
+            [
+              "What is a triangle?",
+              "Your did did did did did did did did did did did did did did did did did did did did did did did did did did did did did did did"
+            ],
+            [
+              "What is a triangle?",
+              "Your did did did did did did did did did did did did did did did did did did did did did did did did did did did did did did did"
+            ],
+            [
+              "What is a triangle?",
+              "Your did did did did did did did did did did did did did did did did did did did did did did did did did did did did did did did"
+            ],
+            [
+              "What is a triangle?",
+              "Your did did did did did did did did did."
+            ],
+            [
+              "What is a triangle?",
+              "Your did did did did did did did."
+            ],
+            [
+              "What is a triangle?",
+              "Your did did did did did did did did did did did did did did did did did did did did did did did did did did did did did did did"
+            ],
+            [
+              "What is a triangle?",
+              "Your did did did did did did did did did did did did did did did did did did did did did did did did did did did did did did did"
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "limit"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my name again?",
+          "expected": "Your name is Bozoze.",
+          "answer": "A Bozozozozozozozozozozozozozozozozozozozozozozozozozozozozozozoz",
+          "history": [
+            [
+              "My name is Bozoze.",
+              "Hello, Bozozoe."
+            ],
+            [
+              "What is a triangle?",
+              "Your name is Bozozozozo."
+            ],
+            [
+              "What is a triangle?",
+              "A triangle is Bozozozozozozozoze."
+            ],
+            [
+              "What is a triangle?",
+              "A is Bozozozezozozozozozozozozoze."
+            ],
+            [
+              "What is a triangle?",
+              "A Bozozozoze."
+            ],
+            [
+              "What is a triangle?",
+              "A Bozozozozozozozozoze."
+            ],
+            [
+              "What is a triangle?",
+              "A Bozozozozozozozozozozozozozozezozozoze."
+            ],
+            [
+              "What is a triangle?",
+              "A Bozozezozozozozozozozoze."
+            ],
+            [
+              "What is a triangle?",
+              "A ozozozozozozozoze."
+            ]
+          ],
+          "correct": false,
+          "finish_reason": "limit"
+        },
+        {
+          "category": "memory",
+          "question": "Tell me my age again?",
+          "expected": "You have not told me your age.",
+          "answer": "You have not told me your age.",
+          "history": [
+            [
+              "My name is Sitibi. I like green.",
+              "Hello, Sitibi."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        },
+        {
+          "category": "memory",
+          "question": "Give me my age again?",
+          "expected": "You are 6 years old.",
+          "answer": "You are 6 years old.",
+          "history": [
+            [
+              "My name is Sadodo. I like pink.",
+              "Hello, Sado."
+            ],
+            [
+              "I am 6 years old.",
+              "You are 6 years old."
+            ]
+          ],
+          "correct": true,
+          "finish_reason": "stop"
+        }
+      ],
+      "note": "Strict answer match on a small fixed synthetic development set; semantic paraphrases may be valid despite failing exact match.",
+      "checkpoint_sha256": "441052409c7104b85d72b48abf7028ff6e71b35737397c2e50edbabe43a2a5bb"
+    }
+  },
+  "baseline_lambda_16": {
+    "scores": {
+      "math": {
+        "correct": 9,
+        "total": 32,
+        "accuracy": 0.28125
+      },
+      "math_familiar": {
+        "correct": 2,
+        "total": 16,
+        "accuracy": 0.125
+      },
+      "chat": {
+        "correct": 8,
+        "total": 8,
+        "accuracy": 1.0
+      },
+      "math_regression": {
+        "correct": 7,
+        "total": 8,
+        "accuracy": 0.875
+      },
+      "memory": {
+        "correct": 0,
+        "total": 16,
+        "accuracy": 0.0
+      }
+    },
+    "balanced_score": 0.4270833333333333,
+    "outputs": [
+      {
+        "category": "math",
+        "question": "Please evaluate 0 + 0 for me?",
+        "expected": "0.",
+        "answer": "Addition combines quantities to find their sum.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Find the value of 1+13 for me?",
+        "expected": "14.",
+        "answer": "16.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "For this exercise, please compute 3 + 6?",
+        "expected": "9.",
+        "answer": "8.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Please find the value of 4 + 20?",
+        "expected": "24.",
+        "answer": "24.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Could you find the value of 6 plus 13 using these numbers?",
+        "expected": "19.",
+        "answer": "16.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "For this exercise, please compute 8 + 6?",
+        "expected": "14.",
+        "answer": "24.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Can you determine the result of 9 plus 20 for me?",
+        "expected": "29.",
+        "answer": "number weights identifies the I ed help in towen cills.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Evaluate 11 plus 13?",
+        "expected": "24.",
+        "answer": "24.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Tell me the answer to 13+6 using these numbers?",
+        "expected": "19.",
+        "answer": "12 describes 6 mito 7.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Can you give the numerical result of 14 + 20 using these numbers?",
+        "expected": "34.",
+        "answer": "28.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "For this exercise, please calculate 16 + 13 for me?",
+        "expected": "29.",
+        "answer": "21.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Could you determine the result of 18 + 6 for me?",
+        "expected": "24.",
+        "answer": "number do means h It can answer notes inings or it is calculate it Gwater vapor does the word.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Can you compute 19 plus 20 using these numbers?",
+        "expected": "39.",
+        "answer": "20.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "For my lesson, can you evaluate 12 / 4 for me?",
+        "expected": "3.",
+        "answer": "Division splits caderperature equal groups. How can s ight reits at s them.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Find the value of 12/1 for me?",
+        "expected": "12.",
+        "answer": "5.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Could you evaluate 200/10 using these numbers?",
+        "expected": "20.",
+        "answer": "10 combinAnswer: 0.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Please give the numerical result of 46-76 using these numbers?",
+        "expected": "-30.",
+        "answer": "14.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Please find the value of 32 times 11 using these numbers?",
+        "expected": "352.",
+        "answer": "11.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "For my lesson, can you compute 61 plus 8 using these numbers?",
+        "expected": "69.",
+        "answer": "17 like is its 3.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Compute 41 times 9?",
+        "expected": "369.",
+        "answer": "36.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "In this story, I own 0 marbles and am given 0 more. How many marbles do I have in total?",
+        "expected": "0.",
+        "answer": "your do in James do not text 0 by a web. \n am 5.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "In this story, I own 6 marbles and am given 20 more. How many marbles do I have in total?",
+        "expected": "26.",
+        "answer": "Write a live your wordss and 0 and read9 am help.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "In this story, I own 13 apples and am given 20 more. How many apples do I have in total?",
+        "expected": "33.",
+        "answer": "0.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "In this story, I own 20 buttons and am given 20 more. How many buttons do I have in total?",
+        "expected": "40.",
+        "answer": "Cader a story. How need went do Write ses ing a printeriction. Explained in and island. I ades the help combines is ase in cnow",
+        "history": [],
+        "correct": false,
+        "finish_reason": "limit"
+      },
+      {
+        "category": "chat",
+        "question": "Briefly describe a fish.",
+        "expected": "A fish is an animal that lives in water and usually breathes through gills.",
+        "answer": "A fish is an animal that lives in water and usually breathes through gills.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "Help me understand a synonym.",
+        "expected": "A synonym is a word with a meaning similar to another word.",
+        "answer": "A synonym is a word with a meaning similar to another word.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What should I know about a cloud?",
+        "expected": "A cloud is made of tiny water droplets or ice crystals suspended in the atmosphere.",
+        "answer": "A cloud is made of tiny water droplets or ice crystals suspended in the atmosphere.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "I am using Python 3. How would you define a training dataset?",
+        "expected": "A training dataset contains examples used to update a model's weights.",
+        "answer": "A training dataset contains examples used to update a model's weights.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "Explain calendar.",
+        "expected": "A calendar organizes days, weeks, and months.",
+        "answer": "A calendar organizes days, weeks, and months.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "Explain a paragraph in simple words.",
+        "expected": "A paragraph is a group of sentences that usually develops one main idea.",
+        "answer": "A paragraph is a group of sentences that usually develops one main idea.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "Please describe the meaning of a tree.",
+        "expected": "A tree is a long-lived plant that usually has a woody trunk and branches.",
+        "answer": "A tree is a long-lived plant that usually has a woody trunk and branches.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "Please describe the meaning of Python 3.",
+        "expected": "Python 3 is a major version of the Python programming language. It can be used to write programs.",
+        "answer": "Python 3 is a major version of the Python programming language. It can be used to write programs.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 5 + 3?",
+        "expected": "8.",
+        "answer": "8.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 8 - 3?",
+        "expected": "5.",
+        "answer": "5.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 4 * 3?",
+        "expected": "12.",
+        "answer": "12.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 12 / 3?",
+        "expected": "4.",
+        "answer": "4.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Calculate 7 + 6.",
+        "expected": "13.",
+        "answer": "13.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 19 - 8?",
+        "expected": "11.",
+        "answer": "11.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "If I have 3 apples and receive 4 more, how many apples do I have?",
+        "expected": "7.",
+        "answer": "Addition combines quantities to find their sum.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 7 - 10?",
+        "expected": "-3.",
+        "answer": "-3.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "For this exercise, please recall my name again?",
+        "expected": "Your name is Bamado.",
+        "answer": "Hellogs is the into the Moon cat ar the cat is Earth.\nI is a go.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "For my lesson, can you repeat my name from our conversation?",
+        "expected": "Your name is Zelada.",
+        "answer": "Each cor the brthat er a you cas as tran example, and processed",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "For this exercise, please remind me of my name and favorite color again?",
+        "expected": "Your name is Bamado, and your favorite color is blue.",
+        "answer": "Hello  wdes about a a cats, part does cat the umbrella cat. Tell me of on the Sun and 1 and halt, , cat briefly me your",
+        "history": [],
+        "correct": false,
+        "finish_reason": "limit"
+      },
+      {
+        "category": "memory",
+        "question": "Give me my name and favorite color again?",
+        "expected": "Your name is Banabi, and your favorite color is black.",
+        "answer": "Rtible your object briefly wwve me about a part simes it you t relees can and notes a function or Please a a es what a orbit fates in",
+        "history": [],
+        "correct": false,
+        "finish_reason": "limit"
+      },
+      {
+        "category": "memory",
+        "question": "Give me my room number from our conversation?",
+        "expected": "Your room number is 7.",
+        "answer": "Each ces a container cid on me'd a s.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "For this exercise, please tell me my ticket number?",
+        "expected": "Your ticket number is 20.",
+        "answer": "The number can represcan integer quantity and so 5 is a state in 14 it a 2 er 9.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Would you remind me of my current favorite color?",
+        "expected": "Your favorite color is now pink.",
+        "answer": "A lake is a unit of lives.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "For this exercise, please repeat my current favorite color again?",
+        "expected": "Your favorite color is now red.",
+        "answer": "Vaible helps error is a l ref. \n am and and a loa it cranetwork is a.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Give me the current location of the book from our conversation?",
+        "expected": "It is in the bedroom.",
+        "answer": "Each question fAn is water and a program is turned chang the .",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "For my lesson, can you repeat the current location of the bag from our conversation?",
+        "expected": "It is in the library.",
+        "answer": "Ea  lim ver s its a ice part is fin a example.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Tell me what Sitibi has again?",
+        "expected": "Sitibi has a blue book.",
+        "answer": "Good'm is the read less map. language s in the curol in language model.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Please recall what Zedida has?",
+        "expected": "Zedida has a orange bag.",
+        "answer": "A . contains s used to s.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Give me my name from our conversation?",
+        "expected": "Your name is Zedida.",
+        "answer": "Each question is processed separset of , find a data under a device can s used a question or weights.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Give me my name again?",
+        "expected": "Your name is Bozoze.",
+        "answer": "Earth is the planet where we live. It orbits the Sun and rotates on its axis.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Tell me my age again?",
+        "expected": "You have not told me your age.",
+        "answer": "The Moon is Earth's natural satellite. It reflects sunlight.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Give me my age again?",
+        "expected": "You are 6 years old.",
+        "answer": "Data question recorded information that can be stored, transmitted, and processed.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      }
+    ],
+    "note": "Strict answer match on a small fixed synthetic development set; semantic paraphrases may be valid despite failing exact match."
+  },
+  "owner_authorized_experimental_release_despite_failed_original_gates": true
+}

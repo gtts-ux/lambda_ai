@@ -78,6 +78,21 @@ def prompt_for(question):
 
 
 class Engine:
+    def __new__(cls, path=None):
+        candidate = Path(path or os.environ.get("LAMBDA_MODEL", DEFAULT_MODEL)).expanduser()
+        with np.load(candidate, allow_pickle=False) as data:
+            try:
+                metadata = json.loads(str(data["metadata"].item()))
+            except (KeyError, TypeError, json.JSONDecodeError) as error:
+                raise ValueError("Invalid model file contents.") from error
+        if metadata.get("format") == "lambda-ai-transformer-v3":
+            from .transformer import TransformerEngine
+            return TransformerEngine(candidate)
+        if metadata.get("format") == "lambda-ai-pointer-transformer-v4":
+            from .pointer import PointerEngine
+            return PointerEngine(candidate)
+        return super().__new__(cls)
+
     def __init__(self, path=None):
         self.path = Path(path or os.environ.get("LAMBDA_MODEL", DEFAULT_MODEL)).expanduser().resolve()
         self.router = None

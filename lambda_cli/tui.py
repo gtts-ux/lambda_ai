@@ -45,7 +45,7 @@ class TerminalApp:
             height=2, prompt=" › ", multiline=False, wrap_lines=False, style="class:input",
             history=InMemoryHistory(), accept_handler=self.submit,
             completer=WordCompleter(["/chat", "/tokens", "/model", "/stats", "/temperature",
-                                     "/limit", "/topk", "/new", "/save", "/update", "/intent", "/help", "/exit"]),
+                                     "/limit", "/topk", "/new", "/memory", "/save", "/update", "/intent", "/help", "/exit"]),
             complete_while_typing=True,
         )
         self.input.buffer.on_text_changed += self.input_changed
@@ -134,7 +134,9 @@ class TerminalApp:
                 ("", f"  Temperature {self.session.settings.temperature:g}\n"
                      f"  Limit       {self.session.settings.max_tokens}\n"
                      f"  Top-k       {self.session.settings.top_k}\n\n"),
-                ("class:muted", "  Each question stands alone.\n  History is not model memory.")]
+                ("class:muted", ("  Recent history is context.\n  /new clears this session."
+                                  if getattr(engine, "supports_memory", False) else
+                                  "  Each question stands alone.\n  History is not model memory."))]
 
     def status(self):
         if self.busy:

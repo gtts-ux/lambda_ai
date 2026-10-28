@@ -1,0 +1,29 @@
+{
+  "context": 512,
+  "width": 384,
+  "layers": 6,
+  "heads": 6,
+  "vocabulary": 2048,
+  "format": "lambda-ai-pointer-transformer-v4",
+  "name": "lambda 2.1",
+  "model_id": "lambda-2.1",
+  "language": "en",
+  "training_step": 23250,
+  "data_sha256": "d5d946821ef655334cc6942519d105bd668ff5e3acc29c7dae44e8fda17a3091",
+  "initialization": "own_best_joint_checkpoint_conversation_turn_curriculum",
+  "min_app_version": "0.4.0",
+  "pointer_width": 128,
+  "training_lineage": {
+    "source_step": 22250,
+    "additional_steps": 1000,
+    "source_sha256": "85bc05913d7b39ff173e3f5160413c4239eb3ae89d4f74e63b4ba7a6d324f742",
+    "selected_checkpoint_sha256": "441052409c7104b85d72b48abf7028ff6e71b35737397c2e50edbabe43a2a5bb",
+    "experiment": "conversation_pilot"
+  },
+  "bytes": 43901351,
+  "sha256": "16f6ad25e99c4c38888a08285cf305911739ffb6287686f886f6acf83a96f0a8",
+  "parameters": 11808385,
+  "status": "owner-authorized experimental release",
+  "original_quality_gates_passed": false,
+  "selection": "Highest mean of math, chat and memory accuracies on identical 56 development cases, retaining baseline 1.6 arithmetic regression accuracy. This is development-based selection, not a new unbiased test."
+}

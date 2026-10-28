@@ -48,6 +48,18 @@
       "bytes": 16934294,
       "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-2.npz",
       "description": "English model continued from lambda 1.6, with 4,553,728 parameters and 100,000 additional training steps."
+    },
+    {
+      "id": "lambda-2.1",
+      "name": "lambda 2.1",
+      "revision": 1,
+      "language": "en",
+      "min_app_version": "0.4.0",
+      "format": "lambda-ai-pointer-transformer-v4",
+      "sha256": "16f6ad25e99c4c38888a08285cf305911739ffb6287686f886f6acf83a96f0a8",
+      "bytes": 43901351,
+      "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-2.1.npz",
+      "description": "Experimental English conversation model with 11,808,385 parameters and 512-token context. Published at owner request; original quality gates not met. Requires app 0.4.0."
     }
   ]
 }

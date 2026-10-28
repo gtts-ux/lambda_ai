@@ -21,8 +21,11 @@ was trained from random weights with a locally learned tokenizer.
 ```
 
 This is a small educational model, not a general-purpose assistant. It can
-give incorrect or nonsensical answers. Each question is processed separately;
-the visible conversation is not additional model memory.
+give incorrect or nonsensical answers. Published MLP models process questions
+separately. The 0.4.0 runtime also supports experimental v3/v4
+Transformers: they receive recent completed exchanges within their context window.
+Use `/memory` to check the current model. Context clears on `/new`, model reload,
+or app exit; it is not persistent learning. The optional experimental lambda 2.1 model is available.
 
 ## Install
 
@@ -255,3 +258,24 @@ python -m pip wheel --no-deps . -w dist
 
 The wheel includes the app and default model. GitHub Actions runs tests on
 Linux and Windows. No training dataset, trainer or saved optimizer is shipped.
+
+## lambda 2.1: experimental conversation model
+
+Lambda 2.1 has 11,808,385 parameters and a 512-token conversation context.
+It is published at the owner's request despite failing the original quality gates.
+It remains unreliable at copying, remembering details and arithmetic; see the
+[model card and measured results](models/lambda-2.1.md).
+
+Upgrade the application before downloading this v4 model. In your checkout:
+
+```bash
+git pull --ff-only
+.venv/bin/python -m pip install .
+lambda update
+lambda model use lambda-2.1
+```
+
+On Windows, use `.venv\Scripts\python -m pip install .` for the installation step.
+In the terminal app, `/update` refreshes models and `/model use lambda-2.1` selects it.
+`/memory` explains context and `/new` clears the current conversation.
+Model updates alone do not upgrade an older application's inference runtime.

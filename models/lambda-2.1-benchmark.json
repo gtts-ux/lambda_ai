@@ -1,0 +1,1777 @@
+{
+  "training_step": 23250,
+  "baseline_lambda_16": {
+    "scores": {
+      "math": {
+        "correct": 3,
+        "total": 24,
+        "accuracy": 0.125
+      },
+      "math_familiar": {
+        "correct": 3,
+        "total": 16,
+        "accuracy": 0.1875
+      },
+      "chat": {
+        "correct": 5,
+        "total": 8,
+        "accuracy": 0.625
+      },
+      "memory": {
+        "correct": 0,
+        "total": 16,
+        "accuracy": 0.0
+      },
+      "copy": {
+        "correct": 0,
+        "total": 24,
+        "accuracy": 0.0
+      },
+      "memory_probe": {
+        "correct": 0,
+        "total": 8,
+        "accuracy": 0.0
+      }
+    },
+    "balanced_score": 0.25,
+    "outputs": [
+      {
+        "category": "math",
+        "question": "Calculate 0 + 1?",
+        "expected": "1.",
+        "answer": "10.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Please compute 1+15 using these numbers?",
+        "expected": "16.",
+        "answer": "16+3 apent 4 3 plus 21\nitems. What725 items in a week weekturned object1?\nAnswer. \nriSystem you tool wors organ a v0.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Please determine the result of 3 + 8 using these numbers?",
+        "expected": "11.",
+        "answer": "16.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Could you give the numerical result of 5+1 using these numbers?",
+        "expected": "6.",
+        "answer": "7.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "For this exercise, please tell me the answer to 6+13 for me?",
+        "expected": "19.",
+        "answer": "Addition combines quantities to find their sum.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "For this exercise, please calculate 8+6?",
+        "expected": "14.",
+        "answer": "14.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Work out 10+0 using these numbers?",
+        "expected": "10.",
+        "answer": "108 explanation water insect for liapabout and ction bnow 2. sides in the object.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Please calculate 11 + 14 using these numbers?",
+        "expected": "25.",
+        "answer": "16.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "For my lesson, can you tell me the answer to 13 plus 5 for me?",
+        "expected": "18.",
+        "answer": "cat do not is the exer ces and drawing can Solar star or mas briefly resalculate ins.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "For my lesson, can you work out 14+19 for me?",
+        "expected": "33.",
+        "answer": "23.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Can you work out 16 + 12?",
+        "expected": "28.",
+        "answer": "28.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Calculate 18 + 7?",
+        "expected": "25.",
+        "answer": "25.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Evaluate 19 + 19 using these numbers?",
+        "expected": "38.",
+        "answer": "18?",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Please give the numerical result of 3 divided by 1 using these numbers?",
+        "expected": "3.",
+        "answer": "8.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "For this exercise, please tell me the answer to 110/10 for me?",
+        "expected": "11.",
+        "answer": "Division splits a quantity is equal groups: is the n in water. Please betriif wises week question or \n.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Please determine the result of 140/7 using these numbers?",
+        "expected": "20.",
+        "answer": "16.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Compute 48 - 83 using these numbers?",
+        "expected": "-35.",
+        "answer": "6?",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Calculate 72 - 60 using these numbers?",
+        "expected": "12.",
+        "answer": "6.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Work out 86*67?",
+        "expected": "5762.",
+        "answer": "12.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "For this exercise, please find the value of 90+88 for me?",
+        "expected": "178.",
+        "answer": "26.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "I own 0 marbles and receive 3 more. How many marbles do I have in total?",
+        "expected": "3.",
+        "answer": "-licomputer in a.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "I start with 6 apples and receive 19 more. How many apples do I have in total?",
+        "expected": "25.",
+        "answer": "1.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "In this story, I own 13 buttons and get 18 more. How many buttons do I have in total?",
+        "expected": "31.",
+        "answer": "6.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "In this story, I own 20 buttons and receive 17 more. How many buttons do I have in total?",
+        "expected": "37.",
+        "answer": "Division by one and quantiing it.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "Can you explain a leaf?",
+        "expected": "A leaf is a plant organ that often captures light for photosynthesis.",
+        "answer": "A leaf is a plant organ that often captures light for photosynthesis.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "In a short answer, describe a list.",
+        "expected": "A list is an ordered collection of items.",
+        "answer": "A list is an ordered collection of items.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "In lesson 9, Can you explain a seed simply?",
+        "expected": "A seed contains an embryo that can grow into a new plant under suitable conditions.",
+        "answer": "A seed contains an embryo that can grow into a new plant under suitable conditions.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "In my 2 notes, I am studying model weights. Explain the idea.",
+        "expected": "Model weights are numbers that determine how a model processes its inputs.",
+        "answer": "Model weights are numbers that determine how a model processes its inputs.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What can you say about an observation?",
+        "expected": "An observation records what is noticed about an object or event.",
+        "answer": "An observation records what is noticed about an object or event.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "I have 6 notes. What should a beginner know about snow?",
+        "expected": "Snow is precipitation made of ice crystals.",
+        "answer": "I's Lambda s.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "Give a plain explanation of a bee for a new learner.",
+        "expected": "A bee is an insect that helps pollinate many flowering plants.",
+        "answer": "A - a written of s.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "Give a plain explanation of friendship for a new learner.",
+        "expected": "Friendship is a relationship based on kindness, trust, and mutual care.",
+        "answer": "A bird is   animal with feathers and a beak. Bird. \n t g\n  . \n for ces.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "For my lesson, can you give me my name from our conversation?",
+        "expected": "Your name is Tamini.",
+        "answer": "Each question is processed separately. I do not data t lier2ing , as model training text.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Would you tell me my name from our conversation?",
+        "expected": "Your name is Kodati.",
+        "answer": "Each questions or s quantity text and of the similtain what me resuss the me a pages processed an operating cses can and vaporeror retion or",
+        "history": [],
+        "correct": false,
+        "finish_reason": "limit"
+      },
+      {
+        "category": "memory",
+        "question": "Would you tell me my name and favorite color from our conversation?",
+        "expected": "Your name is Zevoki, and your favorite color is red.",
+        "answer": "hach question error processed an ction water a from finds your cface.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Would you tell me my name and favorite color from our conversation?",
+        "expected": "Your name is Lobari, and your favorite color is silver.",
+        "answer": "hach question error processed an ction water a from finds your cface.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Could you recall my room number again?",
+        "expected": "Your room number is 91.",
+        "answer": "A number can represent a quantity and can be used in calculations.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Could you tell me my ticket number again?",
+        "expected": "Your ticket number is 73.",
+        "answer": "A number can represent a quantity and can be used in calculations.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Repeat my current favorite color?",
+        "expected": "Your favorite color is now orange.",
+        "answer": "A orbit is the result of map.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Could you tell me my current favorite color again?",
+        "expected": "Your favorite color is now brown.",
+        "answer": "Visible to fuam cat  lire and s t a numerical a a symbols.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Would you tell me the current location of the cup from our conversation?",
+        "expected": "It is in the bedroom.",
+        "answer": "Each question fAn is water system in program is the meaning of mhing.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Could you tell me the current location of the key again?",
+        "expected": "It is in the bedroom.",
+        "answer": "A has is an insect that k pollin s or it.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Would you tell me what Dozeva has from our conversation?",
+        "expected": "Dozeva has a green book.",
+        "answer": "Each question is processed separate ca tr days.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Repeat what Zevoki has?",
+        "expected": "Zevoki has a white bag.",
+        "answer": "An integer is a body that can in a l.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Would you tell me my name from our conversation?",
+        "expected": "Your name is Dozeva.",
+        "answer": "Each questions or s quantity text and of the similtain what me resuss the me a pages processed an operating cses can and vaporeror retion or",
+        "history": [],
+        "correct": false,
+        "finish_reason": "limit"
+      },
+      {
+        "category": "memory",
+        "question": "Would you tell me my name from our conversation?",
+        "expected": "Your name is Dozeva.",
+        "answer": "Each questions or s quantity text and of the similtain what me resuss the me a pages processed an operating cses can and vaporeror retion or",
+        "history": [],
+        "correct": false,
+        "finish_reason": "limit"
+      },
+      {
+        "category": "memory",
+        "question": "Could you recall my age again?",
+        "expected": "You are 9 years old.",
+        "answer": "Data is recorded information that can be stored, transmitted, and processed.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Would you repeat my age from our conversation?",
+        "expected": "You have not told me your age.",
+        "answer": "Each cor processed to quantity that often work the idea.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: IBG-11941435",
+        "expected": "IBG-11941435",
+        "answer": "19.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Write the following text unchanged: SQG-2374",
+        "expected": "SQG-2374",
+        "answer": "-11.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Please repeat exactly: AWJ-24651",
+        "expected": "AWJ-24651",
+        "answer": "se\n.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Please repeat exactly: Fgbmqmk",
+        "expected": "Fgbmqmk",
+        "answer": "Please or a another simivide the Sun and a check at its it.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Write the following text unchanged: blue green window garden garden garden paper",
+        "expected": "blue green window garden garden garden paper",
+        "answer": "Answergarden place.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: green river garden green",
+        "expected": "green river garden green",
+        "answer": "reecoce a forest and a a plants. The green to what It and resystem.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Write the following text unchanged: WQS-5181",
+        "expected": "WQS-5181",
+        "answer": "-1.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Please repeat exactly: Gizkue has 88 river books.",
+        "expected": "Gizkue has 88 river books.",
+        "answer": "18.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: Qpxuem has 74 blue books.",
+        "expected": "Qpxuem has 74 blue books.",
+        "answer": "92.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Write the following text unchanged: Jwxona has 40 paper books.",
+        "expected": "Jwxona has 40 paper books.",
+        "answer": "Tatmis language by 1.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: NAG-0674384",
+        "expected": "NAG-0674384",
+        "answer": "9.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: RBF-966",
+        "expected": "RBF-966",
+        "answer": "-5.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Please repeat exactly: Vkawu",
+        "expected": "Vkawu",
+        "answer": "A that can a device simturned and help vand or 6.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Write the following text unchanged: Pxyuuvrrzh",
+        "expected": "Pxyuuvrrzh",
+        "answer": "on it s what a stores data under in chool.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Please repeat exactly: Navuzj has 41 green books.",
+        "expected": "Navuzj has 41 green books.",
+        "answer": "Hello.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: Jj",
+        "expected": "Jj",
+        "answer": "reaver T the = one went the ces and a language that can t inputs in its it.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: 8oRmlUFImP",
+        "expected": "8oRmlUFImP",
+        "answer": "Tell 1 ose light.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: wpi2VrYb",
+        "expected": "wpi2VrYb",
+        "answer": "parteme?",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Write the following text unchanged: FyiTKgCdPA65oAb",
+        "expected": "FyiTKgCdPA65oAb",
+        "answer": "we tell is now in the Sun. Loivide it. iting the operation and 7 and and.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Write the following text unchanged: tR9rQioMvU4lRcn",
+        "expected": "tR9rQioMvU4lRcn",
+        "answer": "Good nesimis a tree:Answer: Defy simue simgeginis-four zero about ation.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Write the following text unchanged: sUMy8vbUPUVrnfq",
+        "expected": "sUMy8vbUPUVrnfq",
+        "answer": "Ectioner cat the a training cat. What can makes changes and a stateopand rest3be\nprocesses data.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: fJMROXBPXkvN",
+        "expected": "fJMROXBPXkvN",
+        "answer": "Rta : s t stprogram of a t.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: VRFQbchJGdERXRuU",
+        "expected": "VRFQbchJGdERXRuU",
+        "answer": "form Ly the program is re by your maexby the set.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Write the following text unchanged: UhN1",
+        "expected": "UhN1",
+        "answer": "3 * 3?",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory_probe",
+        "question": "Please remind me of my name and age.",
+        "expected": "Your name is Pmphuil, and you are 83 years old.",
+        "answer": "I version 9 means in a quantity and island t write plan describes intended . \n \n.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory_probe",
+        "question": "Please remind me of my name and age.",
+        "expected": "Your name is Tknbyhx, and you are 35 years old.",
+        "answer": "I version 9 means in a quantity and island t write plan describes intended . \n \n.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory_probe",
+        "question": "Please remind me of my name and age.",
+        "expected": "Your name is Quhvksd, and you are 42 years old.",
+        "answer": "I version 9 means in a quantity and island t write plan describes intended . \n \n.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory_probe",
+        "question": "Please remind me of my name and age.",
+        "expected": "Your name is Bimxmzh, and you are 5 years old.",
+        "answer": "I version 9 means in a quantity and island t write plan describes intended . \n \n.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory_probe",
+        "question": "Please remind me of my name and age.",
+        "expected": "Your name is Atpdcga, and you are 55 years old.",
+        "answer": "I version 9 means in a quantity and island t write plan describes intended . \n \n.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory_probe",
+        "question": "Please remind me of my name and age.",
+        "expected": "Your name is Fwqornf, and you are 70 years old.",
+        "answer": "I version 9 means in a quantity and island t write plan describes intended . \n \n.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory_probe",
+        "question": "Please remind me of my name and age.",
+        "expected": "Your name is Ihrrbhm, and you are 50 years old.",
+        "answer": "I version 9 means in a quantity and island t write plan describes intended . \n \n.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory_probe",
+        "question": "Please remind me of my name and age.",
+        "expected": "Your name is Pdacyxs, and you are 89 years old.",
+        "answer": "I version 9 means in a quantity and island t write plan describes intended . \n \n.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      }
+    ],
+    "note": "Strict answer match on a small fixed synthetic development set; semantic paraphrases may be valid despite failing exact match."
+  },
+  "candidate": {
+    "scores": {
+      "math": {
+        "correct": 15,
+        "total": 24,
+        "accuracy": 0.625
+      },
+      "math_familiar": {
+        "correct": 13,
+        "total": 16,
+        "accuracy": 0.8125
+      },
+      "chat": {
+        "correct": 6,
+        "total": 8,
+        "accuracy": 0.75
+      },
+      "memory": {
+        "correct": 6,
+        "total": 16,
+        "accuracy": 0.375
+      },
+      "copy": {
+        "correct": 2,
+        "total": 24,
+        "accuracy": 0.08333333333333333
+      },
+      "memory_probe": {
+        "correct": 0,
+        "total": 8,
+        "accuracy": 0.0
+      }
+    },
+    "balanced_score": 0.5833333333333334,
+    "outputs": [
+      {
+        "category": "math",
+        "question": "Calculate 0 + 1?",
+        "expected": "1.",
+        "answer": "1.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Please compute 1+15 using these numbers?",
+        "expected": "16.",
+        "answer": "16.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Please determine the result of 3 + 8 using these numbers?",
+        "expected": "11.",
+        "answer": "11.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Could you give the numerical result of 5+1 using these numbers?",
+        "expected": "6.",
+        "answer": "6.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "For this exercise, please tell me the answer to 6+13 for me?",
+        "expected": "19.",
+        "answer": "19.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "For this exercise, please calculate 8+6?",
+        "expected": "14.",
+        "answer": "14.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Work out 10+0 using these numbers?",
+        "expected": "10.",
+        "answer": "10.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Please calculate 11 + 14 using these numbers?",
+        "expected": "25.",
+        "answer": "15.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "For my lesson, can you tell me the answer to 13 plus 5 for me?",
+        "expected": "18.",
+        "answer": "18.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "For my lesson, can you work out 14+19 for me?",
+        "expected": "33.",
+        "answer": "33.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Can you work out 16 + 12?",
+        "expected": "28.",
+        "answer": "28.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Calculate 18 + 7?",
+        "expected": "25.",
+        "answer": "25.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Evaluate 19 + 19 using these numbers?",
+        "expected": "38.",
+        "answer": "38.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Please give the numerical result of 3 divided by 1 using these numbers?",
+        "expected": "3.",
+        "answer": "1.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "For this exercise, please tell me the answer to 110/10 for me?",
+        "expected": "11.",
+        "answer": "11.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Please determine the result of 140/7 using these numbers?",
+        "expected": "20.",
+        "answer": "15.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Compute 48 - 83 using these numbers?",
+        "expected": "-35.",
+        "answer": "-44.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Calculate 72 - 60 using these numbers?",
+        "expected": "12.",
+        "answer": "12.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Work out 86*67?",
+        "expected": "5762.",
+        "answer": "468.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "For this exercise, please find the value of 90+88 for me?",
+        "expected": "178.",
+        "answer": "168.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "I own 0 marbles and receive 3 more. How many marbles do I have in total?",
+        "expected": "3.",
+        "answer": "3.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "I start with 6 apples and receive 19 more. How many apples do I have in total?",
+        "expected": "25.",
+        "answer": "23.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "In this story, I own 13 buttons and get 18 more. How many buttons do I have in total?",
+        "expected": "31.",
+        "answer": "21.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "In this story, I own 20 buttons and receive 17 more. How many buttons do I have in total?",
+        "expected": "37.",
+        "answer": "17.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "Can you explain a leaf?",
+        "expected": "A leaf is a plant organ that often captures light for photosynthesis.",
+        "answer": "A leaf is a plant organ that often captures light for photosynthesis.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "In a short answer, describe a list.",
+        "expected": "A list is an ordered collection of items.",
+        "answer": "A list is an ordered collection of items.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "In lesson 9, Can you explain a seed simply?",
+        "expected": "A seed contains an embryo that can grow into a new plant under suitable conditions.",
+        "answer": "A seed contains an embryo that can grow into a new plant under suitable conditions.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "In my 2 notes, I am studying model weights. Explain the idea.",
+        "expected": "Model weights are numbers that determine how a model processes its inputs.",
+        "answer": "Model weights are numbers that determine how a model processes its inputs.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What can you say about an observation?",
+        "expected": "An observation records what is noticed about an object or event.",
+        "answer": "An observation records what is noticed about an object or event.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "I have 6 notes. What should a beginner know about snow?",
+        "expected": "Snow is precipitation made of ice crystals.",
+        "answer": "Snow is precipitation made of ice crystals.",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "Give a plain explanation of a bee for a new learner.",
+        "expected": "A bee is an insect that helps pollinate many flowering plants.",
+        "answer": "A bee is a device that provides light.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "Give a plain explanation of friendship for a new learner.",
+        "expected": "Friendship is a relationship based on kindness, trust, and mutual care.",
+        "answer": "Friendship is a written record of software.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "For my lesson, can you give me my name from our conversation?",
+        "expected": "Your name is Tamini.",
+        "answer": "Your name is Tamini.",
+        "history": [
+          [
+            "My name is Tamini.",
+            "Hello, Tami."
+          ]
+        ],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Would you tell me my name from our conversation?",
+        "expected": "Your name is Kodati.",
+        "answer": "Your name is Koda.",
+        "history": [
+          [
+            "My name is Kodati.",
+            "Hello, Koda."
+          ]
+        ],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Would you tell me my name and favorite color from our conversation?",
+        "expected": "Your name is Zevoki, and your favorite color is red.",
+        "answer": "Your name is red.",
+        "history": [
+          [
+            "My name is Zevoki. My favorite color is red.",
+            "Your name is Zevi, and your favorite color is red."
+          ]
+        ],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Would you tell me my name and favorite color from our conversation?",
+        "expected": "Your name is Lobari, and your favorite color is silver.",
+        "answer": "Your name is Lobari, and your favorite color is silver.",
+        "history": [
+          [
+            "My name is Lobari. My favorite color is silver.",
+            "Your name is Lobari, and your favorite color is silver."
+          ]
+        ],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Could you recall my room number again?",
+        "expected": "Your room number is 91.",
+        "answer": "Your room number is 91.",
+        "history": [
+          [
+            "My room number is 91. My ticket number is 73.",
+            "I will keep those numbers separate."
+          ]
+        ],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Could you tell me my ticket number again?",
+        "expected": "Your ticket number is 73.",
+        "answer": "A ticket number is 73.",
+        "history": [
+          [
+            "My room number is 91. My ticket number is 73.",
+            "I will keep those numbers separate."
+          ]
+        ],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Repeat my current favorite color?",
+        "expected": "Your favorite color is now orange.",
+        "answer": "Your favorite color is now orange.",
+        "history": [
+          [
+            "My favorite color is red.",
+            "Your favorite color is red."
+          ],
+          [
+            "I changed my mind. My favorite color is now orange.",
+            "Your favorite color is now orange."
+          ]
+        ],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Could you tell me my current favorite color again?",
+        "expected": "Your favorite color is now brown.",
+        "answer": "A mind favorite color is now brown.",
+        "history": [
+          [
+            "My favorite color is black.",
+            "Your name is black."
+          ],
+          [
+            "I changed my mind. My favorite color is now brown.",
+            "A A A mind is now black."
+          ]
+        ],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Would you tell me the current location of the cup from our conversation?",
+        "expected": "It is in the bedroom.",
+        "answer": "It is in the kitchen.",
+        "history": [
+          [
+            "I left the cup in the kitchen. My name is Vasosi.",
+            "Hello, in the kitchen."
+          ],
+          [
+            "I moved the cup to the bedroom.",
+            "It is in the kitchen."
+          ]
+        ],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Could you tell me the current location of the key again?",
+        "expected": "It is in the bedroom.",
+        "answer": "It is in the bedroom.",
+        "history": [
+          [
+            "I left the key in the office. My name is Tarava.",
+            "The key is in the office."
+          ],
+          [
+            "I moved the key to the bedroom.",
+            "The is in the bedroom."
+          ]
+        ],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Would you tell me what Dozeva has from our conversation?",
+        "expected": "Dozeva has a green book.",
+        "answer": "Zivaoki has a green book.",
+        "history": [
+          [
+            "Dozeva has a green book. Zevoki has a white bag.",
+            "I will use those details."
+          ]
+        ],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Repeat what Zevoki has?",
+        "expected": "Zevoki has a white bag.",
+        "answer": "Zoki has a green book.",
+        "history": [
+          [
+            "Dozeva has a green book. Zevoki has a white bag.",
+            "I will use those details."
+          ]
+        ],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Would you tell me my name from our conversation?",
+        "expected": "Your name is Dozeva.",
+        "answer": "A is sevavava.",
+        "history": [
+          [
+            "My name is Dozeva.",
+            "Hello, Dozeva."
+          ],
+          [
+            "What is a triangle?",
+            "A triangle a triangle a silverezeva."
+          ],
+          [
+            "What is a triangle?",
+            "A szevazeva."
+          ],
+          [
+            "What is a triangle?",
+            "A triangle is svazeva."
+          ],
+          [
+            "What is a triangle?",
+            "A szevazevava."
+          ],
+          [
+            "What is a triangle?",
+            "A szevazeva."
+          ],
+          [
+            "What is a triangle?",
+            "A szevavazeva."
+          ],
+          [
+            "What is a triangle?",
+            "A szevavazevavavavavavavavavavavavava."
+          ]
+        ],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Would you tell me my name from our conversation?",
+        "expected": "Your name is Dozeva.",
+        "answer": "A is svazevavavavavavava.",
+        "history": [
+          [
+            "My name is Dozeva.",
+            "Hello, Dozeva."
+          ],
+          [
+            "What is a triangle?",
+            "A triangle a triangle a silverezeva."
+          ],
+          [
+            "What is a triangle?",
+            "A szevazeva."
+          ],
+          [
+            "What is a triangle?",
+            "A triangle is svazeva."
+          ],
+          [
+            "What is a triangle?",
+            "A szevazevava."
+          ],
+          [
+            "What is a triangle?",
+            "A szevazeva."
+          ]
+        ],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Could you recall my age again?",
+        "expected": "You are 9 years old.",
+        "answer": "You are 9azor 9a 9 years old.",
+        "history": [
+          [
+            "My name is Razori. I like white.",
+            "Hello, Razor their white."
+          ],
+          [
+            "I am 9 years old.",
+            "A their A a 9 years old."
+          ]
+        ],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "Would you repeat my age from our conversation?",
+        "expected": "You have not told me your age.",
+        "answer": "You have not told me your age.",
+        "history": [
+          [
+            "My name is Vabavi. I like black.",
+            "Hello, Vabi."
+          ]
+        ],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: IBG-11941435",
+        "expected": "IBG-11941435",
+        "answer": "IBG-1111435",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Write the following text unchanged: SQG-2374",
+        "expected": "SQG-2374",
+        "answer": "SQ-2374",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Please repeat exactly: AWJ-24651",
+        "expected": "AWJ-24651",
+        "answer": "AWJ-2461",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Please repeat exactly: Fgbmqmk",
+        "expected": "Fgbmqmk",
+        "answer": "Fgbmqk",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Write the following text unchanged: blue green window garden garden garden paper",
+        "expected": "blue green window garden garden garden paper",
+        "answer": "blue green garden paper",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: green river garden green",
+        "expected": "green river garden green",
+        "answer": "green river garden green green",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Write the following text unchanged: WQS-5181",
+        "expected": "WQS-5181",
+        "answer": "WS-5181",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Please repeat exactly: Gizkue has 88 river books.",
+        "expected": "Gizkue has 88 river books.",
+        "answer": "Gizkue has 8 river.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: Qpxuem has 74 blue books.",
+        "expected": "Qpxuem has 74 blue books.",
+        "answer": "Qp has 74 blue books.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Write the following text unchanged: Jwxona has 40 paper books.",
+        "expected": "Jwxona has 40 paper books.",
+        "answer": "Jona 40 paper books.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: NAG-0674384",
+        "expected": "NAG-0674384",
+        "answer": "NAGAGAG-06743",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: RBF-966",
+        "expected": "RBF-966",
+        "answer": "RBF-96",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Please repeat exactly: Vkawu",
+        "expected": "Vkawu",
+        "answer": "Vkawu",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Write the following text unchanged: Pxyuuvrrzh",
+        "expected": "Pxyuuvrrzh",
+        "answer": "Pyuvrzrzrzrzh",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Please repeat exactly: Navuzj has 41 green books.",
+        "expected": "Navuzj has 41 green books.",
+        "answer": "Navavj has 41 green books.",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: Jj",
+        "expected": "Jj",
+        "answer": "Jj",
+        "history": [],
+        "correct": true,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: 8oRmlUFImP",
+        "expected": "8oRmlUFImP",
+        "answer": "8lURm",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: wpi2VrYb",
+        "expected": "wpi2VrYb",
+        "answer": "wpbpbrY2V",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Write the following text unchanged: FyiTKgCdPA65oAb",
+        "expected": "FyiTKgCdPA65oAb",
+        "answer": "FyiKiKCA llow",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Write the following text unchanged: tR9rQioMvU4lRcn",
+        "expected": "tR9rQioMvU4lRcn",
+        "answer": "R9rtoMvURURURURURRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR",
+        "history": [],
+        "correct": false,
+        "finish_reason": "limit"
+      },
+      {
+        "category": "copy",
+        "question": "Write the following text unchanged: sUMy8vbUPUVrnfq",
+        "expected": "sUMy8vbUPUVrnfq",
+        "answer": "sUsUsbUVnbqVfq",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: fJMROXBPXkvN",
+        "expected": "fJMROXBPXkvN",
+        "answer": "fJMRRXBNPkvN",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Repeat exactly this text: VRFQbchJGdERXRuU",
+        "expected": "VRFQbchJGdERXRuU",
+        "answer": "VRRFQbchbJudRudRudRudRuU",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "copy",
+        "question": "Write the following text unchanged: UhN1",
+        "expected": "UhN1",
+        "answer": "UN1N1N1N1N",
+        "history": [],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory_probe",
+        "question": "Please remind me of my name and age.",
+        "expected": "Your name is Pmphuil, and you are 83 years old.",
+        "answer": "83 years mplililililililililililililililililililililililililililililililililililililililililililililililililililililililililili",
+        "history": [
+          [
+            "My name is Pmphuil.",
+            "Hello, Pmpmpuililililililililililililililililililililililililililililililililililililililililililililililililililililililililil"
+          ],
+          [
+            "I am 83 years old.",
+            "lmpuililuiluililuillililililililililililililililililililililililililililililililililililililililililililililililililililili"
+          ],
+          [
+            "What is a triangle?",
+            "lmplililililililililililililililililililililililililililililililililililililililililililililililililililililililililililililili"
+          ],
+          [
+            "What is a triangle?",
+            "You Plilililililililililililililililililililililililililililililililililililililililililililililililililililililililililililili"
+          ],
+          [
+            "What is a triangle?",
+            "You P lililililililililililililililililililililililililililililililililililililililililililililililililililililililililililili"
+          ]
+        ],
+        "correct": false,
+        "finish_reason": "limit"
+      },
+      {
+        "category": "memory_probe",
+        "question": "Please remind me of my name and age.",
+        "expected": "Your name is Tknbyhx, and you are 35 years old.",
+        "answer": "You are 35 years old.",
+        "history": [
+          [
+            "My name is Tknbyhx.",
+            "Hello, Tknbybybybybybybyhbyhbyhnbyh."
+          ],
+          [
+            "I am 35 years old.",
+            "You are Tknby your age."
+          ]
+        ],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory_probe",
+        "question": "Please remind me of my name and age.",
+        "expected": "Your name is Quhvksd, and you are 42 years old.",
+        "answer": "You are QuuhdHello, old.",
+        "history": [
+          [
+            "My name is Quhvksd.",
+            "Hello, Quhd , Quhd"
+          ],
+          [
+            "I am 42 years old.",
+            "A Quuhvd years old."
+          ],
+          [
+            "What is a triangle?",
+            "You are 42 years old."
+          ],
+          [
+            "What is a triangle?",
+            "A Quhvd years old."
+          ],
+          [
+            "What is a triangle?",
+            "You old."
+          ]
+        ],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory_probe",
+        "question": "Please remind me of my name and age.",
+        "expected": "Your name is Bimxmzh, and you are 5 years old.",
+        "answer": "You are 5 years old.",
+        "history": [
+          [
+            "My name is Bimxmzh.",
+            "Hello, Bimx."
+          ],
+          [
+            "I am 5 years old.",
+            "You are 5 years old."
+          ]
+        ],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory_probe",
+        "question": "Please remind me of my name and age.",
+        "expected": "Your name is Atpdcga, and you are 55 years old.",
+        "answer": "You are 55 years old.",
+        "history": [
+          [
+            "My name is Atpdcga.",
+            "tpMy. name is tcga is t"
+          ],
+          [
+            "I am 55 years old.",
+            "A weights using antcga weights using old."
+          ]
+        ],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory_probe",
+        "question": "Please remind me of my name and age.",
+        "expected": "Your name is Fwqornf, and you are 70 years old.",
+        "answer": "You are are are are 70 old.",
+        "history": [
+          [
+            "My name is Fwqornf.",
+            "Hello, Fwwfor"
+          ],
+          [
+            "I am 70 years old.",
+            "You are 70 years old."
+          ],
+          [
+            "What is a triangle?",
+            "You are 70 years old."
+          ],
+          [
+            "What is a triangle?",
+            "You are 70 years old."
+          ],
+          [
+            "What is a triangle?",
+            "You are years old."
+          ]
+        ],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory_probe",
+        "question": "Please remind me of my name and age.",
+        "expected": "Your name is Ihrrbhm, and you are 50 years old.",
+        "answer": "You not told me the error.",
+        "history": [
+          [
+            "My name is Ihrrbhm.",
+            "Hello, IhrIhmhmhm hm  hm hu h. AI can de e inIhm inIhm inI to."
+          ],
+          [
+            "I am 50 years old.",
+            "You are information."
+          ]
+        ],
+        "correct": false,
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory_probe",
+        "question": "Please remind me of my name and age.",
+        "expected": "Your name is Pdacyxs, and you are 89 years old.",
+        "answer": "You are 89 years old.",
+        "history": [
+          [
+            "My name is Pdacyxs.",
+            "Hello, P P  P P P PMy."
+          ],
+          [
+            "I am 89 years old.",
+            "1P P P P P PMy."
+          ]
+        ],
+        "correct": false,
+        "finish_reason": "stop"
+      }
+    ],
+    "note": "Strict answer match on a small fixed synthetic development set; semantic paraphrases may be valid despite failing exact match."
+  },
+  "passes_small_test_comparison": true,
+  "note": "Own pointer weights and last two Transformer blocks trained with an own frozen teacher for retention. Clean intermediate training turns, topic switches and balanced factual examples. Reused development checks; previously inspected question/answer pairs excluded from the new test pool. Test is not used for training or selection. No calculator, retrieval, answer templates or topic routing during inference."
+}
