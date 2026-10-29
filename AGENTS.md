@@ -1,8 +1,18 @@
 # Lambda AI maintenance instructions
 
 - The app, its UI, documentation, default prompts and bundled model must be English.
+- On 2026-10-29 the owner requested fixing the recorded conversation failures and
+  publishing the result as **lambda 2.2** (`lambda-2.2`). Keep the old releases and
+  checkpoints. Compare real generated conversations before release, including the
+  application's default sampling; report remaining failures honestly. The private
+  `../conversation_training/release_22` continuation trains all layers of the owner's
+  own 2.1 weights. No external weights or application-side answer substitution.
+  The owner subsequently explicitly said to publish 2.2 even if it does not meet
+  quality expectations. This supersedes performance gates for this release only;
+  still finish technical validation and disclose actual scores and remaining errors.
 - The approved model names are **lambda 1.0** (`lambda-1.0`),
-  **lambda 1.5** (`lambda-1.5`), **lambda 1.6** (`lambda-1.6`), **lambda 2** (`lambda-2`), and **lambda 2.1** (`lambda-2.1`).
+  **lambda 1.5** (`lambda-1.5`), **lambda 1.6** (`lambda-1.6`), **lambda 2** (`lambda-2`),
+  **lambda 2.1** (`lambda-2.1`), and **lambda 2.2** (`lambda-2.2`).
 - Lambda 2 has 4,553,728 parameters and uses the compatible v2 format (app >=0.2.0).
   Release its trained step-100000 checkpoint; the old step-0 export is not the release.
 - Lambda 1.6 has exactly 2,614,528 parameters including its learned intent head;

@@ -60,6 +60,18 @@
       "bytes": 43901351,
       "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-2.1.npz",
       "description": "Experimental English conversation model with 11,808,385 parameters and 512-token context. Published at owner request; original quality gates not met. Requires app 0.4.0."
+    },
+    {
+      "id": "lambda-2.2",
+      "name": "lambda 2.2",
+      "revision": 1,
+      "language": "en",
+      "min_app_version": "0.4.1",
+      "format": "lambda-ai-pointer-transformer-v4",
+      "sha256": "0f881ba88982dcd3db50067e181b15c0cf7812ce0dd0a90b1861b6ff62c7f165",
+      "bytes": 43902506,
+      "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-2.2.npz",
+      "description": "Experimental conversation repair trained from the owner's lambda 2.1 weights. All layers adapted to multi-turn examples. See the model card for measured results and limitations."
     }
   ]
 }

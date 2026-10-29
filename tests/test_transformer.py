@@ -53,6 +53,18 @@ class TransformerTests(unittest.TestCase):
         final, _ = self.engine.logits(ids[-1:], cache)
         np.testing.assert_allclose(final[-1], full[-1], atol=1e-6, rtol=1e-5)
 
+    def test_inference_and_kv_cache_keep_float32(self):
+        # NumPy 2 promotes an array divided by np.sqrt(int) to float64.
+        # Training and the advertised inference dtype are float32.
+        ids = [BOS, USER, 50, 51, END, ASSISTANT]
+        values, cache = self.engine.logits(ids)
+        self.assertEqual(values.dtype, np.float32)
+        for k, v in cache:
+            self.assertEqual(k.dtype, np.float32)
+            self.assertEqual(v.dtype, np.float32)
+        tail, _ = self.engine.logits([52], cache)
+        self.assertEqual(tail.dtype, np.float32)
+
     def test_prompt_uses_whole_exchanges_and_clears_with_new_session(self):
         session = Session(self.engine, quota=Quota(Path(self.directory.name)/'quota'))
         session.last_question = 'My name is Ada.'

@@ -279,3 +279,21 @@ On Windows, use `.venv\Scripts\python -m pip install .` for the installation ste
 In the terminal app, `/update` refreshes models and `/model use lambda-2.1` selects it.
 `/memory` explains context and `/new` clears the current conversation.
 Model updates alone do not upgrade an older application's inference runtime.
+
+## lambda 2.2: conversation repair
+
+Lambda 2.2 continues the owner's own lambda 2.1 weights with all layers trainable
+and mixed multi-turn examples. App 0.4.1 also fixes NumPy 2 float64 promotion in
+Transformer inference. See the [model card](models/lambda-2.2.md) for measured
+before/after conversations and remaining limitations. This is still an experimental
+small model; its responses are generated entirely by the neural network.
+
+```bash
+git pull --ff-only
+.venv/bin/python -m pip install .
+lambda update
+lambda model use lambda-2.2
+```
+
+On Windows, use `.venv\Scripts\python -m pip install .`. Restart an already running
+app. The `/update` command refreshes models, not application code.

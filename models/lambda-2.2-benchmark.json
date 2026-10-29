@@ -1,0 +1,3681 @@
+{
+  "fresh_cases_sha256": "baf5f3a250016cb677c572ed2275cc320b3af954212c185bfe8c4213514ae0a8",
+  "note": "Small synthetic post-selection test. Identities and codes are new; task templates overlap training. Exact normalized matching can reject valid paraphrases. Not a broad capability benchmark.",
+  "models": {
+    "lambda 2.1": {
+      "sha256": "16f6ad25e99c4c38888a08285cf305911739ffb6287686f886f6acf83a96f0a8",
+      "numpy": "2.5.4",
+      "python": "3.14.6",
+      "evaluations": [
+        {
+          "correct": 8,
+          "total": 50,
+          "scores": {
+            "identity_unseen": {
+              "correct": 0,
+              "total": 5
+            },
+            "correction_unseen": {
+              "correct": 0,
+              "total": 4
+            },
+            "math_after_topics": {
+              "correct": 0,
+              "total": 6
+            },
+            "people_unseen": {
+              "correct": 0,
+              "total": 4
+            },
+            "copy_unseen": {
+              "correct": 0,
+              "total": 4
+            },
+            "missing_unseen": {
+              "correct": 0,
+              "total": 6
+            },
+            "location_unseen": {
+              "correct": 0,
+              "total": 5
+            },
+            "chat_unseen": {
+              "correct": 1,
+              "total": 5
+            },
+            "short_instructions": {
+              "correct": 0,
+              "total": 3
+            },
+            "single_math_0": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_1": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_2": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_3": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_4": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_5": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_6": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_7": {
+              "correct": 0,
+              "total": 1
+            }
+          },
+          "outputs": [
+            {
+              "scenario": "identity_unseen",
+              "question": "Call me Talorin.",
+              "expected": "Hello, Talorin.",
+              "answer": "Saloro. isinin the cats. would you like to know about them?",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "Can you tell me my name?",
+              "expected": "Your name is Talorin.",
+              "answer": "You have not told me your age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "My age is 29.",
+              "expected": "You are 29 years old.",
+              "answer": "You have your age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "so how old am I?",
+              "expected": "You are 29 years old.",
+              "answer": "You told age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "What is my name and age?",
+              "expected": "Your name is Talorin and you are 29 years old.",
+              "answer": "You told me your old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "My name is Neravi. I am 34 years old.",
+              "expected": "Hello, Neravi. You are 34 years old.",
+              "answer": "Your name is Neravi.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "Actually, my name is Soriven.",
+              "expected": "Your name is Soriven.",
+              "answer": "Lera, and your old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "and my name is?",
+              "expected": "Your name is Soriven.",
+              "answer": "Your name is Nera, and your favorite color is old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "What is my age?",
+              "expected": "You are 34 years old.",
+              "answer": "Your name and your favorite years favorite old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "hi",
+              "expected": "Hello! How can I help you?",
+              "answer": "Hello! How ?",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "Calculate 9 * 4.",
+              "expected": "36.",
+              "answer": "! Hbcula.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "What is a triangle?",
+              "expected": "A triangle is a polygon with three sides and three angles.",
+              "answer": "! H Hbcula.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "what is 8x7?",
+              "expected": "56.",
+              "answer": "You have 4.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "What is 36 / 6?",
+              "expected": "6.",
+              "answer": "years old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "What is 11 - 9?",
+              "expected": "2.",
+              "answer": "You years years old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "I am 24 years old.",
+              "expected": "You are 24 years old.",
+              "answer": "28.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "My brother is 37 years old.",
+              "expected": "Your brother is 37 years old.",
+              "answer": "126.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "How old is my brother?",
+              "expected": "Your brother is 37 years old.",
+              "answer": "Your ticket number is 6.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "How old am I?",
+              "expected": "You are 24 years old.",
+              "answer": "Your ticket 26.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "Repeat exactly: V9-nC4.",
+              "expected": "V9-nC4.",
+              "answer": "VV9.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "What is 3 + 8?",
+              "expected": "11.",
+              "answer": "-3 8.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "My favorite color is purple.",
+              "expected": "Your favorite color is purple.",
+              "answer": "TheV9.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "What is my favorite color?",
+              "expected": "Your favorite color is purple.",
+              "answer": "-54.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "How old am I?",
+              "expected": "You have not told me your age.",
+              "answer": "Hello, question asks for information.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "it is 32",
+              "expected": "You are 32 years old.",
+              "answer": "people have  for writing it usually contains a for information.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "so how old am I?",
+              "expected": "You are 32 years old.",
+              "answer": "You have not told me your age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "What is my name?",
+              "expected": "You have not told me your name.",
+              "answer": "You have not told me your age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "My name is Velmira.",
+              "expected": "Hello, Velmira.",
+              "answer": "You age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "what is my name",
+              "expected": "Your name is Velmira.",
+              "answer": "You your age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "My red key is on the shelf.",
+              "expected": "Your key is on the shelf.",
+              "answer": "Hello, shelon separate.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "What is Python 3?",
+              "expected": "Python 3 is a programming language used to write computer programs.",
+              "answer": "Your shel shel key Python is Python is 3.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "Where is my key?",
+              "expected": "Your key is on the shelf.",
+              "answer": "Your shel key is shel shel key is shel shel shel shel for shel for shel flowering used for other for other other plants.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "I moved my key to the drawer.",
+              "expected": "Your key is in the drawer.",
+              "answer": "Your the other other other other other other plants.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "Where is my key now?",
+              "expected": "Your key is in the drawer.",
+              "answer": "Your other other other other other other other other other other other other other other other other other other other other other other other folders.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "Hey there.",
+              "expected": "Hello! How can I help you?",
+              "answer": "Hello! How can I help you?",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "What is your name?",
+              "expected": "I am Lambda, a small AI language model.",
+              "answer": "Your name is I help you?like to.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "What can you do?",
+              "expected": "I can help with simple questions, basic math, and conversation.",
+              "answer": "Your name is I can I can answer you like to question or a.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "Are you human?",
+              "expected": "No. I am an AI language model.",
+              "answer": "You are a.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "Thank you.",
+              "expected": "You're welcome!",
+              "answer": "You have help are questions with with.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "short_instructions",
+              "question": "What color is grass?",
+              "expected": "Green.",
+              "answer": "The plus sign means addition.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "short_instructions",
+              "question": "Opposite of hot?",
+              "expected": "Cold.",
+              "answer": "The sign means addition. It is now two without a total.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "short_instructions",
+              "question": "Greet me in English.",
+              "expected": "Hello!",
+              "answer": "Addition is a total.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_0",
+              "question": "5x6",
+              "expected": "30.",
+              "answer": "30.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_1",
+              "question": "What is 12 / 3?",
+              "expected": "4.",
+              "answer": "4.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_2",
+              "question": "What is 5 + 3?",
+              "expected": "8.",
+              "answer": "8.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_3",
+              "question": "What is 8 - 3?",
+              "expected": "5.",
+              "answer": "5.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_4",
+              "question": "What is 4 * 3?",
+              "expected": "12.",
+              "answer": "12.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_5",
+              "question": "Calculate 7 + 6.",
+              "expected": "13.",
+              "answer": "13.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_6",
+              "question": "What is 19 - 8?",
+              "expected": "11.",
+              "answer": "11.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_7",
+              "question": "What is 7 - 10?",
+              "expected": "-3.",
+              "answer": "-7.",
+              "correct": false,
+              "finish": "stop"
+            }
+          ],
+          "top_k": 1,
+          "seed": 2202
+        },
+        {
+          "correct": 7,
+          "total": 50,
+          "scores": {
+            "identity_unseen": {
+              "correct": 0,
+              "total": 5
+            },
+            "correction_unseen": {
+              "correct": 0,
+              "total": 4
+            },
+            "math_after_topics": {
+              "correct": 0,
+              "total": 6
+            },
+            "people_unseen": {
+              "correct": 0,
+              "total": 4
+            },
+            "copy_unseen": {
+              "correct": 0,
+              "total": 4
+            },
+            "missing_unseen": {
+              "correct": 0,
+              "total": 6
+            },
+            "location_unseen": {
+              "correct": 0,
+              "total": 5
+            },
+            "chat_unseen": {
+              "correct": 0,
+              "total": 5
+            },
+            "short_instructions": {
+              "correct": 0,
+              "total": 3
+            },
+            "single_math_0": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_1": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_2": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_3": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_4": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_5": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_6": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_7": {
+              "correct": 0,
+              "total": 1
+            }
+          },
+          "outputs": [
+            {
+              "scenario": "identity_unseen",
+              "question": "Call me Talorin.",
+              "expected": "Hello, Talorin.",
+              "answer": "Salas.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "Can you tell me my name?",
+              "expected": "Your name is Talorin.",
+              "answer": "Hello, and your favorite color isin the red.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "My age is 29.",
+              "expected": "You are 29 years old.",
+              "answer": "You have not told me your age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "so how old am I?",
+              "expected": "You are 29 years old.",
+              "answer": "You told me age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "What is my name and age?",
+              "expected": "Your name is Talorin and you are 29 years old.",
+              "answer": "You your age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "My name is Neravi. I am 34 years old.",
+              "expected": "Hello, Neravi. You are 34 years old.",
+              "answer": "Your name is Nera.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "Actually, my name is Soriven.",
+              "expected": "Your name is Soriven.",
+              "answer": "Your name is Nera, and your old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "and my name is?",
+              "expected": "Your name is Soriven.",
+              "answer": "Your name is Neravi, and your age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "What is my age?",
+              "expected": "You are 34 years old.",
+              "answer": "You are for age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "hi",
+              "expected": "Hello! How can I help you?",
+              "answer": "Hello!Hello! How How can I help you?",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "Calculate 9 * 4.",
+              "expected": "36.",
+              "answer": "! H! What you can 4ali",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "What is a triangle?",
+              "expected": "A triangle is a polygon with three sides and three angles.",
+              "answer": "I can be mebe used by 4 separatebes be model bebe stored, triangle with 4used to be s be be be s used s s s s s s s s s s s place.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "what is 8x7?",
+              "expected": "56.",
+              "answer": "A s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s",
+              "correct": false,
+              "finish": "limit"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "What is 36 / 6?",
+              "expected": "6.",
+              "answer": "A",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "What is 11 - 9?",
+              "expected": "2.",
+              "answer": "A",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "I am 24 years old.",
+              "expected": "You are 24 years old.",
+              "answer": "284.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "My brother is 37 years old.",
+              "expected": "Your brother is 37 years old.",
+              "answer": "116.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "How old is my brother?",
+              "expected": "Your brother is 37 years old.",
+              "answer": "Your room number is 84.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "How old am I?",
+              "expected": "You are 24 years old.",
+              "answer": "Your room number is 6.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "Repeat exactly: V9-nC4.",
+              "expected": "V9-nC4.",
+              "answer": "VVVC",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "What is 3 + 8?",
+              "expected": "11.",
+              "answer": "TheVVC",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "My favorite color is purple.",
+              "expected": "Your favorite color is purple.",
+              "answer": "Your name is ineli9.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "What is my favorite color?",
+              "expected": "Your favorite color is purple.",
+              "answer": "Your name is 8.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "How old am I?",
+              "expected": "You have not told me your age.",
+              "answer": "Hello, you can I can answer you can answer.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "it is 32",
+              "expected": "You are 32 years old.",
+              "answer": "have  it into a plant and can be used for  calculations.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "so how old am I?",
+              "expected": "You are 32 years old.",
+              "answer": "You have 33.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "What is my name?",
+              "expected": "You have not told me your name.",
+              "answer": "Your and is 3 for for a for 32  322",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "My name is Velmira.",
+              "expected": "Hello, Velmira.",
+              "answer": "You have a 322 old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "what is my name",
+              "expected": "Your name is Velmira.",
+              "answer": "You 32322 used a plant.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "My red key is on the shelf.",
+              "expected": "Your key is on the shelf.",
+              "answer": "Hello, shelon separate.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "What is Python 3?",
+              "expected": "Python 3 is a programming language used to write computer programs.",
+              "answer": "Your shel shel shel key is shel key key Python is shel key shel key key key key key is shel key is shel, shel, shel, on the key the shel, key.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "Where is my key?",
+              "expected": "Your key is on the shelf.",
+              "answer": "Your key is shel, key key key",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "I moved my key to the drawer.",
+              "expected": "Your key is in the drawer.",
+              "answer": "Your key key the key shel key the key the key",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "Where is my key now?",
+              "expected": "Your key is in the drawer.",
+              "answer": "Your shel, key",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "Hey there.",
+              "expected": "Hello! How can I help you?",
+              "answer": "Hello! How can I help you like to like to?",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "What is your name?",
+              "expected": "I am Lambda, a small AI language model.",
+              "answer": "Your name is help you?like red.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "What can you do?",
+              "expected": "I can help with simple questions, basic math, and conversation.",
+              "answer": "Your name is red.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "Are you human?",
+              "expected": "No. I am an AI language model.",
+              "answer": "You are red.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "Thank you.",
+              "expected": "You're welcome!",
+              "answer": "You are red.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "short_instructions",
+              "question": "What color is grass?",
+              "expected": "Green.",
+              "answer": "The plus sign means addition.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "short_instructions",
+              "question": "Opposite of hot?",
+              "expected": "Cold.",
+              "answer": "The sign means addition. It is now two without a total.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "short_instructions",
+              "question": "Greet me in English.",
+              "expected": "Hello!",
+              "answer": "Addition is a total.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_0",
+              "question": "5x6",
+              "expected": "30.",
+              "answer": "30.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_1",
+              "question": "What is 12 / 3?",
+              "expected": "4.",
+              "answer": "4.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_2",
+              "question": "What is 5 + 3?",
+              "expected": "8.",
+              "answer": "8.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_3",
+              "question": "What is 8 - 3?",
+              "expected": "5.",
+              "answer": "5.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_4",
+              "question": "What is 4 * 3?",
+              "expected": "12.",
+              "answer": "12.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_5",
+              "question": "Calculate 7 + 6.",
+              "expected": "13.",
+              "answer": "13.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_6",
+              "question": "What is 19 - 8?",
+              "expected": "11.",
+              "answer": "11.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_7",
+              "question": "What is 7 - 10?",
+              "expected": "-3.",
+              "answer": "-7.",
+              "correct": false,
+              "finish": "stop"
+            }
+          ],
+          "top_k": 8,
+          "seed": 2217
+        },
+        {
+          "correct": 7,
+          "total": 50,
+          "scores": {
+            "identity_unseen": {
+              "correct": 0,
+              "total": 5
+            },
+            "correction_unseen": {
+              "correct": 0,
+              "total": 4
+            },
+            "math_after_topics": {
+              "correct": 0,
+              "total": 6
+            },
+            "people_unseen": {
+              "correct": 0,
+              "total": 4
+            },
+            "copy_unseen": {
+              "correct": 0,
+              "total": 4
+            },
+            "missing_unseen": {
+              "correct": 0,
+              "total": 6
+            },
+            "location_unseen": {
+              "correct": 0,
+              "total": 5
+            },
+            "chat_unseen": {
+              "correct": 1,
+              "total": 5
+            },
+            "short_instructions": {
+              "correct": 0,
+              "total": 3
+            },
+            "single_math_0": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_1": {
+              "correct": 0,
+              "total": 1
+            },
+            "single_math_2": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_3": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_4": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_5": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_6": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_7": {
+              "correct": 0,
+              "total": 1
+            }
+          },
+          "outputs": [
+            {
+              "scenario": "identity_unseen",
+              "question": "Call me Talorin.",
+              "expected": "Hello, Talorin.",
+              "answer": "Tori.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "Can you tell me my name?",
+              "expected": "Your name is Talorin.",
+              "answer": "Hello, and your favorite color is white.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "My age is 29.",
+              "expected": "You are 29 years old.",
+              "answer": "You have not told me your age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "so how old am I?",
+              "expected": "You are 29 years old.",
+              "answer": "You are 29",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "What is my name and age?",
+              "expected": "Your name is Talorin and you are 29 years old.",
+              "answer": "You old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "My name is Neravi. I am 34 years old.",
+              "expected": "Hello, Neravi. You are 34 years old.",
+              "answer": "Your name is Neravi.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "Actually, my name is Soriven.",
+              "expected": "Your name is Soriven.",
+              "answer": "A is Neravi, and your old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "and my name is?",
+              "expected": "Your name is Soriven.",
+              "answer": "Your name is old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "What is my age?",
+              "expected": "You are 34 years old.",
+              "answer": "You is old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "hi",
+              "expected": "Hello! How can I help you?",
+              "answer": "Hello, you   ?",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "Calculate 9 * 4.",
+              "expected": "36.",
+              "answer": "A  49 4.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "What is a triangle?",
+              "expected": "A triangle is a polygon with three sides and three angles.",
+              "answer": "A triangle is a triangle4.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "what is 8x7?",
+              "expected": "56.",
+              "answer": "A x",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "What is 36 / 6?",
+              "expected": "6.",
+              "answer": "1C in a model its a system.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "What is 11 - 9?",
+              "expected": "2.",
+              "answer": "on its axis.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "I am 24 years old.",
+              "expected": "You are 24 years old.",
+              "answer": "old48.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "My brother is 37 years old.",
+              "expected": "Your brother is 37 years old.",
+              "answer": "old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "How old is my brother?",
+              "expected": "Your brother is 37 years old.",
+              "answer": "You are 74 years old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "How old am I?",
+              "expected": "You are 24 years old.",
+              "answer": "You are 74 years old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "Repeat exactly: V9-nC4.",
+              "expected": "V9-nC4.",
+              "answer": "VV9.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "What is 3 + 8?",
+              "expected": "11.",
+              "answer": "-5.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "My favorite color is purple.",
+              "expected": "Your favorite color is purple.",
+              "answer": "TheVV9.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "What is my favorite color?",
+              "expected": "Your favorite color is purple.",
+              "answer": "It has 89.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "How old am I?",
+              "expected": "You have not told me your age.",
+              "answer": "Hello, question asks for information.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "it is 32",
+              "expected": "You are 32 years old.",
+              "answer": "?. In is a pencil for writing or drawing.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "so how old am I?",
+              "expected": "You are 32 years old.",
+              "answer": "You have not told me your age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "What is my name?",
+              "expected": "You have not told me your name.",
+              "answer": "You have not told me your age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "My name is Velmira.",
+              "expected": "Hello, Velmira.",
+              "answer": "You are your age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "what is my name",
+              "expected": "Your name is Velmira.",
+              "answer": "You your your age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "My red key is on the shelf.",
+              "expected": "Your key is on the shelf.",
+              "answer": "Hello, shel shelon shel shel.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "What is Python 3?",
+              "expected": "Python 3 is a programming language used to write computer programs.",
+              "answer": "Your key is shel shel shel shel shel shel shel shel shel shel shel shel shel shel is shel shel, and your favorite color is 3.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "Where is my key?",
+              "expected": "Your key is on the shelf.",
+              "answer": "Your shel is shel and shel shel is shel text.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "I moved my key to the drawer.",
+              "expected": "Your key is in the drawer.",
+              "answer": "Your favorite shel, shel favorite and shel.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "Where is my key now?",
+              "expected": "Your key is in the drawer.",
+              "answer": "Your and shel shel is shel shel shel, and shel shel.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "Hey there.",
+              "expected": "Hello! How can I help you?",
+              "answer": "Hello! How can I help you?",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "What is your name?",
+              "expected": "I am Lambda, a small AI language model.",
+              "answer": "You mentioned?",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "What can you do?",
+              "expected": "I can help with simple questions, basic math, and conversation.",
+              "answer": "You have not told me your age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "Are you human?",
+              "expected": "No. I am an AI language model.",
+              "answer": "You are your age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "Thank you.",
+              "expected": "You're welcome!",
+              "answer": "You are your age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "short_instructions",
+              "question": "What color is grass?",
+              "expected": "Green.",
+              "answer": "The can t meis amess the s and t the answer, such as a character, part of a word, or a word.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "short_instructions",
+              "question": "Opposite of hot?",
+              "expected": "Cold.",
+              "answer": "A is a noun.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "short_instructions",
+              "question": "Greet me in English.",
+              "expected": "Hello!",
+              "answer": "A word.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_0",
+              "question": "5x6",
+              "expected": "30.",
+              "answer": "30.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_1",
+              "question": "What is 12 / 3?",
+              "expected": "4.",
+              "answer": "5.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_2",
+              "question": "What is 5 + 3?",
+              "expected": "8.",
+              "answer": "8.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_3",
+              "question": "What is 8 - 3?",
+              "expected": "5.",
+              "answer": "5.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_4",
+              "question": "What is 4 * 3?",
+              "expected": "12.",
+              "answer": "12.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_5",
+              "question": "Calculate 7 + 6.",
+              "expected": "13.",
+              "answer": "13.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_6",
+              "question": "What is 19 - 8?",
+              "expected": "11.",
+              "answer": "11.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_7",
+              "question": "What is 7 - 10?",
+              "expected": "-3.",
+              "answer": "-7.",
+              "correct": false,
+              "finish": "stop"
+            }
+          ],
+          "top_k": 8,
+          "seed": 2231
+        }
+      ]
+    },
+    "lambda 2.2": {
+      "sha256": "97c8d3d9e59e6593fe91cc71c08fa902ba561b53977dfdc954846e4f681da5f0",
+      "numpy": "2.5.4",
+      "python": "3.14.6",
+      "evaluations": [
+        {
+          "correct": 23,
+          "total": 50,
+          "scores": {
+            "identity_unseen": {
+              "correct": 2,
+              "total": 5
+            },
+            "correction_unseen": {
+              "correct": 1,
+              "total": 4
+            },
+            "math_after_topics": {
+              "correct": 2,
+              "total": 6
+            },
+            "people_unseen": {
+              "correct": 3,
+              "total": 4
+            },
+            "copy_unseen": {
+              "correct": 3,
+              "total": 4
+            },
+            "missing_unseen": {
+              "correct": 0,
+              "total": 6
+            },
+            "location_unseen": {
+              "correct": 4,
+              "total": 5
+            },
+            "chat_unseen": {
+              "correct": 1,
+              "total": 5
+            },
+            "short_instructions": {
+              "correct": 3,
+              "total": 3
+            },
+            "single_math_0": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_1": {
+              "correct": 0,
+              "total": 1
+            },
+            "single_math_2": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_3": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_4": {
+              "correct": 0,
+              "total": 1
+            },
+            "single_math_5": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_6": {
+              "correct": 0,
+              "total": 1
+            },
+            "single_math_7": {
+              "correct": 0,
+              "total": 1
+            }
+          },
+          "outputs": [
+            {
+              "scenario": "identity_unseen",
+              "question": "Call me Talorin.",
+              "expected": "Hello, Talorin.",
+              "answer": "Hello!",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "Can you tell me my name?",
+              "expected": "Your name is Talorin.",
+              "answer": "Your name is Torin.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "My age is 29.",
+              "expected": "You are 29 years old.",
+              "answer": "You are 29 years old.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "so how old am I?",
+              "expected": "You are 29 years old.",
+              "answer": "You are 29 years old.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "What is my name and age?",
+              "expected": "Your name is Talorin and you are 29 years old.",
+              "answer": "You are 29 years old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "My name is Neravi. I am 34 years old.",
+              "expected": "Hello, Neravi. You are 34 years old.",
+              "answer": "Hello, Nvi. You are 34 years old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "Actually, my name is Soriven.",
+              "expected": "Your name is Soriven.",
+              "answer": "Your name is Sorive.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "and my name is?",
+              "expected": "Your name is Soriven.",
+              "answer": "Your name is Sorive.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "What is my age?",
+              "expected": "You are 34 years old.",
+              "answer": "You are 34 years old.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "hi",
+              "expected": "Hello! How can I help you?",
+              "answer": "Hello! How can I help you?",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "Calculate 9 * 4.",
+              "expected": "36.",
+              "answer": "36.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "What is a triangle?",
+              "expected": "A triangle is a polygon with three sides and three angles.",
+              "answer": "A triangle is a small domesticateing language used to write computer programs.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "what is 8x7?",
+              "expected": "56.",
+              "answer": "62.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "What is 36 / 6?",
+              "expected": "6.",
+              "answer": "1.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "What is 11 - 9?",
+              "expected": "2.",
+              "answer": "1.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "I am 24 years old.",
+              "expected": "You are 24 years old.",
+              "answer": "You are 24 years old.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "My brother is 37 years old.",
+              "expected": "Your brother is 37 years old.",
+              "answer": "Your brother is 37 years old.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "How old is my brother?",
+              "expected": "Your brother is 37 years old.",
+              "answer": "Your brother is 37 years old.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "How old am I?",
+              "expected": "You are 24 years old.",
+              "answer": "Your brother is 37 years old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "Repeat exactly: V9-nC4.",
+              "expected": "V9-nC4.",
+              "answer": "V9-nC4.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "What is 3 + 8?",
+              "expected": "11.",
+              "answer": "12.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "My favorite color is purple.",
+              "expected": "Your favorite color is purple.",
+              "answer": "Your favorite color is purple.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "What is my favorite color?",
+              "expected": "Your favorite color is purple.",
+              "answer": "Your favorite color is purple.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "How old am I?",
+              "expected": "You have not told me your age.",
+              "answer": "Hello, I can help with simple questions, basic math, and conversation.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "it is 32",
+              "expected": "You are 32 years old.",
+              "answer": "6.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "so how old am I?",
+              "expected": "You are 32 years old.",
+              "answer": "8 years old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "What is my name?",
+              "expected": "You have not told me your name.",
+              "answer": "Your name is old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "My name is Velmira.",
+              "expected": "Hello, Velmira.",
+              "answer": "Your name is Vira.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "what is my name",
+              "expected": "Your name is Velmira.",
+              "answer": "Your name is Vira.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "My red key is on the shelf.",
+              "expected": "Your key is on the shelf.",
+              "answer": "Your key is on the shelf.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "What is Python 3?",
+              "expected": "Python 3 is a programming language used to write computer programs.",
+              "answer": "Your key is on the shelf.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "Where is my key?",
+              "expected": "Your key is on the shelf.",
+              "answer": "Your key is on the shelf.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "I moved my key to the drawer.",
+              "expected": "Your key is in the drawer.",
+              "answer": "Your key is in the drawer.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "Where is my key now?",
+              "expected": "Your key is in the drawer.",
+              "answer": "Your key is in the drawer.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "Hey there.",
+              "expected": "Hello! How can I help you?",
+              "answer": "Hello! How can I help you?",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "What is your name?",
+              "expected": "I am Lambda, a small AI language model.",
+              "answer": "I am Lam, a small AI language model.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "What can you do?",
+              "expected": "I can help with simple questions, basic math, and conversation.",
+              "answer": "I can help with simple questions, basic maver, and convers, and conversation.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "Are you human?",
+              "expected": "No. I am an AI language model.",
+              "answer": "I can use can help with simple with help with simple with simple questionsation.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "Thank you.",
+              "expected": "You're welcome!",
+              "answer": "You have simple with with basic questionsation.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "short_instructions",
+              "question": "What color is grass?",
+              "expected": "Green.",
+              "answer": "Green.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "short_instructions",
+              "question": "Opposite of hot?",
+              "expected": "Cold.",
+              "answer": "Cold.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "short_instructions",
+              "question": "Greet me in English.",
+              "expected": "Hello!",
+              "answer": "Hello!",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_0",
+              "question": "5x6",
+              "expected": "30.",
+              "answer": "30.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_1",
+              "question": "What is 12 / 3?",
+              "expected": "4.",
+              "answer": "3.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_2",
+              "question": "What is 5 + 3?",
+              "expected": "8.",
+              "answer": "8.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_3",
+              "question": "What is 8 - 3?",
+              "expected": "5.",
+              "answer": "5.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_4",
+              "question": "What is 4 * 3?",
+              "expected": "12.",
+              "answer": "1.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_5",
+              "question": "Calculate 7 + 6.",
+              "expected": "13.",
+              "answer": "13.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_6",
+              "question": "What is 19 - 8?",
+              "expected": "11.",
+              "answer": "1.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_7",
+              "question": "What is 7 - 10?",
+              "expected": "-3.",
+              "answer": "-7.",
+              "correct": false,
+              "finish": "stop"
+            }
+          ],
+          "top_k": 1,
+          "seed": 2202
+        },
+        {
+          "correct": 20,
+          "total": 50,
+          "scores": {
+            "identity_unseen": {
+              "correct": 0,
+              "total": 5
+            },
+            "correction_unseen": {
+              "correct": 1,
+              "total": 4
+            },
+            "math_after_topics": {
+              "correct": 1,
+              "total": 6
+            },
+            "people_unseen": {
+              "correct": 3,
+              "total": 4
+            },
+            "copy_unseen": {
+              "correct": 3,
+              "total": 4
+            },
+            "missing_unseen": {
+              "correct": 0,
+              "total": 6
+            },
+            "location_unseen": {
+              "correct": 4,
+              "total": 5
+            },
+            "chat_unseen": {
+              "correct": 1,
+              "total": 5
+            },
+            "short_instructions": {
+              "correct": 3,
+              "total": 3
+            },
+            "single_math_0": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_1": {
+              "correct": 0,
+              "total": 1
+            },
+            "single_math_2": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_3": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_4": {
+              "correct": 0,
+              "total": 1
+            },
+            "single_math_5": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_6": {
+              "correct": 0,
+              "total": 1
+            },
+            "single_math_7": {
+              "correct": 0,
+              "total": 1
+            }
+          },
+          "outputs": [
+            {
+              "scenario": "identity_unseen",
+              "question": "Call me Talorin.",
+              "expected": "Hello, Talorin.",
+              "answer": "Hello! How can I help you?",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "Can you tell me my name?",
+              "expected": "Your name is Talorin.",
+              "answer": "You have not told me your name.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "My age is 29.",
+              "expected": "You are 29 years old.",
+              "answer": "Hello,",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "so how old am I?",
+              "expected": "You are 29 years old.",
+              "answer": "Hello, Torin the old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "What is my name and age?",
+              "expected": "Your name is Talorin and you are 29 years old.",
+              "answer": "Your name is 29 years old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "My name is Neravi. I am 34 years old.",
+              "expected": "Hello, Neravi. You are 34 years old.",
+              "answer": "Hello, Nvi. You are 34 years old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "Actually, my name is Soriven.",
+              "expected": "Your name is Soriven.",
+              "answer": "Your name is Sorive.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "and my name is?",
+              "expected": "Your name is Soriven.",
+              "answer": "Your name is Sorive.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "What is my age?",
+              "expected": "You are 34 years old.",
+              "answer": "You are 34 years old.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "hi",
+              "expected": "Hello! How can I help you?",
+              "answer": "Hello! How can I help you?",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "Calculate 9 * 4.",
+              "expected": "36.",
+              "answer": "32.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "What is a triangle?",
+              "expected": "A triangle is a polygon with three sides and three angles.",
+              "answer": "A triangle is a programmall domesticssated animal.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "what is 8x7?",
+              "expected": "56.",
+              "answer": "6.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "What is 36 / 6?",
+              "expected": "6.",
+              "answer": "1.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "What is 11 - 9?",
+              "expected": "2.",
+              "answer": "1.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "I am 24 years old.",
+              "expected": "You are 24 years old.",
+              "answer": "You are 24 years old.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "My brother is 37 years old.",
+              "expected": "Your brother is 37 years old.",
+              "answer": "Your brother is 37 years old.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "How old is my brother?",
+              "expected": "Your brother is 37 years old.",
+              "answer": "Your brother is 37 years old.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "How old am I?",
+              "expected": "You are 24 years old.",
+              "answer": "Your brother is 37 years old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "Repeat exactly: V9-nC4.",
+              "expected": "V9-nC4.",
+              "answer": "V9.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "What is 3 + 8?",
+              "expected": "11.",
+              "answer": "11.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "My favorite color is purple.",
+              "expected": "Your favorite color is purple.",
+              "answer": "Your favorite color is purple.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "What is my favorite color?",
+              "expected": "Your favorite color is purple.",
+              "answer": "Your favorite color is purple.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "How old am I?",
+              "expected": "You have not told me your age.",
+              "answer": "Hello, I can help with simple questions, basic maver and conversation.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "it is 32",
+              "expected": "You are 32 years old.",
+              "answer": "6.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "so how old am I?",
+              "expected": "You are 32 years old.",
+              "answer": "8.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "What is my name?",
+              "expected": "You have not told me your name.",
+              "answer": "Your name is I do you like to help you like to help with simple question comes come next.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "My name is Velmira.",
+              "expected": "Hello, Velmira.",
+              "answer": "You are 8 years old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "what is my name",
+              "expected": "Your name is Velmira.",
+              "answer": "You are old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "My red key is on the shelf.",
+              "expected": "Your key is on the shelf.",
+              "answer": "Your key is on the shelf.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "What is Python 3?",
+              "expected": "Python 3 is a programming language used to write computer programs.",
+              "answer": "Your key is on the shelf.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "Where is my key?",
+              "expected": "Your key is on the shelf.",
+              "answer": "Your key is on the shelf.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "I moved my key to the drawer.",
+              "expected": "Your key is in the drawer.",
+              "answer": "Your key is in the drawer.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "Where is my key now?",
+              "expected": "Your key is in the drawer.",
+              "answer": "Your key is in the drawer.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "Hey there.",
+              "expected": "Hello! How can I help you?",
+              "answer": "Hello! How can I help you?",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "What is your name?",
+              "expected": "I am Lambda, a small AI language model.",
+              "answer": "I am Lambddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+              "correct": false,
+              "finish": "limit"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "What can you do?",
+              "expected": "I can help with simple questions, basic math, and conversation.",
+              "answer": "What What What What.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "Are you human?",
+              "expected": "No. I am an AI language model.",
+              "answer": "What name is What is What is is What is What What What What.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "Thank you.",
+              "expected": "You're welcome!",
+              "answer": "What is What is What What What What What What What What What What What What What What What What What What What What What What What What What What ldhdhdhdhdhdhdhdhdhd",
+              "correct": false,
+              "finish": "limit"
+            },
+            {
+              "scenario": "short_instructions",
+              "question": "What color is grass?",
+              "expected": "Green.",
+              "answer": "Green.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "short_instructions",
+              "question": "Opposite of hot?",
+              "expected": "Cold.",
+              "answer": "Cold.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "short_instructions",
+              "question": "Greet me in English.",
+              "expected": "Hello!",
+              "answer": "Hello!",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_0",
+              "question": "5x6",
+              "expected": "30.",
+              "answer": "30.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_1",
+              "question": "What is 12 / 3?",
+              "expected": "4.",
+              "answer": "3.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_2",
+              "question": "What is 5 + 3?",
+              "expected": "8.",
+              "answer": "8.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_3",
+              "question": "What is 8 - 3?",
+              "expected": "5.",
+              "answer": "5.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_4",
+              "question": "What is 4 * 3?",
+              "expected": "12.",
+              "answer": "11.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_5",
+              "question": "Calculate 7 + 6.",
+              "expected": "13.",
+              "answer": "13.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_6",
+              "question": "What is 19 - 8?",
+              "expected": "11.",
+              "answer": "1.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_7",
+              "question": "What is 7 - 10?",
+              "expected": "-3.",
+              "answer": "-7.",
+              "correct": false,
+              "finish": "stop"
+            }
+          ],
+          "top_k": 8,
+          "seed": 2217
+        },
+        {
+          "correct": 25,
+          "total": 50,
+          "scores": {
+            "identity_unseen": {
+              "correct": 1,
+              "total": 5
+            },
+            "correction_unseen": {
+              "correct": 1,
+              "total": 4
+            },
+            "math_after_topics": {
+              "correct": 2,
+              "total": 6
+            },
+            "people_unseen": {
+              "correct": 4,
+              "total": 4
+            },
+            "copy_unseen": {
+              "correct": 3,
+              "total": 4
+            },
+            "missing_unseen": {
+              "correct": 1,
+              "total": 6
+            },
+            "location_unseen": {
+              "correct": 4,
+              "total": 5
+            },
+            "chat_unseen": {
+              "correct": 1,
+              "total": 5
+            },
+            "short_instructions": {
+              "correct": 3,
+              "total": 3
+            },
+            "single_math_0": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_1": {
+              "correct": 0,
+              "total": 1
+            },
+            "single_math_2": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_3": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_4": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_5": {
+              "correct": 1,
+              "total": 1
+            },
+            "single_math_6": {
+              "correct": 0,
+              "total": 1
+            },
+            "single_math_7": {
+              "correct": 0,
+              "total": 1
+            }
+          },
+          "outputs": [
+            {
+              "scenario": "identity_unseen",
+              "question": "Call me Talorin.",
+              "expected": "Hello, Talorin.",
+              "answer": "Hello!",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "Can you tell me my name?",
+              "expected": "Your name is Talorin.",
+              "answer": "You have not told me your name.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "My age is 29.",
+              "expected": "You are 29 years old.",
+              "answer": "You are 29 years old.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "so how old am I?",
+              "expected": "You are 29 years old.",
+              "answer": "Your name is",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "identity_unseen",
+              "question": "What is my name and age?",
+              "expected": "Your name is Talorin and you are 29 years old.",
+              "answer": "Your name is old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "My name is Neravi. I am 34 years old.",
+              "expected": "Hello, Neravi. You are 34 years old.",
+              "answer": "Hello, Nvi. You are 34 years old.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "Actually, my name is Soriven.",
+              "expected": "Your name is Soriven.",
+              "answer": "Your name is Sorive.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "and my name is?",
+              "expected": "Your name is Soriven.",
+              "answer": "Your name is Sorive.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "correction_unseen",
+              "question": "What is my age?",
+              "expected": "You are 34 years old.",
+              "answer": "You are 34 years old.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "hi",
+              "expected": "Hello! How can I help you?",
+              "answer": "Hello! How can I help you?",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "Calculate 9 * 4.",
+              "expected": "36.",
+              "answer": "36.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "What is a triangle?",
+              "expected": "A triangle is a polygon with three sides and three angles.",
+              "answer": "A triangle is a small domesticateing language used to write computer programs.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "what is 8x7?",
+              "expected": "56.",
+              "answer": "52.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "What is 36 / 6?",
+              "expected": "6.",
+              "answer": "1.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "math_after_topics",
+              "question": "What is 11 - 9?",
+              "expected": "2.",
+              "answer": "1.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "I am 24 years old.",
+              "expected": "You are 24 years old.",
+              "answer": "You are 24 years old.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "My brother is 37 years old.",
+              "expected": "Your brother is 37 years old.",
+              "answer": "Your brother is 37 years old.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "How old is my brother?",
+              "expected": "Your brother is 37 years old.",
+              "answer": "Your brother is 37 years old.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "people_unseen",
+              "question": "How old am I?",
+              "expected": "You are 24 years old.",
+              "answer": "You are 24 years old.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "Repeat exactly: V9-nC4.",
+              "expected": "V9-nC4.",
+              "answer": "V9-nC4.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "What is 3 + 8?",
+              "expected": "11.",
+              "answer": "12.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "My favorite color is purple.",
+              "expected": "Your favorite color is purple.",
+              "answer": "Your favorite color is purple.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "copy_unseen",
+              "question": "What is my favorite color?",
+              "expected": "Your favorite color is purple.",
+              "answer": "Your favorite color is purple.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "How old am I?",
+              "expected": "You have not told me your age.",
+              "answer": "Hello, I can help with simple questions, basic maver and conversation.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "it is 32",
+              "expected": "You are 32 years old.",
+              "answer": "6.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "so how old am I?",
+              "expected": "You are 32 years old.",
+              "answer": "8.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "What is my name?",
+              "expected": "You have not told me your name.",
+              "answer": "You have not told me your name.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "My name is Velmira.",
+              "expected": "Hello, Velmira.",
+              "answer": "Hello, Vira.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "missing_unseen",
+              "question": "what is my name",
+              "expected": "Your name is Velmira.",
+              "answer": "Your name is Vra.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "My red key is on the shelf.",
+              "expected": "Your key is on the shelf.",
+              "answer": "Your key is on the shelf.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "What is Python 3?",
+              "expected": "Python 3 is a programming language used to write computer programs.",
+              "answer": "Your key is on the shelf.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "Where is my key?",
+              "expected": "Your key is on the shelf.",
+              "answer": "Your key is on the shelf.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "I moved my key to the drawer.",
+              "expected": "Your key is in the drawer.",
+              "answer": "Your key is in the drawer.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "location_unseen",
+              "question": "Where is my key now?",
+              "expected": "Your key is in the drawer.",
+              "answer": "Your key is in the drawer.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "Hey there.",
+              "expected": "Hello! How can I help you?",
+              "answer": "Hello! How can I help you?",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "What is your name?",
+              "expected": "I am Lambda, a small AI language model.",
+              "answer": "I am Lamateda, a, a small AI language model.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "What can you do?",
+              "expected": "I can help with simple questions, basic math, and conversation.",
+              "answer": "A do not told me your name.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "Are you human?",
+              "expected": "No. I am an AI language model.",
+              "answer": "You have not told me your age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "chat_unseen",
+              "question": "Thank you.",
+              "expected": "You're welcome!",
+              "answer": "You have not told me your age.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "short_instructions",
+              "question": "What color is grass?",
+              "expected": "Green.",
+              "answer": "Green.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "short_instructions",
+              "question": "Opposite of hot?",
+              "expected": "Cold.",
+              "answer": "Cold.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "short_instructions",
+              "question": "Greet me in English.",
+              "expected": "Hello!",
+              "answer": "Hello!",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_0",
+              "question": "5x6",
+              "expected": "30.",
+              "answer": "30.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_1",
+              "question": "What is 12 / 3?",
+              "expected": "4.",
+              "answer": "9.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_2",
+              "question": "What is 5 + 3?",
+              "expected": "8.",
+              "answer": "8.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_3",
+              "question": "What is 8 - 3?",
+              "expected": "5.",
+              "answer": "5.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_4",
+              "question": "What is 4 * 3?",
+              "expected": "12.",
+              "answer": "12.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_5",
+              "question": "Calculate 7 + 6.",
+              "expected": "13.",
+              "answer": "13.",
+              "correct": true,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_6",
+              "question": "What is 19 - 8?",
+              "expected": "11.",
+              "answer": "2.",
+              "correct": false,
+              "finish": "stop"
+            },
+            {
+              "scenario": "single_math_7",
+              "question": "What is 7 - 10?",
+              "expected": "-3.",
+              "answer": "-7.",
+              "correct": false,
+              "finish": "stop"
+            }
+          ],
+          "top_k": 8,
+          "seed": 2231
+        }
+      ],
+      "published_sha256": "0f881ba88982dcd3db50067e181b15c0cf7812ce0dd0a90b1861b6ff62c7f165",
+      "publication_note": "Inference arrays verified bit-for-bit against the evaluated candidate; release metadata adds minimum app version and checkpoint provenance."
+    }
+  },
+  "development": {
+    "correct": 30,
+    "total": 38,
+    "scores": {
+      "chat": {
+        "correct": 1,
+        "total": 4
+      },
+      "identity": {
+        "correct": 4,
+        "total": 5
+      },
+      "correction": {
+        "correct": 4,
+        "total": 4
+      },
+      "math": {
+        "correct": 3,
+        "total": 5
+      },
+      "missing": {
+        "correct": 4,
+        "total": 4
+      },
+      "people": {
+        "correct": 4,
+        "total": 4
+      },
+      "copy": {
+        "correct": 3,
+        "total": 4
+      },
+      "location": {
+        "correct": 4,
+        "total": 5
+      },
+      "instruction": {
+        "correct": 3,
+        "total": 3
+      }
+    },
+    "outputs": [
+      {
+        "scenario": "chat",
+        "question": "hello",
+        "expected": "Hello! How can I help you?",
+        "answer": "Hello! How can I help you?",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "chat",
+        "question": "who are you",
+        "expected": "I am Lambda, a small AI language model.",
+        "answer": "I help with simple questions, basic math, and convers, basic maversation.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "chat",
+        "question": "What can you help me with?",
+        "expected": "I can help with simple questions, basic math, and conversation.",
+        "answer": "Hello! How can help with simple questions, and conversation.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "chat",
+        "question": "How are you?",
+        "expected": "I am ready to help. What would you like to discuss?",
+        "answer": "Your ?",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "identity",
+        "question": "My name is Janek.",
+        "expected": "Hello, Janek.",
+        "answer": "Hello, Janek.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "identity",
+        "question": "What is my name?",
+        "expected": "Your name is Janek.",
+        "answer": "Your name is Janek.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "identity",
+        "question": "I am 15 years old.",
+        "expected": "You are 15 years old.",
+        "answer": "You are 15 years old.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "identity",
+        "question": "How old am I?",
+        "expected": "You are 15 years old.",
+        "answer": "You are 15 years old.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "identity",
+        "question": "What is my name and age?",
+        "expected": "Your name is Janek and you are 15 years old.",
+        "answer": "You are 15 years old.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "correction",
+        "question": "My name is Janek. I am 15 years old.",
+        "expected": "Hello, Janek. You are 15 years old.",
+        "answer": "Hello, Janek. You are 15 years old.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "correction",
+        "question": "Actually, my name is Nina.",
+        "expected": "Your name is Nina.",
+        "answer": "Your name is Nina.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "correction",
+        "question": "What is my name?",
+        "expected": "Your name is Nina.",
+        "answer": "Your name is Nina.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "correction",
+        "question": "What is my age?",
+        "expected": "You are 15 years old.",
+        "answer": "You are 15 years old.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "math",
+        "question": "hello",
+        "expected": "Hello! How can I help you?",
+        "answer": "Hello! How can I help you?",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "math",
+        "question": "what is 5x6?",
+        "expected": "30.",
+        "answer": "30.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "math",
+        "question": "What is 12 / 3?",
+        "expected": "4.",
+        "answer": "1.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "math",
+        "question": "What is Python 3?",
+        "expected": "Python 3 is a programming language used to write computer programs.",
+        "answer": "1.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "math",
+        "question": "What is 7 - 10?",
+        "expected": "-3.",
+        "answer": "3.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "missing",
+        "question": "What is my name?",
+        "expected": "You have not told me your name.",
+        "answer": "You have not told me your name.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "missing",
+        "question": "How old am I?",
+        "expected": "You have not told me your age.",
+        "answer": "You have not told me your age.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "missing",
+        "question": "My name is Janek.",
+        "expected": "Hello, Janek.",
+        "answer": "Hello, Janek.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "missing",
+        "question": "What is my name?",
+        "expected": "Your name is Janek.",
+        "answer": "Your name is Janek.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "people",
+        "question": "I am 15 years old.",
+        "expected": "You are 15 years old.",
+        "answer": "You are 15 years old.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "people",
+        "question": "My brother is 18 years old.",
+        "expected": "Your brother is 18 years old.",
+        "answer": "Your brother is 18 years old.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "people",
+        "question": "How old am I?",
+        "expected": "You are 15 years old.",
+        "answer": "You are 15 years old.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "people",
+        "question": "How old is my brother?",
+        "expected": "Your brother is 18 years old.",
+        "answer": "Your brother is 18 years old.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "copy",
+        "question": "Repeat exactly: Q7-xB2.",
+        "expected": "Q7-xB2.",
+        "answer": "Q7-xB2.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "copy",
+        "question": "What is 2 + 2?",
+        "expected": "4.",
+        "answer": "10.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "copy",
+        "question": "My favorite color is green.",
+        "expected": "Your favorite color is green.",
+        "answer": "Your favorite color is green.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "copy",
+        "question": "What is my favorite color?",
+        "expected": "Your favorite color is green.",
+        "answer": "Your favorite color is green.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "location",
+        "question": "My blue book is on the desk.",
+        "expected": "Your book is on the desk.",
+        "answer": "Your book is on the desk.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "location",
+        "question": "What is a triangle?",
+        "expected": "A triangle is a polygon with three sides and three angles.",
+        "answer": "Your book is on the desk.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "location",
+        "question": "Where is my book?",
+        "expected": "Your book is on the desk.",
+        "answer": "Your book is on the desk.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "location",
+        "question": "I moved my book to the bag.",
+        "expected": "Your book is in the bag.",
+        "answer": "Your book is in the bag.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "location",
+        "question": "Where is my book now?",
+        "expected": "Your book is in the bag.",
+        "answer": "Your book is in the bag.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "instruction",
+        "question": "Answer with one word: what color is grass?",
+        "expected": "Green.",
+        "answer": "Green.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "instruction",
+        "question": "What is the opposite of hot?",
+        "expected": "Cold.",
+        "answer": "Cold.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "instruction",
+        "question": "Say hello in English.",
+        "expected": "Hello!",
+        "answer": "Hello!",
+        "correct": true,
+        "finish": "stop"
+      }
+    ],
+    "top_k": 1,
+    "seed": 2202,
+    "step": 1400
+  },
+  "development_baseline": {
+    "correct": 2,
+    "total": 38,
+    "scores": {
+      "chat": {
+        "correct": 0,
+        "total": 4
+      },
+      "identity": {
+        "correct": 1,
+        "total": 5
+      },
+      "correction": {
+        "correct": 0,
+        "total": 4
+      },
+      "math": {
+        "correct": 0,
+        "total": 5
+      },
+      "missing": {
+        "correct": 0,
+        "total": 4
+      },
+      "people": {
+        "correct": 1,
+        "total": 4
+      },
+      "copy": {
+        "correct": 0,
+        "total": 4
+      },
+      "location": {
+        "correct": 0,
+        "total": 5
+      },
+      "instruction": {
+        "correct": 0,
+        "total": 3
+      }
+    },
+    "outputs": [
+      {
+        "scenario": "chat",
+        "question": "hello",
+        "expected": "Hello! How can I help you?",
+        "answer": "Hello! What would you like to I help you?",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "chat",
+        "question": "who are you",
+        "expected": "I am Lambda, a small AI language model.",
+        "answer": "who can I help you?like to?? you?like to?know?",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "chat",
+        "question": "What can you help me with?",
+        "expected": "I can help with simple questions, basic math, and conversation.",
+        "answer": "You's and your cats. What you like to know.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "chat",
+        "question": "How are you?",
+        "expected": "I am ready to help. What would you like to discuss?",
+        "answer": "You are have not told me your age.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "identity",
+        "question": "My name is Janek.",
+        "expected": "Hello, Janek.",
+        "answer": "Hello, Jane.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "identity",
+        "question": "What is my name?",
+        "expected": "Your name is Janek.",
+        "answer": "Your name is Jane.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "identity",
+        "question": "I am 15 years old.",
+        "expected": "You are 15 years old.",
+        "answer": "You are 5 years old.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "identity",
+        "question": "How old am I?",
+        "expected": "You are 15 years old.",
+        "answer": "You are 15 years old.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "identity",
+        "question": "What is my name and age?",
+        "expected": "Your name is Janek and you are 15 years old.",
+        "answer": "You are are old.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "correction",
+        "question": "My name is Janek. I am 15 years old.",
+        "expected": "Hello, Janek. You are 15 years old.",
+        "answer": "You are 5 years old.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "correction",
+        "question": "Actually, my name is Nina.",
+        "expected": "Your name is Nina.",
+        "answer": "Your name is Jan years old.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "correction",
+        "question": "What is my name?",
+        "expected": "Your name is Nina.",
+        "answer": "You are 15 years old.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "correction",
+        "question": "What is my age?",
+        "expected": "You are 15 years old.",
+        "answer": "You are old.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "math",
+        "question": "hello",
+        "expected": "Hello! How can I help you?",
+        "answer": "Hello! What would you like to I help you?",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "math",
+        "question": "what is 5x6?",
+        "expected": "30.",
+        "answer": "You have not told me to cats. What would you not told me about told me your age.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "math",
+        "question": "What is 12 / 3?",
+        "expected": "4.",
+        "answer": "You have your age.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "math",
+        "question": "What is Python 3?",
+        "expected": "Python 3 is a programming language used to write computer programs.",
+        "answer": "You told me me your age.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "math",
+        "question": "What is 7 - 10?",
+        "expected": "-3.",
+        "answer": "You age.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "missing",
+        "question": "What is my name?",
+        "expected": "You have not told me your name.",
+        "answer": "Hello, you like you.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "missing",
+        "question": "How old am I?",
+        "expected": "You have not told me your age.",
+        "answer": "Your name is Tara are Tara stores data that stores data that runs name is Tara.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "missing",
+        "question": "My name is Janek.",
+        "expected": "Hello, Janek.",
+        "answer": "An Tara animal and many other plants.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "missing",
+        "question": "What is my name?",
+        "expected": "Your name is Janek.",
+        "answer": "A is water.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "people",
+        "question": "I am 15 years old.",
+        "expected": "You are 15 years old.",
+        "answer": "old oldoldoldold  old old old  old oldoldold  old are 15 years old.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "people",
+        "question": "My brother is 18 years old.",
+        "expected": "Your brother is 18 years old.",
+        "answer": "old.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "people",
+        "question": "How old am I?",
+        "expected": "You are 15 years old.",
+        "answer": "You are 15 years old.",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "scenario": "people",
+        "question": "How old is my brother?",
+        "expected": "Your brother is 18 years old.",
+        "answer": "You are are old.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "copy",
+        "question": "Repeat exactly: Q7-xB2.",
+        "expected": "Q7-xB2.",
+        "answer": "Q7.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "copy",
+        "question": "What is 2 + 2?",
+        "expected": "4.",
+        "answer": "The a is Zack   Zack other matter me combines quantities to another product.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "copy",
+        "question": "My favorite color is green.",
+        "expected": "Your favorite color is green.",
+        "answer": "The book Zack book someone book is now in the green.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "copy",
+        "question": "What is my favorite color?",
+        "expected": "Your favorite color is green.",
+        "answer": "A is now green.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "location",
+        "question": "My blue book is on the desk.",
+        "expected": "Your book is on the desk.",
+        "answer": "A on the on separate.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "location",
+        "question": "What is a triangle?",
+        "expected": "A triangle is a polygon with three sides and three angles.",
+        "answer": "A triangle on separate triangle is a triangle a triangle is a triangle ona.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "location",
+        "question": "Where is my book?",
+        "expected": "Your book is on the desk.",
+        "answer": "A triangle is a triangle with a triangle ona triangle a triangle a triangle triangle triangle triangle triangle triangle triangle a triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle is triangle is a triangle triangle",
+        "correct": false,
+        "finish": "limit"
+      },
+      {
+        "scenario": "location",
+        "question": "I moved my book to the bag.",
+        "expected": "Your book is in the bag.",
+        "answer": "A triangle triangle triangle a triangle triangle triangle a a triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle is triangle triangle triangle triangle triangle triangle triangle",
+        "correct": false,
+        "finish": "limit"
+      },
+      {
+        "scenario": "location",
+        "question": "Where is my book now?",
+        "expected": "Your book is in the bag.",
+        "answer": "A triangle triangle triangle is a triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle is triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle",
+        "correct": false,
+        "finish": "limit"
+      },
+      {
+        "scenario": "instruction",
+        "question": "Answer with one word: what color is grass?",
+        "expected": "Green.",
+        "answer": "The gra is processed by grad an in the grad an image, or a gold.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "instruction",
+        "question": "What is the opposite of hot?",
+        "expected": "Cold.",
+        "answer": "An grad or grad an insect.",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "scenario": "instruction",
+        "question": "Say hello in English.",
+        "expected": "Hello!",
+        "answer": "You is a other question gold.",
+        "correct": false,
+        "finish": "stop"
+      }
+    ],
+    "top_k": 1,
+    "seed": 2202
+  },
+  "numerics": {
+    "inputs": [
+      {
+        "tokens": 7,
+        "dtype": "float32",
+        "finite": true,
+        "delta": 1.1363286539500805e-07,
+        "warnings": []
+      },
+      {
+        "tokens": 20,
+        "dtype": "float32",
+        "finite": true,
+        "delta": 6.911555295863181e-07,
+        "warnings": []
+      },
+      {
+        "tokens": 38,
+        "dtype": "float32",
+        "finite": true,
+        "delta": 5.233128088644179e-07,
+        "warnings": []
+      },
+      {
+        "tokens": 68,
+        "dtype": "float32",
+        "finite": true,
+        "delta": 7.493875490149904e-07,
+        "warnings": []
+      },
+      {
+        "tokens": 88,
+        "dtype": "float32",
+        "finite": true,
+        "delta": 7.493875490149904e-07,
+        "warnings": []
+      },
+      {
+        "tokens": 108,
+        "dtype": "float32",
+        "finite": true,
+        "delta": 7.493875490149904e-07,
+        "warnings": []
+      },
+      {
+        "tokens": 128,
+        "dtype": "float32",
+        "finite": true,
+        "delta": 7.493875490149904e-07,
+        "warnings": []
+      }
+    ],
+    "responses": [
+      {
+        "q": "hello",
+        "answer": "Hello",
+        "warnings": []
+      },
+      {
+        "q": "what is 5x6?",
+        "answer": "heo6?",
+        "warnings": []
+      },
+      {
+        "q": "What is 5 * 6?",
+        "answer": "Your it into a computer is 26.",
+        "warnings": []
+      },
+      {
+        "q": "What is 12 / 3?",
+        "answer": "combines equal its axis.",
+        "warnings": []
+      },
+      {
+        "q": "What is Python 3?",
+        "answer": "on its axis.",
+        "warnings": []
+      },
+      {
+        "q": "My name is Marek.",
+        "answer": "Your its of axis.",
+        "warnings": []
+      },
+      {
+        "q": "What is my name?",
+        "answer": "Your is Your its Your text.",
+        "warnings": []
+      }
+    ]
+  }
+}

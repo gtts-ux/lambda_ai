@@ -1,5 +1,6 @@
 """Read-only Transformer inference in NumPy. No PyTorch dependency in the app."""
 import json
+import math
 from pathlib import Path
 from time import perf_counter
 import numpy as np
@@ -40,7 +41,8 @@ def norm(x, w, b):
 
 
 def gelu(x):
-    return 0.5*x*(1+np.tanh(np.sqrt(2/np.pi)*(x+0.044715*x*x*x)))
+    # Python scalars preserve float32 arrays under NumPy 2 scalar promotion.
+    return 0.5*x*(1+np.tanh(math.sqrt(2/math.pi)*(x+0.044715*x*x*x)))
 
 
 class TransformerEngine:
@@ -118,7 +120,7 @@ class TransformerEngine:
                 k = np.concatenate((cache[i][0], k), axis=1)
                 v = np.concatenate((cache[i][1], v), axis=1)
             next_cache.append((k, v))
-            scores = (q @ k.transpose(0, 2, 1)) / np.sqrt(self.embedding//self.heads)
+            scores = (q @ k.transpose(0, 2, 1)) / math.sqrt(self.embedding//self.heads)
             mask = np.arange(k.shape[1])[None, :] > (start+np.arange(len(ids)))[:, None]
             scores = np.where(mask[None, :, :], -np.inf, scores)
             scores -= scores.max(axis=-1, keepdims=True)

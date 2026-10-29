@@ -1,0 +1,31 @@
+{
+  "context": 512,
+  "width": 384,
+  "layers": 6,
+  "heads": 6,
+  "vocabulary": 2048,
+  "format": "lambda-ai-pointer-transformer-v4",
+  "name": "lambda 2.2",
+  "model_id": "lambda-2.2",
+  "language": "en",
+  "training_step": 24650,
+  "data_sha256": "22253dfef075d4ffef12ec423bcd1e87455b43dc3294344cbb03c11bbcb3ac10",
+  "initialization": "own lambda 2.1; all layers unfrozen for mixed multi-turn training",
+  "min_app_version": "0.4.1",
+  "pointer_width": 128,
+  "training_lineage": {
+    "source_checkpoint_sha256": "441052409c7104b85d72b48abf7028ff6e71b35737397c2e50edbabe43a2a5bb",
+    "source_step": 23250,
+    "experiment": "release_22",
+    "selected_checkpoint_sha256": "1b03d63f5ee48fc8ce6f5a6a3188677a25f2a942972b17e8a6b1a52e6b296907",
+    "additional_steps": 1400,
+    "training_data_sha256": "22253dfef075d4ffef12ec423bcd1e87455b43dc3294344cbb03c11bbcb3ac10"
+  },
+  "bytes": 43902506,
+  "sha256": "0f881ba88982dcd3db50067e181b15c0cf7812ce0dd0a90b1861b6ff62c7f165",
+  "parameters": 11808385,
+  "status": "owner-authorized experimental release even if quality expectations are not met",
+  "owner_authorization": "2026-10-29: publish even if it does not exceed expectations",
+  "meets_initial_70_percent_target": false,
+  "validation": "Post-selection multi-turn tests in greedy and two default-sampling seeds; see lambda-2.2-benchmark.json."
+}

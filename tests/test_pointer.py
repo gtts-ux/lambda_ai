@@ -33,6 +33,7 @@ class PointerTests(unittest.TestCase):
     def test_probabilities_causality_and_incremental_cache(self):
         ids=[BOS,USER,90,91,92,END,ASSISTANT,90]
         full,_=self.engine.logits(ids)
+        self.assertEqual(full.dtype,np.float32)
         np.testing.assert_allclose(np.exp(full).sum(axis=-1),1,atol=2e-6)
         changed,_=self.engine.logits(ids[:-1]+[93])
         np.testing.assert_allclose(full[:-1],changed[:-1],atol=0,rtol=0)

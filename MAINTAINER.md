@@ -3,7 +3,8 @@
 Repository: https://github.com/gtts-ux/lambda_ai
 
 The approved model names are **lambda 1.0** (`lambda-1.0`),
-**lambda 1.5** (`lambda-1.5`), **lambda 1.6** (`lambda-1.6`), and **lambda 2** (`lambda-2`).
+**lambda 1.5** (`lambda-1.5`), **lambda 1.6** (`lambda-1.6`), **lambda 2** (`lambda-2`),
+**lambda 2.1** (`lambda-2.1`), and **lambda 2.2** (`lambda-2.2`).
 The owner will name future models. **Ask the owner if a new model is requested
 without a name; do not invent or automatically increment model names.**
 
@@ -68,3 +69,8 @@ despite failed automatic quality gates; retain that fact and the raw benchmark.
 See models/lambda-2.1.md for selection, provenance and measured limitations.
 Do not publish training data, optimizer state or the frozen training teacher.
 Keep older models, the default selection and shared quota intact.
+
+Lambda 2.2 is the owner-named conversation repair (2026-10-29), v4/app >=0.4.1.
+It preserves earlier releases. The app's float32 fix must be installed before
+claiming the numerical warning repair. Keep the measured comparisons and limitations
+in models/lambda-2.2.md; do not replace them with a general intelligence claim.

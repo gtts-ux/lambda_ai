@@ -1,0 +1,1200 @@
+{
+  "sessions": [
+    {
+      "mode": "app_defaults",
+      "name": "basics",
+      "top_k": 8,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "hello",
+          "answer": "Hello! How can I help you?",
+          "old_answer": "Hello",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        },
+        {
+          "question": "who are you",
+          "answer": "I help with simple questions, basic math, and three angles.",
+          "old_answer": "Hello.",
+          "seed": 7301,
+          "finish_reason": "stop",
+          "prior_turns_included": 1,
+          "prior_turns_available": 1
+        },
+        {
+          "question": "What can you help me with?",
+          "answer": "I can use, basic ma, and conversation.",
+          "old_answer": "Your name is Rose.",
+          "seed": 7302,
+          "finish_reason": "stop",
+          "prior_turns_included": 2,
+          "prior_turns_available": 2
+        },
+        {
+          "question": "How are you?",
+          "answer": "I can use used to help questions, mavers, and convers, and conss conversation.",
+          "old_answer": "You have not told me your age.",
+          "seed": 7303,
+          "finish_reason": "stop",
+          "prior_turns_included": 3,
+          "prior_turns_available": 3
+        }
+      ]
+    },
+    {
+      "mode": "app_defaults",
+      "name": "name_and_age",
+      "top_k": 8,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "My name is Janek.",
+          "answer": "Hello, Janek.",
+          "old_answer": "Hello, Jebe.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        },
+        {
+          "question": "What is my name?",
+          "answer": "Your name is Janek.",
+          "old_answer": "Your name is Je.",
+          "seed": 7301,
+          "finish_reason": "stop",
+          "prior_turns_included": 1,
+          "prior_turns_available": 1
+        },
+        {
+          "question": "I am 15 years old.",
+          "answer": "You are 15 years old.",
+          "old_answer": "You are 15 years old.",
+          "seed": 7302,
+          "finish_reason": "stop",
+          "prior_turns_included": 2,
+          "prior_turns_available": 2
+        },
+        {
+          "question": "How old am I?",
+          "answer": "You are 15 years old.",
+          "old_answer": "You are 15 years old.",
+          "seed": 7303,
+          "finish_reason": "stop",
+          "prior_turns_included": 3,
+          "prior_turns_available": 3
+        },
+        {
+          "question": "What is my name and age?",
+          "answer": "You are 15 years old.",
+          "old_answer": "You are are old.",
+          "seed": 7304,
+          "finish_reason": "stop",
+          "prior_turns_included": 4,
+          "prior_turns_available": 4
+        }
+      ]
+    },
+    {
+      "mode": "app_defaults",
+      "name": "correction",
+      "top_k": 8,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "My name is Maya. I am 21 years old.",
+          "answer": "Hello, Maya. You are 21 years old.",
+          "old_answer": "Hello, Maya Maya Maya Maya Maya Maya Maya is Maya Maya Maya Maya Maya in its gaseous state.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        },
+        {
+          "question": "Actually, my name is Nina.",
+          "answer": "Your name is Nina.",
+          "old_answer": "Your favorite color is now model.",
+          "seed": 7301,
+          "finish_reason": "stop",
+          "prior_turns_included": 1,
+          "prior_turns_available": 1
+        },
+        {
+          "question": "What is my name?",
+          "answer": "Your name is Nina.",
+          "old_answer": "Your is water is Maya Maya Maya water in Maya Maya Maya its Maya Maya Maya.",
+          "seed": 7302,
+          "finish_reason": "stop",
+          "prior_turns_included": 2,
+          "prior_turns_available": 2
+        },
+        {
+          "question": "What is my age?",
+          "answer": "You are 21 years old.",
+          "old_answer": "You Maya.",
+          "seed": 7303,
+          "finish_reason": "stop",
+          "prior_turns_included": 3,
+          "prior_turns_available": 3
+        }
+      ]
+    },
+    {
+      "mode": "app_defaults",
+      "name": "math_and_topic",
+      "top_k": 8,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "hello",
+          "answer": "Hello! How can I help you?",
+          "old_answer": "Hello",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        },
+        {
+          "question": "what is 5x6?",
+          "answer": "50.",
+          "old_answer": "heo6?",
+          "seed": 7301,
+          "finish_reason": "stop",
+          "prior_turns_included": 1,
+          "prior_turns_available": 1
+        },
+        {
+          "question": "What is 5 * 6?",
+          "answer": "30.",
+          "old_answer": "Your it into a computer is 26.",
+          "seed": 7302,
+          "finish_reason": "stop",
+          "prior_turns_included": 2,
+          "prior_turns_available": 2
+        },
+        {
+          "question": "What is 12 / 3?",
+          "answer": "10.",
+          "old_answer": "combines equal its axis.",
+          "seed": 7303,
+          "finish_reason": "stop",
+          "prior_turns_included": 3,
+          "prior_turns_available": 3
+        },
+        {
+          "question": "What is Python 3?",
+          "answer": "1.",
+          "old_answer": "on its axis.",
+          "seed": 7304,
+          "finish_reason": "stop",
+          "prior_turns_included": 4,
+          "prior_turns_available": 4
+        },
+        {
+          "question": "My name is Marek.",
+          "answer": "Hello, Mk.",
+          "old_answer": "Your its of axis.",
+          "seed": 7305,
+          "finish_reason": "stop",
+          "prior_turns_included": 5,
+          "prior_turns_available": 5
+        },
+        {
+          "question": "What is my name?",
+          "answer": "Your name is Mk.",
+          "old_answer": "Your is Your its Your text.",
+          "seed": 7306,
+          "finish_reason": "stop",
+          "prior_turns_included": 6,
+          "prior_turns_available": 6
+        }
+      ]
+    },
+    {
+      "mode": "app_defaults",
+      "name": "location_after_distraction",
+      "top_k": 8,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "My blue book is on the desk.",
+          "answer": "Your book is on the desk.",
+          "old_answer": "A on the on separate.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        },
+        {
+          "question": "What is a triangle?",
+          "answer": "Your book is on the desk.",
+          "old_answer": "Your name is onon separate.",
+          "seed": 7301,
+          "finish_reason": "stop",
+          "prior_turns_included": 1,
+          "prior_turns_available": 1
+        },
+        {
+          "question": "Where is my book?",
+          "answer": "Your book is on the desk.",
+          "old_answer": "Your name is onononononthe is onononononon the book.",
+          "seed": 7302,
+          "finish_reason": "stop",
+          "prior_turns_included": 2,
+          "prior_turns_available": 2
+        },
+        {
+          "question": "I moved my book to the bag.",
+          "answer": "Your book is in the bag.",
+          "old_answer": "Your name is on name the name is ononononononononon the is separate.",
+          "seed": 7303,
+          "finish_reason": "stop",
+          "prior_turns_included": 3,
+          "prior_turns_available": 3
+        },
+        {
+          "question": "Where is my book now?",
+          "answer": "Your book is in the bag.",
+          "old_answer": "Your onon name is onon separate.",
+          "seed": 7304,
+          "finish_reason": "stop",
+          "prior_turns_included": 4,
+          "prior_turns_available": 4
+        }
+      ]
+    },
+    {
+      "mode": "app_defaults",
+      "name": "unknown_then_known",
+      "top_k": 8,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "What is my name?",
+          "answer": "You have not told me your name.",
+          "old_answer": "Hello, and Explain.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        },
+        {
+          "question": "How old am I?",
+          "answer": "You have not told me your age.",
+          "old_answer": "Your name is a A name is The.",
+          "seed": 7301,
+          "finish_reason": "stop",
+          "prior_turns_included": 1,
+          "prior_turns_available": 1
+        },
+        {
+          "question": "My name is Lena.",
+          "answer": "Hello, Len.",
+          "old_answer": "A and your favorite color is Explain.",
+          "seed": 7302,
+          "finish_reason": "stop",
+          "prior_turns_included": 2,
+          "prior_turns_available": 2
+        },
+        {
+          "question": "What is my name?",
+          "answer": "Your name is Len.",
+          "old_answer": "Your name is and your favorite color is and your favorite color is is and your color is and your favorite color color is favorite color is favorite is is favorite is and is favorite favorite and favorite favorite favorite and favorite favorite favorite favorite and and color favorite favorite color color color color color color is color color is",
+          "seed": 7303,
+          "finish_reason": "stop",
+          "prior_turns_included": 3,
+          "prior_turns_available": 3
+        }
+      ]
+    },
+    {
+      "mode": "app_defaults",
+      "name": "two_people",
+      "top_k": 8,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "I am 15 years old.",
+          "answer": "You are 15 years old.",
+          "old_answer": "old oldoldold old old old old  old  oldold  old  oldoldold  of  old.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        },
+        {
+          "question": "My brother is 18 years old.",
+          "answer": "Your brother is 15 years old.",
+          "old_answer": "old.",
+          "seed": 7301,
+          "finish_reason": "stop",
+          "prior_turns_included": 1,
+          "prior_turns_available": 1
+        },
+        {
+          "question": "How old am I?",
+          "answer": "You are 15 years old.",
+          "old_answer": "You are 15 years old.",
+          "seed": 7302,
+          "finish_reason": "stop",
+          "prior_turns_included": 2,
+          "prior_turns_available": 2
+        },
+        {
+          "question": "How old is my brother?",
+          "answer": "Your brother is 15 years old.",
+          "old_answer": "You are old.",
+          "seed": 7303,
+          "finish_reason": "stop",
+          "prior_turns_included": 3,
+          "prior_turns_available": 3
+        }
+      ]
+    },
+    {
+      "mode": "app_defaults",
+      "name": "copy_then_change",
+      "top_k": 8,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "Repeat exactly: Q7-xB2.",
+          "answer": "Q7-xB.",
+          "old_answer": "Q7.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        },
+        {
+          "question": "What is 2 + 2?",
+          "answer": "9.",
+          "old_answer": "The a is Zack   Zack other matter me combines quantities to another product.",
+          "seed": 7301,
+          "finish_reason": "stop",
+          "prior_turns_included": 1,
+          "prior_turns_available": 1
+        },
+        {
+          "question": "My favorite color is green.",
+          "answer": "Your favorite color is green.",
+          "old_answer": "The book the product is now green.",
+          "seed": 7302,
+          "finish_reason": "stop",
+          "prior_turns_included": 2,
+          "prior_turns_available": 2
+        },
+        {
+          "question": "What is my favorite color?",
+          "answer": "Your favorite color is green.",
+          "old_answer": "A green.",
+          "seed": 7303,
+          "finish_reason": "stop",
+          "prior_turns_included": 3,
+          "prior_turns_available": 3
+        }
+      ]
+    },
+    {
+      "mode": "app_defaults",
+      "name": "simple_instruction",
+      "top_k": 8,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "Answer with one word: what color is grass?",
+          "answer": "Green.",
+          "old_answer": "A color is a A group of connected group of railway vehicles that move.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        },
+        {
+          "question": "What is the opposite of hot?",
+          "answer": "Green.",
+          "old_answer": "The is now is now and their words.",
+          "seed": 7301,
+          "finish_reason": "stop",
+          "prior_turns_included": 1,
+          "prior_turns_available": 1
+        },
+        {
+          "question": "Say hello in English.",
+          "answer": "Hello!",
+          "old_answer": "SA is a yellow for object an object or group bedroom.",
+          "seed": 7302,
+          "finish_reason": "stop",
+          "prior_turns_included": 2,
+          "prior_turns_available": 2
+        }
+      ]
+    },
+    {
+      "mode": "app_defaults",
+      "name": "fresh_0",
+      "top_k": 8,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "hello",
+          "answer": "Hello! How can I help you?",
+          "old_answer": "Hello",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        }
+      ]
+    },
+    {
+      "mode": "app_defaults",
+      "name": "fresh_1",
+      "top_k": 8,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "who are you",
+          "answer": "I am Lambda, a small AI language model.",
+          "old_answer": "A me what you you want explain.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        }
+      ]
+    },
+    {
+      "mode": "app_defaults",
+      "name": "fresh_2",
+      "top_k": 8,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "what is 5x6?",
+          "answer": "30.",
+          "old_answer": "30.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        }
+      ]
+    },
+    {
+      "mode": "app_defaults",
+      "name": "fresh_3",
+      "top_k": 8,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "What is 5 * 6?",
+          "answer": "30.",
+          "old_answer": "30.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        }
+      ]
+    },
+    {
+      "mode": "app_defaults",
+      "name": "fresh_4",
+      "top_k": 8,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "What is 12 / 3?",
+          "answer": "1.",
+          "old_answer": "3.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        }
+      ]
+    },
+    {
+      "mode": "app_defaults",
+      "name": "fresh_5",
+      "top_k": 8,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "What is Python 3?",
+          "answer": "Python 3 is a programming language used to write computer programs.",
+          "old_answer": "gDes is a ma, and changes in the main idea and restate the important points briefly in your own words.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        }
+      ]
+    },
+    {
+      "mode": "app_defaults",
+      "name": "fresh_6",
+      "top_k": 8,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "What is a triangle?",
+          "answer": "A triangle is a polygon with three sides and three angles.",
+          "old_answer": "A triangle is a polygon with three sides and three angles.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        }
+      ]
+    },
+    {
+      "mode": "app_defaults",
+      "name": "fresh_7",
+      "top_k": 8,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "What is my name?",
+          "answer": "You have not told me your name.",
+          "old_answer": "Hello, and Explain.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        }
+      ]
+    },
+    {
+      "mode": "greedy",
+      "name": "basics",
+      "top_k": 1,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "hello",
+          "answer": "Hello! How can I help you?",
+          "old_answer": "Hello! What would you like to I help you?",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        },
+        {
+          "question": "who are you",
+          "answer": "I help with simple questions, basic math, and convers, basic maversation.",
+          "old_answer": "who can I help you?like to?? you?like to?know?",
+          "seed": 7301,
+          "finish_reason": "stop",
+          "prior_turns_included": 1,
+          "prior_turns_available": 1
+        },
+        {
+          "question": "What can you help me with?",
+          "answer": "Hello! How can help with simple questions, and conversation.",
+          "old_answer": "You's and your cats. What you like to know.",
+          "seed": 7302,
+          "finish_reason": "stop",
+          "prior_turns_included": 2,
+          "prior_turns_available": 2
+        },
+        {
+          "question": "How are you?",
+          "answer": "Your ?",
+          "old_answer": "You are have not told me your age.",
+          "seed": 7303,
+          "finish_reason": "stop",
+          "prior_turns_included": 3,
+          "prior_turns_available": 3
+        }
+      ]
+    },
+    {
+      "mode": "greedy",
+      "name": "name_and_age",
+      "top_k": 1,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "My name is Janek.",
+          "answer": "Hello, Janek.",
+          "old_answer": "Hello, Jane.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        },
+        {
+          "question": "What is my name?",
+          "answer": "Your name is Janek.",
+          "old_answer": "Your name is Jane.",
+          "seed": 7301,
+          "finish_reason": "stop",
+          "prior_turns_included": 1,
+          "prior_turns_available": 1
+        },
+        {
+          "question": "I am 15 years old.",
+          "answer": "You are 15 years old.",
+          "old_answer": "You are 5 years old.",
+          "seed": 7302,
+          "finish_reason": "stop",
+          "prior_turns_included": 2,
+          "prior_turns_available": 2
+        },
+        {
+          "question": "How old am I?",
+          "answer": "You are 15 years old.",
+          "old_answer": "You are 15 years old.",
+          "seed": 7303,
+          "finish_reason": "stop",
+          "prior_turns_included": 3,
+          "prior_turns_available": 3
+        },
+        {
+          "question": "What is my name and age?",
+          "answer": "You are 15 years old.",
+          "old_answer": "You are are old.",
+          "seed": 7304,
+          "finish_reason": "stop",
+          "prior_turns_included": 4,
+          "prior_turns_available": 4
+        }
+      ]
+    },
+    {
+      "mode": "greedy",
+      "name": "correction",
+      "top_k": 1,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "My name is Maya. I am 21 years old.",
+          "answer": "Hello, Maya. You are 21 years old.",
+          "old_answer": "Hello, Maya Maya Maya Maya Maya 21 times Maya Maya Maya Maya Maya Maya in the Maya Maya is water in its Maya Maya is Maya Maya in its Maya Maya Maya.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        },
+        {
+          "question": "Actually, my name is Nina.",
+          "answer": "Your name is Nina.",
+          "old_answer": "Your the the the Maya Maya the Maya Maya.",
+          "seed": 7301,
+          "finish_reason": "stop",
+          "prior_turns_included": 1,
+          "prior_turns_available": 1
+        },
+        {
+          "question": "What is my name?",
+          "answer": "Your name is Nina.",
+          "old_answer": "Your Maya Maya Maya.",
+          "seed": 7302,
+          "finish_reason": "stop",
+          "prior_turns_included": 2,
+          "prior_turns_available": 2
+        },
+        {
+          "question": "What is my age?",
+          "answer": "You are 21 years old.",
+          "old_answer": "Your Maya Maya Maya Maya Maya Maya Maya Maya.",
+          "seed": 7303,
+          "finish_reason": "stop",
+          "prior_turns_included": 3,
+          "prior_turns_available": 3
+        }
+      ]
+    },
+    {
+      "mode": "greedy",
+      "name": "math_and_topic",
+      "top_k": 1,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "hello",
+          "answer": "Hello! How can I help you?",
+          "old_answer": "Hello! What would you like to I help you?",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        },
+        {
+          "question": "what is 5x6?",
+          "answer": "30.",
+          "old_answer": "You have not told me to cats. What would you not told me about told me your age.",
+          "seed": 7301,
+          "finish_reason": "stop",
+          "prior_turns_included": 1,
+          "prior_turns_available": 1
+        },
+        {
+          "question": "What is 5 * 6?",
+          "answer": "30.",
+          "old_answer": "You are 6?.",
+          "seed": 7302,
+          "finish_reason": "stop",
+          "prior_turns_included": 2,
+          "prior_turns_available": 2
+        },
+        {
+          "question": "What is 12 / 3?",
+          "answer": "1.",
+          "old_answer": "You age.",
+          "seed": 7303,
+          "finish_reason": "stop",
+          "prior_turns_included": 3,
+          "prior_turns_available": 3
+        },
+        {
+          "question": "What is Python 3?",
+          "answer": "1.",
+          "old_answer": "You not cats.",
+          "seed": 7304,
+          "finish_reason": "stop",
+          "prior_turns_included": 4,
+          "prior_turns_available": 4
+        },
+        {
+          "question": "My name is Marek.",
+          "answer": "Hello, Mk.",
+          "old_answer": "You told me age.",
+          "seed": 7305,
+          "finish_reason": "stop",
+          "prior_turns_included": 5,
+          "prior_turns_available": 5
+        },
+        {
+          "question": "What is my name?",
+          "answer": "Your name is Mk.",
+          "old_answer": "You me me age.",
+          "seed": 7306,
+          "finish_reason": "stop",
+          "prior_turns_included": 6,
+          "prior_turns_available": 6
+        }
+      ]
+    },
+    {
+      "mode": "greedy",
+      "name": "location_after_distraction",
+      "top_k": 1,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "My blue book is on the desk.",
+          "answer": "Your book is on the desk.",
+          "old_answer": "A on the on separate.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        },
+        {
+          "question": "What is a triangle?",
+          "answer": "Your book is on the desk.",
+          "old_answer": "A triangle on separate triangle is a triangle a triangle is a triangle ona.",
+          "seed": 7301,
+          "finish_reason": "stop",
+          "prior_turns_included": 1,
+          "prior_turns_available": 1
+        },
+        {
+          "question": "Where is my book?",
+          "answer": "Your book is on the desk.",
+          "old_answer": "A triangle is a triangle with a triangle ona triangle a triangle a triangle triangle triangle triangle triangle triangle triangle a triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle is triangle is a triangle triangle triangle triangle triangle triangle ona triangle a triangle a triangle triangle ona is triangle triangle triangle triangle triangle a",
+          "seed": 7302,
+          "finish_reason": "stop",
+          "prior_turns_included": 2,
+          "prior_turns_available": 2
+        },
+        {
+          "question": "I moved my book to the bag.",
+          "answer": "Your book is in the bag.",
+          "old_answer": "A triangle triangle triangle triangle triangle triangle triangle triangle triangle a a is triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle is triangle triangle triangle is triangle triangle triangle triangle triangle is triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle triangle is triangle triangle triangle triangle triangle three triangle",
+          "seed": 7303,
+          "finish_reason": "stop",
+          "prior_turns_included": 3,
+          "prior_turns_available": 3
+        },
+        {
+          "question": "Where is my book now?",
+          "answer": "Your book is in the bag.",
+          "old_answer": "A triangle three three three triangle three triangle three triangle triangle three three three three three three three three three three triangle three three three three is three three three three three three is three three three three three three three three three three three three three three three three three angles.",
+          "seed": 7304,
+          "finish_reason": "stop",
+          "prior_turns_included": 4,
+          "prior_turns_available": 4
+        }
+      ]
+    },
+    {
+      "mode": "greedy",
+      "name": "unknown_then_known",
+      "top_k": 1,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "What is my name?",
+          "answer": "You have not told me your name.",
+          "old_answer": "Hello, you like you.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        },
+        {
+          "question": "How old am I?",
+          "answer": "You have not told me your age.",
+          "old_answer": "Your name is Tara are Tara stores data that stores data that runs name is Tara.",
+          "seed": 7301,
+          "finish_reason": "stop",
+          "prior_turns_included": 1,
+          "prior_turns_available": 1
+        },
+        {
+          "question": "My name is Lena.",
+          "answer": "Hello, Len.",
+          "old_answer": "Your name is Tara.",
+          "seed": 7302,
+          "finish_reason": "stop",
+          "prior_turns_included": 2,
+          "prior_turns_available": 2
+        },
+        {
+          "question": "What is my name?",
+          "answer": "Your name is Len.",
+          "old_answer": "Your name is Tara.",
+          "seed": 7303,
+          "finish_reason": "stop",
+          "prior_turns_included": 3,
+          "prior_turns_available": 3
+        }
+      ]
+    },
+    {
+      "mode": "greedy",
+      "name": "two_people",
+      "top_k": 1,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "I am 15 years old.",
+          "answer": "You are 15 years old.",
+          "old_answer": "old oldoldoldold  old old old  old oldoldold  old are 15 years old.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        },
+        {
+          "question": "My brother is 18 years old.",
+          "answer": "Your brother is 18 years old.",
+          "old_answer": "old.",
+          "seed": 7301,
+          "finish_reason": "stop",
+          "prior_turns_included": 1,
+          "prior_turns_available": 1
+        },
+        {
+          "question": "How old am I?",
+          "answer": "You are 15 years old.",
+          "old_answer": "You are 15 years old.",
+          "seed": 7302,
+          "finish_reason": "stop",
+          "prior_turns_included": 2,
+          "prior_turns_available": 2
+        },
+        {
+          "question": "How old is my brother?",
+          "answer": "Your brother is 18 years old.",
+          "old_answer": "You are are old.",
+          "seed": 7303,
+          "finish_reason": "stop",
+          "prior_turns_included": 3,
+          "prior_turns_available": 3
+        }
+      ]
+    },
+    {
+      "mode": "greedy",
+      "name": "copy_then_change",
+      "top_k": 1,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "Repeat exactly: Q7-xB2.",
+          "answer": "Q7-xB2.",
+          "old_answer": "Q7.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        },
+        {
+          "question": "What is 2 + 2?",
+          "answer": "10.",
+          "old_answer": "The a is Zack   Zack other matter me combines quantities to another product.",
+          "seed": 7301,
+          "finish_reason": "stop",
+          "prior_turns_included": 1,
+          "prior_turns_available": 1
+        },
+        {
+          "question": "My favorite color is green.",
+          "answer": "Your favorite color is green.",
+          "old_answer": "The book Zack book someone book is now in the green.",
+          "seed": 7302,
+          "finish_reason": "stop",
+          "prior_turns_included": 2,
+          "prior_turns_available": 2
+        },
+        {
+          "question": "What is my favorite color?",
+          "answer": "Your favorite color is green.",
+          "old_answer": "A is now green.",
+          "seed": 7303,
+          "finish_reason": "stop",
+          "prior_turns_included": 3,
+          "prior_turns_available": 3
+        }
+      ]
+    },
+    {
+      "mode": "greedy",
+      "name": "simple_instruction",
+      "top_k": 1,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "Answer with one word: what color is grass?",
+          "answer": "Green.",
+          "old_answer": "The gra is processed by grad an in the grad an image, or a gold.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        },
+        {
+          "question": "What is the opposite of hot?",
+          "answer": "Cold.",
+          "old_answer": "An grad or grad an insect.",
+          "seed": 7301,
+          "finish_reason": "stop",
+          "prior_turns_included": 1,
+          "prior_turns_available": 1
+        },
+        {
+          "question": "Say hello in English.",
+          "answer": "Hello!",
+          "old_answer": "You is a other question gold.",
+          "seed": 7302,
+          "finish_reason": "stop",
+          "prior_turns_included": 2,
+          "prior_turns_available": 2
+        }
+      ]
+    },
+    {
+      "mode": "greedy",
+      "name": "fresh_0",
+      "top_k": 1,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "hello",
+          "answer": "Hello! How can I help you?",
+          "old_answer": "Hello! What would you like to I help you?",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        }
+      ]
+    },
+    {
+      "mode": "greedy",
+      "name": "fresh_1",
+      "top_k": 1,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "who are you",
+          "answer": "I am Lambda, a small AI language model.",
+          "old_answer": "Hello!.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        }
+      ]
+    },
+    {
+      "mode": "greedy",
+      "name": "fresh_2",
+      "top_k": 1,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "what is 5x6?",
+          "answer": "30.",
+          "old_answer": "30.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        }
+      ]
+    },
+    {
+      "mode": "greedy",
+      "name": "fresh_3",
+      "top_k": 1,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "What is 5 * 6?",
+          "answer": "30.",
+          "old_answer": "30.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        }
+      ]
+    },
+    {
+      "mode": "greedy",
+      "name": "fresh_4",
+      "top_k": 1,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "What is 12 / 3?",
+          "answer": "3.",
+          "old_answer": "4.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        }
+      ]
+    },
+    {
+      "mode": "greedy",
+      "name": "fresh_5",
+      "top_k": 1,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "What is Python 3?",
+          "answer": "Python 3 is a programming language used to write computer programs.",
+          "old_answer": "Deggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        }
+      ]
+    },
+    {
+      "mode": "greedy",
+      "name": "fresh_6",
+      "top_k": 1,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "What is a triangle?",
+          "answer": "A triangle is a polygon with three sides and three angles.",
+          "old_answer": "A triangle is a polygon with three sides and three angles.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        }
+      ]
+    },
+    {
+      "mode": "greedy",
+      "name": "fresh_7",
+      "top_k": 1,
+      "temperature": 0.4,
+      "max_tokens": 120,
+      "turns": [
+        {
+          "question": "What is my name?",
+          "answer": "You have not told me your name.",
+          "old_answer": "Hello, you like you.",
+          "seed": 7300,
+          "finish_reason": "stop",
+          "prior_turns_included": 0,
+          "prior_turns_available": 0
+        }
+      ]
+    }
+  ],
+  "note": "Exposed development incidents; not an independent benchmark.",
+  "evaluated_candidate_info": {
+    "name": "lambda 2.2",
+    "architecture": "Causal Transformer \u00b7 6 layers \u00b7 6 heads \u00b7 learned pointer-generator",
+    "parameters": 11808385,
+    "vocabulary": 2048,
+    "context": 512,
+    "embedding": 384,
+    "hidden": 384,
+    "layers": 6,
+    "training_step": 24650,
+    "weight_bytes": 47233540,
+    "file_bytes": 43902396,
+    "path": "models/lambda-2.2.npz",
+    "dtype": "float32",
+    "device": "CPU",
+    "tokenizer": "UTF-8 byte BPE \u00b7 learned locally",
+    "language": "en",
+    "model_id": "lambda-2.2",
+    "generator_parameters": 11808385,
+    "router_parameters": 0,
+    "intent_routing": false,
+    "question_features": null,
+    "conversation_memory": true
+  },
+  "published_sha256": "0f881ba88982dcd3db50067e181b15c0cf7812ce0dd0a90b1861b6ff62c7f165"
+}

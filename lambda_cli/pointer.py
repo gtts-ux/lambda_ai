@@ -1,4 +1,5 @@
 """Learned pointer-generator output distribution. No question or answer rules."""
+import math
 import numpy as np
 from .transformer import TransformerEngine, POINTER_FORMAT, norm
 
@@ -31,7 +32,7 @@ class PointerEngine(TransformerEngine):
             k = np.concatenate((cache["k"], k))
             all_h = np.concatenate((cache["h"], h))
             all_ids = np.concatenate((cache["ids"], ids))
-        scores = q @ k.T / np.sqrt(q.shape[-1])
+        scores = q @ k.T / math.sqrt(q.shape[-1])
         future = np.arange(len(all_ids))[None, :] > (start + np.arange(len(ids)))[:, None]
         # Ordinary causal attention, including role tokens. Roles are never answers.
         attention = softmax(np.where(future, -np.inf, scores))
