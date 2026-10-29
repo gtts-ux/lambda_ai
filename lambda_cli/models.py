@@ -146,6 +146,7 @@ class ModelManager:
         fd, temporary = tempfile.mkstemp(prefix="download-", suffix=".tmp", dir=target_dir)
         checksum = hashlib.sha256()
         received = 0
+        last_percent = -1
         try:
             request = Request(entry["url"], headers={"User-Agent": f"LambdaAI/{__version__}"})
             with os.fdopen(fd, "wb") as output, urlopen(request, timeout=15) as response:
@@ -160,8 +161,10 @@ class ModelManager:
                         raise ValueError("Downloaded model exceeds the expected size.")
                     checksum.update(chunk)
                     output.write(chunk)
-                    if progress:
-                        progress(f"Downloading {entry['name']}: {received*100//entry['bytes']}%")
+                    percent = received*100//entry['bytes']
+                    if progress and percent != last_percent:
+                        progress(f"Downloading {entry['name']}: {percent}%")
+                        last_percent = percent
             if received != entry["bytes"] or checksum.hexdigest() != entry["sha256"]:
                 raise ValueError("Model checksum or size mismatch. The previous model was kept.")
             Engine(temporary)  # Validate all matrices before recording an installation.

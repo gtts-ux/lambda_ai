@@ -79,4 +79,5 @@ lambda model use lambda-2.2
 
 On Windows, replace the Python command with `.venv\Scripts\python -m pip install .`.
 Restart an already open terminal app before selecting the new model. `/update`
-updates model files/catalogs; it does not upgrade application code.
+updates model files/catalogs. App 0.5.0 and newer also update application code;
+app 0.4.x needs the one-time package upgrade above.

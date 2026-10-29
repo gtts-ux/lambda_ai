@@ -2,10 +2,13 @@
 from dataclasses import asdict
 from datetime import datetime
 import json
+import math
 from pathlib import Path
 
 from .engine import Engine, Settings, prompt_for
 from .models import ModelManager
+from .app_updates import AppUpdater
+from .chats import ChatConflict
 from .quota import Quota, duration
 
 HELP = """KEYBOARD
@@ -14,6 +17,8 @@ F1             Chat
 F2             Input and generated token inspector
 F3             Models, parameters and model selection
 F4             Allowance and session statistics
+F5             Application and model updates
+F6             Saved local chats
 Enter          Send a question or run a command
 Ctrl+C         Cancel generation / clear the input
 Ctrl+D         Exit
@@ -22,17 +27,21 @@ PgUp / PgDn    Scroll
 COMMANDS
 
 /chat                     Return to chat
+/chats                    List saved local conversations
+/chat <number or id>      Open a saved conversation
+/rename <title>           Rename the current conversation
 /tokens [text]            Inspect BPE tokens
 /intent [text]            Inspect learned chat/math routing
 /model                    List models and show parameters
 /model use lambda-1.0     Switch models (install if needed)
 /model install <id>       Download a listed model
-/update                   Check the catalog and update installed models
+/update                   Update the application and installed models
+/updates                  Show update progress and the last result
 /stats                    Allowance, reset time and session usage
 /temperature 0.4          Set temperature: 0.05–2
 /limit 120                Set output limit: 1–2048 tokens
 /topk 8                   Set top-k; 0 uses all tokens
-/new                      Clear session history (allowance stays unchanged)
+/new                      Start a new saved chat
 /memory                   Show whether this model uses conversation context
 /save [filename.json]     Export this conversation
 /help                     Show this help
@@ -56,16 +65,129 @@ def token_table(tokenizer, ids):
 
 
 class Session:
-    def __init__(self, engine, settings=None, quota=None, manager=None):
+    def __init__(self, engine, settings=None, quota=None, manager=None, updater=None, store=None, resume=False):
         self.engine = engine
         self.settings = settings or Settings()
         self.settings.validate()
         self.quota = quota or Quota()
         self.manager = manager or ModelManager()
+        self.updater = updater or AppUpdater()
+        self.update_log = []
+        self.update_failed = False
         self.messages, self.turns = [], []
         self.last_question = self.inspected_text = ""
         self.last_result = None
         self.memory_start = 0
+        self.store = store
+        self.chat_id = None
+        self.chat_revision = 0
+        self.chat_title = 'New chat'
+        self.persistence_notice = ''
+        self.chat_choices = []
+        if store is not None:
+            if resume and store.active():
+                self.open_chat(store.active())
+            else:
+                self.persist()
+
+    def snapshot(self):
+        try:
+            managed = self.engine.path == self.manager.resolve(self.engine.metadata.get('model_id')).resolve()
+        except (ValueError, OSError):
+            managed = False
+        return {'schema': 1, 'model_id': self.engine.metadata.get('model_id'),
+                'model_name': self.engine.metadata.get('name'), 'model_path': str(self.engine.path),
+                'custom_model': not managed,
+                'settings': asdict(self.settings), 'messages': self.messages, 'turns': self.turns,
+                'memory_start': self.memory_start, 'last_question': self.last_question}
+
+    def persist(self):
+        if self.store is None:
+            return
+        payload = self.snapshot()
+        if self.chat_id is None:
+            row = self.store.create(payload, self.chat_title)
+            self.chat_id, self.chat_revision = row['id'], row['revision']
+            return
+        try:
+            self.chat_revision = self.store.save(self.chat_id, self.chat_revision, self.chat_title, payload)
+        except ChatConflict:
+            # Preserve both windows' work instead of overwriting a newer snapshot.
+            self.chat_title += ' (copy)'
+            row = self.store.create(payload, self.chat_title)
+            self.chat_id, self.chat_revision = row['id'], row['revision']
+            self.persistence_notice = 'Another window changed this chat; your work was saved as a separate copy.'
+
+    def open_chat(self, reference):
+        if self.store is None:
+            raise ValueError('Saved chats are available in interactive mode: run lambda.')
+        if reference.isdigit() and len(reference) < 8:
+            choices = self.chat_choices or [row['id'] for row in self.store.list()]
+            index = int(reference)-1
+            if not 0 <= index < len(choices):
+                raise ValueError('Choose a chat number from /chats.')
+            reference = choices[index]
+        row = self.store.get(reference)
+        if row['id'] == self.chat_id:
+            return
+        p = row['payload']
+        try:
+            if p['schema'] != 1 or not isinstance(p['messages'], list) or not isinstance(p['turns'], list):
+                raise ValueError('Unsupported chat data.')
+            for message in p['messages']:
+                if len(message) != 2 or message[0] not in ('You','Lambda','System') or not isinstance(message[1],str):
+                    raise ValueError('Invalid chat message.')
+            for turn in p['turns']:
+                if not isinstance(turn['question'],str) or not isinstance(turn['text'],str):
+                    raise ValueError('Invalid conversation turn.')
+                if not math.isfinite(turn['seconds']) or turn['seconds'] < 0:
+                    raise ValueError('Invalid conversation timing.')
+                if any(type(turn[k]) is not int or turn[k] < 0 for k in ('prompt_tokens','generated_tokens')):
+                    raise ValueError('Invalid conversation token count.')
+            settings = Settings(**p['settings'])
+            settings.validate()
+            if type(p['memory_start']) is not int or not 0 <= p['memory_start'] <= len(p['turns']):
+                raise ValueError('Invalid conversation context boundary.')
+            if not isinstance(p['last_question'],str):
+                raise ValueError('Invalid last question.')
+        except (KeyError, TypeError, ValueError) as error:
+            raise ValueError(f'Cannot open this chat: {error}. Its saved data was kept.') from error
+        identifier = p.get('model_id')
+        try:
+            engine = Engine(p['model_path']) if p.get('custom_model') or not identifier else Engine(self.manager.resolve(identifier))
+        except (ValueError, OSError) as error:
+            if p.get('custom_model') or not identifier:
+                raise ValueError(f"This chat needs its saved model file: {p.get('model_path')}. Restore that file to reopen the chat.") from error
+            raise ValueError(f"This chat needs {p.get('model_name', 'its saved model')}. Install it with /model install {identifier}, then open the chat again.") from error
+        if self.chat_id is not None:
+            self.persist()
+        if identifier and not p.get('custom_model'):
+            engine = self.manager.activate(identifier)
+        self.engine, self.settings = engine, settings
+        self.messages = [tuple(message) for message in p['messages']]
+        self.turns = p['turns']
+        self.memory_start = p['memory_start']
+        self.last_question, self.inspected_text = p['last_question'], ''
+        # Old token IDs are never decoded using a potentially updated tokenizer.
+        self.last_result = None
+        self.chat_id, self.chat_revision, self.chat_title = row['id'], row['revision'], row['title']
+        self.persistence_notice = ''
+        self.store.set_active(self.chat_id)
+
+    def chats_text(self):
+        if self.store is None:
+            return 'LOCAL CHATS\n\n  Run lambda to save and resume conversations.'
+        lines = ['LOCAL CHATS', '', '  Enter a number to open a chat, or use /chat <id>.',
+                 '  /new starts another conversation. /rename changes its title.', '']
+        rows = self.store.list()
+        self.chat_choices = [row['id'] for row in rows]
+        for i, row in enumerate(rows, 1):
+            selected = ' [current]' if row['id'] == self.chat_id else ''
+            updated = datetime.fromtimestamp(row['updated']).strftime('%b %d, %H:%M')
+            lines += [f"  {i}. {row['title']}{selected}",
+                      f"     {row['model_name']} · {row['turns']} replies · {updated}",
+                      f"     /chat {row['id'][:8]}", '']
+        return '\n'.join(lines)
 
     def add_user(self, question):
         if len(question) > 20000:
@@ -78,6 +200,9 @@ class Session:
             raise QuotaExceeded("Token allowance exhausted. Resets in " + duration(status["resets_in_seconds"] or 0) + ".")
         self.last_question = question
         self.messages.append(("You", question))
+        if self.chat_title == 'New chat':
+            self.chat_title = ''.join(c for c in ' '.join(question.split()) if c.isprintable())[:72] or 'New chat'
+        self.persist()
 
     def generate(self, question, on_text=None, cancel=None):
         prompt = self.build_prompt(question)
@@ -105,6 +230,7 @@ class Session:
         self.last_result = result
         self.turns.append({"question": self.last_question, "model": self.engine.metadata.get("model_id"), **result.to_dict()})
         self.messages.append(("Lambda", result.text or "[Empty response]"))
+        self.persist()
 
     def build_prompt(self, question):
         if getattr(self.engine, "supports_memory", False):
@@ -120,7 +246,8 @@ class Session:
         return (f"CONVERSATION CONTEXT / {self.engine.context} TOKENS\n\n"
                 "  Recent completed questions and answers are included with each message.\n"
                 "  Old exchanges are dropped when the context window is full.\n"
-                "  /new clears this conversation. Exiting the app also clears it.\n"
+                "  Interactive chats are saved locally and can be reopened with /chats.\n"
+                "  /new starts another chat. The context window still limits each reply.\n"
                 "  /save exports it to a file; it does not create permanent model memory.\n"
                 "  Included history uses the existing token allowance. Weights never change during chat.")
 
@@ -130,32 +257,77 @@ class Session:
         return {"turns": len(self.turns), "input": sum(t["prompt_tokens"] for t in self.turns),
                 "output": output, "seconds": seconds, "speed": output/seconds if seconds else 0}
 
-    def reload_model(self):
-        self.engine = Engine(self.manager.resolve())
+    def reload_model(self, identifier=None):
+        self.engine = Engine(self.manager.resolve(identifier))
         self.memory_start = len(self.turns)
         # A new model can have a different vocabulary. Do not decode old IDs with it.
         self.last_result = None
         self.inspected_text = ""
+        self.persist()
 
     def model_action(self, action, progress=None, cancel=None):
         if action == "update":
-            message = self.manager.update(progress, cancel)
-            self.reload_model()
-            return message
+            self.update_log = []
+            self.update_failed = False
+            def report(message):
+                if message.startswith('Downloading ') and self.update_log and self.update_log[-1].startswith('Downloading '):
+                    self.update_log[-1] = message
+                else:
+                    self.update_log.append(message)
+                if progress:
+                    progress(message)
+            results = []
+            before = self.manager.state()
+            model_id = self.engine.metadata.get('model_id') if not self.snapshot()['custom_model'] else None
+            for name, operation in [('Models', self.manager.update), ('Application', self.updater.update)]:
+                if cancel is not None and cancel.is_set():
+                    report('Update cancelled before the next stage.')
+                    break
+                try:
+                    message = operation(report, cancel)
+                except (ValueError, OSError) as error:
+                    self.update_failed = True
+                    message = f'{name} update failed: {error}'
+                results.append(message)
+                report(message)
+                if name == 'Models':
+                    after = self.manager.state()
+                    if model_id and before['installed'].get(model_id) != after['installed'].get(model_id):
+                        self.reload_model(model_id)
+            return '\n'.join(results) or 'Update cancelled.'
         verb, identifier = action.split(":", 1)
         self.manager.install(identifier, progress, cancel)
         if verb == "use":
-            self.engine = self.manager.activate(identifier)
-            self.memory_start = len(self.turns)
-            self.last_result = None
+            engine = self.manager.activate(identifier)
+            changed = engine.path != self.engine.path
+            self.engine = engine
+            if changed:
+                self.memory_start = len(self.turns)
+                self.last_result = None
+                self.inspected_text = ''
+            self.persist()
             return f"Using {self.engine.metadata.get('name', identifier)}."
         return f"Installed {identifier}. Use /model use {identifier} to switch."
 
+    def updates_text(self):
+        from . import __version__
+        lines = ['APPLICATION & MODEL UPDATES', '', f'  Running app   {__version__}',
+                 f"  Active model  {self.engine.metadata.get('name', 'Unknown')}", '',
+                 '  /update checks the app, the model list and installed model revisions.',
+                 '  App downloads are verified before installation.',
+                 '  Restart Lambda after an app upgrade. Your models and allowance stay.', '',
+                 'UPDATE ACTIVITY', '']
+        lines.extend('  '+line for line in self.update_log)
+        if not self.update_log:
+            lines.append('  No update check in this session. Enter /update to begin.')
+        return '\n'.join(lines)
+
     def model_text(self):
         info = self.engine.info()
+        custom = self.snapshot()['custom_model']
         lines = ["MODELS / AVAILABLE CHOICES", ""]
         for number, item in enumerate(self.manager.entries(), 1):
-            state = "active" if item["active"] else "installed" if item["installed_revision"] else "available to download"
+            state = "active" if not custom and item['id'] == info.get('model_id') else "installed" if item["installed_revision"] else "available to download"
             if item["update_available"]:
                 state += " · update available"
             lines.append(f"  {number}. {item['name']}  [{state}]  /model use {item['id']}")
@@ -186,6 +358,7 @@ class Session:
         totals, q = self.totals(), self.quota.status()
         reset = duration(q["resets_in_seconds"]) if q["resets_in_seconds"] is not None else "10h after your first message"
         lines = ["ALLOWANCE / 10-HOUR WINDOW", "", f"  Remaining             {q['remaining']:,} / {q['allowance']:,} tokens",
+                 f"  Available             {100*q['remaining']/q['allowance']:.1f}%",
                  f"  Used or reserved      {q['used']:,} tokens", f"  Resets in             {reset}",
                  "  Rough estimate        ~5,000 messages at 200 tokens per exchange", "",
                  "  A shared local ledger enforces the limit across app restarts and models.",
@@ -237,6 +410,15 @@ class Session:
         command = {"/quit":"/exit", "/clear":"/new", "/usage":"/stats"}.get(command, command)
         if command == "/update":
             return "update", ""
+        if command == '/chat' and value:
+            self.open_chat(value)
+            return 'chat', f'Opened {self.chat_title}.'
+        if command == '/rename':
+            if not value or len(value) > 100 or any(not c.isprintable() for c in value):
+                raise ValueError('Use /rename followed by a title of 1–100 printable characters.')
+            self.chat_title = value
+            self.persist()
+            return 'chat', f'Renamed chat to {value}.'
         if command == "/model" and value:
             if value.isdigit():
                 choices = self.manager.entries()
@@ -248,7 +430,7 @@ class Session:
             if verb not in ("use", "install") or not identifier:
                 raise ValueError("Use /model use <id> or /model install <id>.")
             return verb + ":" + identifier.strip(), ""
-        if command in ("/chat", "/model", "/stats", "/help"):
+        if command in ("/chat", "/chats", "/model", "/stats", "/help", "/updates"):
             return command[1:], ""
         if command == "/tokens":
             self.inspected_text = value or self.last_question
@@ -261,11 +443,15 @@ class Session:
         if command == "/memory":
             return "", self.memory_text()
         if command == "/new":
+            self.persist()
             self.messages.clear(); self.turns.clear()
             self.memory_start = 0
             self.last_result = None
             self.last_question = self.inspected_text = ""
-            return "chat", "New session. Your token allowance is unchanged."
+            self.chat_id, self.chat_revision, self.chat_title = None, 0, 'New chat'
+            self.persistence_notice = ''
+            self.persist()
+            return "chat", "New chat. Find previous conversations in /chats."
         if command in ("/temperature", "/limit", "/topk"):
             updated = Settings(**asdict(self.settings))
             if command == "/temperature":
@@ -276,6 +462,7 @@ class Session:
                 updated.top_k = int(value)
             updated.validate()
             self.settings = updated
+            self.persist()
             return "", f"Set {command[1:]} to {value}."
         if command == "/save":
             path = Path(value or datetime.now().strftime("conversation-%Y%m%d-%H%M%S.json")).expanduser()

@@ -77,3 +77,15 @@
   publication requirement for this release only. Publish as experimental, keep the
   failed quality-gate results truthful, and do not claim universal superiority to 1.6.
   It requires v4/app >=0.4.0. Future model names still come from the owner.
+
+- The owner requested a richer terminal UI and `/update` for application code as well
+  as models. App 0.5.0 adds an always-visible remaining-quota bar, F5 Updates, and
+  checksum-verified wheel updates from `releases/app.json`. Keep versioned wheels
+  immutable; use `tools/publish_app.py` after tests/build. A restart loads new code;
+  on Windows the installer waits for the running launcher to exit. Do not clear
+  conversation memory on a catalog-only refresh or alter the shared quota.
+- Before publishing 0.5.0 the owner also requested persistent local conversations.
+  Interactive sessions now autosave to `chats.sqlite3`; F6 and `/chats` browse them,
+  `/chat <number or id>` restores text/model/settings and `/new` preserves the old
+  chat. Saved text is model input context, never a substitute answer or training.
+  Keep the chat database out of git and app wheels. `lambda ask` remains standalone.

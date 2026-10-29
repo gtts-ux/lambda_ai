@@ -74,3 +74,21 @@ Lambda 2.2 is the owner-named conversation repair (2026-10-29), v4/app >=0.4.1.
 It preserves earlier releases. The app's float32 fix must be installed before
 claiming the numerical warning repair. Keep the measured comparisons and limitations
 in models/lambda-2.2.md; do not replace them with a general intelligence claim.
+
+## Application wheel releases
+
+`/update` reads `releases/app.json`, then installs the verified universal wheel
+from the same directory. Keep previous versioned wheels immutable. This flow is
+separate from model naming and model catalogs; do not rename a model for a UI update.
+
+For each application release:
+
+1. Bump `lambda_cli/__init__.py` and `pyproject.toml` together.
+2. Run the unit tests and build a wheel with `python -m pip wheel . --no-deps -w dist`.
+3. Stage it: `python tools/publish_app.py dist/lambda_ai_terminal-VERSION-py3-none-any.whl`.
+4. Commit the code, wheel and `releases/app.json` together, then push and verify a download.
+
+The update command executes pip in a subprocess using the current Python interpreter,
+following the [pip embedding guidance](https://pip.pypa.io/en/stable/user_guide/#using-pip-from-your-program).
+A running process uses its old imports until restart. Windows installs are deferred
+until the launcher exits. No token ledger/model state belongs in the wheel or installer.

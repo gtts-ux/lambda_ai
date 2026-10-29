@@ -17,10 +17,10 @@ def parser():
     ask.add_argument("question")
     ask.add_argument("--json", action="store_true", help="Return text and actual token usage as JSON")
     for command in (chat, ask):
-        command.add_argument("--temperature", type=float, default=0.4)
-        command.add_argument("--max-tokens", type=int, default=120)
-        command.add_argument("--top-k", type=int, default=8)
-        command.add_argument("--seed", type=int)
+        command.add_argument("--temperature", type=float, default=argparse.SUPPRESS)
+        command.add_argument("--max-tokens", type=int, default=argparse.SUPPRESS)
+        command.add_argument("--top-k", type=int, default=argparse.SUPPRESS)
+        command.add_argument("--seed", type=int, default=argparse.SUPPRESS)
     info = sub.add_parser("info", help="Show model parameters")
     info.add_argument("--json", action="store_true")
     tokens = sub.add_parser("tokens", help="Inspect BPE token IDs and pieces")
@@ -31,7 +31,7 @@ def parser():
     intent.add_argument('--json', action='store_true')
     usage = sub.add_parser("usage", help="Show remaining tokens and the 10-hour reset")
     usage.add_argument("--json", action="store_true")
-    sub.add_parser("update", help="Refresh the catalog and update installed models")
+    sub.add_parser("update", help="Update the application, model catalog and installed models")
     model = sub.add_parser("model", help="List, install or select models")
     model.add_argument("action", choices=["list", "install", "use"], nargs="?", default="list")
     model.add_argument("identifier", nargs="?")
@@ -57,14 +57,18 @@ def plain_chat(session):
                     return 0
                 if view == "update" or view.startswith(("use:", "install:")):
                     print(session.model_action(view, progress=print))
-                    print(session.model_text())
+                    if view != "update":
+                        print(session.model_text())
                     continue
                 content = {"help":lambda:HELP, "model":session.model_text,
-                           "stats":session.stats_text, "tokens":session.tokens_text, "intent":session.intent_text}
+                           "stats":session.stats_text, "tokens":session.tokens_text, "intent":session.intent_text,
+                           "updates":session.updates_text, "chats":session.chats_text}
                 if view in content:
                     print(content[view]())
                 if notice:
                     print(notice)
+                if view == 'chat' and question.startswith('/chat '):
+                    print('\n'.join(f'{role} › {text}' for role,text in session.messages))
                 continue
             session.add_user(question)
             result = session.generate(question)
@@ -86,11 +90,20 @@ def main(argv=None):
         from .engine import Engine, Settings
         from .models import ModelManager
         from .session import Session, token_table
+        from .chats import ChatStore
         manager = ModelManager()
         engine = Engine(args.model or os.environ.get("LAMBDA_MODEL") or manager.resolve())
         settings = Settings(getattr(args,"temperature",0.4), getattr(args,"max_tokens",120),
                             getattr(args,"top_k",8), getattr(args,"seed",None))
-        session = Session(engine, settings, manager=manager)
+        interactive = args.command in (None, 'chat')
+        session = Session(engine, settings, manager=manager, store=ChatStore() if interactive else None,
+                          resume=interactive and not bool(args.model or os.environ.get('LAMBDA_MODEL')))
+        if interactive:
+            for attribute in ('temperature','max_tokens','top_k','seed'):
+                if hasattr(args, attribute):
+                    setattr(session.settings, attribute, getattr(args, attribute))
+            session.settings.validate()
+            session.persist()
         if args.command == 'intent':
             if args.json:
                 print(json.dumps(engine.classify(args.text), indent=2))
@@ -106,8 +119,7 @@ def main(argv=None):
             return 0
         if args.command == "update":
             print(session.model_action("update",progress=print))
-            print(session.model_text())
-            return 0
+            return 1 if session.update_failed else 0
         if args.command == "model":
             if args.action != "list":
                 if not args.identifier:

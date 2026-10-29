@@ -22,10 +22,11 @@ was trained from random weights with a locally learned tokenizer.
 
 This is a small educational model, not a general-purpose assistant. It can
 give incorrect or nonsensical answers. Published MLP models process questions
-separately. The 0.4.0 runtime also supports experimental v3/v4
+separately. The runtime (0.4.0 and newer) also supports experimental v3/v4
 Transformers: they receive recent completed exchanges within their context window.
-Use `/memory` to check the current model. Context clears on `/new`, model reload,
-or app exit; it is not persistent learning. The optional experimental lambda 2.1 model is available.
+Use `/memory` to check the current model. Interactive conversations are saved locally
+and resume after restart. `/new` creates another chat; `/chats` reopens a saved one.
+The model still sees only its recent context window. Optional lambda 2.1 and 2.2 models are available.
 
 ## Install
 
@@ -59,6 +60,10 @@ python -m venv .venv
 Distribution name: `lambda-ai-terminal`. Installing the package adds the
 standard `lambda` console entry point to that Python environment.
 
+![Terminal workspace](docs/terminal-workspace.png)
+
+Terminal preview with a sample allowance.
+
 ## Terminal controls
 
 | Key | Action |
@@ -67,6 +72,8 @@ standard `lambda` console entry point to that Python environment.
 | F2 | Live token inspector, including IDs and generated tokens |
 | F3 | Model choices, parameter count and matrix shapes |
 | F4 | Remaining allowance, reset time and session usage |
+| F5 | App and model updates |
+| F6 | Saved local chats |
 | Enter | Send a message or run a command |
 | PgUp / PgDn | Scroll |
 | Ctrl+C | Cancel an operation or clear the input |
@@ -87,6 +94,9 @@ and the input supports session history with the arrow keys.
 /limit 120
 /topk 8
 /new
+/chats
+/chat 1
+/rename Work notes
 /save conversation.json
 /exit
 ```
@@ -207,11 +217,10 @@ to the user data directory and checked against their size, SHA-256 and
 supported inference format before installation. Failed downloads keep the
 previous working model. Switching back to an installed model works offline.
 
-These commands update **model weights and the model list**, not executable
-application code. If a future model requires a newer application, Lambda
-reports the required version. Update the repository and reinstall the package
-to upgrade the app itself. Current model names and future release rules are in
-[MAINTAINER.md](MAINTAINER.md).
+In app **0.5.0 and newer**, these commands also check and install application
+updates. Restart after an app upgrade, then repeat `/update` if a model revision
+requires the new runtime. App 0.4.x needs a one-time package upgrade to enable
+self-updates. Current model names and release rules are in [MAINTAINER.md](MAINTAINER.md).
 
 ## Scriptable commands
 
@@ -277,8 +286,8 @@ lambda model use lambda-2.1
 
 On Windows, use `.venv\Scripts\python -m pip install .` for the installation step.
 In the terminal app, `/update` refreshes models and `/model use lambda-2.1` selects it.
-`/memory` explains context and `/new` clears the current conversation.
-Model updates alone do not upgrade an older application's inference runtime.
+`/memory` explains context; `/new` starts another chat and `/chats` reopens saved ones.
+App 0.4.x needs a package upgrade; app 0.5.0 and newer also self-update through `/update`.
 
 ## lambda 2.2: conversation repair
 
@@ -296,4 +305,63 @@ lambda model use lambda-2.2
 ```
 
 On Windows, use `.venv\Scripts\python -m pip install .`. Restart an already running
-app. The `/update` command refreshes models, not application code.
+app. Starting with app 0.5.0, `/update` updates both application code and models.
+
+## App 0.5.0: terminal workspace and self-updates
+
+The terminal workspace includes a live **remaining allowance bar**, percentage,
+remaining tokens and reset countdown. Green, amber and red indicate the remaining
+budget. The same 1,000,000-token / 10-hour ledger is used across sessions and models.
+Model context is shown separately. The sidebar collapses in smaller terminals.
+
+Messages have distinct speaker labels, response token counts and elapsed time.
+Click a tab or use F1–F6. PgUp reads earlier messages; Ctrl+End follows the latest
+response. F5 opens **Updates** with download progress and installation results.
+F6 opens **Chats**, where entering a number returns to an earlier conversation.
+
+`/update` (or `lambda update`) now checks **both the application and models**.
+The app wheel is downloaded from this repository, checked against its byte count,
+SHA-256 and package identity, and installed into the Python environment running
+Lambda. It does not reset the allowance or erase your installed models. A catalog
+check keeps the current conversation unless the active model itself was replaced.
+
+After an app upgrade, exit and reopen Lambda to use the new code. On Windows, the
+verified app update is queued until Lambda exits because the console launcher can
+be locked; wait for installation to finish before reopening. Installation details
+are written to `updates/install.log` in Lambda's data directory. `/updates` opens
+activity without starting another update. Cancellation is available while checking
+or downloading; an installation already in progress is allowed to finish.
+
+**One-time upgrade from app 0.4.x:** those versions cannot update their own code.
+Run these commands from your checkout once:
+
+```bash
+git pull --ff-only
+.venv/bin/python -m pip install .
+```
+
+On Windows, use `.venv\Scripts\python -m pip install .`. Future app upgrades can
+then be started with `/update`; no `git pull` is needed for those installed updates.
+
+## Local conversations
+
+Interactive chats are saved automatically in `chats.sqlite3` in Lambda's user data
+directory. Each chat has a title, model, generation settings and its own history.
+Reopening the app returns to the last active chat. Chat data stays on your computer.
+
+- `/new` creates a new conversation while preserving the previous one.
+- `/chats` or F6 lists conversations; enter a number in that view or use `/chat <number or id>`.
+- `/rename Work notes` changes the current chat's title. The first message supplies a default title.
+- `/save filename.json` remains an optional export. Normal interactive use saves automatically.
+
+Restored conversation text is supplied to Transformer models within their context
+window (512 tokens for lambda 2.1/2.2). The full transcript can be longer than that
+window. MLP models still process questions independently. Saved transcripts do not
+train the model or create unlimited memory. Switching chats does not reset usage.
+
+A model selected inside a conversation is remembered with that chat. Install its
+model before reopening it if you removed the model file. Custom models retain their
+local file path. Concurrent edits from two windows are preserved as separate copies.
+`lambda ask` stays a standalone, scriptable request; interactive chat saving applies
+to `lambda`, `lambda chat` and their `--plain` mode. Earlier conversations that were
+closed before automatic saving existed cannot be recovered from the model weights.

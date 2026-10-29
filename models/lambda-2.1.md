@@ -44,7 +44,8 @@ Recent completed exchanges are supplied to the same neural model for every quest
 There are no calculator answers, canned replies, retrieval answers or topic-based
 model switches. The learned pointer distribution is part of the network.
 
-Old exchanges are dropped when the context is full. `/new`, model reload and app
-exit clear the context. `/save` exports a conversation but does not teach the model
-or provide persistent memory. Included context counts toward the existing allowance.
+Older exchanges are dropped from model input when the context is full. App 0.5.0
+and newer save interactive transcripts locally and reopen them with `/chats`;
+`/new` creates a separate conversation. Restored text is limited to the same context
+window. `/save` exports a conversation; it does not train the model. Included context counts toward the existing allowance.
 The default model and 1,000,000-token / 10-hour allowance are unchanged.
