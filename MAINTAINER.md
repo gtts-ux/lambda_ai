@@ -97,3 +97,14 @@ Lambda 2.4 is the owner-approved public name for the selected private 2.3 trial.
 Release total step 31650 (7000 additional updates), with 15,350,401 parameters.
 Require app >=0.5.1, whose bounded model-download budget is 64 MiB. Do not rewrite
 private checkpoint identities or remove earlier model releases and saved chats.
+
+
+App 0.6.0 adds model-family navigation, searchable/pinned chats and branched question
+editing/regeneration. No model comparison UI was requested. Pins are in a separate
+SQLite table so older running windows can still write the unchanged chats schema.
+Keep all user data out of wheels and git.
+
+The owner named the next private model lambda 2.5 on 2026-10-30. Its private
+`release_25` continuation expands the own selected 2.4 checkpoint to 1024 positions;
+all answers still come from its learned distribution. Do not register this model
+until trained weights and their generated-answer checks are ready for review.

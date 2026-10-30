@@ -19,6 +19,7 @@ from prompt_toolkit.widgets import Frame, TextArea
 
 from . import __version__
 from .session import HELP
+from .model_browser import ModelBrowser
 from .quota import duration
 
 STYLE = Style.from_dict({
@@ -28,7 +29,7 @@ STYLE = Style.from_dict({
     "sidebar": "#b3c1d6 bg:#101927", "status": "#b6c9e5 bg:#151f30",
     "quota.good": "#80edc1", "quota.low": "#f4c578", "quota.empty": "#ff8e9b",
     "quota.track": "#304057", "chat.user": "#96baff bold", "chat.ai": "#80edc1 bold",
-    "chat.meta": "#8292a9", "welcome": "#98b8ff bold",
+    "chat.meta": "#8292a9", "menu.selected": "bg:#233d4d #80edc1 bold", "welcome": "#98b8ff bold",
     "completion-menu.completion": "bg:#1e2d43 #dce5f2",
     "completion-menu.completion.current": "bg:#80edc1 #0c111b",
     "scrollbar.background": "bg:#151f30", "scrollbar.button": "bg:#435b7d",
@@ -48,7 +49,8 @@ class ConversationLexer(Lexer):
         def line(index):
             text = document.lines[index]
             stripped = text.strip()
-            style = ('chat.user' if stripped.startswith('YOU  ·') else
+            style = ('menu.selected' if stripped.startswith('›') else
+                     'chat.user' if stripped.startswith('YOU  ·') else
                      'chat.ai' if stripped.startswith('LAMBDA  ·') else
                      'chat.meta' if stripped.startswith(('↳ ', '──', 'SYSTEM')) else
                      'welcome' if stripped == 'YOUR LOCAL WORKSPACE' else '')
@@ -66,13 +68,16 @@ class TerminalApp:
         self.live_count = 0
         self.follow_output = True
         self.close_requested = False
+        self.models = ModelBrowser(session.manager)
+        self.chat_index = 0
+        self.edit_turn = None
         self.notice = "Ready · enter a question or /help"
         self.cancel = Event()
         self.body = TextArea(read_only=True, focusable=False, scrollbar=True, wrap_lines=True, lexer=ConversationLexer())
         self.input = TextArea(
             height=2, prompt=" › ", multiline=False, wrap_lines=False, style="class:input",
             history=InMemoryHistory(), accept_handler=self.submit,
-            completer=WordCompleter(["/chat", "/chats", "/rename", "/tokens", "/model", "/stats", "/temperature",
+            completer=WordCompleter(["/chat", "/chats", "/rename", "/search", "/pin", "/edit", "/retry", "/tokens", "/model", "/stats", "/temperature",
                                      "/limit", "/topk", "/new", "/memory", "/save", "/update", "/updates", "/intent", "/help", "/exit"]),
             complete_while_typing=True,
         )
@@ -88,7 +93,8 @@ class TerminalApp:
             header, allowance, Window(height=1), tabs, Window(height=1, char="─", style="class:rule"),
             VSplit([self.body, sidebar], padding=1),
             Window(height=1, char="─", style="class:rule"),
-            Frame(self.input, title="Message  /  type / for commands"),
+            Window(FormattedTextControl(self.actions), height=1),
+            Frame(self.input, title=self.input_title),
             Window(FormattedTextControl(self.status), height=1, style="class:status"),
             Window(FormattedTextControl(self.shortcuts),
                    height=1, style="class:muted"),
@@ -96,6 +102,36 @@ class TerminalApp:
         bindings = KeyBindings()
         for key, view in (("f1", "chat"), ("f2", "tokens"), ("f3", "model"), ("f4", "stats"), ("f5", "updates"), ("f6", "chats")):
             bindings.add(key)(lambda event, selected=view: self.select(selected))
+
+        menu = Condition(lambda: self.view in ('model','chats') and not self.input.text and not self.busy)
+        @bindings.add('up', filter=menu)
+        def menu_up(event):self.move_choice(-1)
+        @bindings.add('down', filter=menu)
+        def menu_down(event):self.move_choice(1)
+        @bindings.add('enter', filter=menu)
+        def menu_enter(event):self.activate_choice()
+        @bindings.add('right', filter=menu)
+        def menu_right(event):self.activate_choice()
+        @bindings.add('left', filter=menu)
+        @bindings.add('backspace', filter=menu)
+        def menu_back(event):
+            if self.view=='model' and self.models.back():self.refresh()
+            else:self.select('chat')
+        @bindings.add('escape', filter=Condition(lambda: self.edit_turn is not None or (self.view in ('model','chats') and not self.input.text)))
+        def escape(event):
+            if self.edit_turn is not None:self.cancel_edit()
+            elif self.view=='model' and self.models.back():self.refresh()
+            else:self.select('chat')
+        @bindings.add('c-p', filter=Condition(lambda: self.view=='chats' and not self.input.text and not self.busy))
+        def pin(event):self.pin_selected()
+        @bindings.add('c-r', filter=Condition(lambda: self.view=='chat' and not self.busy))
+        def retry(event):self.retry()
+        @bindings.add('c-e', filter=Condition(lambda: self.view=='chat' and not self.busy))
+        def edit(event):self.begin_edit()
+        @bindings.add('c-n')
+        def new(event):
+            if not self.busy:
+                self.session.command('/new');self.edit_turn=None;self.input.buffer.reset();self.select('chat')
 
         @bindings.add("c-d")
         def close(event):
@@ -109,7 +145,7 @@ class TerminalApp:
                 self.cancel.set()
                 self.notice = "Stopping…"
             else:
-                self.input.buffer.reset()
+                self.input.buffer.reset();self.edit_turn=None
                 self.notice = "Input cleared. Ctrl+D exits."
             self.app.invalidate()
 
@@ -134,6 +170,94 @@ class TerminalApp:
                                min_redraw_interval=0.03)
         self.refresh()
 
+    def input_title(self):
+        if self.edit_turn is None:
+            if self.view=="model":return "Models / arrows or a row number"
+            if self.view=="chats":return "Chats / search words or a row number"
+        return (f"Edit question {self.edit_turn} · Enter resend · Esc cancel" if self.edit_turn else
+                "Message  /  type / for commands")
+
+    def actions(self):
+        if self.view in ('model','chats'):
+            return [('class:muted',' ↑/↓ select · Enter open · ←/Esc back' + (' · Ctrl+P pin · /search words' if self.view=='chats' else ''))]
+        if self.view!='chat':return [('class:muted',' F1 Chat · /help commands')]
+        def action(fn):
+            def clicked(event):
+                if event.event_type==MouseEventType.MOUSE_UP and not self.busy:fn()
+            return clicked
+        def new():
+            self.session.command('/new');self.edit_turn=None;self.input.buffer.reset();self.select('chat')
+        return [('class:tab',' New chat ',action(new)),('', '  '),
+                ('class:tab',' Regenerate ',action(self.retry)),('', '  '),
+                ('class:tab',' Edit question ',action(self.begin_edit))]
+
+    def chat_rows(self):
+        rows=self.session.store.list(self.session.chat_query) if self.session.store else []
+        self.chat_index=max(0,min(self.chat_index,len(rows)-1)) if rows else 0
+        return rows
+
+    def move_choice(self,delta):
+        if self.view=='model':self.models.move(delta)
+        else:
+            rows=self.chat_rows();self.chat_index=max(0,min(len(rows)-1,self.chat_index+delta)) if rows else 0
+        self.refresh()
+
+    def activate_choice(self,index=None):
+        if self.busy:return
+        try:
+            if self.view=='model':
+                action=self.models.choose(index)
+                if action:self.start_model_action(action)
+                else:self.refresh()
+            else:
+                choices=self.session.chat_choices;i=self.chat_index if index is None else index
+                if not 0<=i<len(choices):raise ValueError('No matching chat. Use /search to clear the filter.')
+                self.session.open_chat(choices[i]);self.edit_turn=None;self.input.buffer.reset();self.select('chat')
+        except (ValueError,OSError) as error:self.notice=str(error);self.app.invalidate()
+
+    def pin_selected(self):
+        try:
+            choices=self.session.chat_choices
+            if not 0<=self.chat_index<len(choices):return
+            identifier=choices[self.chat_index];pinned=self.session.pin_chat(identifier)
+            updated=self.session.store.list(self.session.chat_query)
+            self.chat_index=next((i for i,row in enumerate(updated) if row['id']==identifier),0)
+            self.notice='Chat pinned.' if pinned else 'Chat unpinned.';self.refresh()
+        except (ValueError,OSError) as error:self.notice=str(error);self.app.invalidate()
+
+    def begin_edit(self,number=None):
+        if self.busy:return
+        if self.input.text and self.edit_turn is None:
+            self.notice='Send or clear your draft before editing a previous question.';self.app.invalidate();return
+        number=number or len(self.session.turns)
+        if not 1<=number<=len(self.session.turns):
+            self.notice='There is no question to edit yet.';self.app.invalidate();return
+        self.edit_turn=number;question=self.session.turns[number-1]['question']
+        self.input.buffer.set_document(Document(question,len(question)))
+        self.notice='Edit the question. Resending creates a new chat branch.';self.select('chat')
+
+    def cancel_edit(self):
+        self.edit_turn=None;self.input.buffer.reset();self.notice='Edit cancelled.';self.refresh()
+
+    def retry(self):
+        if self.busy:return
+        if self.input.text:
+            self.notice='Send or clear your draft before regenerating.';self.app.invalidate();return
+        try:self.start_answer(None,number=len(self.session.turns),kind='retry')
+        except (ValueError,OSError) as error:self.notice=str(error);self.app.invalidate()
+
+    def start_answer(self,question,number=None,kind='edit'):
+        if number is not None:question=self.session.prepare_revision(number,question,kind)
+        self.session.add_user(question)
+        self.view='chat';self.follow_output=True;self.busy=True;self.job='generation'
+        self.draft='';self.live_count=0;self.cancel=Event();self.edit_turn=None
+        self.input.buffer.reset();self.refresh()
+        self.app.create_background_task(self.answer(question))
+
+    def start_model_action(self,action):
+        self.busy=True;self.job='update';self.cancel=Event();self.notice='Checking models…'
+        self.input.buffer.reset();self.app.create_background_task(self.update_models(action));self.refresh()
+
     def header(self):
         model = self.session.engine.metadata.get('name', 'Local model')
         state = 'WORKING' if self.busy else 'READY'
@@ -152,6 +276,7 @@ class TerminalApp:
                 ("class:muted", f"  {q['remaining']:,} / {q['allowance']:,} tokens · reset {reset}")]
 
     def shortcuts(self):
+        if self.view in ("model","chats"):return " ↑/↓ select · Enter open · ←/Esc back · /help · Ctrl+D exit"
         return (" Enter send · /help · Ctrl+D exit" if get_app().output.get_size().columns < 75 else
                 " Enter send  ·  /help  ·  PgUp history  ·  Ctrl+End latest  ·  Ctrl+D exit")
 
@@ -211,8 +336,11 @@ class TerminalApp:
                     "  Experimental model · answers can be incorrect.")
         blocks = []
         reply = 0
-        for role, text in self.session.messages:
-            label = ("YOU  ·  message" if role == "You" else
+        for index,(role,text) in enumerate(self.session.messages):
+            numbered=(role=="You" and reply<len(self.session.turns) and self.session.turns[reply]["question"]==text
+                      and index+1<len(self.session.messages) and self.session.messages[index+1][0]=="Lambda")
+            user_label=f"YOU  ·  message {reply+1}" if numbered else "YOU  ·  message"
+            label = (user_label if role == "You" else
                      f"LAMBDA  ·  {self.session.turns[reply].get('model') or 'local model'}"
                      if role == "Lambda" and reply < len(self.session.turns) else
                      "LAMBDA  ·  response" if role == "Lambda" else "SYSTEM")
@@ -229,7 +357,9 @@ class TerminalApp:
     def refresh(self):
         try:
             if self.view == "model":
-                text = self.session.model_text()
+                details=self.session.model_text()
+                details=details[details.index('CURRENT MODEL /'):]
+                text=self.models.text(self.session.engine.metadata.get('model_id'))+'\n\n'+details
             elif self.view == "stats":
                 text = self.session.stats_text()
             elif self.view == "tokens":
@@ -238,7 +368,9 @@ class TerminalApp:
             elif self.view == "updates":
                 text = self.session.updates_text()
             elif self.view == "chats":
-                text = self.session.chats_text()
+                rows=self.chat_rows()
+                selected=rows[self.chat_index]['id'] if rows else None
+                text = self.session.chats_text(selected)
             elif self.view == "help":
                 text = HELP
             elif self.view == 'intent':
@@ -253,6 +385,9 @@ class TerminalApp:
                 position = 0
             if self.view == "updates" and self.busy and self.follow_output:
                 position = len(text)
+            if self.view in ('model','chats'):
+                selected_line=next((i for i,line in enumerate(text.splitlines()) if line.strip().startswith('›')),None)
+                if selected_line is not None:position=sum(len(line)+1 for line in text.splitlines()[:selected_line])
             self.body.buffer.set_document(Document(text, position), bypass_readonly=True)
         if hasattr(self, "app"):
             self.app.invalidate()
@@ -280,58 +415,40 @@ class TerminalApp:
         self.app.exit()
 
     def submit(self, buffer):
-        text = buffer.text.strip()
-        if self.view == "model" and text.isdigit():
-            text = "/model " + text
-        if self.view == "chats" and text.isdigit():
-            text = "/chat " + text
-        if not text:
-            return False
-        if self.busy and text not in ("/exit", "/quit"):
-            self.notice = "An operation is running. Ctrl+C cancels it."
-            return True
+        text=buffer.text.strip()
+        if not text:return False
+        if self.busy and text not in ('/exit','/quit'):
+            self.notice='An operation is running. Ctrl+C cancels it.';return True
         try:
-            if text.startswith("/"):
-                view, notice = self.session.command(text)
-                if view == "exit":
-                    self.close()
-                    return False
-                if view == "update" or view.startswith(("use:", "install:")):
-                    self.busy = True
-                    self.job = "update"
-                    self.cancel = Event()
-                    self.notice = "Checking updates…"
-                    if view == "update":
-                        self.view = "updates"
-                        self.follow_output = True
-                    buffer.reset()
-                    self.app.create_background_task(self.update_models(view))
-                    self.refresh()
-                    return False
+            if self.edit_turn is not None and not text.startswith('/'):
+                self.start_answer(text,number=self.edit_turn);return False
+            if self.view=='model' and text.isdigit():
+                self.activate_choice(int(text)-1);buffer.reset();return False
+            if self.view=='chats' and not text.startswith('/'):
+                if text.isdigit():self.activate_choice(int(text)-1)
+                else:self.session.command('/search '+text);self.chat_index=0;self.refresh()
+                buffer.reset();return False
+            if text.startswith('/'):
+                view,notice=self.session.command(text)
+                if view=='exit':self.close();return False
+                if view=='edit':
+                    buffer.reset();self.begin_edit(int(notice));return True
+                if view=='retry':
+                    buffer.reset();self.retry();return False
+                if view.startswith('revise:'):
+                    self.start_answer(notice,number=int(view.split(':')[1]));return False
+                if view=='update' or view.startswith(('use:','install:')):
+                    if view=='update':self.view='updates';self.follow_output=True
+                    self.start_model_action(view);return False
                 if view:
-                    self.view = view
-                    if view == 'chat':
-                        self.follow_output = True
-                if notice:
-                    self.notice = notice
-                buffer.reset()
-                self.refresh()
-            else:
-                self.session.add_user(text)
-                self.view = "chat"
-                self.follow_output = True
-                self.busy = True
-                self.job = "generation"
-                self.draft = ""
-                self.live_count = 0
-                self.cancel = Event()
-                buffer.reset()
-                self.refresh()
-                self.app.create_background_task(self.answer(text))
-        except (ValueError, OSError) as error:
-            self.notice = str(error)
-            self.app.invalidate()
-            return True
+                    self.view=view
+                    if view=='chat':self.follow_output=True;self.edit_turn=None
+                    if view=='chats':self.chat_index=0
+                if notice:self.notice=notice
+                buffer.reset();self.refresh()
+            else:self.start_answer(text)
+        except (ValueError,OSError) as error:
+            self.notice=str(error);self.app.invalidate();return True
         return False
 
     def progress(self, text, count):

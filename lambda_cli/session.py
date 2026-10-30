@@ -19,6 +19,13 @@ F3             Models, parameters and model selection
 F4             Allowance and session statistics
 F5             Application and model updates
 F6             Saved local chats
+Up / Down      Select a family, model or chat when the input is empty
+Enter / Right  Open a family, use a model or open a chat
+Left / Esc     Back; Esc also cancels question editing
+Ctrl+P         Pin/unpin the selected chat in Chats
+Ctrl+E         Edit the last question (Chat)
+Ctrl+R         Regenerate the last answer (Chat)
+Ctrl+N         New saved conversation
 Enter          Send a question or run a command
 Ctrl+C         Cancel generation / clear the input
 Ctrl+D         Exit
@@ -30,6 +37,10 @@ COMMANDS
 /chats                    List saved local conversations
 /chat <number or id>      Open a saved conversation
 /rename <title>           Rename the current conversation
+/search <words>           Search local chat titles and messages; empty clears
+/pin [number or id]       Pin/unpin a saved chat; empty uses this chat
+/edit [number] [text]     Edit a question in a new branch
+/retry                    Generate the last answer again in a new branch
 /tokens [text]            Inspect BPE tokens
 /intent [text]            Inspect learned chat/math routing
 /model                    List models and show parameters
@@ -84,6 +95,7 @@ class Session:
         self.chat_title = 'New chat'
         self.persistence_notice = ''
         self.chat_choices = []
+        self.chat_query = ''
         if store is not None:
             if resume and store.active():
                 self.open_chat(store.active())
@@ -174,20 +186,56 @@ class Session:
         self.persistence_notice = ''
         self.store.set_active(self.chat_id)
 
-    def chats_text(self):
+    def chats_text(self, selected=None):
         if self.store is None:
             return 'LOCAL CHATS\n\n  Run lambda to save and resume conversations.'
-        lines = ['LOCAL CHATS', '', '  Enter a number to open a chat, or use /chat <id>.',
-                 '  /new starts another conversation. /rename changes its title.', '']
-        rows = self.store.list()
+        self._selected_chat_id=selected
+        lines = ['LOCAL CHATS', '', '  ↑/↓ select · Enter open · Ctrl+P pin/unpin',
+                 '  /search words filters titles and messages. /search clears.',
+                 '  /new starts another conversation. /rename changes its title.',
+                 f"  Search: {self.chat_query or 'All chats'}", '']
+        rows = self.store.list(self.chat_query)
         self.chat_choices = [row['id'] for row in rows]
+        if not rows:lines.append('  No matching chats. Use /search to clear the filter.')
         for i, row in enumerate(rows, 1):
-            selected = ' [current]' if row['id'] == self.chat_id else ''
+            current = ' [current]' if row['id'] == self.chat_id else ''
+            pinned = ' ★' if row['pinned'] else ''
             updated = datetime.fromtimestamp(row['updated']).strftime('%b %d, %H:%M')
-            lines += [f"  {i}. {row['title']}{selected}",
+            marker = '›' if row['id'] == self.selected_chat_id else ' '
+            lines += [f" {marker} {i}. {row['title']}{pinned}{current}",
                       f"     {row['model_name']} · {row['turns']} replies · {updated}",
                       f"     /chat {row['id'][:8]}", '']
         return '\n'.join(lines)
+
+    @property
+    def selected_chat_id(self):
+        return getattr(self,'_selected_chat_id',None)
+
+    def pin_chat(self,reference=None):
+        if self.store is None:raise ValueError('Run lambda to manage saved chats.')
+        if reference is None:identifier=self.chat_id
+        elif reference.isdigit() and len(reference)<8:
+            choices=self.chat_choices or [row['id'] for row in self.store.list(self.chat_query)]
+            index=int(reference)-1
+            if not 0<=index<len(choices):raise ValueError('Choose a chat from /chats.')
+            identifier=choices[index]
+        else:identifier=self.store.get(reference)['id']
+        return self.store.toggle_pin(identifier)
+
+    def prepare_revision(self,number,question=None,kind='edit'):
+        if not 1<=number<=len(self.turns):raise ValueError('Choose an existing question number.')
+        question=self.turns[number-1]['question'] if question is None else question
+        if not question.strip() or len(question)>20000:raise ValueError('Use a question of 1–20,000 characters.')
+        self.persist()
+        prefix=self.turns[:number-1]
+        self.turns=list(prefix)
+        self.messages=[message for turn in prefix for message in [('You',turn['question']),('Lambda',turn['text'] or '[Empty response]')]]
+        self.memory_start=min(self.memory_start,len(prefix));self.last_result=None
+        self.last_question=self.inspected_text=''
+        self.chat_title=(self.chat_title[:85]+(' (retry)' if kind=='retry' else ' (edited)'))
+        self.chat_id=None;self.chat_revision=0;self.persistence_notice=''
+        self.persist()
+        return question
 
     def add_user(self, question):
         if len(question) > 20000:
@@ -410,6 +458,23 @@ class Session:
         command = {"/quit":"/exit", "/clear":"/new", "/usage":"/stats"}.get(command, command)
         if command == "/update":
             return "update", ""
+        if command == '/search':
+            if len(value)>200:raise ValueError('Search is limited to 200 characters.')
+            self.chat_query=value
+            return 'chats',''
+        if command == '/pin':
+            pinned=self.pin_chat(value or None)
+            return 'chats','Chat pinned.' if pinned else 'Chat unpinned.'
+        if command in ('/retry','/regenerate'):
+            if not self.turns:raise ValueError('There is no answer to regenerate yet.')
+            return 'retry',''
+        if command == '/edit':
+            if not self.turns:raise ValueError('There is no question to edit yet.')
+            first,_,replacement=value.partition(' ')
+            if first and not first.isdigit():raise ValueError('Use /edit, /edit <number>, or /edit <number> <new question>.')
+            number=int(first) if first else len(self.turns)
+            if not 1<=number<=len(self.turns):raise ValueError('Choose an existing question number.')
+            return ('revise:'+str(number),replacement) if replacement else ('edit',str(number))
         if command == '/chat' and value:
             self.open_chat(value)
             return 'chat', f'Opened {self.chat_title}.'

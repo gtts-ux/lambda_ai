@@ -97,3 +97,16 @@
   It has 15,350,401 parameters, 8 layers, v4 format and 512-token context. App 0.5.1
   raises the checked download budget to 64 MiB for this model; require >=0.5.1.
   Keep all earlier named models available. Training data/optimizer remain private.
+
+- On 2026-10-30 the owner named the next model **lambda 2.5** (`lambda-2.5`).
+  Private `../conversation_training/release_25` continues the selected own 2.4
+  checkpoint, expands learned positions from 512 to 1024 and adds authored natural
+  conversations, worked arithmetic, replay and long-context fixtures. No external
+  pretrained weights or live answer rules. Keep previous checkpoints and releases.
+  Prepare, verify and launch a bounded resumable background run; do not keep a Codex
+  turn waiting for training. Do not list an untrained model in the public catalog.
+- App 0.6.0 groups F3 model choices by family/version with arrow navigation. F6 adds
+  local text search and pinning. Edits/regenerations create separate saved branches,
+  exclude subsequent turns from the revised prompt and charge actual tokens normally.
+  Keep the legacy chats table compatible; pins use a separate table. Preserve chats,
+  model bindings and the shared quota. The owner excluded the proposed comparison UI.

@@ -42,45 +42,41 @@ def plain_chat(session):
     from .session import HELP
     print(f"λ LAMBDA {__version__} · {session.engine.metadata['name']} · local English AI")
     print("Enter a question or /help. /exit ends the session.\n")
+    def respond(question):
+        session.add_user(question);result=session.generate(question);session.complete(result)
+        print("λ ›",result.text or "[Empty response]")
+        mode=f" · {result.intent.title()}" if result.intent else ""
+        print(f"    {len(result.prompt_ids)} → {len(result.generated)} tok · {result.seconds:.2f} s · "
+              f"{session.quota.status()['remaining']:,} tokens left{mode}\n")
     while True:
+        try:question=input("You › ").strip()
+        except (EOFError,KeyboardInterrupt):print();return 0
+        if not question:continue
         try:
-            question = input("You › ").strip()
-        except (EOFError, KeyboardInterrupt):
-            print()
-            return 0
-        if not question:
-            continue
-        try:
-            if question.startswith("/"):
-                view, notice = session.command(question)
-                if view == "exit":
-                    return 0
-                if view == "update" or view.startswith(("use:", "install:")):
-                    print(session.model_action(view, progress=print))
-                    if view != "update":
-                        print(session.model_text())
+            if question.startswith('/'):
+                view,notice=session.command(question)
+                if view=='exit':return 0
+                if view=='retry':respond(session.prepare_revision(len(session.turns),kind='retry'));continue
+                if view.startswith('revise:'):
+                    respond(session.prepare_revision(int(view.split(':')[1]),notice));continue
+                if view=='edit':
+                    number=int(notice);print('Original question:',session.turns[number-1]['question'])
+                    replacement=input('New question (empty cancels): ').strip()
+                    if replacement:respond(session.prepare_revision(number,replacement))
                     continue
-                content = {"help":lambda:HELP, "model":session.model_text,
-                           "stats":session.stats_text, "tokens":session.tokens_text, "intent":session.intent_text,
-                           "updates":session.updates_text, "chats":session.chats_text}
-                if view in content:
-                    print(content[view]())
-                if notice:
-                    print(notice)
-                if view == 'chat' and question.startswith('/chat '):
-                    print('\n'.join(f'{role} › {text}' for role,text in session.messages))
+                if view=='update' or view.startswith(('use:','install:')):
+                    result=session.model_action(view,progress=print)
+                    if view!='update':print(result);print(session.model_text())
+                    continue
+                content={'help':lambda:HELP,'model':session.model_text,'stats':session.stats_text,
+                         'tokens':session.tokens_text,'intent':session.intent_text,'updates':session.updates_text,'chats':session.chats_text}
+                if view in content:print(content[view]())
+                if notice:print(notice)
+                if view=='chat' and question.startswith('/chat '):print('\n'.join(f'{role} › {text}' for role,text in session.messages))
                 continue
-            session.add_user(question)
-            result = session.generate(question)
-            session.complete(result)
-            print("λ ›", result.text or "[Empty response]")
-            mode = f" · {result.intent.title()}" if result.intent else ""
-            print(f"    {len(result.prompt_ids)} → {len(result.generated)} tok · "
-                  f"{result.seconds:.2f} s · {session.quota.status()['remaining']:,} tokens left{mode}\n")
-        except KeyboardInterrupt:
-            print("\nCancelled.")
-        except (ValueError, OSError) as error:
-            print("Error:", error)
+            respond(question)
+        except KeyboardInterrupt:print('\nCancelled.')
+        except (ValueError,OSError) as error:print('Error:',error)
 
 
 def main(argv=None):

@@ -26,7 +26,7 @@ separately. The runtime (0.4.0 and newer) also supports experimental v3/v4
 Transformers: they receive recent completed exchanges within their context window.
 Use `/memory` to check the current model. Interactive conversations are saved locally
 and resume after restart. `/new` creates another chat; `/chats` reopens a saved one.
-The model still sees only its recent context window. Optional lambda 2.1 and 2.2 models are available.
+The model still sees only its recent context window. Optional conversation models through lambda 2.4 are available.
 
 ## Install
 
@@ -74,6 +74,12 @@ Terminal preview with a sample allowance.
 | F4 | Remaining allowance, reset time and session usage |
 | F5 | App and model updates |
 | F6 | Saved local chats |
+| ↑ / ↓ | Select a model family, version or chat with empty input |
+| Enter / → | Open a family, select a model or reopen a chat |
+| ← / Esc | Go back; Esc cancels question editing |
+| Ctrl+P | Pin/unpin the selected chat in Chats |
+| Ctrl+E / Ctrl+R | Edit the last question / regenerate its answer in Chat |
+| Ctrl+N | New saved chat |
 | Enter | Send a message or run a command |
 | PgUp / PgDn | Scroll |
 | Ctrl+C | Cancel an operation or clear the input |
@@ -101,8 +107,11 @@ and the input supports session history with the arrow keys.
 /exit
 ```
 
-`/model` offers **lambda 1.0**, **lambda 1.5**, **lambda 1.6**, **lambda 2**, **lambda 2.1**, **lambda 2.2**, and **lambda 2.4**. In that view, enter a model's
-number or use `/model use <id>`. Lambda 1.0 remains included with the app;
+`/model` offers **lambda 1.0**, **lambda 1.5**, **lambda 1.6**, **lambda 2**, **lambda 2.1**, **lambda 2.2**, and **lambda 2.4**. In the full-screen view, select a family first, then a version using ↑/↓ and
+Enter (or →). For example, **lambda 1** contains 1.0, 1.5 and 1.6;
+**lambda 2** contains the published 2.x versions. Use ← or Esc to go back.
+Numbers select a row at the current level. `/model use <id>` selects a version directly.
+The plain terminal mode keeps a numbered flat list. Lambda 1.0 remains included with the app;
 lambda 1.5, 1.6 and 2 are optional downloads. Future models appear after `/update` when
 the maintainer adds them to the catalog. New models are not given automatic names.
 
@@ -241,9 +250,9 @@ use the same allowance. Token inspection and model information are free.
 Pipes automatically use plain mode. A custom inference model can be specified
 with `lambda --model file.npz` or `LAMBDA_MODEL`.
 
-Conversations remain in memory unless explicitly exported with `/save`.
-An existing export is not overwritten. Usage counts persist without storing
-the text of conversations.
+Interactive conversations save automatically on this computer. `/save` additionally
+exports a copy and never overwrites an existing export. The separate usage ledger
+records token counts without conversation text.
 
 ## Model and source
 
@@ -386,3 +395,35 @@ App 0.5.0 may report an invalid model size before completing its application
 upgrade; restart the upgraded app and refresh again. Existing saved chats keep
 their selected model. Use `/model use lambda-2.4` inside a chat to switch it,
 or `/new` to start another conversation.
+
+
+## App 0.6.0: models and conversation tools
+
+![Model families and versions](docs/model-families.png)
+
+Preview with an isolated sample allowance.
+
+F3 groups published models by family and version. ↑/↓ selects a row, Enter/→ opens
+it, and ←/Esc returns to the family list. The active version, download status and
+size remain visible alongside the current model's parameter information.
+
+F6 searches and pins local conversations. Type words and press Enter, or use
+`/search words`, to match titles and message text. `/search` clears the filter.
+↑/↓ and Enter reopen a result. Ctrl+P pins/unpins the highlighted chat; pinned chats
+stay first. `/pin` toggles the current chat, and `/pin <number or id>` targets a listed
+chat. Searching and pinning do not run the model or spend tokens.
+
+The Chat action bar offers **New chat**, **Regenerate** and **Edit question**.
+Ctrl+E (or `/edit`) prefills the last question; change it and press Enter. Esc cancels.
+Use `/edit 2` to edit question 2, or `/edit 2 replacement question` to resend directly.
+Question numbers are shown beside your messages. Ctrl+R or `/retry` generates the
+last answer again. These actions create a separate saved chat branch: earlier turns
+are retained, and later turns from the original branch are excluded from the new
+prompt. The original chat remains available in F6. Generating again spends input
+and output tokens normally; previous generations are not refunded.
+
+The owner-approved **lambda 2.5** is being prepared privately with a 1024-token
+context and additional natural dialogue, follow-up, long-context and worked-math
+training examples. It is not in the public model catalog yet. Lambda 2.4 remains
+available with its original 512-token context. App features do not add answer rules,
+retrieve canned answers or calculate replies for the model.
