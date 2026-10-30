@@ -72,6 +72,18 @@
       "bytes": 43902506,
       "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-2.2.npz",
       "description": "Experimental conversation repair trained from the owner's lambda 2.1 weights. All layers adapted to multi-turn examples. See the model card for measured results and limitations."
+    },
+    {
+      "id": "lambda-2.4",
+      "name": "lambda 2.4",
+      "revision": 1,
+      "language": "en",
+      "min_app_version": "0.5.1",
+      "format": "lambda-ai-pointer-transformer-v4",
+      "sha256": "9f279c0a9a74c5d0d79f50a8651fa369ced95d457ce1b2cbaa84602a128e1231",
+      "bytes": 57063014,
+      "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-2.4.npz",
+      "description": "Experimental 15.35M-parameter English conversation model with improved topic switching. Continued from own lambda 2.2 weights; requires app 0.5.1."
     }
   ]
 }

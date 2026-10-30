@@ -1,0 +1,28 @@
+{
+  "context": 512,
+  "width": 384,
+  "layers": 8,
+  "heads": 6,
+  "vocabulary": 2048,
+  "format": "lambda-ai-pointer-transformer-v4",
+  "name": "lambda 2.4",
+  "model_id": "lambda-2.4",
+  "language": "en",
+  "training_step": 31650,
+  "data_sha256": "a8b88d9a4b6fefc7f8636713f724e8bb77e0fdf3a366fa528a02f8fbdd147ad6",
+  "initialization": "Continuation of own lambda 2.2; two identity-residual blocks added before training; no external pretrained weights.",
+  "min_app_version": "0.5.1",
+  "pointer_width": 128,
+  "training_lineage": {
+    "source_sha256": "1b03d63f5ee48fc8ce6f5a6a3188677a25f2a942972b17e8a6b1a52e6b296907",
+    "source_step": 24650,
+    "experiment": "release_23",
+    "selected_checkpoint_sha256": "22cb0f72aaaf66dfca254dc965ff6590a2be0c6285cc2c3c94c02a93975f5020",
+    "selected_additional_steps": 7000
+  },
+  "bytes": 57063014,
+  "sha256": "9f279c0a9a74c5d0d79f50a8651fa369ced95d457ce1b2cbaa84602a128e1231",
+  "parameters": 15350401,
+  "status": "owner-authorized experimental release",
+  "selection": "Best development score with retention checks; step 7000 of 8000, total 31650."
+}

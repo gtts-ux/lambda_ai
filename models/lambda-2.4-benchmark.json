@@ -1,0 +1,5014 @@
+{
+  "model": "lambda 2.4",
+  "selected_checkpoint_sha256": "22cb0f72aaaf66dfca254dc965ff6590a2be0c6285cc2c3c94c02a93975f5020",
+  "parameters": 15350401,
+  "source_model": "lambda 2.2",
+  "selected_updates": 7000,
+  "total_step": 31650,
+  "development_22": {
+    "split": "val",
+    "top_k": 1,
+    "seed": 2300,
+    "scores": {
+      "topic_switch": {
+        "correct": 0,
+        "total": 24,
+        "accuracy": 0.0
+      },
+      "memory": {
+        "correct": 0,
+        "total": 8,
+        "accuracy": 0.0
+      },
+      "math": {
+        "correct": 4,
+        "total": 8,
+        "accuracy": 0.5
+      },
+      "chat": {
+        "correct": 7,
+        "total": 8,
+        "accuracy": 0.875
+      }
+    },
+    "identity_intrusions": 24,
+    "topic_switches": 24,
+    "quality_score": 0.07916666666666666,
+    "outputs": [
+      {
+        "category": "topic_switch",
+        "question": "What is a cat?",
+        "expected": "A cat is a mammal with fur, whiskers, and paws with claws.",
+        "answer": "Your name is Dora.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 23 years old.",
+            "You are 23 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Dora."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 9 + 6?",
+        "expected": "15.",
+        "answer": "Your name is Temin.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temr."
+          ],
+          [
+            "I am 24 years old.",
+            "You are 24 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a flower?",
+        "expected": "A flower is a reproductive structure of a flowering plant.",
+        "answer": "You are 25 years old.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 25 years old.",
+            "You are 25 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 10 + 4?",
+        "expected": "14.",
+        "answer": "You are 26 years old.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temr."
+          ],
+          [
+            "I am 26 years old.",
+            "You are 26 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Temr."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is sound?",
+        "expected": "Sound is a vibration that travels through a medium such as air.",
+        "answer": "You are 27 years old.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 27 years old.",
+            "You are 27 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 11 + 2?",
+        "expected": "13.",
+        "answer": "Your name is Temr.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temr."
+          ],
+          [
+            "I am 28 years old.",
+            "You are 28 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is an ocean?",
+        "expected": "An ocean is a vast body of salt water.",
+        "answer": "Your name is Dora.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 29 years old.",
+            "You are 29 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Dora."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 7 + 5?",
+        "expected": "12.",
+        "answer": "Your name is Temin.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temr."
+          ],
+          [
+            "I am 30 years old.",
+            "You are 30 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is RAM?",
+        "expected": "RAM is memory that stores data used by running programs.",
+        "answer": "Your name is Dora.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 31 years old.",
+            "You are 31 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 4 + 3?",
+        "expected": "7.",
+        "answer": "You are 32 years old.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temr."
+          ],
+          [
+            "I am 32 years old.",
+            "You are 32 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is TemrTemin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a bug?",
+        "expected": "A bug is an error that makes a program behave differently from what was intended.",
+        "answer": "Your name is bugevora.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 33 years old.",
+            "You are 33 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 8 + 10?",
+        "expected": "18.",
+        "answer": "Your name is TemrTemin.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temr."
+          ],
+          [
+            "I am 34 years old.",
+            "You are 34 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a letter?",
+        "expected": "A letter is a written symbol used to form words.",
+        "answer": "Your name is letter.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 35 years old.",
+            "You are 35 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Dora."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 12 + 3?",
+        "expected": "15.",
+        "answer": "Your name is Temr.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temr."
+          ],
+          [
+            "I am 36 years old.",
+            "You are 36 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a reader?",
+        "expected": "A reader is someone who reads a text.",
+        "answer": "Your name is Dora. You are 37 years old.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 37 years old.",
+            "You are 37 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 4 + 12?",
+        "expected": "16.",
+        "answer": "Your name is TemrTemin.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temr."
+          ],
+          [
+            "I am 38 years old.",
+            "You are 38 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Temr."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a square?",
+        "expected": "A square has four equal sides and four right angles.",
+        "answer": "Your name is Dora.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 39 years old.",
+            "You are 39 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 5 + 3?",
+        "expected": "8.",
+        "answer": "Your name is Temrr.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temr."
+          ],
+          [
+            "I am 40 years old.",
+            "You are 40 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a chair?",
+        "expected": "A chair is a piece of furniture used for sitting.",
+        "answer": "Your name is chairora.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 41 years old.",
+            "You are 41 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Dora."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 7 + 6?",
+        "expected": "13.",
+        "answer": "Your name is Temin.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temr."
+          ],
+          [
+            "I am 23 years old.",
+            "You are 23 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is cooperation?",
+        "expected": "Cooperation means working together toward a shared goal.",
+        "answer": "Your name is cooperationevora. You are 24 years old.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 24 years old.",
+            "You are 24 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 12 + 4?",
+        "expected": "16.",
+        "answer": "You are 25 years old.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temr."
+          ],
+          [
+            "I am 25 years old.",
+            "You are 25 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Temr."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a leaf?",
+        "expected": "A leaf is a plant organ that often captures light for photosynthesis.",
+        "answer": "You are 26 years old.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 26 years old.",
+            "You are 26 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 7 + 12?",
+        "expected": "19.",
+        "answer": "Your name is Temr.",
+        "correct": false,
+        "identity_intrusion": true,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temr."
+          ],
+          [
+            "I am 27 years old.",
+            "You are 27 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Devora.",
+        "answer": "Your name is Dora.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Your name is Dora."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Temrin.",
+        "answer": "Your name is Temr.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temr."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Your name is Temr."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Devora.",
+        "answer": "Your name is Dora.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Your name is Dora."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Temrin.",
+        "answer": "Your name is Temr.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temr."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Your name is Temr."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Devora.",
+        "answer": "Your name is Dora.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Your name is Dora."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Temrin.",
+        "answer": "Your name is Temr.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temr."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Your name is Temr."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Devora.",
+        "answer": "Your name is Dora.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Your name is Dora."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Temrin.",
+        "answer": "Your name is Temr.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temr."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Your name is Temr."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 5 * 6?",
+        "expected": "30.",
+        "answer": "30.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 12 / 3?",
+        "expected": "4.",
+        "answer": "3.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 5 + 3?",
+        "expected": "8.",
+        "answer": "8.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 8 - 3?",
+        "expected": "5.",
+        "answer": "5.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 4 * 3?",
+        "expected": "12.",
+        "answer": "1.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Calculate 7 + 6.",
+        "expected": "13.",
+        "answer": "13.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 19 - 8?",
+        "expected": "11.",
+        "answer": "1.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 7 - 10?",
+        "expected": "-3.",
+        "answer": "-7.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "hello",
+        "expected": "Hello! How can I help you?",
+        "answer": "Hello! How can I help you?",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "who are you",
+        "expected": "I am Lambda, a small AI language model.",
+        "answer": "I am Lambda, a small AI language model.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What can you help me with?",
+        "expected": "I can help with simple questions, basic math, and conversation.",
+        "answer": "I can help with simple questions, basic math, and conversation.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "How are you?",
+        "expected": "I am ready to help. What would you like to discuss?",
+        "answer": "I am Lambda, a small AI language model.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "Thanks!",
+        "expected": "You're welcome!",
+        "answer": "You're welcome!",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "bye",
+        "expected": "Goodbye!",
+        "answer": "Goodbye!",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What is a triangle?",
+        "expected": "A triangle is a polygon with three sides and three angles.",
+        "answer": "A triangle is a polygon with three sides and three angles.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What is Python 3?",
+        "expected": "Python 3 is a programming language used to write computer programs.",
+        "answer": "Python 3 is a programming language used to write computer programs.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      }
+    ],
+    "note": "Small synthetic held-out combinations; templates overlap training. Previous assistant replies were generated, not supplied as gold. Strict matching can reject paraphrases."
+  },
+  "development_24": {
+    "split": "val",
+    "top_k": 1,
+    "seed": 2300,
+    "scores": {
+      "topic_switch": {
+        "correct": 23,
+        "total": 24,
+        "accuracy": 0.9583333333333334
+      },
+      "memory": {
+        "correct": 8,
+        "total": 8,
+        "accuracy": 1.0
+      },
+      "math": {
+        "correct": 6,
+        "total": 8,
+        "accuracy": 0.75
+      },
+      "chat": {
+        "correct": 8,
+        "total": 8,
+        "accuracy": 1.0
+      }
+    },
+    "identity_intrusions": 0,
+    "topic_switches": 24,
+    "quality_score": 0.9375,
+    "outputs": [
+      {
+        "category": "topic_switch",
+        "question": "What is a cat?",
+        "expected": "A cat is a mammal with fur, whiskers, and paws with claws.",
+        "answer": "A cat is a small domesticated animal.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 23 years old.",
+            "You are 23 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Devora."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 9 + 6?",
+        "expected": "15.",
+        "answer": "15.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 24 years old.",
+            "You are 24 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a flower?",
+        "expected": "A flower is a reproductive structure of a flowering plant.",
+        "answer": "A flower is a reproductive structure of a flowering plant.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 25 years old.",
+            "You are 25 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 10 + 4?",
+        "expected": "14.",
+        "answer": "14.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 26 years old.",
+            "You are 26 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Temrin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is sound?",
+        "expected": "Sound is a vibration that travels through a medium such as air.",
+        "answer": "Sound is a vibration that travels through a medium such as air.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 27 years old.",
+            "You are 27 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 11 + 2?",
+        "expected": "13.",
+        "answer": "13.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 28 years old.",
+            "You are 28 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is an ocean?",
+        "expected": "An ocean is a vast body of salt water.",
+        "answer": "An ocean is a vast body of salt water.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 29 years old.",
+            "You are 29 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Devora."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 7 + 5?",
+        "expected": "12.",
+        "answer": "12.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 30 years old.",
+            "You are 30 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is RAM?",
+        "expected": "RAM is memory that stores data used by running programs.",
+        "answer": "RAM is memory that stores data used by running programs.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 31 years old.",
+            "You are 31 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 4 + 3?",
+        "expected": "7.",
+        "answer": "7.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 32 years old.",
+            "You are 32 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Temrin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a bug?",
+        "expected": "A bug is an error that makes a program behave differently from what was intended.",
+        "answer": "A bug is an error that makes a program behave differently from what was intended.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 33 years old.",
+            "You are 33 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 8 + 10?",
+        "expected": "18.",
+        "answer": "18.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 34 years old.",
+            "You are 34 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a letter?",
+        "expected": "A letter is a written symbol used to form words.",
+        "answer": "A letter is a written symbol used to form words.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 35 years old.",
+            "You are 35 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Devora."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 12 + 3?",
+        "expected": "15.",
+        "answer": "15.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 36 years old.",
+            "You are 36 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a reader?",
+        "expected": "A reader is someone who reads a text.",
+        "answer": "A reader is someone who reads a text.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 37 years old.",
+            "You are 37 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 4 + 12?",
+        "expected": "16.",
+        "answer": "16.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 38 years old.",
+            "You are 38 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Temrin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a square?",
+        "expected": "A square has four equal sides and four right angles.",
+        "answer": "A square has four equal sides and four right angles.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 39 years old.",
+            "You are 39 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 5 + 3?",
+        "expected": "8.",
+        "answer": "8.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 40 years old.",
+            "You are 40 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a chair?",
+        "expected": "A chair is a piece of furniture used for sitting.",
+        "answer": "A chair is a piece of furniture used for sitting.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 41 years old.",
+            "You are 41 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Devora."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 7 + 6?",
+        "expected": "13.",
+        "answer": "13.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 23 years old.",
+            "You are 23 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is cooperation?",
+        "expected": "Cooperation means working together toward a shared goal.",
+        "answer": "Cooperation means working together toward a shared goal.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 24 years old.",
+            "You are 24 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 12 + 4?",
+        "expected": "16.",
+        "answer": "16.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 25 years old.",
+            "You are 25 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Temrin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a leaf?",
+        "expected": "A leaf is a plant organ that often captures light for photosynthesis.",
+        "answer": "A leaf is a plant organ that often captures light for photosynthesis.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 26 years old.",
+            "You are 26 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 7 + 12?",
+        "expected": "19.",
+        "answer": "19.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 27 years old.",
+            "You are 27 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Devora.",
+        "answer": "Your name is Devora.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Temrin.",
+        "answer": "Your name is Temrin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Devora.",
+        "answer": "Your name is Devora.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Temrin.",
+        "answer": "Your name is Temrin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Devora.",
+        "answer": "Your name is Devora.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Temrin.",
+        "answer": "Your name is Temrin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Devora.",
+        "answer": "Your name is Devora.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Temrin.",
+        "answer": "Your name is Temrin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 5 * 6?",
+        "expected": "30.",
+        "answer": "30.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 12 / 3?",
+        "expected": "4.",
+        "answer": "6.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 5 + 3?",
+        "expected": "8.",
+        "answer": "8.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 8 - 3?",
+        "expected": "5.",
+        "answer": "5.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 4 * 3?",
+        "expected": "12.",
+        "answer": "12.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Calculate 7 + 6.",
+        "expected": "13.",
+        "answer": "13.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 19 - 8?",
+        "expected": "11.",
+        "answer": "1.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 7 - 10?",
+        "expected": "-3.",
+        "answer": "-3.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "hello",
+        "expected": "Hello! How can I help you?",
+        "answer": "Hello! How can I help you?",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "who are you",
+        "expected": "I am Lambda, a small AI language model.",
+        "answer": "I am Lambda, a small AI language model.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What can you help me with?",
+        "expected": "I can help with simple questions, basic math, and conversation.",
+        "answer": "I can help with simple questions, basic math, and conversation.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "How are you?",
+        "expected": "I am ready to help. What would you like to discuss?",
+        "answer": "I am ready to help. What would you like to discuss?",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "Thanks!",
+        "expected": "You're welcome!",
+        "answer": "You're welcome!",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "bye",
+        "expected": "Goodbye!",
+        "answer": "Goodbye!",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What is a triangle?",
+        "expected": "A triangle is a polygon with three sides and three angles.",
+        "answer": "A triangle is a polygon with three sides and three angles.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What is Python 3?",
+        "expected": "Python 3 is a programming language used to write computer programs.",
+        "answer": "Python 3 is a programming language used to write computer programs.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      }
+    ],
+    "note": "Small synthetic held-out combinations; templates overlap training. Previous assistant replies were generated, not supplied as gold. Strict matching can reject paraphrases.",
+    "step": 7000
+  },
+  "development_default_24": {
+    "split": "val",
+    "top_k": 8,
+    "seed": 2301,
+    "scores": {
+      "topic_switch": {
+        "correct": 23,
+        "total": 24,
+        "accuracy": 0.9583333333333334
+      },
+      "memory": {
+        "correct": 8,
+        "total": 8,
+        "accuracy": 1.0
+      },
+      "math": {
+        "correct": 6,
+        "total": 8,
+        "accuracy": 0.75
+      },
+      "chat": {
+        "correct": 8,
+        "total": 8,
+        "accuracy": 1.0
+      }
+    },
+    "identity_intrusions": 0,
+    "topic_switches": 24,
+    "quality_score": 0.9375,
+    "outputs": [
+      {
+        "category": "topic_switch",
+        "question": "What is a cat?",
+        "expected": "A cat is a mammal with fur, whiskers, and paws with claws.",
+        "answer": "A cat is a small domesticated animal.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 23 years old.",
+            "You are 23 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Devora."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 9 + 6?",
+        "expected": "15.",
+        "answer": "15.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 24 years old.",
+            "You are 24 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a flower?",
+        "expected": "A flower is a reproductive structure of a flowering plant.",
+        "answer": "A flower is a reproductive structure of a flowering plant.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 25 years old.",
+            "You are 25 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 10 + 4?",
+        "expected": "14.",
+        "answer": "14.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 26 years old.",
+            "You are 26 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Temrin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is sound?",
+        "expected": "Sound is a vibration that travels through a medium such as air.",
+        "answer": "Sound is a vibration that travels through a medium such as air.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 27 years old.",
+            "You are 27 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 11 + 2?",
+        "expected": "13.",
+        "answer": "13.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 28 years old.",
+            "You are 28 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is an ocean?",
+        "expected": "An ocean is a vast body of salt water.",
+        "answer": "An ocean is a vast body of salt water.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 29 years old.",
+            "You are 29 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Devora."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 7 + 5?",
+        "expected": "12.",
+        "answer": "12.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 30 years old.",
+            "You are 30 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is RAM?",
+        "expected": "RAM is memory that stores data used by running programs.",
+        "answer": "RAM is memory that stores data used by running programs.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 31 years old.",
+            "You are 31 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 4 + 3?",
+        "expected": "7.",
+        "answer": "7.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 32 years old.",
+            "You are 32 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Temrin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a bug?",
+        "expected": "A bug is an error that makes a program behave differently from what was intended.",
+        "answer": "A bug is an error that makes a program behave differently from what was intended.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 33 years old.",
+            "You are 33 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 8 + 10?",
+        "expected": "18.",
+        "answer": "18.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 34 years old.",
+            "You are 34 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a letter?",
+        "expected": "A letter is a written symbol used to form words.",
+        "answer": "A letter is a written symbol used to form words.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 35 years old.",
+            "You are 35 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Devora."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 12 + 3?",
+        "expected": "15.",
+        "answer": "15.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 36 years old.",
+            "You are 36 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a reader?",
+        "expected": "A reader is someone who reads a text.",
+        "answer": "A reader is someone who reads a text.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 37 years old.",
+            "You are 37 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 4 + 12?",
+        "expected": "16.",
+        "answer": "16.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 38 years old.",
+            "You are 38 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Temrin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a square?",
+        "expected": "A square has four equal sides and four right angles.",
+        "answer": "A square has four equal sides and four right angles.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 39 years old.",
+            "You are 39 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 5 + 3?",
+        "expected": "8.",
+        "answer": "8.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 40 years old.",
+            "You are 40 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a chair?",
+        "expected": "A chair is a piece of furniture used for sitting.",
+        "answer": "A chair is a piece of furniture used for sitting.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 41 years old.",
+            "You are 41 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Devora."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 7 + 6?",
+        "expected": "13.",
+        "answer": "13.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 23 years old.",
+            "You are 23 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is cooperation?",
+        "expected": "Cooperation means working together toward a shared goal.",
+        "answer": "Cooperation means working together toward a shared goal.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 24 years old.",
+            "You are 24 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 12 + 4?",
+        "expected": "16.",
+        "answer": "16.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 25 years old.",
+            "You are 25 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Temrin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a leaf?",
+        "expected": "A leaf is a plant organ that often captures light for photosynthesis.",
+        "answer": "A leaf is a plant organ that often captures light for photosynthesis.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "I am 26 years old.",
+            "You are 26 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 7 + 12?",
+        "expected": "19.",
+        "answer": "19.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "I am 27 years old.",
+            "You are 27 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Devora.",
+        "answer": "Your name is Devora.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Temrin.",
+        "answer": "Your name is Temrin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Devora.",
+        "answer": "Your name is Devora.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Temrin.",
+        "answer": "Your name is Temrin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Devora.",
+        "answer": "Your name is Devora.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Temrin.",
+        "answer": "Your name is Temrin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Devora.",
+        "answer": "Your name is Devora.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Devora.",
+            "Hello, Devora."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Temrin.",
+        "answer": "Your name is Temrin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Temrin.",
+            "Hello, Temrin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 5 * 6?",
+        "expected": "30.",
+        "answer": "30.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 12 / 3?",
+        "expected": "4.",
+        "answer": "7.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 5 + 3?",
+        "expected": "8.",
+        "answer": "8.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 8 - 3?",
+        "expected": "5.",
+        "answer": "5.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 4 * 3?",
+        "expected": "12.",
+        "answer": "12.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Calculate 7 + 6.",
+        "expected": "13.",
+        "answer": "13.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 19 - 8?",
+        "expected": "11.",
+        "answer": "1.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 7 - 10?",
+        "expected": "-3.",
+        "answer": "-3.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "hello",
+        "expected": "Hello! How can I help you?",
+        "answer": "Hello! How can I help you?",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "who are you",
+        "expected": "I am Lambda, a small AI language model.",
+        "answer": "I am Lambda, a small AI language model.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What can you help me with?",
+        "expected": "I can help with simple questions, basic math, and conversation.",
+        "answer": "I can help with simple questions, basic math, and conversation.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "How are you?",
+        "expected": "I am ready to help. What would you like to discuss?",
+        "answer": "I am ready to help. What would you like to discuss?",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "Thanks!",
+        "expected": "You're welcome!",
+        "answer": "You're welcome!",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "bye",
+        "expected": "Goodbye!",
+        "answer": "Goodbye!",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What is a triangle?",
+        "expected": "A triangle is a polygon with three sides and three angles.",
+        "answer": "A triangle is a polygon with three sides and three angles.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What is Python 3?",
+        "expected": "Python 3 is a programming language used to write computer programs.",
+        "answer": "Python 3 is a programming language used to write computer programs.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      }
+    ],
+    "note": "Small synthetic held-out combinations; templates overlap training. Previous assistant replies were generated, not supplied as gold. Strict matching can reject paraphrases."
+  },
+  "heldout_greedy_24": {
+    "split": "test",
+    "top_k": 1,
+    "seed": 2300,
+    "scores": {
+      "topic_switch": {
+        "correct": 21,
+        "total": 24,
+        "accuracy": 0.875
+      },
+      "memory": {
+        "correct": 8,
+        "total": 8,
+        "accuracy": 1.0
+      },
+      "math": {
+        "correct": 6,
+        "total": 8,
+        "accuracy": 0.75
+      },
+      "chat": {
+        "correct": 8,
+        "total": 8,
+        "accuracy": 1.0
+      }
+    },
+    "identity_intrusions": 0,
+    "topic_switches": 24,
+    "quality_score": 0.8958333333333333,
+    "outputs": [
+      {
+        "category": "topic_switch",
+        "question": "What is a dog?",
+        "expected": "A dog is a domestic mammal that needs care, exercise, and companionship.",
+        "answer": "A dog is a domestic mammal that needs care, exercise, and companionship.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 23 years old.",
+            "You are 23 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Torvella."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 2 + 11?",
+        "expected": "13.",
+        "answer": "13.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 24 years old.",
+            "You are 24 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a seed?",
+        "expected": "A seed contains an embryo that can grow into a new plant under suitable conditions.",
+        "answer": "A seed contains an embryo that can grow into a new plant under suitable conditions.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 25 years old.",
+            "You are 25 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 11 + 2?",
+        "expected": "13.",
+        "answer": "13.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 26 years old.",
+            "You are 26 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Zemarin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is energy?",
+        "expected": "Energy is a physical quantity associated with work and changes in a system.",
+        "answer": "Energy is a physical quantity associated with work and changes in a system.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 27 years old.",
+            "You are 27 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 9 + 3?",
+        "expected": "12.",
+        "answer": "12.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 28 years old.",
+            "You are 28 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a mountain?",
+        "expected": "A mountain is a landform that rises prominently above the surrounding area.",
+        "answer": "A mountain is a landform that rises prominently above the surrounding area.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 29 years old.",
+            "You are 29 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Torvella."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 12 + 7?",
+        "expected": "19.",
+        "answer": "19.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 30 years old.",
+            "You are 30 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a disk?",
+        "expected": "A disk stores files even when the computer is turned off.",
+        "answer": "A disk stores files even when the computer is turned off.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 31 years old.",
+            "You are 31 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 6 + 10?",
+        "expected": "16.",
+        "answer": "17.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 32 years old.",
+            "You are 32 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Zemarin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a test?",
+        "expected": "A test checks whether a program behaves as expected in a particular situation.",
+        "answer": "A test checks whether a program behaves as expected in a particular situation.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 33 years old.",
+            "You are 33 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 8 + 7?",
+        "expected": "15.",
+        "answer": "15.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 34 years old.",
+            "You are 34 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is an alphabet?",
+        "expected": "An alphabet is a set of letters used in a writing system.",
+        "answer": "An alphabet is a set of letters used in a writing system.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 35 years old.",
+            "You are 35 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Torvella."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 12 + 11?",
+        "expected": "23.",
+        "answer": "13.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 36 years old.",
+            "You are 36 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a library?",
+        "expected": "A library collects books and other materials and makes them available to readers.",
+        "answer": "A library collects books and other materials and makes them available to readers.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 37 years old.",
+            "You are 37 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 7 + 3?",
+        "expected": "10.",
+        "answer": "10.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 38 years old.",
+            "You are 38 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Zemarin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a rectangle?",
+        "expected": "A rectangle has four right angles and opposite sides of equal length.",
+        "answer": "A rectangle has four right angles and opposite sides of equal length.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 39 years old.",
+            "You are 39 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 5 + 9?",
+        "expected": "14.",
+        "answer": "14.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 40 years old.",
+            "You are 40 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a lamp?",
+        "expected": "A lamp is a device that provides light.",
+        "answer": "A lamp is a device that provides light.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 41 years old.",
+            "You are 41 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Torvella."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 7 + 4?",
+        "expected": "11.",
+        "answer": "9.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 23 years old.",
+            "You are 23 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is patience?",
+        "expected": "Patience helps someone continue calmly despite waiting or difficulty.",
+        "answer": "Patience helps someone continue calmly despite waiting or difficulty.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 24 years old.",
+            "You are 24 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 11 + 3?",
+        "expected": "14.",
+        "answer": "14.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 25 years old.",
+            "You are 25 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Zemarin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a root?",
+        "expected": "A root anchors a plant and absorbs water and minerals from the soil.",
+        "answer": "A root anchors a plant and absorbs water and minerals from the soil.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 26 years old.",
+            "You are 26 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 8 + 11?",
+        "expected": "19.",
+        "answer": "19.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 27 years old.",
+            "You are 27 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Torvella.",
+        "answer": "Your name is Torvella.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Zemarin.",
+        "answer": "Your name is Zemarin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Torvella.",
+        "answer": "Your name is Torvella.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Zemarin.",
+        "answer": "Your name is Zemarin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Torvella.",
+        "answer": "Your name is Torvella.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Zemarin.",
+        "answer": "Your name is Zemarin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Torvella.",
+        "answer": "Your name is Torvella.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Zemarin.",
+        "answer": "Your name is Zemarin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 5 * 6?",
+        "expected": "30.",
+        "answer": "30.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 12 / 3?",
+        "expected": "4.",
+        "answer": "6.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 5 + 3?",
+        "expected": "8.",
+        "answer": "8.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 8 - 3?",
+        "expected": "5.",
+        "answer": "5.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 4 * 3?",
+        "expected": "12.",
+        "answer": "12.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Calculate 7 + 6.",
+        "expected": "13.",
+        "answer": "13.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 19 - 8?",
+        "expected": "11.",
+        "answer": "1.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 7 - 10?",
+        "expected": "-3.",
+        "answer": "-3.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "hello",
+        "expected": "Hello! How can I help you?",
+        "answer": "Hello! How can I help you?",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "who are you",
+        "expected": "I am Lambda, a small AI language model.",
+        "answer": "I am Lambda, a small AI language model.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What can you help me with?",
+        "expected": "I can help with simple questions, basic math, and conversation.",
+        "answer": "I can help with simple questions, basic math, and conversation.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "How are you?",
+        "expected": "I am ready to help. What would you like to discuss?",
+        "answer": "I am ready to help. What would you like to discuss?",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "Thanks!",
+        "expected": "You're welcome!",
+        "answer": "You're welcome!",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "bye",
+        "expected": "Goodbye!",
+        "answer": "Goodbye!",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What is a triangle?",
+        "expected": "A triangle is a polygon with three sides and three angles.",
+        "answer": "A triangle is a polygon with three sides and three angles.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What is Python 3?",
+        "expected": "Python 3 is a programming language used to write computer programs.",
+        "answer": "Python 3 is a programming language used to write computer programs.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      }
+    ],
+    "note": "Small synthetic held-out combinations; templates overlap training. Previous assistant replies were generated, not supplied as gold. Strict matching can reject paraphrases."
+  },
+  "heldout_default_24": {
+    "split": "test",
+    "top_k": 8,
+    "seed": 2301,
+    "scores": {
+      "topic_switch": {
+        "correct": 21,
+        "total": 24,
+        "accuracy": 0.875
+      },
+      "memory": {
+        "correct": 8,
+        "total": 8,
+        "accuracy": 1.0
+      },
+      "math": {
+        "correct": 6,
+        "total": 8,
+        "accuracy": 0.75
+      },
+      "chat": {
+        "correct": 8,
+        "total": 8,
+        "accuracy": 1.0
+      }
+    },
+    "identity_intrusions": 0,
+    "topic_switches": 24,
+    "quality_score": 0.8958333333333333,
+    "outputs": [
+      {
+        "category": "topic_switch",
+        "question": "What is a dog?",
+        "expected": "A dog is a domestic mammal that needs care, exercise, and companionship.",
+        "answer": "A dog is a domestic mammal that needs care, exercise, and companionship.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 23 years old.",
+            "You are 23 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Torvella."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 2 + 11?",
+        "expected": "13.",
+        "answer": "13.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 24 years old.",
+            "You are 24 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a seed?",
+        "expected": "A seed contains an embryo that can grow into a new plant under suitable conditions.",
+        "answer": "A seed contains an embryo that can grow into a new plant under suitable conditions.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 25 years old.",
+            "You are 25 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 11 + 2?",
+        "expected": "13.",
+        "answer": "23.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 26 years old.",
+            "You are 26 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Zemarin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is energy?",
+        "expected": "Energy is a physical quantity associated with work and changes in a system.",
+        "answer": "Energy is a physical quantity associated with work and changes in a system.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 27 years old.",
+            "You are 27 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 9 + 3?",
+        "expected": "12.",
+        "answer": "12.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 28 years old.",
+            "You are 28 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a mountain?",
+        "expected": "A mountain is a landform that rises prominently above the surrounding area.",
+        "answer": "A mountain is a landform that rises prominently above the surrounding area.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 29 years old.",
+            "You are 29 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Torvella."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 12 + 7?",
+        "expected": "19.",
+        "answer": "19.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 30 years old.",
+            "You are 30 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a disk?",
+        "expected": "A disk stores files even when the computer is turned off.",
+        "answer": "A disk stores files even when the computer is turned off.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 31 years old.",
+            "You are 31 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 6 + 10?",
+        "expected": "16.",
+        "answer": "16.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 32 years old.",
+            "You are 32 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Zemarin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a test?",
+        "expected": "A test checks whether a program behaves as expected in a particular situation.",
+        "answer": "A test checks whether a program behaves as expected in a particular situation.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 33 years old.",
+            "You are 33 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 8 + 7?",
+        "expected": "15.",
+        "answer": "15.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 34 years old.",
+            "You are 34 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is an alphabet?",
+        "expected": "An alphabet is a set of letters used in a writing system.",
+        "answer": "An alphabet is a set of letters used in a writing system.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 35 years old.",
+            "You are 35 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Torvella."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 12 + 11?",
+        "expected": "23.",
+        "answer": "13.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 36 years old.",
+            "You are 36 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a library?",
+        "expected": "A library collects books and other materials and makes them available to readers.",
+        "answer": "A library collects books and other materials and makes them available to readers.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 37 years old.",
+            "You are 37 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 7 + 3?",
+        "expected": "10.",
+        "answer": "9.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 38 years old.",
+            "You are 38 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Zemarin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a rectangle?",
+        "expected": "A rectangle has four right angles and opposite sides of equal length.",
+        "answer": "A rectangle has four right angles and opposite sides of equal length.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 39 years old.",
+            "You are 39 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 5 + 9?",
+        "expected": "14.",
+        "answer": "14.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 40 years old.",
+            "You are 40 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a lamp?",
+        "expected": "A lamp is a device that provides light.",
+        "answer": "A lamp is a device that provides light.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 41 years old.",
+            "You are 41 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Torvella."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 7 + 4?",
+        "expected": "11.",
+        "answer": "11.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 23 years old.",
+            "You are 23 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is patience?",
+        "expected": "Patience helps someone continue calmly despite waiting or difficulty.",
+        "answer": "Patience helps someone continue calmly despite waiting or difficulty.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 24 years old.",
+            "You are 24 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 11 + 3?",
+        "expected": "14.",
+        "answer": "14.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 25 years old.",
+            "You are 25 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Zemarin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a root?",
+        "expected": "A root anchors a plant and absorbs water and minerals from the soil.",
+        "answer": "A root anchors a plant and absorbs water and minerals from the soil.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 26 years old.",
+            "You are 26 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 8 + 11?",
+        "expected": "19.",
+        "answer": "19.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 27 years old.",
+            "You are 27 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Torvella.",
+        "answer": "Your name is Torvella.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Zemarin.",
+        "answer": "Your name is Zemarin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Torvella.",
+        "answer": "Your name is Torvella.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Zemarin.",
+        "answer": "Your name is Zemarin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Torvella.",
+        "answer": "Your name is Torvella.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Zemarin.",
+        "answer": "Your name is Zemarin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Torvella.",
+        "answer": "Your name is Torvella.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Zemarin.",
+        "answer": "Your name is Zemarin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 5 * 6?",
+        "expected": "30.",
+        "answer": "30.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 12 / 3?",
+        "expected": "4.",
+        "answer": "7.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 5 + 3?",
+        "expected": "8.",
+        "answer": "8.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 8 - 3?",
+        "expected": "5.",
+        "answer": "5.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 4 * 3?",
+        "expected": "12.",
+        "answer": "12.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Calculate 7 + 6.",
+        "expected": "13.",
+        "answer": "13.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 19 - 8?",
+        "expected": "11.",
+        "answer": "1.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 7 - 10?",
+        "expected": "-3.",
+        "answer": "-3.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "hello",
+        "expected": "Hello! How can I help you?",
+        "answer": "Hello! How can I help you?",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "who are you",
+        "expected": "I am Lambda, a small AI language model.",
+        "answer": "I am Lambda, a small AI language model.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What can you help me with?",
+        "expected": "I can help with simple questions, basic math, and conversation.",
+        "answer": "I can help with simple questions, basic math, and conversation.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "How are you?",
+        "expected": "I am ready to help. What would you like to discuss?",
+        "answer": "I am ready to help. What would you like to discuss?",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "Thanks!",
+        "expected": "You're welcome!",
+        "answer": "You're welcome!",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "bye",
+        "expected": "Goodbye!",
+        "answer": "Goodbye!",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What is a triangle?",
+        "expected": "A triangle is a polygon with three sides and three angles.",
+        "answer": "A triangle is a polygon with three sides and three angles.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What is Python 3?",
+        "expected": "Python 3 is a programming language used to write computer programs.",
+        "answer": "Python 3 is a programming language used to write computer programs.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      }
+    ],
+    "note": "Small synthetic held-out combinations; templates overlap training. Previous assistant replies were generated, not supplied as gold. Strict matching can reject paraphrases."
+  },
+  "note": "Small synthetic sets with unseen full combinations/identities but overlapping task templates. Development was repeatedly used for selection; held-out cases were opened only after fitting. Exact matching can reject valid paraphrases. Identity intrusion is a pattern-based diagnostic, not a guarantee.",
+  "release_runtime_default_24": {
+    "split": "test",
+    "top_k": 8,
+    "seed": 2301,
+    "scores": {
+      "topic_switch": {
+        "correct": 21,
+        "total": 24,
+        "accuracy": 0.875
+      },
+      "memory": {
+        "correct": 8,
+        "total": 8,
+        "accuracy": 1.0
+      },
+      "math": {
+        "correct": 6,
+        "total": 8,
+        "accuracy": 0.75
+      },
+      "chat": {
+        "correct": 8,
+        "total": 8,
+        "accuracy": 1.0
+      }
+    },
+    "identity_intrusions": 0,
+    "topic_switches": 24,
+    "quality_score": 0.8958333333333333,
+    "outputs": [
+      {
+        "category": "topic_switch",
+        "question": "What is a dog?",
+        "expected": "A dog is a domestic mammal that needs care, exercise, and companionship.",
+        "answer": "A dog is a domestic mammal that needs care, exercise, and companionship.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 23 years old.",
+            "You are 23 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Torvella."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 2 + 11?",
+        "expected": "13.",
+        "answer": "13.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 24 years old.",
+            "You are 24 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a seed?",
+        "expected": "A seed contains an embryo that can grow into a new plant under suitable conditions.",
+        "answer": "A seed contains an embryo that can grow into a new plant under suitable conditions.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 25 years old.",
+            "You are 25 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 11 + 2?",
+        "expected": "13.",
+        "answer": "23.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 26 years old.",
+            "You are 26 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Zemarin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is energy?",
+        "expected": "Energy is a physical quantity associated with work and changes in a system.",
+        "answer": "Energy is a physical quantity associated with work and changes in a system.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 27 years old.",
+            "You are 27 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 9 + 3?",
+        "expected": "12.",
+        "answer": "12.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 28 years old.",
+            "You are 28 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a mountain?",
+        "expected": "A mountain is a landform that rises prominently above the surrounding area.",
+        "answer": "A mountain is a landform that rises prominently above the surrounding area.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 29 years old.",
+            "You are 29 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Torvella."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 12 + 7?",
+        "expected": "19.",
+        "answer": "19.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 30 years old.",
+            "You are 30 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a disk?",
+        "expected": "A disk stores files even when the computer is turned off.",
+        "answer": "A disk stores files even when the computer is turned off.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 31 years old.",
+            "You are 31 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 6 + 10?",
+        "expected": "16.",
+        "answer": "16.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 32 years old.",
+            "You are 32 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Zemarin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a test?",
+        "expected": "A test checks whether a program behaves as expected in a particular situation.",
+        "answer": "A test checks whether a program behaves as expected in a particular situation.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 33 years old.",
+            "You are 33 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 8 + 7?",
+        "expected": "15.",
+        "answer": "15.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 34 years old.",
+            "You are 34 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is an alphabet?",
+        "expected": "An alphabet is a set of letters used in a writing system.",
+        "answer": "An alphabet is a set of letters used in a writing system.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 35 years old.",
+            "You are 35 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Torvella."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 12 + 11?",
+        "expected": "23.",
+        "answer": "13.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 36 years old.",
+            "You are 36 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a library?",
+        "expected": "A library collects books and other materials and makes them available to readers.",
+        "answer": "A library collects books and other materials and makes them available to readers.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 37 years old.",
+            "You are 37 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 7 + 3?",
+        "expected": "10.",
+        "answer": "9.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 38 years old.",
+            "You are 38 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Zemarin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a rectangle?",
+        "expected": "A rectangle has four right angles and opposite sides of equal length.",
+        "answer": "A rectangle has four right angles and opposite sides of equal length.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 39 years old.",
+            "You are 39 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 5 + 9?",
+        "expected": "14.",
+        "answer": "14.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 40 years old.",
+            "You are 40 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a lamp?",
+        "expected": "A lamp is a device that provides light.",
+        "answer": "A lamp is a device that provides light.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 41 years old.",
+            "You are 41 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Torvella."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 7 + 4?",
+        "expected": "11.",
+        "answer": "11.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 23 years old.",
+            "You are 23 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is patience?",
+        "expected": "Patience helps someone continue calmly despite waiting or difficulty.",
+        "answer": "Patience helps someone continue calmly despite waiting or difficulty.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 24 years old.",
+            "You are 24 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 11 + 3?",
+        "expected": "14.",
+        "answer": "14.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 25 years old.",
+            "You are 25 years old."
+          ],
+          [
+            "What is my name?",
+            "Your name is Zemarin."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is a root?",
+        "expected": "A root anchors a plant and absorbs water and minerals from the soil.",
+        "answer": "A root anchors a plant and absorbs water and minerals from the soil.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "I am 26 years old.",
+            "You are 26 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "topic_switch",
+        "question": "What is 8 + 11?",
+        "expected": "19.",
+        "answer": "19.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "I am 27 years old.",
+            "You are 27 years old."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Torvella.",
+        "answer": "Your name is Torvella.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Zemarin.",
+        "answer": "Your name is Zemarin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Torvella.",
+        "answer": "Your name is Torvella.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Zemarin.",
+        "answer": "Your name is Zemarin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Torvella.",
+        "answer": "Your name is Torvella.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Zemarin.",
+        "answer": "Your name is Zemarin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Torvella.",
+        "answer": "Your name is Torvella.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Torvella.",
+            "Hello, Torvella."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "memory",
+        "question": "What is my name?",
+        "expected": "Your name is Zemarin.",
+        "answer": "Your name is Zemarin.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [
+          [
+            "My name is Zemarin.",
+            "Hello, Zemarin."
+          ],
+          [
+            "What is the opposite of hot?",
+            "Cold."
+          ]
+        ],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 5 * 6?",
+        "expected": "30.",
+        "answer": "30.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 12 / 3?",
+        "expected": "4.",
+        "answer": "7.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 5 + 3?",
+        "expected": "8.",
+        "answer": "8.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 8 - 3?",
+        "expected": "5.",
+        "answer": "5.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 4 * 3?",
+        "expected": "12.",
+        "answer": "12.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "Calculate 7 + 6.",
+        "expected": "13.",
+        "answer": "13.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 19 - 8?",
+        "expected": "11.",
+        "answer": "1.",
+        "correct": false,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "math",
+        "question": "What is 7 - 10?",
+        "expected": "-3.",
+        "answer": "-3.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "hello",
+        "expected": "Hello! How can I help you?",
+        "answer": "Hello! How can I help you?",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "who are you",
+        "expected": "I am Lambda, a small AI language model.",
+        "answer": "I am Lambda, a small AI language model.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What can you help me with?",
+        "expected": "I can help with simple questions, basic math, and conversation.",
+        "answer": "I can help with simple questions, basic math, and conversation.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "How are you?",
+        "expected": "I am ready to help. What would you like to discuss?",
+        "answer": "I am ready to help. What would you like to discuss?",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "Thanks!",
+        "expected": "You're welcome!",
+        "answer": "You're welcome!",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "bye",
+        "expected": "Goodbye!",
+        "answer": "Goodbye!",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What is a triangle?",
+        "expected": "A triangle is a polygon with three sides and three angles.",
+        "answer": "A triangle is a polygon with three sides and three angles.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      },
+      {
+        "category": "chat",
+        "question": "What is Python 3?",
+        "expected": "Python 3 is a programming language used to write computer programs.",
+        "answer": "Python 3 is a programming language used to write computer programs.",
+        "correct": true,
+        "identity_intrusion": false,
+        "history": [],
+        "finish_reason": "stop"
+      }
+    ],
+    "note": "Small synthetic held-out combinations; templates overlap training. Previous assistant replies were generated, not supplied as gold. Strict matching can reject paraphrases.",
+    "model": "lambda 2.4",
+    "app_version": "0.5.1",
+    "python": "3.14.6",
+    "numpy": "2.5.4",
+    "sha256": "9f279c0a9a74c5d0d79f50a8651fa369ced95d457ce1b2cbaa84602a128e1231",
+    "matches_training_runtime_answers": true
+  }
+}

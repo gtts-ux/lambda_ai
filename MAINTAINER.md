@@ -4,7 +4,7 @@ Repository: https://github.com/gtts-ux/lambda_ai
 
 The approved model names are **lambda 1.0** (`lambda-1.0`),
 **lambda 1.5** (`lambda-1.5`), **lambda 1.6** (`lambda-1.6`), **lambda 2** (`lambda-2`),
-**lambda 2.1** (`lambda-2.1`), and **lambda 2.2** (`lambda-2.2`).
+**lambda 2.1** (`lambda-2.1`), **lambda 2.2** (`lambda-2.2`), and **lambda 2.4** (`lambda-2.4`).
 The owner will name future models. **Ask the owner if a new model is requested
 without a name; do not invent or automatically increment model names.**
 
@@ -28,7 +28,7 @@ because a new model exists: users must be able to select previous models.
 `register_model.py` updates both `models/catalog.json` and the bundled
 `lambda_cli/assets/catalog.json`, using the actual file size and SHA-256.
 Its URL points to this repository's `main` branch. Keep the model file in
-the repository at that path; compatible downloaded files are limited to 50 MiB.
+the repository at that path; app 0.5.1 accepts compatible model downloads up to 64 MiB (older apps cap downloads at 50 MiB).
 Set `--min-app-version` when a model needs newer app support. A different
 architecture requires an engine change and an app update before publication.
 
@@ -92,3 +92,8 @@ The update command executes pip in a subprocess using the current Python interpr
 following the [pip embedding guidance](https://pip.pypa.io/en/stable/user_guide/#using-pip-from-your-program).
 A running process uses its old imports until restart. Windows installs are deferred
 until the launcher exits. No token ledger/model state belongs in the wheel or installer.
+
+Lambda 2.4 is the owner-approved public name for the selected private 2.3 trial.
+Release total step 31650 (7000 additional updates), with 15,350,401 parameters.
+Require app >=0.5.1, whose bounded model-download budget is 64 MiB. Do not rewrite
+private checkpoint identities or remove earlier model releases and saved chats.

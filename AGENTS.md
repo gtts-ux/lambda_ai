@@ -12,7 +12,7 @@
   still finish technical validation and disclose actual scores and remaining errors.
 - The approved model names are **lambda 1.0** (`lambda-1.0`),
   **lambda 1.5** (`lambda-1.5`), **lambda 1.6** (`lambda-1.6`), **lambda 2** (`lambda-2`),
-  **lambda 2.1** (`lambda-2.1`), and **lambda 2.2** (`lambda-2.2`).
+  **lambda 2.1** (`lambda-2.1`), **lambda 2.2** (`lambda-2.2`), and **lambda 2.4** (`lambda-2.4`).
 - Lambda 2 has 4,553,728 parameters and uses the compatible v2 format (app >=0.2.0).
   Release its trained step-100000 checkpoint; the old step-0 export is not the release.
 - Lambda 1.6 has exactly 2,614,528 parameters including its learned intent head;
@@ -89,3 +89,11 @@
   `/chat <number or id>` restores text/model/settings and `/new` preserves the old
   chat. Saved text is model input context, never a substitute answer or training.
   Keep the chat database out of git and app wheels. `lambda ask` remains standalone.
+
+- The owner's latest model-release instruction is **lambda 2.4** (`lambda-2.4`),
+  superseding the private 2.3 working name. Publish the selected step-7000 checkpoint
+  from `../conversation_training/runs/release_23/best.pt` (total step 31650), not the
+  final step-8000 weights. Preserve private run files and their historical names.
+  It has 15,350,401 parameters, 8 layers, v4 format and 512-token context. App 0.5.1
+  raises the checked download budget to 64 MiB for this model; require >=0.5.1.
+  Keep all earlier named models available. Training data/optimizer remain private.

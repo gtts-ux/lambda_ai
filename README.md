@@ -101,7 +101,7 @@ and the input supports session history with the arrow keys.
 /exit
 ```
 
-`/model` offers **lambda 1.0**, **lambda 1.5**, **lambda 1.6**, and **lambda 2**. In that view, enter a model's
+`/model` offers **lambda 1.0**, **lambda 1.5**, **lambda 1.6**, **lambda 2**, **lambda 2.1**, **lambda 2.2**, and **lambda 2.4**. In that view, enter a model's
 number or use `/model use <id>`. Lambda 1.0 remains included with the app;
 lambda 1.5, 1.6 and 2 are optional downloads. Future models appear after `/update` when
 the maintainer adds them to the catalog. New models are not given automatic names.
@@ -365,3 +365,24 @@ local file path. Concurrent edits from two windows are preserved as separate cop
 `lambda ask` stays a standalone, scriptable request; interactive chat saving applies
 to `lambda`, `lambda chat` and their `--plain` mode. Earlier conversations that were
 closed before automatic saving existed cannot be recovered from the model weights.
+
+## lambda 2.4
+
+The owner's new model release is **lambda 2.4**. It continues lambda 2.2 with
+15,350,401 parameters, eight Transformer layers and 150,000 training examples.
+It is the selected step-7000 checkpoint, not the final step-8000 weights.
+See the [model card and generated-answer results](models/lambda-2.4.md).
+The private working version was not published as a lambda 2.3 model choice.
+
+App **0.5.1** supports its larger, checksum-verified download (up to 64 MiB).
+Run `lambda update`, restart the app after its application upgrade, then:
+
+```bash
+lambda update
+lambda model use lambda-2.4
+```
+
+App 0.5.0 may report an invalid model size before completing its application
+upgrade; restart the upgraded app and refresh again. Existing saved chats keep
+their selected model. Use `/model use lambda-2.4` inside a chat to switch it,
+or `/new` to start another conversation.
