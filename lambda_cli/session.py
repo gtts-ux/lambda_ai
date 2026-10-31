@@ -19,6 +19,7 @@ F3             Models, parameters and model selection
 F4             Allowance and session statistics
 F5             Application and model updates
 F6             Saved local chats
+F7             Web sources and search activity
 Up / Down      Select a family, model or chat when the input is empty
 Enter / Right  Open a family, use a model or open a chat
 Left / Esc     Back; Esc also cancels question editing
@@ -41,6 +42,10 @@ COMMANDS
 /pin [number or id]       Pin/unpin a saved chat; empty uses this chat
 /edit [number] [text]     Edit a question in a new branch
 /retry                    Generate the last answer again in a new branch
+/web <question>           Search public pages and give their excerpts to the model
+/web on|off               Enable/disable web search for each question in this chat
+/read <URL> [question]    Read one public page and ask the model about it
+/sources                  Show web sources and the actual excerpts
 /tokens [text]            Inspect BPE tokens
 /intent [text]            Inspect learned chat/math routing
 /model                    List models and show parameters
@@ -76,7 +81,7 @@ def token_table(tokenizer, ids):
 
 
 class Session:
-    def __init__(self, engine, settings=None, quota=None, manager=None, updater=None, store=None, resume=False):
+    def __init__(self, engine, settings=None, quota=None, manager=None, updater=None, store=None, resume=False, researcher=None):
         self.engine = engine
         self.settings = settings or Settings()
         self.settings.validate()
@@ -96,6 +101,11 @@ class Session:
         self.persistence_notice = ''
         self.chat_choices = []
         self.chat_query = ''
+        from .web_search import WebResearch
+        self.researcher = researcher or WebResearch()
+        self.web_enabled = False
+        self.web_activity = []
+        self.current_research = None
         if store is not None:
             if resume and store.active():
                 self.open_chat(store.active())
@@ -111,7 +121,8 @@ class Session:
                 'model_name': self.engine.metadata.get('name'), 'model_path': str(self.engine.path),
                 'custom_model': not managed,
                 'settings': asdict(self.settings), 'messages': self.messages, 'turns': self.turns,
-                'memory_start': self.memory_start, 'last_question': self.last_question}
+                'memory_start': self.memory_start, 'last_question': self.last_question,
+                'web_enabled': self.web_enabled}
 
     def persist(self):
         if self.store is None:
@@ -162,6 +173,8 @@ class Session:
                 raise ValueError('Invalid conversation context boundary.')
             if not isinstance(p['last_question'],str):
                 raise ValueError('Invalid last question.')
+            if type(p.get('web_enabled',False)) is not bool:
+                raise ValueError('Invalid web search setting.')
         except (KeyError, TypeError, ValueError) as error:
             raise ValueError(f'Cannot open this chat: {error}. Its saved data was kept.') from error
         identifier = p.get('model_id')
@@ -182,6 +195,9 @@ class Session:
         self.last_question, self.inspected_text = p['last_question'], ''
         # Old token IDs are never decoded using a potentially updated tokenizer.
         self.last_result = None
+        self.web_enabled = p.get('web_enabled',False)
+        self.web_activity = []
+        self.current_research = self.turns[-1].get('research') if self.turns else None
         self.chat_id, self.chat_revision, self.chat_title = row['id'], row['revision'], row['title']
         self.persistence_notice = ''
         self.store.set_active(self.chat_id)
@@ -231,6 +247,7 @@ class Session:
         self.turns=list(prefix)
         self.messages=[message for turn in prefix for message in [('You',turn['question']),('Lambda',turn['text'] or '[Empty response]')]]
         self.memory_start=min(self.memory_start,len(prefix));self.last_result=None
+        self.current_research=prefix[-1].get('research') if prefix else None;self.web_activity=[]
         self.last_question=self.inspected_text=''
         self.chat_title=(self.chat_title[:85]+(' (retry)' if kind=='retry' else ' (edited)'))
         self.chat_id=None;self.chat_revision=0;self.persistence_notice=''
@@ -252,11 +269,30 @@ class Session:
             self.chat_title = ''.join(c for c in ' '.join(question.split()) if c.isprintable())[:72] or 'New chat'
         self.persist()
 
-    def generate(self, question, on_text=None, cancel=None):
-        prompt = self.build_prompt(question)
+    def generate(self, question, on_text=None, cancel=None, *, web=None, url=None, on_phase=None):
+        from .web_search import source_prompt,cancelled
+        use_web=self.web_enabled if web is None else web
+        research=None
+        output_limit=self.settings.max_tokens
+        self.web_activity=[]
+        self.current_research=None
+        def phase(message):
+            self.web_activity.append(message)
+            if on_phase:on_phase(message)
+        if use_web:
+            if not getattr(self.engine,'supports_memory',False) or self.engine.context<256:
+                raise ValueError('Web context requires a Transformer with at least 256 context tokens, such as lambda 2.4.')
+            research=self.researcher.run(question,phase,cancel,url=url)
+            cancelled(cancel)
+            output_limit=min(output_limit,max(16,self.engine.context//4))
+            prompt=source_prompt(self.engine.tokenizer,question,research,self.engine.context,output_limit)
+            self.current_research=research
+            phase('Thinking · generating an experimental answer from the model…')
+        else:
+            prompt = self.build_prompt(question)
         ids = prompt if isinstance(prompt, list) else self.engine.tokenizer.encode(prompt)
         input_tokens = min(len(ids), self.engine.context)
-        reservation = self.quota.reserve(input_tokens, self.settings.max_tokens)
+        reservation = self.quota.reserve(input_tokens, output_limit)
         settings = Settings(**asdict(self.settings))
         settings.max_tokens = reservation.max_output
         sampled = 0
@@ -267,6 +303,7 @@ class Session:
                 on_text(text, count)
         try:
             result = self.engine.generate(prompt, settings, progress, cancel)
+            result.research=research
             result.charged_tokens = result.context_used + len(result.generated) if result.generated else 0
             self.quota.complete(reservation, result.charged_tokens)
             return result
@@ -276,9 +313,15 @@ class Session:
 
     def complete(self, result):
         self.last_result = result
+        self.current_research=result.research
         self.turns.append({"question": self.last_question, "model": self.engine.metadata.get("model_id"), **result.to_dict()})
         self.messages.append(("Lambda", result.text or "[Empty response]"))
         self.persist()
+
+    def sources_text(self):
+        from .web_search import sources_text
+        lines=['WEB RESEARCH','']+self.web_activity+['',sources_text(self.current_research)]
+        return '\n'.join(lines)
 
     def build_prompt(self, question):
         if getattr(self.engine, "supports_memory", False):
@@ -458,6 +501,24 @@ class Session:
         command = {"/quit":"/exit", "/clear":"/new", "/usage":"/stats"}.get(command, command)
         if command == "/update":
             return "update", ""
+        if command == '/web':
+            if value.lower() in ('on','off'):
+                if value.lower()=='on' and (not getattr(self.engine,'supports_memory',False) or self.engine.context<256):
+                    raise ValueError('Web context needs a Transformer with at least 256 context tokens, such as lambda 2.4.')
+                self.web_enabled=value.lower()=='on'
+                self.persist()
+                return 'chat',('Web search enabled. Each question is sent to search engines; chat history stays local.' if self.web_enabled else 'Web search disabled. Chat is offline.')
+            if not value:return 'web',''
+            if len(value)>300:raise ValueError('Use a web query of at most 300 characters.')
+            return 'research',value
+        if command == '/read':
+            from .web_search import public_url
+            link,_,question=value.partition(' ')
+            public_url(link)
+            question=question or 'What does this page say?'
+            if len(question)>300:raise ValueError('Use a page question of at most 300 characters.')
+            return 'read:'+link,question
+        if command == '/sources':return 'web',''
         if command == '/search':
             if len(value)>200:raise ValueError('Search is limited to 200 characters.')
             self.chat_query=value
@@ -515,6 +576,7 @@ class Session:
             self.last_question = self.inspected_text = ""
             self.chat_id, self.chat_revision, self.chat_title = None, 0, 'New chat'
             self.persistence_notice = ''
+            self.web_activity=[];self.current_research=None
             self.persist()
             return "chat", "New chat. Find previous conversations in /chats."
         if command in ("/temperature", "/limit", "/topk"):

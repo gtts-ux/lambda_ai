@@ -110,3 +110,14 @@
   exclude subsequent turns from the revised prompt and charge actual tokens normally.
   Keep the legacy chats table compatible; pins use a separate table. Preserve chats,
   model bindings and the shared quota. The owner excluded the proposed comparison UI.
+
+- On 2026-10-31 the owner explicitly said NOT to publish the failed `release_25`
+  training trial. Its publication_policy.json remains authoritative for those weights.
+  The subsequent request is a web-search skill for a future lambda 2.5, with visible
+  search/read/generation progress. App 0.7.0 implements an explicit opt-in reader,
+  source excerpts and experimental model generation. The model probe failed grounded
+  answering; do not claim reliable synthesis or rename 2.4 weights as a trained 2.5.
+  Source evidence stays distinct from the neural answer. No other pretrained AI,
+  canned answer or application calculator is authorized. Offline mode stays default.
+- The owner requested an English-narrated, English-captioned TikTok-format MP4 demo
+  on their Desktop after this work. Generate the file only; do not upload to TikTok.

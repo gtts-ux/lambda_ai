@@ -108,3 +108,12 @@ The owner named the next private model lambda 2.5 on 2026-10-30. Its private
 `release_25` continuation expands the own selected 2.4 checkpoint to 1024 positions;
 all answers still come from its learned distribution. Do not register this model
 until trained weights and their generated-answer checks are ready for review.
+
+
+App 0.7.0 adds opt-in `/web`, `/read`, and F7 `/sources`, plus activity phases.
+Keep evidence separate from generated model text, source URLs attached by application
+metadata, cancellation/quota accounting, and restored old chat schemas working.
+The owner declined publication of the failed 2.5 trial. No new model weights are
+part of this application release. The existing 2.4 failed the supplied-evidence
+probe; document this limitation instead of calling the tool a reliable 2.5 model.
+The future 2.5 name is reserved pending grounded-answer validation.

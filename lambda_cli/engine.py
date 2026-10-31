@@ -54,13 +54,14 @@ class Result:
     charged_tokens: int = 0
     intent: str | None = None
     intent_math_probability: float | None = None
+    research: dict | None = None
 
     @property
     def tokens_per_second(self):
         return len(self.generated) / self.seconds if self.seconds > 0 else 0
 
     def to_dict(self):
-        return {
+        result = {
             "text": self.text, "prompt_tokens": len(self.prompt_ids),
             "context_used": self.context_used, "context_dropped": self.context_dropped,
             "generated_tokens": len(self.generated), "seconds": round(self.seconds, 4),
@@ -71,6 +72,9 @@ class Result:
             "prompt_token_ids": self.prompt_ids,
             "output_tokens": [{"id": t.id, "text": t.piece} for t in self.generated],
         }
+        if self.research is not None:
+            result['research'] = self.research
+        return result
 
 
 def prompt_for(question):

@@ -427,3 +427,45 @@ context and additional natural dialogue, follow-up, long-context and worked-math
 training examples. It is not in the public model catalog yet. Lambda 2.4 remains
 available with its original 512-token context. App features do not add answer rules,
 retrieve canned answers or calculate replies for the model.
+
+
+## App 0.7.0: experimental web research
+
+`/web What is the hottest planet?` searches public web results, reads up to three
+sources and supplies short excerpts to the current Transformer. The terminal shows
+**Searching**, **Reading**, and **Thinking / generating** as those operations run.
+F7 or `/sources` shows the source titles, links, retrieval time and excerpts. Type a
+question in the Web tab to search again. Ctrl+C cancels the operation.
+
+`/web on` enables research for each question in the current chat; `/web off` returns
+to offline chat. New chats inherit the current mode. A **Web: On/Off** button is in
+the Chat action bar. `/read https://example.org/page Your question` reads a specified
+public page without a search. `lambda ask "Your question" --web` is the scriptable
+form; `--json` includes the sources with the actual generated text and token counts.
+
+Only your query goes to search providers; saved conversation history is not uploaded.
+This mode needs internet and a Transformer with at least 256 context tokens. It
+uses [DDGS](https://github.com/deedy5/ddgs) with public search backends, without an
+API key or another AI model. Provider outages, blocked pages, and pages requiring
+JavaScript may fail. An unread result snippet is explicitly marked as a search
+snippet, not a successfully read page. Source requests have byte/time limits;
+private/local addresses and credential-bearing URLs are rejected, including redirects.
+
+Source excerpts are selected by word relevance and displayed separately from the
+**experimental model draft**. They are never substituted for the neural answer.
+The excerpts actually supplied to the model count as input tokens under the existing
+allowance; web failure/cancellation before generation spends no model tokens.
+Search results and the web preference are saved with local chats. A short web answer
+is capped to fit the evidence in the model window; long source pages are not all sent
+to a model with 512-token context. Titles/URLs are displayed by the app; the model
+is not trusted to invent citations. A displayed source is not proof that every
+claim in the draft is supported by it.
+
+**Current limitation:** lambda 2.4 does not reliably answer from supplied evidence.
+For example it answered `Paris` after receiving a source explicitly naming Canberra
+as Australia's capital. A live search read three public astronomy pages, but the
+model draft was wrong. This is a functioning search/reader preview, not a claim
+that browsing has made the model generally knowledgeable. Check the evidence and
+original pages. No failed 2.5 training weights are installed or published. The name
+2.5 remains reserved for a future model that passes source-grounded answer checks;
+2.4 weights have not been silently renamed as a new trained model.
