@@ -422,50 +422,41 @@ are retained, and later turns from the original branch are excluded from the new
 prompt. The original chat remains available in F6. Generating again spends input
 and output tokens normally; previous generations are not refunded.
 
-The owner-approved **lambda 2.5** is being prepared privately with a 1024-token
-context and additional natural dialogue, follow-up, long-context and worked-math
-training examples. It is not in the public model catalog yet. Lambda 2.4 remains
-available with its original 512-token context. App features do not add answer rules,
-retrieve canned answers or calculate replies for the model.
+The earlier private 1024-token training trial did not pass its checks and will not
+be published. The current **lambda 2.5** work adds a learned research skill to the
+unchanged 2.4 base, retaining its 512-token context. It is not in the public model
+catalog yet. App features do not add factual answer rules or calculate replies.
 
 
-## App 0.7.0: experimental web research
+## App 0.8.0: automatic research for lambda 2.5
 
-`/web What is the hottest planet?` searches public web results, reads up to three
-sources and supplies short excerpts to the current Transformer. The terminal shows
-**Searching**, **Reading**, and **Thinking / generating** as those operations run.
-F7 or `/sources` shows the source titles, links, retrieval time and excerpts. Type a
-question in the Web tab to search again. Ctrl+C cancels the operation.
+Manual web commands, the Web tab and the Web toggle have been removed. Write a normal
+question. Only **lambda 2.5**, in the v5 inference format, can decide to search. Its
+search classifier is trained from labelled examples; application keyword rules do
+not choose when to browse. Models 1.x through 2.4 always answer offline, including
+chats saved with the old web setting enabled.
 
-`/web on` enables research for each question in the current chat; `/web off` returns
-to offline chat. New chats inherit the current mode. A **Web: On/Off** button is in
-the Chat action bar. `/read https://example.org/page Your question` reads a specified
-public page without a search. `lambda ask "Your question" --web` is the scriptable
-form; `--json` includes the sources with the actual generated text and token counts.
+When the learned classifier chooses research, the status shows **Searching → Reading
+→ Thinking**. The regular chat shows only the model's answer. Source lists, numbered
+citation markers and excerpt cards are not inserted into messages. Model outputs
+are not replaced with canned answers, source snippets or calculator results.
 
-Only your query goes to search providers; saved conversation history is not uploaded.
-This mode needs internet and a Transformer with at least 256 context tokens. It
-uses [DDGS](https://github.com/deedy5/ddgs) with public search backends, without an
-API key or another AI model. Provider outages, blocked pages, and pages requiring
-JavaScript may fail. An unread result snippet is explicitly marked as a search
-snippet, not a successfully read page. Source requests have byte/time limits;
-private/local addresses and credential-bearing URLs are rejected, including redirects.
+V5 adds learned evidence-reading adapters and answer-boundary heads to the owner's
+own frozen 2.4 base. In evidence mode, neural heads predict which span of the supplied
+text answers the question. The selected span can still be incorrect, incomplete or
+irrelevant. Answerability is also learned; the same model's
+language decoder is trained to express uncertainty when the text is insufficient.
+The frozen offline base retains its original arrays. No external pretrained AI or
+remote language-model API is involved.
 
-Source excerpts are selected by word relevance and displayed separately from the
-**experimental model draft**. They are never substituted for the neural answer.
-The excerpts actually supplied to the model count as input tokens under the existing
-allowance; web failure/cancellation before generation spends no model tokens.
-Search results and the web preference are saved with local chats. A short web answer
-is capped to fit the evidence in the model window; long source pages are not all sent
-to a model with 512-token context. Titles/URLs are displayed by the app; the model
-is not trusted to invent citations. A displayed source is not proof that every
-claim in the draft is supported by it.
+Only the question selected for search goes to search providers; chat history stays
+local. Reading and generation can be cancelled with Ctrl+C. Actual source context
+and decoded model tokens use the existing shared allowance. Metadata about research
+is retained privately in saved/exported turns and JSON output, but does not appear
+as a second answer in the chat. Public pages may be blocked, outdated or wrong.
+Automatic routing and source reading need separate correctness checks before release.
 
-**Current limitation:** lambda 2.4 does not reliably answer from supplied evidence.
-For example it answered `Paris` after receiving a source explicitly naming Canberra
-as Australia's capital. A live search read three public astronomy pages, but the
-model draft was wrong. This is a functioning search/reader preview, not a claim
-that browsing has made the model generally knowledgeable. Check the evidence and
-original pages. No failed 2.5 training weights are installed or published. The name
-2.5 remains reserved for a future model that passes source-grounded answer checks;
-2.4 weights have not been silently renamed as a new trained model.
+**Release status:** app support is prepared for 2.5; the new model is being trained
+and checked separately. The failed earlier 2.5 trial remains unpublished. Existing
+2.4 weights have not been renamed. A new 2.5 entry is added to the catalog only after
+training and the required checks succeed.

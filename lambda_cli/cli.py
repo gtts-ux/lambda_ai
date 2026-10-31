@@ -16,7 +16,6 @@ def parser():
     ask = sub.add_parser("ask", help="Ask one question")
     ask.add_argument("question")
     ask.add_argument("--json", action="store_true", help="Return text and actual token usage as JSON")
-    ask.add_argument('--web',action='store_true',help='Search public pages and give excerpts to the model')
     for command in (chat, ask):
         command.add_argument("--temperature", type=float, default=argparse.SUPPRESS)
         command.add_argument("--max-tokens", type=int, default=argparse.SUPPRESS)
@@ -43,21 +42,16 @@ def plain_chat(session):
     from .session import HELP
     print(f"λ LAMBDA {__version__} · {session.engine.metadata['name']} · local English AI")
     print("Enter a question or /help. /exit ends the session.\n")
-    def respond(question,web=None,url=None):
+    def respond(question):
         session.add_user(question)
-        use_web=session.web_enabled if web is None else web
-        if use_web:result=session.generate(question,web=True,url=url,on_phase=print)
-        else:result=session.generate(question)
+        result=session.generate(question,on_phase=print) if session.supports_auto_search else session.generate(question)
         session.complete(result)
-        if result.research:print(session.sources_text());print('\nEXPERIMENTAL MODEL DRAFT')
         print("λ ›",result.text or "[Empty response]")
         mode=f" · {result.intent.title()}" if result.intent else ""
         print(f"    {len(result.prompt_ids)} → {len(result.generated)} tok · {result.seconds:.2f} s · "
               f"{session.quota.status()['remaining']:,} tokens left{mode}\n")
     def revise_response(number,text=None,kind='edit'):
-        research=session.turns[number-1].get('research')
-        question=session.prepare_revision(number,text,kind=kind)
-        respond(question,web=True if research else None,url=research.get('requested_url') if research else None)
+        respond(session.prepare_revision(number,text,kind=kind))
     while True:
         try:question=input("You › ").strip()
         except (EOFError,KeyboardInterrupt):print();return 0
@@ -69,8 +63,6 @@ def plain_chat(session):
                 if view=='retry':revise_response(len(session.turns),kind='retry');continue
                 if view.startswith('revise:'):
                     revise_response(int(view.split(':')[1]),notice);continue
-                if view=='research' or view.startswith('read:'):
-                    respond(notice,web=True,url=view[5:] if view.startswith('read:') else None);continue
                 if view=='edit':
                     number=int(notice);print('Original question:',session.turns[number-1]['question'])
                     replacement=input('New question (empty cancels): ').strip()
@@ -81,7 +73,7 @@ def plain_chat(session):
                     if view!='update':print(result);print(session.model_text())
                     continue
                 content={'help':lambda:HELP,'model':session.model_text,'stats':session.stats_text,
-                         'tokens':session.tokens_text,'intent':session.intent_text,'updates':session.updates_text,'chats':session.chats_text,'web':session.sources_text}
+                         'tokens':session.tokens_text,'intent':session.intent_text,'updates':session.updates_text,'chats':session.chats_text}
                 if view in content:print(content[view]())
                 if notice:print(notice)
                 if view=='chat' and question.startswith('/chat '):print('\n'.join(f'{role} › {text}' for role,text in session.messages))
@@ -150,8 +142,7 @@ def main(argv=None):
             return 0
         if args.command == "ask":
             session.add_user(args.question)
-            result = session.generate(args.question,web=True,on_phase=lambda text:print(text,file=sys.stderr)) if args.web else session.generate(args.question)
-            if result.research and not args.json:print(session.sources_text());print('\nEXPERIMENTAL MODEL DRAFT')
+            result = session.generate(args.question,on_phase=lambda text:print(text,file=sys.stderr)) if session.supports_auto_search else session.generate(args.question)
             print(json.dumps(result.to_dict(),ensure_ascii=False,indent=2) if args.json else result.text)
             return 0
         if args.plain or not (sys.stdin.isatty() and sys.stdout.isatty()):

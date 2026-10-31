@@ -9,6 +9,7 @@ from .byte_tokenizer import ByteTokenizer, SPECIAL, PAD, BOS, USER, ASSISTANT, E
 
 FORMAT = "lambda-ai-transformer-v3"
 POINTER_FORMAT = "lambda-ai-pointer-transformer-v4"
+GROUNDED_FORMAT = "lambda-ai-grounded-transformer-v5"
 
 
 def weight_shapes(config):
@@ -23,13 +24,23 @@ def weight_shapes(config):
                             "proj": (d, d), "ln2_w": (d,), "ln2_b": (d,),
                             "up": (d, 4*d), "down": (4*d, d)}.items():
             shapes[f"b{i}_{name}"] = shape
-    if config.get("format") == POINTER_FORMAT:
+    if config.get("format") in (POINTER_FORMAT,GROUNDED_FORMAT):
         p = int(config["pointer_width"])
         if not 8 <= p <= 256:
             raise ValueError("Invalid pointer dimensions.")
         shapes.update({"pointer_norm_w": (d,), "pointer_norm_b": (d,),
                        "pointer_q": (2*d, p), "pointer_k": (2*d, p),
                        "pointer_gate_w": (3*d, 1), "pointer_gate_b": (1,)})
+    if config.get('format')==GROUNDED_FORMAT:
+        rank=int(config['evidence_rank']);count=int(config['evidence_layers']);features=int(config['search_features'])
+        if not (1<=rank<=64 and 1<=count<=n and 128<=features<=16384):raise ValueError('Invalid grounded model dimensions.')
+        shapes.update(search_w=(features,2),search_b=(2,),evidence_gate_bias=(1,))
+        targets={f'b{i}_{name}':shapes[f'b{i}_{name}'] for i in range(n-count,n) for name in ('qkv','proj','up','down')}
+        targets.update(pointer_q=shapes['pointer_q'],pointer_k=shapes['pointer_k'],pointer_gate_w=shapes['pointer_gate_w'])
+        for key,(a,b) in targets.items():
+            shapes['evidence_'+key+'_a']=(a,rank);shapes['evidence_'+key+'_b']=(rank,b)
+        if config.get('span_reader'):
+            shapes.update(span_end_q=(2*d,p),span_end_k=(2*d,p),span_answerable_w=(d,2),span_answerable_b=(2,))
     if sum(np.prod(s) for s in shapes.values()) > 30000000:
         raise ValueError("Transformer exceeds the supported parameter budget.")
     return shapes

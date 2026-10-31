@@ -121,3 +121,25 @@
   canned answer or application calculator is authorized. Offline mode stays default.
 - The owner requested an English-narrated, English-captioned TikTok-format MP4 demo
   on their Desktop after this work. Generate the file only; do not upload to TikTok.
+
+- Latest owner instruction (2026-10-31): no conversational approval questions for
+  routine authorized work in this chat. Continue autonomously; environment-enforced
+  permission requirements still apply. The name lambda 2.5 is already supplied.
+- App 0.8.0 supersedes the manual 0.7 web preview: remove /web, /read, /sources,
+  --web, the Web tab/toggle and citation/excerpt cards from ordinary chat. Only
+  lambda-2.5 with the v5 learned router may search automatically. Restore old saved
+  chats without honoring their legacy web_enabled flag. Older models stay offline.
+- New private `grounded_span_25` trains new evidence adapters, neural answer-boundary
+  heads and search routing on the frozen own 2.4 base. A separate `grounded_25`
+  autoregressive attempt failed development checks; preserve its files and do not
+  release it. Old `release_25` publication prohibition also remains in force.
+  Neural answer boundaries are model predictions, not application answer selection.
+  No hardcoded factual answers, app calculator or external pretrained AI is allowed.
+  Preserve exact baseline arrays and perform source-reading/routing checks before
+  registering any new 2.5 file. Do not claim arbitrary web comprehension from a
+  small synthetic development set. Training runs are bounded and resumable.
+- The owner clarified that 2.5 means **2.4 plus the research skill**. Preserve the
+  exact 2.4 base arrays and 512-token context. The separate `grounded_refine_25`
+  continuation varies source grammar and missing-property examples, starting from
+  `grounded_span_25/best.pt`. It is capped at 600 updates / 20 minutes per session;
+  do not automatically publish it or extend training without reviewing its results.

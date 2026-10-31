@@ -95,6 +95,9 @@ class Engine:
         if metadata.get("format") == "lambda-ai-pointer-transformer-v4":
             from .pointer import PointerEngine
             return PointerEngine(candidate)
+        if metadata.get('format')=='lambda-ai-grounded-transformer-v5':
+            from .grounded import GroundedEngine
+            return GroundedEngine(candidate)
         return super().__new__(cls)
 
     def __init__(self, path=None):

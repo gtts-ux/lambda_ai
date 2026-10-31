@@ -77,7 +77,7 @@ class TerminalApp:
         self.input = TextArea(
             height=2, prompt=" › ", multiline=False, wrap_lines=False, style="class:input",
             history=InMemoryHistory(), accept_handler=self.submit,
-            completer=WordCompleter(["/chat", "/chats", "/rename", "/search", "/pin", "/edit", "/retry", "/web", "/read", "/sources", "/tokens", "/model", "/stats", "/temperature",
+            completer=WordCompleter(["/chat", "/chats", "/rename", "/search", "/pin", "/edit", "/retry", "/tokens", "/model", "/stats", "/temperature",
                                      "/limit", "/topk", "/new", "/memory", "/save", "/update", "/updates", "/intent", "/help", "/exit"]),
             complete_while_typing=True,
         )
@@ -100,7 +100,7 @@ class TerminalApp:
                    height=1, style="class:muted"),
         ])
         bindings = KeyBindings()
-        for key, view in (("f1", "chat"), ("f2", "tokens"), ("f3", "model"), ("f4", "stats"), ("f5", "updates"), ("f6", "chats"), ("f7", "web")):
+        for key, view in (("f1", "chat"), ("f2", "tokens"), ("f3", "model"), ("f4", "stats"), ("f5", "updates"), ("f6", "chats")):
             bindings.add(key)(lambda event, selected=view: self.select(selected))
 
         menu = Condition(lambda: self.view in ('model','chats') and not self.input.text and not self.busy)
@@ -174,7 +174,6 @@ class TerminalApp:
         if self.edit_turn is None:
             if self.view=="model":return "Models / arrows or a row number"
             if self.view=="chats":return "Chats / search words or a row number"
-            if self.view=="web":return "Web search / question or /read URL"
         return (f"Edit question {self.edit_turn} · Enter resend · Esc cancel" if self.edit_turn else
                 "Message  /  type / for commands")
 
@@ -188,15 +187,9 @@ class TerminalApp:
             return clicked
         def new():
             self.session.command('/new');self.edit_turn=None;self.input.buffer.reset();self.select('chat')
-        def toggle_web():
-            try:
-                _,self.notice=self.session.command('/web '+('off' if self.session.web_enabled else 'on'))
-                self.refresh()
-            except ValueError as error:self.notice=str(error);self.app.invalidate()
         return [('class:tab',' New chat ',action(new)),('', '  '),
                 ('class:tab',' Regenerate ',action(self.retry)),('', '  '),
-                ('class:tab',' Edit question ',action(self.begin_edit)),('', '  '),
-                ('class:tab',' Web: '+('On' if self.session.web_enabled else 'Off')+' ',action(toggle_web))]
+                ('class:tab',' Edit question ',action(self.begin_edit))]
 
     def chat_rows(self):
         rows=self.session.store.list(self.session.chat_query) if self.session.store else []
@@ -253,20 +246,14 @@ class TerminalApp:
         try:self.start_answer(None,number=len(self.session.turns),kind='retry')
         except (ValueError,OSError) as error:self.notice=str(error);self.app.invalidate()
 
-    def start_answer(self,question,number=None,kind='edit',web=None,url=None):
-        if number is not None:
-            if 1<=number<=len(self.session.turns):
-                research=self.session.turns[number-1].get('research')
-                if research:web=True;url=research.get('requested_url')
-            question=self.session.prepare_revision(number,question,kind)
+    def start_answer(self,question,number=None,kind='edit'):
+        if number is not None:question=self.session.prepare_revision(number,question,kind)
         self.session.add_user(question)
-        web=self.session.web_enabled if web is None else web
-        self.view='chat';self.follow_output=True;self.busy=True;self.job='research' if web else 'generation'
+        self.view='chat';self.follow_output=True;self.busy=True;self.job='generation'
         self.session.web_activity=[];self.session.current_research=None
-        self.notice='Searching the web…' if web else 'Generating…'
-        self.draft='';self.live_count=0;self.cancel=Event();self.edit_turn=None
+        self.notice='Thinking…';self.draft='';self.live_count=0;self.cancel=Event();self.edit_turn=None
         self.input.buffer.reset();self.refresh()
-        self.app.create_background_task(self.answer(question,web=web,url=url))
+        self.app.create_background_task(self.answer(question))
 
     def start_model_action(self,action):
         self.busy=True;self.job='update';self.cancel=Event();self.notice='Checking models…'
@@ -276,7 +263,7 @@ class TerminalApp:
         model = self.session.engine.metadata.get('name', 'Local model')
         state = 'WORKING' if self.busy else 'READY'
         return [("class:brand", "\n  λ  LAMBDA"),
-                ("class:muted", f"   /   {model}   ·   app {__version__}"+(' · WEB ON' if self.session.web_enabled else '')+'\n'),
+                ("class:muted", f"   /   {model}   ·   app {__version__}"+(' · Auto search' if self.session.supports_auto_search else '')+'\n'),
                 ("class:quota.good", f"  ● {state}"),
                 ("class:muted", "   "+self.session.chat_title[:max(12, get_app().output.get_size().columns-16)])]
 
@@ -299,7 +286,7 @@ class TerminalApp:
         compact = get_app().output.get_size().columns < 75
         for shortcut, name, view in (("F1", "Chat", "chat"), ("F2", "Tokens", "tokens"),
                                      ("F3", "Models", "model"), ("F4", "Usage", "stats"),
-                                     ("F5", "Updates", "updates"), ("F6", "Chats", "chats"), ("F7", "Web", "web")):
+                                     ("F5", "Updates", "updates"), ("F6", "Chats", "chats")):
             def click(event, selected=view):
                 if event.event_type == MouseEventType.MOUSE_UP:
                     self.select(selected)
@@ -326,7 +313,7 @@ class TerminalApp:
                 ("", f"  {totals['turns']} replies\n"
                      f"  {totals['output']:,} output tokens\n"
                      f"  {totals['speed']:.1f} tokens / second\n\n"),
-                ("class:muted", "  F3  Model details\n  F4  Token usage\n  F5  App & model updates\n  F6  Saved local chats\n  F7  Web sources")]
+                ("class:muted", "  F3  Model details\n  F4  Token usage\n  F5  App & model updates\n  F6  Saved local chats")]
 
     def status(self):
         if self.busy:
@@ -361,18 +348,10 @@ class TerminalApp:
             block = f"  {label}\n\n  " + text.replace("\n", "\n  ")
             if role == 'Lambda' and reply < len(self.session.turns):
                 turn = self.session.turns[reply]
-                if turn.get('research'):
-                    from .web_search import sources_text
-                    block=sources_text(turn['research'])+'\n\n  EXPERIMENTAL MODEL DRAFT\n\n'+block
                 block += f"\n\n  ↳ {turn['generated_tokens']} tokens · {turn['seconds']:.2f}s"
                 reply += 1
             blocks.append(block)
         if self.busy and self.job in ('generation','research'):
-            if self.session.web_activity:
-                blocks.append('  WEB ACTIVITY\n\n  '+'\n  '.join(self.session.web_activity))
-            if self.session.current_research:
-                from .web_search import sources_text
-                blocks.append(sources_text(self.session.current_research))
             if self.job=='generation':
                 blocks.append("  LAMBDA  ·  generating\n\n  " + (self.draft or "Thinking…").replace("\n", "\n  "))
         return "\n\n  ────────────────────────\n\n".join(blocks) + "\n"
@@ -396,8 +375,6 @@ class TerminalApp:
                 text = self.session.chats_text(selected)
             elif self.view == "help":
                 text = HELP
-            elif self.view == 'web':
-                text = self.session.sources_text()
             elif self.view == 'intent':
                 text = self.session.intent_text()
             else:
@@ -462,8 +439,6 @@ class TerminalApp:
                     buffer.reset();self.retry();return False
                 if view.startswith('revise:'):
                     self.start_answer(notice,number=int(view.split(':')[1]));return False
-                if view=='research' or view.startswith('read:'):
-                    self.start_answer(notice,web=True,url=view[5:] if view.startswith('read:') else None);return False
                 if view=='update' or view.startswith(('use:','install:')):
                     if view=='update':self.view='updates';self.follow_output=True
                     self.start_model_action(view);return False
@@ -473,7 +448,7 @@ class TerminalApp:
                     if view=='chats':self.chat_index=0
                 if notice:self.notice=notice
                 buffer.reset();self.refresh()
-            else:self.start_answer(text,web=True if self.view=='web' else None)
+            else:self.start_answer(text)
         except (ValueError,OSError) as error:
             self.notice=str(error);self.app.invalidate();return True
         return False
@@ -487,13 +462,13 @@ class TerminalApp:
     def research_phase(self,message):
         if self.busy:
             self.notice=message
-            if message.startswith('Thinking'):self.job='generation'
+            self.job='research' if message.startswith(('Searching','Reading')) else 'generation'
             self.refresh()
 
-    async def answer(self, question,web=False,url=None):
+    async def answer(self, question):
         loop = asyncio.get_running_loop()
         try:
-            options=dict(web=True,url=url,on_phase=lambda message:loop.call_soon_threadsafe(self.research_phase,message)) if web else {}
+            options=dict(on_phase=lambda message:loop.call_soon_threadsafe(self.research_phase,message)) if self.session.supports_auto_search else {}
             result = await asyncio.to_thread(
                 self.session.generate, question,
                 lambda text, count: loop.call_soon_threadsafe(self.progress, text, count), self.cancel,

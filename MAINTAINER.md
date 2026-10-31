@@ -117,3 +117,12 @@ The owner declined publication of the failed 2.5 trial. No new model weights are
 part of this application release. The existing 2.4 failed the supplied-evidence
 probe; document this limitation instead of calling the tool a reliable 2.5 model.
 The future 2.5 name is reserved pending grounded-answer validation.
+
+
+App 0.8.0 removes the manual web preview controls and source cards. Automatic search
+is gated by both lambda-2.5 identity and its v5 neural search head; old snapshots
+cannot enable web on other models. V5 contains conditional low-rank evidence
+adapters and learned answer-boundary/answerability heads. Plain chat keeps the
+frozen 2.4 arrays; model-predicted answer spans are decoded inside inference.
+No new 2.5 model should be published before separate reading/routing checks. The
+failed release_25 and grounded_25 trials remain private and preserved.
