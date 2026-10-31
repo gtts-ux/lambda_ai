@@ -1,0 +1,33 @@
+{
+  "context": 512,
+  "width": 384,
+  "layers": 8,
+  "heads": 6,
+  "vocabulary": 2048,
+  "format": "lambda-ai-grounded-transformer-v5",
+  "name": "lambda 2.5.1",
+  "model_id": "lambda-2.5.1",
+  "language": "en",
+  "training_step": 32550,
+  "data_sha256": "1dd1bb5b19fe9e5a6d375731bdb0a43c1ce42da22f40592541f92b7e0e605827",
+  "initialization": "Own 2.4 frozen; new own neural evidence adapters, learned answer-boundary heads and a learned search classifier. No external pretrained AI.",
+  "min_app_version": "0.8.1",
+  "pointer_width": 128,
+  "evidence_rank": 32,
+  "evidence_layers": 4,
+  "search_features": 2048,
+  "span_reader": true,
+  "training_lineage": {
+    "source_step": 32350,
+    "source_sha256": "a3590c4fc65968d5638dd0649816a516d4818a2601affea570030c94eebd82b8",
+    "experiment": "grounded_refine_25",
+    "frozen_base": true
+  },
+  "parameters": 16432550,
+  "bytes": 61087236,
+  "sha256": "6e3e089fa2e54ea56dc347ede9ebe335c620746800d24e4266bf42a305e00b5c",
+  "status": "experimental; owner requested publication despite failed development gate",
+  "source_sha256": "e7ed20ec9cf18d1a18c4fbeac429e11ac40db378cbc2757dd30ec84418b315d8",
+  "selected_refinement_step": 200,
+  "frozen_base_arrays_checked": 74
+}

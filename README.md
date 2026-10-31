@@ -26,7 +26,7 @@ separately. The runtime (0.4.0 and newer) also supports experimental v3/v4
 Transformers: they receive recent completed exchanges within their context window.
 Use `/memory` to check the current model. Interactive conversations are saved locally
 and resume after restart. `/new` creates another chat; `/chats` reopens a saved one.
-The model still sees only its recent context window. Optional conversation models through lambda 2.4 are available.
+The model still sees only its recent context window. Optional conversation models through lambda 2.5.1 are available.
 
 ## Install
 
@@ -107,7 +107,7 @@ and the input supports session history with the arrow keys.
 /exit
 ```
 
-`/model` offers **lambda 1.0**, **lambda 1.5**, **lambda 1.6**, **lambda 2**, **lambda 2.1**, **lambda 2.2**, and **lambda 2.4**. In the full-screen view, select a family first, then a version using ↑/↓ and
+`/model` offers **lambda 1.0**, **lambda 1.5**, **lambda 1.6**, **lambda 2**, **lambda 2.1**, **lambda 2.2**, **lambda 2.4**, and **lambda 2.5.1**. In the full-screen view, select a family first, then a version using ↑/↓ and
 Enter (or →). For example, **lambda 1** contains 1.0, 1.5 and 1.6;
 **lambda 2** contains the published 2.x versions. Use ← or Esc to go back.
 Numbers select a row at the current level. `/model use <id>` selects a version directly.
@@ -423,15 +423,16 @@ prompt. The original chat remains available in F6. Generating again spends input
 and output tokens normally; previous generations are not refunded.
 
 The earlier private 1024-token training trial did not pass its checks and will not
-be published. The current **lambda 2.5** work adds a learned research skill to the
-unchanged 2.4 base, retaining its 512-token context. It is not in the public model
-catalog yet. App features do not add factual answer rules or calculate replies.
+be published. **Lambda 2.5.1** adds a learned research skill to the unchanged 2.4
+base, retaining its 512-token context. It is an owner-requested experimental
+release despite failed quality checks. App features do not add factual answer
+rules or calculate replies.
 
 
-## App 0.8.0: automatic research for lambda 2.5
+## App 0.8.1: experimental automatic research for lambda 2.5.1
 
 Manual web commands, the Web tab and the Web toggle have been removed. Write a normal
-question. Only **lambda 2.5**, in the v5 inference format, can decide to search. Its
+question. Only **lambda 2.5.1**, in the v5 inference format, can decide to search. Its
 search classifier is trained from labelled examples; application keyword rules do
 not choose when to browse. Models 1.x through 2.4 always answer offline, including
 chats saved with the old web setting enabled.
@@ -456,7 +457,20 @@ is retained privately in saved/exported turns and JSON output, but does not appe
 as a second answer in the chat. Public pages may be blocked, outdated or wrong.
 Automatic routing and source reading need separate correctness checks before release.
 
-**Release status:** app support is prepared for 2.5; the new model is being trained
-and checked separately. The failed earlier 2.5 trial remains unpublished. Existing
-2.4 weights have not been renamed. A new 2.5 entry is added to the catalog only after
-training and the required checks succeed.
+**Release status:** lambda 2.5.1 is published at the owner's explicit request despite
+failing development checks. Its separate final source-reading test scored **17/48**;
+it can select a wrong fact, return an incomplete span or answer without supporting
+evidence. See the [model card](models/lambda-2.5.1.md) for full measurements. The
+failed earlier 2.5 training trial remains unpublished; the 2.4 base is preserved.
+
+Upgrade the application, restart Lambda, then select the new model:
+
+```text
+/update
+/model use lambda-2.5.1
+```
+
+App 0.8.0 users need 0.8.1 for the new model identity. If `/update` installs an app
+upgrade, exit and reopen Lambda before selecting the model. In F3, it appears
+under **lambda 2**. Existing local chats keep their selected model; select 2.5.1
+inside a chat to use its experimental research skill there.

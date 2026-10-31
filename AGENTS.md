@@ -143,3 +143,11 @@
   continuation varies source grammar and missing-property examples, starting from
   `grounded_span_25/best.pt`. It is capped at 600 updates / 20 minutes per session;
   do not automatically publish it or extend training without reviewing its results.
+- Latest owner instruction: publish the selected `grounded_refine_25` step-200
+  weights as **lambda 2.5.1** (`lambda-2.5.1`) despite the reviewed development
+  failure. This explicitly overrides performance gates for this release only.
+  Preserve the failed results and all private checkpoints; do not resume training.
+  Publish as experimental, with the frozen 2.4 base and learned research skill.
+  App 0.8.1 enables automatic research only for lambda-2.5.1 in v5 format.
+  Finish technical checks, document measured failures, preserve older models,
+  chats and usage, and keep training/optimizer data out of the public repository.

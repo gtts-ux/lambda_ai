@@ -63,7 +63,7 @@ starting with the first message. This is roughly 5,000 messages at 200 tokens
 per exchange. Input is charged only for the context actually used.
 Transformer models use recent completed exchanges within their context window.
 Older MLP models process each question separately. /memory shows the current mode.
-Lambda 2.5 can decide automatically when to search; older models stay offline.
+Lambda 2.5.1 can decide automatically when to search; older models stay offline.
 """
 
 
@@ -262,7 +262,7 @@ class Session:
 
     @property
     def supports_auto_search(self):
-        return (self.engine.metadata.get('model_id')=='lambda-2.5'
+        return (self.engine.metadata.get('model_id')=='lambda-2.5.1'
                 and self.engine.metadata.get('format')=='lambda-ai-grounded-transformer-v5'
                 and callable(getattr(self.engine,'search_decision',None)))
 

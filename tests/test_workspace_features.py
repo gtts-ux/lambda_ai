@@ -57,8 +57,8 @@ class WorkspaceTests(unittest.TestCase):
         self.assertEqual([x['name'] for x in menu.rows()],['lambda 1','lambda 2'])
         menu.choose(0);self.assertEqual([x['id'] for x in menu.rows()],['lambda-1.0','lambda-1.5','lambda-1.6'])
         self.assertEqual(menu.choose(1),'use:lambda-1.5');self.assertTrue(menu.back())
-        menu.choose(1);self.assertEqual(menu.rows()[-1]['id'],'lambda-2.4')
-        self.assertEqual(menu.choose(len(menu.rows())-1),'use:lambda-2.4')
+        menu.choose(1);self.assertEqual(menu.rows()[-1]['id'],'lambda-2.5.1')
+        self.assertEqual(menu.choose(len(menu.rows())-1),'use:lambda-2.5.1')
 
 class WorkspaceUITests(unittest.IsolatedAsyncioTestCase):
     async def test_arrow_family_version_navigation_and_edit_prefill(self):

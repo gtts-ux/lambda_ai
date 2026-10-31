@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lambda-ai-terminal"
-version = "0.8.0"
+version = "0.8.1"
 description = "English terminal chat with a local model trained from scratch, usage limits and model updates."
 readme = "README.md"
 requires-python = ">=3.11"

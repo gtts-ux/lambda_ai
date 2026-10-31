@@ -1,0 +1,104 @@
+{
+  "model": "lambda 2.5.1",
+  "selected_refinement_step": 200,
+  "development_passed": false,
+  "publication_authorized_by_owner": true,
+  "scores": {
+    "val": {
+      "correct": 19,
+      "total": 32,
+      "accuracy": 0.59375
+    },
+    "real_val": {
+      "correct": 6,
+      "total": 8,
+      "accuracy": 0.75
+    },
+    "test": {
+      "correct": 17,
+      "total": 48,
+      "accuracy": 0.3541666666666667
+    },
+    "router_test": {
+      "correct": 187,
+      "total": 200,
+      "accuracy": 0.935
+    }
+  },
+  "development_router": {
+    "correct": 94,
+    "total": 100,
+    "accuracy": 0.94
+  },
+  "offline_checks": [
+    {
+      "question": "Hello",
+      "identical": true,
+      "answer": "Hello! How can I help you?"
+    },
+    {
+      "question": "What is 5 x 6?",
+      "identical": true,
+      "answer": "30."
+    }
+  ],
+  "examples": [
+    {
+      "split": "real_val",
+      "question": "What is the hottest planet?",
+      "expected": "Venus.",
+      "answer": "Venus",
+      "correct": true
+    },
+    {
+      "split": "real_val",
+      "question": "What is the capital of Australia?",
+      "expected": "Canberra.",
+      "answer": "ra",
+      "correct": false
+    },
+    {
+      "split": "real_val",
+      "question": "What is Neptune's largest moon?",
+      "expected": "Triton.",
+      "answer": "Triton",
+      "correct": true
+    },
+    {
+      "split": "real_val",
+      "question": "Who is the mayor of Veloria?",
+      "expected": "Rowan Bell.",
+      "answer": "Rowan Bell.",
+      "correct": true
+    },
+    {
+      "split": "real_val",
+      "question": "What is the latest version of Fendale?",
+      "expected": "7.4.2.",
+      "answer": "7.4.2.",
+      "correct": true
+    },
+    {
+      "split": "real_val",
+      "question": "When was the Zephyr project launched?",
+      "expected": "1987.",
+      "answer": "1987.",
+      "correct": true
+    },
+    {
+      "split": "real_val",
+      "question": "What is the capital of Dravora?",
+      "expected": "I could not find enough information to answer.",
+      "answer": "4.2.1.",
+      "correct": false
+    },
+    {
+      "split": "real_val",
+      "question": "What is the capital of Elaria?",
+      "expected": "Corvale.",
+      "answer": "Corvale.",
+      "correct": true
+    }
+  ],
+  "note": "Prepared contexts; exact normalized matching. Final selection fixed before final evaluation. Routing includes repeated cases. Not an end-to-end web accuracy benchmark."
+}

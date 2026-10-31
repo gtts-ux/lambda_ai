@@ -66,5 +66,5 @@ class GroundedEngine(PointerEngine):
         result=super().info();result['architecture']+=' · learned search + evidence adapters'
         result['router_parameters']=self.weights['search_w'].size+2
         result['generator_parameters']=self.parameter_count-result['router_parameters']
-        result['automatic_search']=self.metadata.get('model_id')=='lambda-2.5'
+        result['automatic_search']=self.metadata.get('model_id')=='lambda-2.5.1'
         return result

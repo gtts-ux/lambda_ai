@@ -4,7 +4,8 @@ Repository: https://github.com/gtts-ux/lambda_ai
 
 The approved model names are **lambda 1.0** (`lambda-1.0`),
 **lambda 1.5** (`lambda-1.5`), **lambda 1.6** (`lambda-1.6`), **lambda 2** (`lambda-2`),
-**lambda 2.1** (`lambda-2.1`), **lambda 2.2** (`lambda-2.2`), and **lambda 2.4** (`lambda-2.4`).
+**lambda 2.1** (`lambda-2.1`), **lambda 2.2** (`lambda-2.2`), **lambda 2.4** (`lambda-2.4`),
+and **lambda 2.5.1** (`lambda-2.5.1`).
 The owner will name future models. **Ask the owner if a new model is requested
 without a name; do not invent or automatically increment model names.**
 
@@ -126,3 +127,13 @@ adapters and learned answer-boundary/answerability heads. Plain chat keeps the
 frozen 2.4 arrays; model-predicted answer spans are decoded inside inference.
 No new 2.5 model should be published before separate reading/routing checks. The
 failed release_25 and grounded_25 trials remain private and preserved.
+
+The owner subsequently explicitly requested publishing the reviewed best research
+checkpoint as **lambda 2.5.1**, despite its failed quality gate. This exception
+applies only to the selected `grounded_refine_25` step-200 inference weights
+(total lineage step 32550). Do not publish the final step-600 weights, relabel the
+failed older `release_25` run, or alter private checkpoint identities. The 2.4
+base arrays remain identical. App **0.8.1** enables automatic research under the
+exact lambda-2.5.1 identity and v5 format; older models remain offline. Publish
+the measured reading/routing scores and limitations in the model card, including
+the failed development gate. No general intelligence or reliable-web claim.
