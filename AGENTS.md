@@ -151,3 +151,22 @@
   App 0.8.1 enables automatic research only for lambda-2.5.1 in v5 format.
   Finish technical checks, document measured failures, preserve older models,
   chats and usage, and keep training/optimizer data out of the public repository.
+- On 2026-11-04 the owner requested a new **lambda 2.5** (not 2.5.1), with more
+  coherent conversation and better use of internet evidence, allowing a larger
+  training effort and requesting a Desktop demo video at completion. Private
+  `understanding_25` continues own 2.4 weights with trainable base and generative
+  evidence adapters, natural Dolly instructions, SQuAD 2.0 reading/abstention and
+  own conversation replay. Preserve public 2.4/2.5.1 unchanged. The earlier
+  frozen-base rule applies to the already released 2.5.1, not this new trial.
+  Preserve downloaded data attribution/licensing in its SOURCES.md. A bounded
+  resumable background session creates an English narrated/captioned video of
+  actual outputs after training; never fabricate successful conversations.
+  Model quality must be measured before claiming improvement. This request does
+  not authorize automatic publication of a failed candidate under the old waiver.
+- The owner now explicitly requests publishing a snapshot of the current best
+  `understanding_25` inference weights as **lambda 2.5.2** (`lambda-2.5.2`),
+  without interrupting training. Read the atomically replaced best.npz once and
+  pin that copy; never read optimizer state or modify the running trainer.
+  App 0.8.2 enables the new identity. This is an experimental mid-training release,
+  not proof of improved reasoning. Preserve source-data attribution and share-alike
+  terms for this model separately from the MIT application and previous weights.

@@ -264,7 +264,8 @@ training loop, gradients or optimizer state. Chat never modifies model weights.
 [MODEL_CARD.md](MODEL_CARD.md) documents the English dataset and limitations.
 The model checksum and checkpoint step are included in
 `lambda_cli/assets/model.json`. Code and included inference weights are
-licensed under [MIT](LICENSE).
+licensed under [MIT](LICENSE), except separately licensed optional models such as
+[lambda 2.5.2](models/lambda-2.5.2.md), whose weights use CC BY-SA 4.0.
 
 ## Development
 
@@ -474,3 +475,17 @@ App 0.8.0 users need 0.8.1 for the new model identity. If `/update` installs an 
 upgrade, exit and reopen Lambda before selecting the model. In F3, it appears
 under **lambda 2**. Existing local chats keep their selected model; select 2.5.1
 inside a chat to use its experimental research skill there.
+
+## lambda 2.5.2: mid-training snapshot
+
+The owner-requested **lambda 2.5.2** captures the best export at 8500 updates while
+the longer private 2.5 training continues. It has 16,235,172 parameters and uses
+generative source-conditioned answering. The small probe recalled a name and
+answered one multiplication, but source-reading responses repeated or became
+unintelligible. A lower validation loss has not established reliable comprehension.
+See the [model card, data attribution and weight license](models/lambda-2.5.2.md)
+and [actual outputs](models/lambda-2.5.2-results.json).
+
+Application **0.8.2** supports automatic search for this version. Run `/update`,
+restart after the app upgrade, then `/model use lambda-2.5.2`. F3 lists it under
+lambda 2. The new weights use CC BY-SA 4.0; previous release licenses are preserved.

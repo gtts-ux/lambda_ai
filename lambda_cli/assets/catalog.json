@@ -96,6 +96,18 @@
       "bytes": 61087236,
       "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-2.5.1.npz",
       "description": "Experimental frozen lambda 2.4 base plus a learned automatic research skill. Published at owner request despite failed reading quality gates (final reading test 17/48). Requires app 0.8.1."
+    },
+    {
+      "id": "lambda-2.5.2",
+      "name": "lambda 2.5.2",
+      "revision": 1,
+      "language": "en",
+      "min_app_version": "0.8.2",
+      "format": "lambda-ai-grounded-transformer-v5",
+      "sha256": "92f8d7d91c60c219d6e89d1f2724283a861560a2416b928681f01f7770269ef4",
+      "bytes": 60349411,
+      "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-2.5.2.npz",
+      "description": "Experimental mid-training snapshot at 8500 updates: own generative conversation and source reading model, 16.24M parameters. CC BY-SA 4.0 weights; see model card. Requires app 0.8.2."
     }
   ]
 }

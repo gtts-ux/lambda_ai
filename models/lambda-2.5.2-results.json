@@ -1,0 +1,60 @@
+{
+  "model": "lambda 2.5.2",
+  "selected_updates": 8500,
+  "outputs": [
+    {
+      "question": "Hello!",
+      "answer": "Hello! How can I help you?",
+      "mode": "conversation"
+    },
+    {
+      "question": "My name is Mira.",
+      "answer": "Hello, Mira.",
+      "mode": "conversation"
+    },
+    {
+      "question": "What is my name?",
+      "answer": "Your name is Mira.",
+      "mode": "conversation"
+    },
+    {
+      "question": "What is 5 x 6?",
+      "answer": "30.",
+      "mode": "conversation"
+    },
+    {
+      "question": "Explain why plants need sunlight.",
+      "answer": "Hello! How can I help you?",
+      "mode": "conversation"
+    },
+    {
+      "question": "Where is the observatory?",
+      "source": "The observatory is in Northfield. The museum is in Westhaven.",
+      "answer": "The observatory is in the observatory is in the observatory is in the observatory is in the observatory is in the observ is in the",
+      "mode": "supplied source; no live search"
+    },
+    {
+      "question": "When does the observatory open?",
+      "source": "The observatory opens at nine in the morning. The museum opens at ten.",
+      "answer": "I c c cgh the answer, the answer.",
+      "mode": "supplied source; no live search"
+    },
+    {
+      "question": "Who built the observatory?",
+      "source": "The observatory opens at nine in the morning.",
+      "answer": "Who observatory observ.",
+      "mode": "supplied source; no live search"
+    }
+  ],
+  "search_decisions": {
+    "Hello": {
+      "search": false,
+      "probability": 1.1151676027054691e-08
+    },
+    "What is the latest version of Python?": {
+      "search": true,
+      "probability": 1.0
+    }
+  },
+  "note": "Small descriptive smoke check, not an accuracy benchmark; checkpoint selected by local validation loss. Training continues separately."
+}

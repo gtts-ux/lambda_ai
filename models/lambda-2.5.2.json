@@ -1,0 +1,32 @@
+{
+  "context": 512,
+  "width": 384,
+  "layers": 8,
+  "heads": 6,
+  "vocabulary": 2048,
+  "format": "lambda-ai-grounded-transformer-v5",
+  "name": "lambda 2.5.2",
+  "model_id": "lambda-2.5.2",
+  "language": "en",
+  "training_step": 40150,
+  "data_sha256": "05c70bd0e004744a506c05d8c7eddeb013a8f1875f947ed7659c08a975c24523",
+  "initialization": "Own lambda 2.4 continued with natural instruction and source-grounded generative training; no external model weights.",
+  "min_app_version": "0.8.2",
+  "pointer_width": 128,
+  "evidence_rank": 32,
+  "evidence_layers": 4,
+  "search_features": 2048,
+  "training_lineage": {
+    "experiment": "understanding_25",
+    "source_step": 31650,
+    "source_sha256": "22cb0f72aaaf66dfca254dc965ff6590a2be0c6285cc2c3c94c02a93975f5020"
+  },
+  "license": "CC-BY-SA-4.0",
+  "attribution": "SQuAD 2.0 (Rajpurkar et al., CC BY-SA 4.0); Databricks Dolly 15k (CC BY-SA 3.0); own Lambda conversation replay. See models/lambda-2.5.2.md.",
+  "parameters": 16235172,
+  "bytes": 60349411,
+  "sha256": "92f8d7d91c60c219d6e89d1f2724283a861560a2416b928681f01f7770269ef4",
+  "snapshot_sha256": "2ece679ac3067115e9ab3dbe3d0f2b871547ecd34ce064efd0d19c17bd200a15",
+  "selected_updates": 8500,
+  "status": "experimental mid-training snapshot; explicit owner-requested publication"
+}

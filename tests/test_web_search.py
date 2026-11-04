@@ -21,7 +21,7 @@ from test_transformer import fixture
 def web_fixture(path):
     fixture(path)
     with np.load(path,allow_pickle=False) as z:arrays={k:z[k].copy() for k in z.files}
-    metadata=json.loads(str(arrays['metadata'].item()));metadata.update(context=1024,format=GROUNDED_FORMAT,model_id='lambda-2.5.1',evidence_rank=2,evidence_layers=1,search_features=128,pointer_width=8)
+    metadata=json.loads(str(arrays['metadata'].item()));metadata.update(context=1024,format=GROUNDED_FORMAT,model_id='lambda-2.5.2',evidence_rank=2,evidence_layers=1,search_features=128,pointer_width=8)
     arrays['metadata']=np.asarray(json.dumps(metadata));arrays['position']=np.tile(arrays['position'],(8,1))
     for key,shape in weight_shapes(metadata).items():
         if key not in arrays:arrays[key]=np.zeros(shape,np.float32)
@@ -112,7 +112,10 @@ class ResearchSessionTests(unittest.TestCase):
     def test_all_older_models_remain_offline_and_commands_are_removed(self):
         self.assertTrue(self.session.supports_auto_search)
         self.assertTrue(self.session.engine.info()['automatic_search'])
-        for name in ['lambda-1.0','lambda-1.5','lambda-1.6','lambda-2','lambda-2.1','lambda-2.2','lambda-2.4','lambda-2.5']:
+        self.session.engine.metadata['model_id']='lambda-2.5'
+        self.assertTrue(self.session.supports_auto_search)
+        self.assertTrue(self.session.engine.info()['automatic_search'])
+        for name in ['lambda-1.0','lambda-1.5','lambda-1.6','lambda-2','lambda-2.1','lambda-2.2','lambda-2.4']:
             self.session.engine.metadata['model_id']=name
             self.assertFalse(self.session.supports_auto_search)
             self.assertFalse(self.session.engine.info()['automatic_search'])

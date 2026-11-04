@@ -137,3 +137,11 @@ base arrays remain identical. App **0.8.1** enables automatic research under the
 exact lambda-2.5.1 identity and v5 format; older models remain offline. Publish
 the measured reading/routing scores and limitations in the model card, including
 the failed development gate. No general intelligence or reliable-web claim.
+
+The owner requested **lambda 2.5.2** as a pinned snapshot of the still-running
+`understanding_25` best inference export. Release the captured 8500-update file;
+never reread or replace it with later best weights during publication. App 0.8.2
+supports the identity and v5 generative evidence mode. Preserve trainer files and
+the automatic final-video worker. Disclose the repetitive source-reading outputs.
+The new weights are CC BY-SA 4.0 with SQuAD/Dolly attribution in their model card;
+do not imply all optional model weights are covered by the application's MIT license.
