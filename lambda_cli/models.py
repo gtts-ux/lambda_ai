@@ -93,6 +93,24 @@ class ModelManager:
             entry.update(installed_revision=revision, active=entry["id"] == state["active"],
                          update_available=revision is not None and revision < entry["revision"])
             result.append(entry)
+        # Owner-installed experimental weights remain available after a remote
+        # catalog refresh, without pretending a public download exists.
+        known = {entry['id'] for entry in result}
+        for identifier, installed in state['installed'].items():
+            if identifier in known or not installed.get('local_only'):
+                continue
+            try:
+                size = self.installed_path(installed).stat().st_size
+                exists = True
+            except FileNotFoundError:
+                size = installed.get('bytes', 0)
+                exists = False
+            result.append(dict(id=identifier, name=installed.get('name', identifier),
+                               revision=installed['revision'], sha256=installed['sha256'],
+                               bytes=size,
+                               min_app_version=installed.get('min_app_version', __version__),
+                               local_only=True, installed_revision=installed['revision'] if exists else None,
+                               active=identifier == state['active'], update_available=False))
         return result
 
     def installed_path(self, item):
@@ -135,6 +153,11 @@ class ModelManager:
         entry = next((e for e in self.entries() if e["id"] == identifier), None)
         if entry is None:
             raise ValueError(f"Unknown model '{identifier}'. Use /update to refresh the list.")
+        if entry.get('local_only'):
+            path = self.resolve(identifier)
+            if not path.is_file():
+                raise ValueError('Restore the local experimental model file; it has no public download.')
+            return path
         required = tuple(map(int, entry["min_app_version"].split(".")))
         current = tuple(map(int, __version__.split(".")))
         if current < required:

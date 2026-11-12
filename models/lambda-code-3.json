@@ -1,0 +1,32 @@
+{
+  "context": 512,
+  "width": 384,
+  "layers": 8,
+  "heads": 6,
+  "vocabulary": 2048,
+  "format": "lambda-ai-code-transformer-v6",
+  "name": "lambda code 3",
+  "model_id": "lambda-code-3",
+  "language": "en",
+  "training_step": 53150,
+  "data_sha256": "e2d0d44f01710ab9c94023b42097d5546df7bbb651200422be30818a642cbffcdd40a05725c806a35cc194a15a88c84fb842677ebb3d20773dd0215a97570d85397fd0bfd9c793722bc0b52c68cfa3c0f6f6614b68d0548eb6abaa80ae9739b6",
+  "initialization": "Own lambda code 3 continued with conversation histories, literal-copy supervision and clarification; frozen own 2.4 base.",
+  "min_app_version": "0.8.4",
+  "pointer_width": 128,
+  "evidence_rank": 32,
+  "evidence_layers": 8,
+  "search_features": 4096,
+  "code_adapter": true,
+  "automatic_search": false,
+  "training_lineage": {
+    "experiment": "code_3_conversation",
+    "source_step": 41650,
+    "source_sha256": "edc4cb1c8dbd8f038b8e883b96b6cd57605cbd824a00f2893fe53f65e898c9d8",
+    "frozen_base": true
+  },
+  "bytes": 63313878,
+  "sha256": "3c273e8aec9eee7e6a9f7c6b0b96f8454724f643eb634837b936793c063f01ee",
+  "parameters": 17029797,
+  "status": "Experimental public release at owner request",
+  "selection_update": 11500
+}

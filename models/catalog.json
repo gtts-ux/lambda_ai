@@ -108,6 +108,18 @@
       "bytes": 60349411,
       "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-2.5.2.npz",
       "description": "Experimental mid-training snapshot at 8500 updates: own generative conversation and source reading model, 16.24M parameters. CC BY-SA 4.0 weights; see model card. Requires app 0.8.2."
+    },
+    {
+      "id": "lambda-code-3",
+      "name": "lambda code 3",
+      "revision": 1,
+      "language": "en",
+      "min_app_version": "0.8.4",
+      "format": "lambda-ai-code-transformer-v6",
+      "sha256": "3c273e8aec9eee7e6a9f7c6b0b96f8454724f643eb634837b936793c063f01ee",
+      "bytes": 63313878,
+      "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-code-3.npz",
+      "description": "Experimental beginner Python/JavaScript model with learned code/language routing and frozen own lambda 2.4 chat base. Offline, 17.03M parameters. Authored checks at normal sampling: coding 36/44, new print 12/22, clarification 5/12. See model card; app >=0.8.4."
     }
   ]
 }

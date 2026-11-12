@@ -98,6 +98,9 @@ class Engine:
         if metadata.get('format')=='lambda-ai-grounded-transformer-v5':
             from .grounded import GroundedEngine
             return GroundedEngine(candidate)
+        if metadata.get('format')=='lambda-ai-code-transformer-v6':
+            from .code import CodeEngine
+            return CodeEngine(candidate)
         return super().__new__(cls)
 
     def __init__(self, path=None):

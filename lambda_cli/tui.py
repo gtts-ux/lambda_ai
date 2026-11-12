@@ -30,6 +30,7 @@ STYLE = Style.from_dict({
     "quota.good": "#80edc1", "quota.low": "#f4c578", "quota.empty": "#ff8e9b",
     "quota.track": "#304057", "chat.user": "#96baff bold", "chat.ai": "#80edc1 bold",
     "chat.meta": "#8292a9", "menu.selected": "bg:#233d4d #80edc1 bold", "welcome": "#98b8ff bold",
+    "chat.code": "#f4c578 bg:#111c2b", "chat.fence": "#96baff bold",
     "completion-menu.completion": "bg:#1e2d43 #dce5f2",
     "completion-menu.completion.current": "bg:#80edc1 #0c111b",
     "scrollbar.background": "bg:#151f30", "scrollbar.button": "bg:#435b7d",
@@ -46,10 +47,20 @@ def allowance_meter(remaining, allowance, width=24):
 
 class ConversationLexer(Lexer):
     def lex_document(self, document):
+        # Parse once per document, including unfinished blocks while streaming.
+        code_lines={};inside=False
+        for i,text in enumerate(document.lines):
+            stripped=text.strip()
+            if stripped.startswith(('YOU  ·','LAMBDA  ·','SYSTEM','↳ ','──')):
+                inside=False
+            if stripped.startswith('```'):
+                code_lines[i]='chat.fence';inside=not inside
+            elif inside:
+                code_lines[i]='chat.code'
         def line(index):
             text = document.lines[index]
             stripped = text.strip()
-            style = ('menu.selected' if stripped.startswith('›') else
+            style = code_lines.get(index) or ('menu.selected' if stripped.startswith('›') else
                      'chat.user' if stripped.startswith('YOU  ·') else
                      'chat.ai' if stripped.startswith('LAMBDA  ·') else
                      'chat.meta' if stripped.startswith(('↳ ', '──', 'SYSTEM')) else

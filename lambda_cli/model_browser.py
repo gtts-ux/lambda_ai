@@ -8,6 +8,8 @@ class ModelBrowser:
     def families(self):
         groups={}
         for entry in self.manager.entries():
+            if entry['id'].startswith('lambda-code-'):
+                groups.setdefault('code',[]).append(entry);continue
             match=re.match(r'lambda-(\d+)',entry['id'])
             family=match.group(1) if match else 'other'
             groups.setdefault(family,[]).append(entry)
@@ -16,7 +18,7 @@ class ModelBrowser:
     def rows(self):
         groups=self.families()
         if self.family is None:
-            return [{'id':key,'name':'lambda '+key if key!='other' else 'Other models','versions':versions}
+            return [{'id':key,'name':'lambda code' if key=='code' else 'lambda '+key if key!='other' else 'Other models','versions':versions}
                     for key,versions in sorted(groups.items(),key=lambda p:int(p[0]) if p[0].isdigit() else 100000)]
         return groups.get(self.family,[])
 
@@ -41,7 +43,7 @@ class ModelBrowser:
         return False
 
     def text(self,active_id):
-        lines=['MODELS / '+('FAMILIES' if self.family is None else 'LAMBDA '+self.family+' VERSIONS'),'',
+        lines=['MODELS / '+('FAMILIES' if self.family is None else 'LAMBDA '+self.family.upper()+' VERSIONS'),'',
                '  ↑/↓ select · Enter/→ open or use · ←/Esc back','']
         for i,row in enumerate(self.rows()):
             marker='›' if i==self.index else ' '
@@ -50,6 +52,8 @@ class ModelBrowser:
                 lines.append(f" {marker} {i+1}. {row['name']}    {versions}")
             else:
                 status='active' if row['id']==active_id else 'installed' if row['installed_revision'] else 'download'
+                if row.get('local_only') and not row['installed_revision']:
+                    status='local file missing'
                 lines.append(f" {marker} {i+1}. {row['name']}    [{status}]")
                 lines.append(f"       {row['bytes']/1048576:.1f} MiB · app ≥ {row['min_app_version']}")
         return '\n'.join(lines)

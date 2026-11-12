@@ -145,3 +145,13 @@ supports the identity and v5 generative evidence mode. Preserve trainer files an
 the automatic final-video worker. Disclose the repetitive source-reading outputs.
 The new weights are CC BY-SA 4.0 with SQuAD/Dolly attribution in their model card;
 do not imply all optional model weights are covered by the application's MIT license.
+
+Lambda code 3 is the owner-requested public coding release, ID lambda-code-3.
+Pin code_3_conversation selected update 11500 (total lineage 53150), 17,029,797
+parameters, v6/app >=0.8.4. Its own 2.4 base is frozen; coding adapters and a
+three-class router are learned locally. No web search or external weights.
+Disclose normal-sampling scores 36/44, 12/22, 5/12; the exposed 6/6 regressions
+are not unseen performance. Publish inference weights, manifests and results,
+never the private training kit. App 0.8.4 adds code-family navigation, fenced-code
+colors and local-model menu support. Keep the maintainer's repaired launcher out
+of the repository; installers/wheels use their own installation environments.

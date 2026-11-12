@@ -90,11 +90,28 @@ class ModelUpdateTests(unittest.TestCase):
         self.addCleanup(self.directory.cleanup)
         self.manager = ModelManager(self.directory.name)
 
+    def test_local_experiment_survives_catalog_refresh_without_public_download(self):
+        root=Path(self.directory.name);(root/'models').mkdir()
+        path=root/'models/local.npz';path.write_bytes(DEFAULT_MODEL.read_bytes())
+        state=self.manager.state()
+        state['installed']['lambda-2.5']=dict(filename=path.name,revision=1,sha256=hashlib.sha256(path.read_bytes()).hexdigest(),local_only=True,name='lambda 2.5',min_app_version='0.8.3')
+        atomic_json(root/'models.json',state)
+        with patch('lambda_cli.models.urlopen',return_value=io.BytesIO(json.dumps(self.manager.bundled).encode())):
+            self.manager.refresh_catalog()
+        item=next(e for e in self.manager.entries() if e['id']=='lambda-2.5')
+        self.assertTrue(item['local_only']);self.assertFalse(item['update_available'])
+        with patch('lambda_cli.models.urlopen') as download:
+            self.assertEqual(self.manager.install('lambda-2.5'),path)
+            download.assert_not_called()
+            path.unlink()
+            with self.assertRaises(ValueError):self.manager.install('lambda-2.5')
+            download.assert_not_called()
+
     def test_catalog_contains_owner_approved_models(self):
         entries = self.manager.entries()
         self.assertEqual([(e["id"],e["name"]) for e in entries],
                          [("lambda-1.0","lambda 1.0"),("lambda-1.5","lambda 1.5"),
-                      ("lambda-1.6","lambda 1.6"),("lambda-2","lambda 2"),("lambda-2.1","lambda 2.1"),("lambda-2.2","lambda 2.2"),("lambda-2.4","lambda 2.4"),("lambda-2.5.1","lambda 2.5.1"),("lambda-2.5.2","lambda 2.5.2")])
+                      ("lambda-1.6","lambda 1.6"),("lambda-2","lambda 2"),("lambda-2.1","lambda 2.1"),("lambda-2.2","lambda 2.2"),("lambda-2.4","lambda 2.4"),("lambda-2.5.1","lambda 2.5.1"),("lambda-2.5.2","lambda 2.5.2"),("lambda-code-3","lambda code 3")])
         self.assertEqual(self.manager.resolve(),DEFAULT_MODEL)
 
     def revision(self):

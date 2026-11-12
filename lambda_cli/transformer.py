@@ -10,6 +10,7 @@ from .byte_tokenizer import ByteTokenizer, SPECIAL, PAD, BOS, USER, ASSISTANT, E
 FORMAT = "lambda-ai-transformer-v3"
 POINTER_FORMAT = "lambda-ai-pointer-transformer-v4"
 GROUNDED_FORMAT = "lambda-ai-grounded-transformer-v5"
+CODE_FORMAT = "lambda-ai-code-transformer-v6"
 
 
 def weight_shapes(config):
@@ -24,17 +25,18 @@ def weight_shapes(config):
                             "proj": (d, d), "ln2_w": (d,), "ln2_b": (d,),
                             "up": (d, 4*d), "down": (4*d, d)}.items():
             shapes[f"b{i}_{name}"] = shape
-    if config.get("format") in (POINTER_FORMAT,GROUNDED_FORMAT):
+    if config.get("format") in (POINTER_FORMAT,GROUNDED_FORMAT,CODE_FORMAT):
         p = int(config["pointer_width"])
         if not 8 <= p <= 256:
             raise ValueError("Invalid pointer dimensions.")
         shapes.update({"pointer_norm_w": (d,), "pointer_norm_b": (d,),
                        "pointer_q": (2*d, p), "pointer_k": (2*d, p),
                        "pointer_gate_w": (3*d, 1), "pointer_gate_b": (1,)})
-    if config.get('format')==GROUNDED_FORMAT:
+    if config.get('format') in (GROUNDED_FORMAT,CODE_FORMAT):
         rank=int(config['evidence_rank']);count=int(config['evidence_layers']);features=int(config['search_features'])
         if not (1<=rank<=64 and 1<=count<=n and 128<=features<=16384):raise ValueError('Invalid grounded model dimensions.')
-        shapes.update(search_w=(features,2),search_b=(2,),evidence_gate_bias=(1,))
+        classes=3 if config.get('format')==CODE_FORMAT else 2
+        shapes.update(search_w=(features,classes),search_b=(classes,),evidence_gate_bias=(1,))
         targets={f'b{i}_{name}':shapes[f'b{i}_{name}'] for i in range(n-count,n) for name in ('qkv','proj','up','down')}
         targets.update(pointer_q=shapes['pointer_q'],pointer_k=shapes['pointer_k'],pointer_gate_w=shapes['pointer_gate_w'])
         for key,(a,b) in targets.items():
@@ -117,6 +119,9 @@ class TransformerEngine:
         """Prefill or append using a per-generation KV cache."""
         ids = np.asarray(ids, dtype=np.int64)
         start = cache[0][0].shape[1] if cache else 0
+        bidirectional = getattr(self, 'bidirectional_reading', False)
+        if bidirectional and cache:
+            raise ValueError('Bidirectional reading requires a complete prompt, without a KV cache.')
         if start+len(ids) > self.context:
             raise ValueError("Transformer context exceeded.")
         w = self.weights
@@ -133,7 +138,8 @@ class TransformerEngine:
             next_cache.append((k, v))
             scores = (q @ k.transpose(0, 2, 1)) / math.sqrt(self.embedding//self.heads)
             mask = np.arange(k.shape[1])[None, :] > (start+np.arange(len(ids)))[:, None]
-            scores = np.where(mask[None, :, :], -np.inf, scores)
+            if not bidirectional:
+                scores = np.where(mask[None, :, :], -np.inf, scores)
             scores -= scores.max(axis=-1, keepdims=True)
             p = np.exp(scores)
             p /= p.sum(axis=-1, keepdims=True)

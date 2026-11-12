@@ -31,6 +31,10 @@ class GroundedEngine(PointerEngine):
 
     def generate(self,prompt,settings=None,on_text=None,cancel=None,*,evidence=False,evidence_range=None):
         engine=self.evidence_view() if evidence else self
+        if evidence and self.metadata.get('source_pointer_only'):
+            if not evidence_range or len(evidence_range)!=2 or not all(type(i) is int for i in evidence_range) or not 0<=evidence_range[0]<evidence_range[1]<len(prompt):
+                raise ValueError('Invalid evidence token bounds.')
+            engine.source_bounds=tuple(evidence_range)
         if evidence and self.metadata.get('span_reader'):
             return self.read_answer(engine,prompt,settings,on_text,cancel,evidence_range)
         return PointerEngine.generate(engine,prompt,settings,on_text,cancel)
@@ -43,7 +47,12 @@ class GroundedEngine(PointerEngine):
         if not bounds or len(bounds)!=2 or not all(type(i) is int for i in bounds) or not 0<=bounds[0]<bounds[1]<len(prompt):
             raise ValueError('Invalid evidence token bounds.')
         if cancel is not None and cancel.is_set():return Result('',prompt,[],0.,len(prompt),0,'cancelled')
-        h,_=engine.hidden_states(prompt)
+        engine.bidirectional_reading=bool(self.metadata.get('bidirectional_reader'))
+        try:
+            h,_=engine.hidden_states(prompt)
+        finally:
+            # Abstention is still causal neural generation, not a canned string.
+            engine.bidirectional_reading=False
         w=engine.weights;e=norm(w['token'][prompt],w['pointer_norm_w'],w['pointer_norm_b']);features=np.concatenate((h,e),axis=-1)
         answerability=softmax(h[-1]@self.weights['span_answerable_w']+self.weights['span_answerable_b'])
         if answerability[1]<.5:

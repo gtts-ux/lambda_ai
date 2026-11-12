@@ -170,3 +170,76 @@
   App 0.8.2 enables the new identity. This is an experimental mid-training release,
   not proof of improved reasoning. Preserve source-data attribution and share-alike
   terms for this model separately from the MIT application and previous weights.
+- On 2026-11-11 the owner requested improving research use and preventing loops.
+  The project moved to Desktop/Janek/lambda_ai. `reading_repair` verifies train/export
+  parity and trains source-only neural copy attention plus unlikelihood on authored
+  reading lessons, preserving the own 2.4 offline base. The source_pointer_only
+  metadata flag requires matched train/runtime masking and future app >=0.8.3.
+  Keep earlier releases unchanged. Cap 2000 updates / 90 minutes; measure generated
+  answers every 250 updates, label previously exposed cases as development, and
+  require independent checks before publication. No automatic long extension.
+- On 2026-11-12 the owner explicitly authorized a new roughly five-hour effort.
+  `reader_25` supersedes the failed reading_repair trial for this new run only:
+  260 minutes plus final checks, no automatic step-1000 progress stop. It learns
+  bidirectional evidence adapters and source-span boundaries on own frozen 2.4,
+  authored multi-fact lessons and SQuAD 2.0 (CC BY-SA 4.0). No external weights.
+  `bidirectional_reader` applies only during neural span encoding, never causal
+  generation/caching. Require train/runtime parity and app >=0.8.3 on release.
+  Preserve the old checkpoints, installed model, chats and quota. Finish with
+  selected local weights and an honest held-out Desktop report, not automatic
+  publication or claims that extractive reading equals general synthesis.
+- Latest owner request (2026-11-12): the next model is **lambda code 3**
+  (`lambda-code-3`), with no web search. Add beginner Python/JavaScript, learned
+  code/language recognition (including “do a hello world”), preserve ordinary
+  lambda 2.4 behavior, and color fenced code distinctly. Private `code_3` trains
+  new conditional adapters and a three-class learned router on the frozen own
+  2.4 base. No external pretrained weights or application code-answer templates.
+  v6/app >=0.8.4 supports these local inference weights. Bound training to 16000
+  updates / 240 minutes; checkpoint and evaluate actual generated snippets,
+  retain a held-out final report. No automatic installation/publication of
+  unreviewed weights. The terminal changes are available locally after restart.
+- The owner then requested a local snapshot of the running coding model named
+  **lambda 3 code demo** (`lambda-code-3-demo`), without stopping training. Pin
+  the atomically exported best inference artifact once; never modify the worker,
+  optimizer or original code_3 checkpoints. The local snapshot captured update
+  9000, retains identical numerical arrays and requires app >=0.8.4. Keep the
+  final running model's approved name lambda code 3. No GitHub publication was
+  requested for this local demo. Snapshot records live in ../diagnostics/code_demo_snapshots.
+- After reproducing corrupted multi-turn coding replies, the owner explicitly
+  authorized stopping the old training and starting a corrected one. Old code_3
+  safely paused at update 10713. `code_3_conversation` pins its own selected
+  update-10000 checkpoint, continues coding adapters with chat/code histories,
+  current-request literal copy supervision, varied print requests and learned
+  clarification. Preserve frozen 2.4 arrays and the immutable installed demo.
+  Cap the new run at 12000 updates / 180 minutes plus final checks. Selection
+  must include actual multi-turn outputs with default sampling, not only fresh
+  greedy prompts. Exposed screenshot regressions do not count as unseen tests.
+  No application answer substitution, automatic publication or budget extension.
+- The owner requested replacing the local demo with the current best ongoing
+  conversation-repair snapshot. Installed local revision 2 of lambda-code-3-demo
+  captures code_3_conversation update 3500 (total step 45150), retaining the
+  previous demo file and snapshot record. Training continues unchanged; this
+  is a local owner-requested replacement, not public publication or proof of
+  reliable arbitrary coding. Preserve each pinned artifact as an immutable file.
+- Latest local demo replacement: the owner requested the completed run's best
+  weights as the same lambda 3 code demo. Local revision 3 captures
+  code_3_conversation update 11500 (total step 53150), with the previous revision
+  preserved. Search remains disabled. Final held-out default-sampling results:
+  retention 36/44, novel print 12/22, clarification 5/12; exposed regressions 6/6.
+  This local experimental installation is not a public release or a reliability claim.
+- Owner portability requirement (2026-11-12): future app updates/installers must
+  never embed the maintainer's personal home or Desktop checkout paths.
+  The repaired ~/.local/bin/lambda wrapper with that absolute project path is
+  local to this computer and must not be copied into GitHub, wheels, installers
+  or update payloads. Resolve each user's installation location dynamically;
+  retain the pyproject console entry point and the installer's derived root,
+  HOME/LAMBDA_BIN_DIR-based launcher location. App updates use the active
+  environment's sys.executable. Do not make other devices depend on this checkout.
+- Latest owner instruction: publish the completed selected weights as **lambda
+  code 3** (`lambda-code-3`), superseding the demo identity for this public release.
+  Use code_3_conversation update 11500 / total step 53150. Keep older releases,
+  demo files, chats and quota. Publish app 0.8.4 with v6 support, code colors,
+  code-family browsing and local-model metadata fixes. Document actual scores
+  and trained-on screenshot regressions. Do not ship private training files or
+  machine-specific launcher paths. This explicit publication request supersedes
+  the earlier no-automatic-publication instruction for this selected artifact.

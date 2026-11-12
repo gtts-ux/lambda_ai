@@ -151,6 +151,53 @@ class ResearchUITests(unittest.IsolatedAsyncioTestCase):
             finally:ui.close();await task
 
 class GroundedEngineTests(unittest.TestCase):
+    def test_bidirectional_reading_sees_later_question_but_causal_generation_does_not(self):
+        with tempfile.TemporaryDirectory() as d:
+            path=Path(d)/'fixture.npz';web_fixture(path)
+            e=Engine(path);a=[1,2,30,31,32];b=[1,2,30,31,55]
+            causal_a,_=e.hidden_states(a);causal_b,_=e.hidden_states(b)
+            np.testing.assert_array_equal(causal_a[:4],causal_b[:4])
+            view=e.evidence_view();view.bidirectional_reading=True
+            read_a,cache=view.hidden_states(a);read_b,_=view.hidden_states(b)
+            self.assertGreater(float(np.max(np.abs(read_a[:4]-read_b[:4]))),1e-7)
+            with self.assertRaisesRegex(ValueError,'complete prompt'):
+                view.hidden_states([56],cache)
+            again,_=e.hidden_states(a)
+            np.testing.assert_array_equal(causal_a,again)
+
+    def test_bidirectional_span_abstention_resets_causal_attention(self):
+        with tempfile.TemporaryDirectory() as d:
+            path=Path(d)/'fixture.npz';web_fixture(path)
+            with np.load(path,allow_pickle=False) as z:arrays={k:z[k].copy() for k in z.files}
+            meta=json.loads(str(arrays['metadata'].item()));meta.update(span_reader=True,bidirectional_reader=True)
+            arrays['metadata']=np.asarray(json.dumps(meta))
+            for k,shape in weight_shapes(meta).items():
+                if k not in arrays:arrays[k]=np.zeros(shape,np.float32)
+            arrays['span_answerable_b'][:]=[10,-10]
+            np.savez_compressed(path,**arrays)
+            e=Engine(path)
+            def fallback(view,*args,**kwargs):
+                self.assertFalse(view.bidirectional_reading)
+                return Result('learned abstention',[],[],0,0,0,'stop')
+            with patch('lambda_cli.grounded.PointerEngine.generate',autospec=True,side_effect=fallback):
+                result=e.generate([1,2,30,31,4,3],evidence=True,evidence_range=[2,4])
+            self.assertEqual(result.text,'learned abstention')
+
+    def test_source_only_copy_excludes_generated_tokens_with_cache(self):
+        with tempfile.TemporaryDirectory() as d:
+            p=Path(d)/'model.npz';web_fixture(p)
+            with np.load(p,allow_pickle=False) as z:arrays={k:z[k].copy() for k in z.files}
+            arrays['pointer_gate_b'][:]=80
+            arrays['pointer_gate_w'][:]=0
+            np.savez_compressed(p,**arrays)
+            engine=Engine(p).evidence_view();engine.source_bounds=(2,3)
+            logits,cache=engine.logits([1,2,50,4,3,51,51])
+            self.assertEqual(int(np.argmax(logits[-1])),50)
+            self.assertLess(float(np.exp(logits[-1,51])),1e-6)
+            logits,cache=engine.logits([51],cache)
+            self.assertEqual(int(np.argmax(logits[-1])),50)
+            self.assertLess(float(np.exp(logits[-1,51])),1e-6)
+
     def test_learned_head_controls_search_without_keyword_fallbacks(self):
         with tempfile.TemporaryDirectory() as d:
             p=Path(d)/'model.npz';web_fixture(p);e=Engine(p)

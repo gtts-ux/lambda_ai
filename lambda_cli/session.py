@@ -456,8 +456,9 @@ class Session:
                       f"  Generated tokens      {len(r.generated)}", f"  Charged to allowance  {r.charged_tokens}",
                       f"  Speed                 {r.tokens_per_second:.1f} tok/s", f"  Finish reason         {r.finish_reason}"]
             if r.intent:
-                lines += [f"  Detected intent       {r.intent}",
-                          f"  Math intent score     {r.intent_math_probability:.1%}"]
+                lines += [f"  Detected intent       {r.intent}"]
+                if r.intent_math_probability is not None:
+                    lines += [f"  Math intent score     {r.intent_math_probability:.1%}"]
         lines += ["", "  Charged tokens = used input context + actual generated tokens, including stop tokens.",
                   "  Padding and discarded input are not charged. /new does not reset the allowance."]
         return "\n".join(lines)
@@ -480,6 +481,11 @@ class Session:
         if not text:
             return 'Use /intent Your question to inspect its purpose.'
         result = self.engine.classify(text)
+        if 'coding_probability' in result:
+            return (f"INTENT / {result['intent'].upper()}\n\n  Question: {text}\n"
+                    f"  Coding probability: {result['coding_probability']:.1%}\n"
+                    f"  Language: {result['language'] or 'ordinary conversation'}\n\n"
+                    '  The learned classifier chooses the coding mode. This score does not measure code correctness.')
         if result['intent'] is None:
             return 'This model has no explicit intent classifier. Select lambda 1.6 to use one.'
         return (f"INTENT / {result['intent'].upper()}\n\n  Question: {text}\n"

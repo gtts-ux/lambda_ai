@@ -34,6 +34,11 @@ class PointerEngine(TransformerEngine):
             all_ids = np.concatenate((cache["ids"], ids))
         scores = q @ k.T / math.sqrt(q.shape[-1])
         future = np.arange(len(all_ids))[None, :] > (start + np.arange(len(ids)))[:, None]
+        bounds = getattr(self, 'source_bounds', None)
+        if bounds is not None:
+            lo, hi = bounds
+            outside = (np.arange(len(all_ids)) < lo) | (np.arange(len(all_ids)) >= hi)
+            future = future | ((start + np.arange(len(ids)))[:, None] >= hi) & outside[None, :]
         # Ordinary causal attention, including role tokens. Roles are never answers.
         attention = softmax(np.where(future, -np.inf, scores))
         attended = attention @ all_h

@@ -6,7 +6,7 @@ from prompt_toolkit.application import create_app_session
 from prompt_toolkit.input import create_pipe_input
 from lambda_cli.chats import ChatStore
 from lambda_cli.engine import Engine,Result,GeneratedToken
-from lambda_cli.models import ModelManager
+from lambda_cli.models import ModelManager,atomic_json
 from lambda_cli.model_browser import ModelBrowser
 from lambda_cli.quota import Quota
 from lambda_cli.session import Session
@@ -54,13 +54,35 @@ class WorkspaceTests(unittest.TestCase):
         self.assertEqual(len(self.session.turns),1)
     def test_families_and_versions_use_catalog_ids(self):
         menu=ModelBrowser(self.manager)
-        self.assertEqual([x['name'] for x in menu.rows()],['lambda 1','lambda 2'])
+        self.assertEqual([x['name'] for x in menu.rows()],['lambda 1','lambda 2','lambda code'])
         menu.choose(0);self.assertEqual([x['id'] for x in menu.rows()],['lambda-1.0','lambda-1.5','lambda-1.6'])
         self.assertEqual(menu.choose(1),'use:lambda-1.5');self.assertTrue(menu.back())
         menu.choose(1);self.assertEqual(menu.rows()[-1]['id'],'lambda-2.5.2')
         self.assertEqual(menu.choose(len(menu.rows())-1),'use:lambda-2.5.2')
 
 class WorkspaceUITests(unittest.IsolatedAsyncioTestCase):
+    async def test_family_two_renders_and_selects_local_experimental_model_with_arrows(self):
+        with tempfile.TemporaryDirectory() as directory,create_pipe_input() as pipe,create_app_session(input=pipe,output=SizedOutput(110,38)):
+            root=Path(directory);manager=ModelManager(root/'models');modeldir=manager.directory/'models';modeldir.mkdir(parents=True)
+            local=modeldir/'local.npz';fixture(local)
+            state=manager.state();state['installed']['lambda-2.5']=dict(filename=local.name,revision=1,sha256='0'*64,local_only=True,name='lambda 2.5',min_app_version='0.8.3')
+            atomic_json(manager.directory/'models.json',state)
+            session=Session(Engine(),quota=Quota(root/'usage.sqlite3'),manager=manager,store=ChatStore(root))
+            ui=TerminalApp(session);task=asyncio.create_task(ui.app.run_async())
+            try:
+                await asyncio.sleep(.08);pipe.send_text('\x1bOR');await asyncio.sleep(.05)
+                pipe.send_text('\x1b[B\x1b[C');await asyncio.sleep(.08)
+                self.assertIn('LAMBDA 2 VERSIONS',ui.body.text)
+                self.assertIn('lambda 2.5    [installed]',ui.body.text)
+                self.assertIn(f'{local.stat().st_size/1048576:.1f} MiB',ui.body.text)
+                ui.models.move(len(ui.models.rows()));ui.refresh()
+                with patch.object(session,'model_action',return_value='Using local model') as action:
+                    pipe.send_text('\x1b[C');await asyncio.sleep(.15)
+                    self.assertEqual(action.call_args.args[0],'use:lambda-2.5')
+                local.unlink();ui.refresh()
+                self.assertIn('local file missing',ui.body.text)
+            finally:ui.close();await task
+
     async def test_arrow_family_version_navigation_and_edit_prefill(self):
         with tempfile.TemporaryDirectory() as directory,create_pipe_input() as pipe,create_app_session(input=pipe,output=SizedOutput(110,38)):
             store=ChatStore(directory);manager=ModelManager(Path(directory)/'models')

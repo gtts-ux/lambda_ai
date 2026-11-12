@@ -26,7 +26,8 @@ separately. The runtime (0.4.0 and newer) also supports experimental v3/v4
 Transformers: they receive recent completed exchanges within their context window.
 Use `/memory` to check the current model. Interactive conversations are saved locally
 and resume after restart. `/new` creates another chat; `/chats` reopens a saved one.
-The model still sees only its recent context window. Optional conversation models through lambda 2.5.1 are available.
+The model still sees only its recent context window. Optional conversation,
+research and beginner coding models are available.
 
 ## Install
 
@@ -489,3 +490,33 @@ and [actual outputs](models/lambda-2.5.2-results.json).
 Application **0.8.2** supports automatic search for this version. Run `/update`,
 restart after the app upgrade, then `/model use lambda-2.5.2`. F3 lists it under
 lambda 2. The new weights use CC BY-SA 4.0; previous release licenses are preserved.
+
+## lambda code 3: beginner Python and JavaScript
+
+**lambda code 3** adds learned coding adapters and chat/Python/JavaScript routing
+to the own frozen lambda 2.4 base. It has 17,029,797 parameters and 512-token context.
+Internet search is disabled for this model. Fenced code is displayed in gold.
+This is an experimental educational model: final authored checks at normal app
+sampling passed 36/44 elementary coding tasks, 12/22 new print requests and 5/12
+clarification requests. Code and conversation history can still fail.
+
+Run `/update`, restart after installing app **0.8.4**, and use:
+
+```text
+/model use lambda-code-3
+```
+
+F3 groups it under **lambda code**. CLI equivalents:
+
+```bash
+lambda update
+# Restart after the app update.
+lambda model use lambda-code-3
+lambda ask 'make a code in python printing hello'
+```
+
+See the [model card](models/lambda-code-3.md) and
+[actual generated-answer results](models/lambda-code-3-results.json). This uses
+the completed repair's selected update 11500, not the older local demo.
+Existing models, chats and allowance are preserved. Installers derive paths on
+each machine; release code contains no maintainer checkout path.

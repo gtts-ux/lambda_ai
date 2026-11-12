@@ -1,0 +1,3486 @@
+{
+  "summary": {
+    "selected_step": 11500,
+    "heldout": {
+      "retention/top1": {
+        "correct": 35,
+        "total": 44,
+        "accuracy": 0.7954545454545454
+      },
+      "clarification/top1": {
+        "correct": 5,
+        "total": 12,
+        "accuracy": 0.4166666666666667
+      },
+      "print/top1": {
+        "correct": 12,
+        "total": 22,
+        "accuracy": 0.5454545454545454
+      },
+      "retention/top8": {
+        "correct": 36,
+        "total": 44,
+        "accuracy": 0.8181818181818182
+      },
+      "clarification/top8": {
+        "correct": 5,
+        "total": 12,
+        "accuracy": 0.4166666666666667
+      },
+      "print/top8": {
+        "correct": 12,
+        "total": 22,
+        "accuracy": 0.5454545454545454
+      }
+    },
+    "exposed_regression": {
+      "exposed_regression/top1": {
+        "correct": 6,
+        "total": 6,
+        "accuracy": 1.0
+      },
+      "exposed_regression/top8": {
+        "correct": 6,
+        "total": 6,
+        "accuracy": 1.0
+      }
+    },
+    "offline": [
+      {
+        "question": "hello",
+        "baseline": "Hello! How can I help you?",
+        "answer": "Hello! How can I help you?",
+        "identical": true
+      },
+      {
+        "question": "who are you?",
+        "baseline": "I am Lambda, a small AI language model.",
+        "answer": "I am Lambda, a small AI language model.",
+        "identical": true
+      },
+      {
+        "question": "What is 5 x 6?",
+        "baseline": "30.",
+        "answer": "30.",
+        "identical": true
+      },
+      {
+        "question": "My name is Janek.",
+        "baseline": "Hello, Janek.",
+        "answer": "Hello, Janek.",
+        "identical": true
+      }
+    ],
+    "preserved_base": true,
+    "published": false,
+    "search_enabled": false
+  },
+  "heldout": {
+    "step": 11500,
+    "split": "heldout",
+    "score": 0.5896464646464646,
+    "metrics": {
+      "retention/top1": {
+        "correct": 35,
+        "total": 44,
+        "accuracy": 0.7954545454545454
+      },
+      "clarification/top1": {
+        "correct": 5,
+        "total": 12,
+        "accuracy": 0.4166666666666667
+      },
+      "print/top1": {
+        "correct": 12,
+        "total": 22,
+        "accuracy": 0.5454545454545454
+      },
+      "retention/top8": {
+        "correct": 36,
+        "total": 44,
+        "accuracy": 0.8181818181818182
+      },
+      "clarification/top8": {
+        "correct": 5,
+        "total": 12,
+        "accuracy": 0.4166666666666667
+      },
+      "print/top8": {
+        "correct": 12,
+        "total": 22,
+        "accuracy": 0.5454545454545454
+      }
+    },
+    "outputs": [
+      {
+        "question": "Give me a Python example: write a function named first that returns the first element of items.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Using Python, store 5 in a variable named result and print it.",
+            "I am not sure."
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\ndef first(items):\n    return items[0]\n```",
+        "expected": "```python\ndef first(items):\n    return items[0]\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Please create something in javascript.",
+        "history": [],
+        "group": "clarification",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nconsole.log(\"script\n);\n```",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": false,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "In py, show the code needed to output 5151.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Could you store 12 in a variable named total and print it? Use Python.",
+            "```python\ntotal = 12\nprint(total)\n```"
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nprint(5151)\n```",
+        "expected": "```python\nprint(5151)\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a Python example: print \"Lambda\".",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nprint(\"Lambda\")\n```",
+        "expected": "```python\nprint(\"Lambda\")\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In Python, show the code needed to output 3365.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Can you store 1 in a variable named size and print it?",
+            "```python\nsize = 1\nprint(size)\n```"
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nprint(3365)\n```",
+        "expected": "```python\nprint(3365)\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In Python, how do I write a function named upper that converts text to uppercase?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\ndef upper(text):\n    return text.upper()\n```",
+        "expected": "```python\ndef upper(text):\n    return text.upper()\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "I am learning Python. Help me create a list named limit containing 1, 2, 3 and print it.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Can you store 17 in a variable named item and print it?",
+            "```python\nitem = 17\nprint(item)\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nli f liitive(a, b):)\n    return a * b)\n```",
+        "expected": "```python\nlimit = [1, 2, 3]\nprint(limit)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Help me print 6072. The language is py.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 1,
+        "answer": "17.",
+        "expected": "```python\nprint(6072)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "chat"
+      },
+      {
+        "question": "Help me print 6349. The language is Python.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 1,
+        "answer": "Python Python Python Python is a programming language used to write computer programs.",
+        "expected": "```python\nprint(6349)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "chat"
+      },
+      {
+        "question": "In Python, how do I create a list named amount containing 1, 2, 3 and print it?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Could you store 15 in a variable named size and print it? Use JavaScript.",
+            "console.log(console.log(console.log("
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nounte = [1, 2, 3]\nprint(ounte)\n```",
+        "expected": "```python\namount = [1, 2, 3]\nprint(amount)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In JavaScript, how do I write a function named positive that keeps positive numbers from items?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Please create a list named total containing 1, 2, 3 and print it in JavaScript.",
+            "```javascript\nconst total = [1, 2, 3];\nconsole.log(total);\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfunction positive(items) {\n  return items.filter(x => x > 0);\n}\n```",
+        "expected": "```javascript\nfunction positive(items) {\n  return items.filter(x => x > 0);\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Make a Python snippet displaying 5320.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nprint(5320)\n```",
+        "expected": "```python\nprint(5320)\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a Python example: print \"Hello world\".",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Could you store 18 in a variable named size and print it? Use Python.",
+            "```python\nprprprprint(\"0;\n"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nprint(\"Hello world\")\n```",
+        "expected": "```python\nprint(\"Hello world\")\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a program using JavaScript.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Write only the Python code: store 18 in a variable named size and print it.",
+            "```python\nsize = 18\nprint(size)\n```"
+          ]
+        ],
+        "group": "clarification",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "What should the code do? Please describe the task.",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Help me print 847. The language is javascript.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Please store 7 in a variable named item and print it.",
+            "```python\nitem = 7\nprint(item)\n```"
+          ]
+        ],
+        "group": "print",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "I can help with simple questions, basic math, and conversation.",
+        "expected": "```javascript\nconsole.log(847);\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "chat"
+      },
+      {
+        "question": "Please create something in Python.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "clarification",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\ndef is_posint(\"Hello, World!\")\n```",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "I am learning Python. Help me write a function named multiply that multiplies a and b.",
+        "history": [],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\ndef multiply(a, b):\n    return a * b\n```",
+        "expected": "```python\ndef multiply(a, b):\n    return a * b\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In Python, how do I write a greet function that returns a greeting for name?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\ndef greet(name):\n    return \"Hello, \" + name\n```",
+        "expected": "```python\ndef greet(name):\n    return \"Hello, \" + name\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In JavaScript, how do I write a function named maximum that returns the larger of a and b?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfunction maximum(a, b) {\n  return Math.max(a, b);\n}\n```",
+        "expected": "```javascript\nfunction maximum(a, b) {\n  return Math.max(a, b);\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Please create something in Python.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Write only the Python code: store 15 in a variable named total and print it.",
+            "I am not sure."
+          ]
+        ],
+        "group": "clarification",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\ndef length(text):\n    return len(text)\n```",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a JavaScript example: write a function named length that returns the length of text.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Write only the Python code: print the numbers from 1 to 4 using a loop.",
+            "```python\nfor i in range(1, 4 + 1):\n    print(i)\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfunction length(text) {\n  return text.length;\n}\n```",
+        "expected": "```javascript\nfunction length(text) {\n  return text.length;\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "I am learning Python. Help me write a greet function that returns a greeting for name.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Write only the JavaScript code: store 2 in a variable named number and print it.",
+            "console.log(console.log(console.log("
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\ndef greet(name):\n    return \"Hello, \" + name\n```",
+        "expected": "```python\ndef greet(name):\n    return \"Hello, \" + name\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "I am learning JavaScript. Help me write a function named reverse that reverses text.",
+        "history": [],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfunction reverse(text) {\n  return text.split(\"\").reverse().join(\"\");\n}\n```",
+        "expected": "```javascript\nfunction reverse(text) {\n  return text.split(\"\").reverse().join(\"\");\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Make a javascript snippet displaying 3036.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "print",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nconsole.log(3036);\n```",
+        "expected": "```javascript\nconsole.log(3036);\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Give me a Python example: print \"Lambda\".",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nprint(\"Lambda\")\n```",
+        "expected": "```python\nprint(\"Lambda\")\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "I am learning JavaScript. Help me print the numbers from 1 to 22 using a loop.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "I need JavaScript code: write a function named reverse that reverses text.",
+            "I am not sure."
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfor (let i = 1; i <= 22; i++) {\n  console.log(i);\n}\n```",
+        "expected": "```javascript\nfor (let i = 1; i <= 22; i++) {\n  console.log(i);\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Make a Python snippet displaying 1340.",
+        "history": [],
+        "group": "print",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```javascript\nconsole.log(1340);\n```",
+        "expected": "```python\nprint(1340)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Help me print 7009. The language is JavaScript.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Please store 8 in a variable named result and print it in JavaScript.",
+            "```javascript\nconst result = 8;\nconsole.log(result);\n```"
+          ]
+        ],
+        "group": "print",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "80.",
+        "expected": "```javascript\nconsole.log(7009);\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "chat"
+      },
+      {
+        "question": "In JavaScript, how do I write a function named multiply that multiplies a and b?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Can you print the numbers from 1 to 13 using a loop in JavaScript?",
+            "print(0;;; make make print("
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfunction multiply(a, b) {\n  return a * b;\n}\n```",
+        "expected": "```javascript\nfunction multiply(a, b) {\n  return a * b;\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Give me a JavaScript example: write a function named double that doubles every number in items.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfunction double(items) {\n  return items.map(x => x * 2);\n}\n```",
+        "expected": "```javascript\nfunction double(items) {\n  return items.map(x => x * 2);\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "In JavaScript, how do I print the numbers from 1 to 37 using a loop?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Show me Python code to print \"Hello world\".",
+            "I am not sure."
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfor (let i = 1; i <= 3; i++) {\n  console.log(i);\n}\n```",
+        "expected": "```javascript\nfor (let i = 1; i <= 37; i++) {\n  console.log(i);\n}\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "In JS, show the code needed to output \"welcome world blue?76\".",
+        "history": [],
+        "group": "print",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nconsole.log(\"welcome world blue?76\");\n```",
+        "expected": "```javascript\nconsole.log(\"welcome world blue?76\");\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "In JavaScript, how do I write a greet function that returns a greeting for name?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Please print \"Hi there\" in JavaScript.",
+            "```javascript\nconsole.log(\"Hi there\");\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfunction greet(name) {\n  return \"Hello, \" + name;\n}\n```",
+        "expected": "```javascript\nfunction greet(name) {\n  return \"Hello, \" + name;\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "I am learning JavaScript. Help me write a function named add that returns the sum of a and b.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "I need JavaScript code: store 12 in a variable named value and print it.",
+            "I am not sure."
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfunction add(a, b) {\n  return a + b;\n}\n```",
+        "expected": "```javascript\nfunction add(a, b) {\n  return a + b;\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Please create something in python.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "clarification",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\ndef dititive(items):\n    return [x for x in items if x > 0]\n```",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Please create something in python.",
+        "history": [],
+        "group": "clarification",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nprint(\"Hello, World!\")\n```",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a Python example: write a function named reverse that reverses text.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\ndef reverse(text):\n    return text[::-1]\n```",
+        "expected": "```python\ndef reverse(text):\n    return text[::-1]\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Make a py snippet displaying 7035.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nprint(7035)\n```",
+        "expected": "```python\nprint(7035)\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In Python, how do I write a greet function that returns a greeting for name?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Can you store 6 in a variable named size and print it in Python?",
+            "```python\nsize = 6\nprint(size)\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\ndef greet(name):\n    return \"Hello, \" + name\n```",
+        "expected": "```python\ndef greet(name):\n    return \"Hello, \" + name\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Make a Python snippet displaying 4425.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nprint(44)\n```",
+        "expected": "```python\nprint(4425)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a Python example: write a function named reverse that reverses text.",
+        "history": [],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\ndef reverse(text):\n    return text[::-1]\n```",
+        "expected": "```python\ndef reverse(text):\n    return text[::-1]\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a program using py.",
+        "history": [],
+        "group": "clarification",
+        "language": "python",
+        "top_k": 1,
+        "answer": "What should the code do? Please describe the task.",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Make a Python snippet displaying \"Python\".",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Could you store 3 in a variable named value and print it? Use Python.",
+            "I am not sure."
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nprint(\"Python\")\n```",
+        "expected": "```python\nprint(\"Python\")\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Make a python snippet displaying 1903.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Show me Python code to store 7 in a variable named size and print it.",
+            "console.log(console.log(console.log("
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nprint(1903)\n```",
+        "expected": "```python\nprint(1903)\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a JavaScript example: write a function named upper that converts text to uppercase.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "JavaScript: store 14 in a variable named number and print it.",
+            "print(0;;; make make print("
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfunction upper(text) {\n  return text.toUpperCase();\n}\n```",
+        "expected": "```javascript\nfunction upper(text) {\n  return text.toUpperCase();\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Make a python snippet displaying 2737.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Write only the JavaScript code: print the numbers from 1 to 18 using a loop.",
+            "```javascript\nfor (let i = 1; i <= 18; i++) {\n  console.log(i);\n}\n```"
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nprint(2737)\n```",
+        "expected": "```python\nprint(2737)\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a JavaScript example: write a function named first that returns the first element of items.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Python: print the numbers from 1 to 13 using a loop.",
+            "```python\nprprprprint(\"0;\n"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfunction first(items) {\n  return items[0];\n}\n```",
+        "expected": "```javascript\nfunction first(items) {\n  return items[0];\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Give me a JavaScript example: create a list named limit containing 1, 2, 3 and print it.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Could you store 18 in a variable named item and print it? Use Python.",
+            "```python\nitem = 18\nprint(item)\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nconst lim2, 2, 3];\nconsole.log(licript\n```",
+        "expected": "```javascript\nconst limit = [1, 2, 3];\nconsole.log(limit);\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "In Python, how do I write a function named length that returns the length of text?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Using JavaScript, store 11 in a variable named result and print it.",
+            "```javascript\nconst result = 11;\nconsole.log(result);\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\ndef length(text):\n    return len(text)\n```",
+        "expected": "```python\ndef length(text):\n    return len(text)\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "I am learning Python. Help me write a function named maximum that returns the larger of a and b.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Please store 4 in a variable named value and print it.",
+            "console.log(console.log(console.log("
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\ndef maximum(a, b(a, b(:\n    return max(a, b(a, b(\n```",
+        "expected": "```python\ndef maximum(a, b):\n    return max(a, b)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a JavaScript example: write a function named last that returns the last element of items.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Show me Python code to store 19 in a variable named size and print it.",
+            "I am not sure."
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfunction last(items) {\n  return items[items.length - 1];\n}\n```",
+        "expected": "```javascript\nfunction last(items) {\n  return items[items.length - 1];\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Help me print 7417. The language is Python.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Write only the JavaScript code: store 4 in a variable named value and print it.",
+            "```javascript\nconst value = 4;\nconsole.log(value);\n```"
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 1,
+        "answer": "Python variable lets a program refer to a value by a name.",
+        "expected": "```python\nprint(7417)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "chat"
+      },
+      {
+        "question": "I am learning JavaScript. Help me write a function named minimum that returns the smaller of a and b.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Write only the JavaScript code: write a function named multiply that multiplies a and b.",
+            "```javascript\nfunction multiply(a, b) {\n  return a * b;\n}\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfunction minimum(a, b) {\n   return Math.min(a, b)\n}\n```",
+        "expected": "```javascript\nfunction minimum(a, b) {\n  return Math.min(a, b);\n}\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Make a JavaScript snippet displaying \"happy three\".",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Show me JavaScript code to store 7 in a variable named total and print it.",
+            "console.log(console.log(console.log("
+          ]
+        ],
+        "group": "print",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nconsole.log(\"happy three\");\n```",
+        "expected": "```javascript\nconsole.log(\"happy three\");\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "In Python, how do I write a function named minimum that returns the smaller of a and b?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Show me Python code to print the numbers from 1 to 1 using a loop.",
+            "```python\nfor i in range(1, 1 + 1):\n    print(i)\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\ndef minimum(a, b):\n    return min(a, b)\n```",
+        "expected": "```python\ndef minimum(a, b):\n    return min(a, b)\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In py, show the code needed to output 3395.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Please print the numbers from 1 to 13 using a loop in Python.",
+            "```python\nfor i in range(1, 13 + 1):\n    print(i)\n```"
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nprint(395)\n```",
+        "expected": "```python\nprint(3395)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In Python, how do I write a square function that returns x squared?",
+        "history": [],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\ndef square(x):\n    return x * x\n```",
+        "expected": "```python\ndef square(x):\n    return x * x\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a program using JS.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Using Python, store 6 in a variable named item and print it.",
+            "```python\nitem = 6\nprint(item)\n```"
+          ]
+        ],
+        "group": "clarification",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "What should the code do? Please describe the task.",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "In JavaScript, how do I create a list named amount containing 1, 2, 3 and print it?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Please print the numbers from 1 to 15 using a loop.",
+            "```python\nfor i in range(1, 15 + 1):\n    print(i)\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nconst ount1, 2, 3];\nconsole.log(ountpt\n)\n```",
+        "expected": "```javascript\nconst amount = [1, 2, 3];\nconsole.log(amount);\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Give me a JavaScript example: write a function named double that doubles every number in items.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Code to store 4 in a variable named item and print it.",
+            "```python\nprprprprint(\"0;\n"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfunction double(items) {\n  return items.map(x => x * 2);\n}\n```",
+        "expected": "```javascript\nfunction double(items) {\n  return items.map(x => x * 2);\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "I am learning Python. Help me create a list named limit containing 1, 2, 3 and print it.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Could you store 3 in a variable named item and print it? Use JavaScript.",
+            "console.log(console.log(console.log("
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nliff liitive(items):)    return [x for x in items if x > 0]\n```",
+        "expected": "```python\nlimit = [1, 2, 3]\nprint(limit)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a program using JS.",
+        "history": [],
+        "group": "clarification",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nconsole.log(\"Hello, World!\");\n```",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": false,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "I am learning JavaScript. Help me write a function named last that returns the last element of items.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Please store 9 in a variable named value and print it in Python.",
+            "```python\nvalue = 9\nprint(value)\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfunction last(items) {\n  return items[items.length - 1];\n}\n```",
+        "expected": "```javascript\nfunction last(items) {\n  return items[items.length - 1];\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "I am learning JavaScript. Help me store 21 in a variable named limit and print it.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "I need JavaScript code: store 18 in a variable named size and print it.",
+            "```javascript\nconst size = 18;\nconsole.log(size);\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nconst 21;\nconsole.log(21);\n```",
+        "expected": "```javascript\nconst limit = 21;\nconsole.log(limit);\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Give me a Python example: write an is_even function that checks whether n is even.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\ndef is_even(n):\n    return n % 2 == 0\n```",
+        "expected": "```python\ndef is_even(n):\n    return n % 2 == 0\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Help me print \"Ada morning done Lambda!3\". The language is py.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nprint(\"Ada morning done Lambda!3\")\n```",
+        "expected": "```python\nprint(\"Ada morning done Lambda!3\")\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In Python, how do I write an is_even function that checks whether n is even?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\ndef is_even(n):\n    return n % 2 == 0\n```",
+        "expected": "```python\ndef is_even(n):\n    return n % 2 == 0\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "I am learning JavaScript. Help me write a function named add that returns the sum of a and b.",
+        "history": [],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfunction add(a, b) {\n  return a + b;\n}\n```",
+        "expected": "```javascript\nfunction add(a, b) {\n  return a + b;\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "I am learning Python. Help me write a function named multiply that multiplies a and b.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "JavaScript: store 6 in a variable named value and print it.",
+            "```javascript\nconst value = 6;\nconsole.log(value);\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\ndef multiply(a, b):\n    return a * b\n```",
+        "expected": "```python\ndef multiply(a, b):\n    return a * b\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a program using py.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "clarification",
+        "language": "python",
+        "top_k": 1,
+        "answer": "What should the code do? Please describe the task.",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Help me print 1019. The language is py.",
+        "history": [],
+        "group": "print",
+        "language": "python",
+        "top_k": 1,
+        "answer": "I am Lambda, a small AI language model.",
+        "expected": "```python\nprint(1019)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "chat"
+      },
+      {
+        "question": "Please create something in python.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "clarification",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\ndef reverse(text):\n    return text[::-1]\n```",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In JavaScript, how do I write a function named multiply that multiplies a and b?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfunction multiply(a, b) {\n  return a * b;\n}\n```",
+        "expected": "```javascript\nfunction multiply(a, b) {\n  return a * b;\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Give me a program using python.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "clarification",
+        "language": "python",
+        "top_k": 1,
+        "answer": "What should the code do? Please describe the task.",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In javascript, show the code needed to output 5483.",
+        "history": [],
+        "group": "print",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nconsole.log(5483);\n```",
+        "expected": "```javascript\nconsole.log(5483);\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "In JavaScript, how do I write a function named first that returns the first element of items?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfunction first(items) {\n  return items[0];\n}\n```",
+        "expected": "```javascript\nfunction first(items) {\n  return items[0];\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Help me print 5790. The language is JS.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Write only the JavaScript code: write a function named reverse that reverses text.",
+            "console.log(console.log(console.log("
+          ]
+        ],
+        "group": "print",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "I can help with simple questions, basic math, and conversation.",
+        "expected": "```javascript\nconsole.log(5790);\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "chat"
+      },
+      {
+        "question": "In JavaScript, how do I write a greet function that returns a greeting for name?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Can you store 14 in a variable named item and print it?",
+            "```python\nitem = 14\nprint(item)\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 1,
+        "answer": "```javascript\nfunction greet(name) {\n  return \"Hello, \" + name;\n}\n```",
+        "expected": "```javascript\nfunction greet(name) {\n  return \"Hello, \" + name;\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Give me a Python example: write a function named first that returns the first element of items.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Using Python, store 5 in a variable named result and print it.",
+            "I am not sure."
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\ndef first(items):\n    return items[0]\n```",
+        "expected": "```python\ndef first(items):\n    return items[0]\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Please create something in javascript.",
+        "history": [],
+        "group": "clarification",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nconsole.log(\"Hello\");\n```",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": false,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "In py, show the code needed to output 5151.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Could you store 12 in a variable named total and print it? Use Python.",
+            "```python\ntotal = 12\nprint(total)\n```"
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nprint(5151)\n```",
+        "expected": "```python\nprint(5151)\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a Python example: print \"Lambda\".",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nprint(\"Lambda\")\n```",
+        "expected": "```python\nprint(\"Lambda\")\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In Python, show the code needed to output 3365.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Can you store 1 in a variable named size and print it?",
+            "```python\nsize = 1\nprint(size)\n```"
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nprint(3365)\n```",
+        "expected": "```python\nprint(3365)\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In Python, how do I write a function named upper that converts text to uppercase?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\ndef upper(text):\n    return text.upper()\n```",
+        "expected": "```python\ndef upper(text):\n    return text.upper()\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "I am learning Python. Help me create a list named limit containing 1, 2, 3 and print it.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Can you store 17 in a variable named item and print it?",
+            "```python\nitem = 17\nprint(item)\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nlif liitive(a, b):)\n    return liin r( 0]\n```",
+        "expected": "```python\nlimit = [1, 2, 3]\nprint(limit)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Help me print 6072. The language is py.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 8,
+        "answer": "12.",
+        "expected": "```python\nprint(6072)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "chat"
+      },
+      {
+        "question": "Help me print 6349. The language is Python.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 8,
+        "answer": "Python Python Python Python is a programming language used to write computer programs.",
+        "expected": "```python\nprint(6349)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "chat"
+      },
+      {
+        "question": "In Python, how do I create a list named amount containing 1, 2, 3 and print it?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Could you store 15 in a variable named size and print it? Use JavaScript.",
+            "console.log(console.log(console.log("
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nounte = [1, 2, 3]\nprint(ounte)\n```",
+        "expected": "```python\namount = [1, 2, 3]\nprint(amount)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In JavaScript, how do I write a function named positive that keeps positive numbers from items?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Please create a list named total containing 1, 2, 3 and print it in JavaScript.",
+            "```javascript\nconst total = [1, 2, 3];\nconsole.log(total);\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfunction positive(items) {\n  return items.filter(x => x > 0);\n}\n```",
+        "expected": "```javascript\nfunction positive(items) {\n  return items.filter(x => x > 0);\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Make a Python snippet displaying 5320.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nprint(5320)\n```",
+        "expected": "```python\nprint(5320)\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a Python example: print \"Hello world\".",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Could you store 18 in a variable named size and print it? Use Python.",
+            "```python\nprprprprint(\"0;\n"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nprint(\"Hello world\")\n```",
+        "expected": "```python\nprint(\"Hello world\")\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a program using JavaScript.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Write only the Python code: store 18 in a variable named size and print it.",
+            "```python\nsize = 18\nprint(size)\n```"
+          ]
+        ],
+        "group": "clarification",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "What should the code do? Please describe the task.",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Help me print 847. The language is javascript.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Please store 7 in a variable named item and print it.",
+            "```python\nitem = 7\nprint(item)\n```"
+          ]
+        ],
+        "group": "print",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "I can help with simple questions, basic math, and conversation.",
+        "expected": "```javascript\nconsole.log(847);\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "chat"
+      },
+      {
+        "question": "Please create something in Python.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "clarification",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\ndef is_posint(\"Hello, World!\")\n```",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "I am learning Python. Help me write a function named multiply that multiplies a and b.",
+        "history": [],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\ndef multiply(a, b):\n    return a * b\n```",
+        "expected": "```python\ndef multiply(a, b):\n    return a * b\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In Python, how do I write a greet function that returns a greeting for name?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\ndef greet(name):\n    return \"Hello, \" + name\n```",
+        "expected": "```python\ndef greet(name):\n    return \"Hello, \" + name\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In JavaScript, how do I write a function named maximum that returns the larger of a and b?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfunction maximum(a, b) {\n  return Math.max(a, b);\n}\n```",
+        "expected": "```javascript\nfunction maximum(a, b) {\n  return Math.max(a, b);\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Please create something in Python.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Write only the Python code: store 15 in a variable named total and print it.",
+            "I am not sure."
+          ]
+        ],
+        "group": "clarification",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\ndef ist(n):\n    return \"Hello, \" + n %\n```",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a JavaScript example: write a function named length that returns the length of text.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Write only the Python code: print the numbers from 1 to 4 using a loop.",
+            "```python\nfor i in range(1, 4 + 1):\n    print(i)\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfunction length(text) {\n  return text.length;\n}\n```",
+        "expected": "```javascript\nfunction length(text) {\n  return text.length;\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "I am learning Python. Help me write a greet function that returns a greeting for name.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Write only the JavaScript code: store 2 in a variable named number and print it.",
+            "console.log(console.log(console.log("
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\ndef greet(name):\n    return \"Hello, \" + name\n```",
+        "expected": "```python\ndef greet(name):\n    return \"Hello, \" + name\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "I am learning JavaScript. Help me write a function named reverse that reverses text.",
+        "history": [],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfunction reverse(text) {\n  return text.split(\"\").reverse().join(\"\");\n}\n```",
+        "expected": "```javascript\nfunction reverse(text) {\n  return text.split(\"\").reverse().join(\"\");\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Make a javascript snippet displaying 3036.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "print",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nconsole.log(3036);\n```",
+        "expected": "```javascript\nconsole.log(3036);\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Give me a Python example: print \"Lambda\".",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nprint(\"Lambda\")\n```",
+        "expected": "```python\nprint(\"Lambda\")\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "I am learning JavaScript. Help me print the numbers from 1 to 22 using a loop.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "I need JavaScript code: write a function named reverse that reverses text.",
+            "I am not sure."
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfor (let i = 1; i <= 22; i++) {\n  console.log(i);\n}\n```",
+        "expected": "```javascript\nfor (let i = 1; i <= 22; i++) {\n  console.log(i);\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Make a Python snippet displaying 1340.",
+        "history": [],
+        "group": "print",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```javascript\nconsole.log(1340);\n```",
+        "expected": "```python\nprint(1340)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Help me print 7009. The language is JavaScript.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Please store 8 in a variable named result and print it in JavaScript.",
+            "```javascript\nconst result = 8;\nconsole.log(result);\n```"
+          ]
+        ],
+        "group": "print",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "80.",
+        "expected": "```javascript\nconsole.log(7009);\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "chat"
+      },
+      {
+        "question": "In JavaScript, how do I write a function named multiply that multiplies a and b?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Can you print the numbers from 1 to 13 using a loop in JavaScript?",
+            "print(0;;; make make print("
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfunction multiply(a, b) {\n  return a * b;\n}\n```",
+        "expected": "```javascript\nfunction multiply(a, b) {\n  return a * b;\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Give me a JavaScript example: write a function named double that doubles every number in items.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfunction double(items) {\n  return items.map(x => x * 2);\n}\n```",
+        "expected": "```javascript\nfunction double(items) {\n  return items.map(x => x * 2);\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "In JavaScript, how do I print the numbers from 1 to 37 using a loop?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Show me Python code to print \"Hello world\".",
+            "I am not sure."
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfor (let i = 1; i <= 3; i++) {\n  console.log(i);\n}\n```",
+        "expected": "```javascript\nfor (let i = 1; i <= 37; i++) {\n  console.log(i);\n}\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "In JS, show the code needed to output \"welcome world blue?76\".",
+        "history": [],
+        "group": "print",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nconsole.log(\"welcome world blue?76\");\n```",
+        "expected": "```javascript\nconsole.log(\"welcome world blue?76\");\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "In JavaScript, how do I write a greet function that returns a greeting for name?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Please print \"Hi there\" in JavaScript.",
+            "```javascript\nconsole.log(\"Hi there\");\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfunction greet(name) {\n  return \"Hello, \" + name;\n}\n```",
+        "expected": "```javascript\nfunction greet(name) {\n  return \"Hello, \" + name;\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "I am learning JavaScript. Help me write a function named add that returns the sum of a and b.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "I need JavaScript code: store 12 in a variable named value and print it.",
+            "I am not sure."
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfunction add(a, b) {\n  return a + b;\n}\n```",
+        "expected": "```javascript\nfunction add(a, b) {\n  return a + b;\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Please create something in python.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "clarification",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\ndef dstble(items):\n    return [x * 2 for x in items]\n```",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Please create something in python.",
+        "history": [],
+        "group": "clarification",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nprint(\"Hello, World!\")\n```",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a Python example: write a function named reverse that reverses text.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\ndef reverse(text):\n    return text[::-1]\n```",
+        "expected": "```python\ndef reverse(text):\n    return text[::-1]\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Make a py snippet displaying 7035.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nprint(7035)\n```",
+        "expected": "```python\nprint(7035)\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In Python, how do I write a greet function that returns a greeting for name?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Can you store 6 in a variable named size and print it in Python?",
+            "```python\nsize = 6\nprint(size)\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\ndef greet(name):\n    return \"Hello, \" + name\n```",
+        "expected": "```python\ndef greet(name):\n    return \"Hello, \" + name\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Make a Python snippet displaying 4425.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nprint(44)\n```",
+        "expected": "```python\nprint(4425)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a Python example: write a function named reverse that reverses text.",
+        "history": [],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\ndef reverse(text):\n    return text[::-1]\n```",
+        "expected": "```python\ndef reverse(text):\n    return text[::-1]\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a program using py.",
+        "history": [],
+        "group": "clarification",
+        "language": "python",
+        "top_k": 8,
+        "answer": "What should the code do? Please describe the task.",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Make a Python snippet displaying \"Python\".",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Could you store 3 in a variable named value and print it? Use Python.",
+            "I am not sure."
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nprint(\"Python\")\n```",
+        "expected": "```python\nprint(\"Python\")\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Make a python snippet displaying 1903.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Show me Python code to store 7 in a variable named size and print it.",
+            "console.log(console.log(console.log("
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nprint(1903)\n```",
+        "expected": "```python\nprint(1903)\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a JavaScript example: write a function named upper that converts text to uppercase.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "JavaScript: store 14 in a variable named number and print it.",
+            "print(0;;; make make print("
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfunction upper(text) {\n  return text.toUpperCase();\n}\n```",
+        "expected": "```javascript\nfunction upper(text) {\n  return text.toUpperCase();\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Make a python snippet displaying 2737.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Write only the JavaScript code: print the numbers from 1 to 18 using a loop.",
+            "```javascript\nfor (let i = 1; i <= 18; i++) {\n  console.log(i);\n}\n```"
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nprint(2737)\n```",
+        "expected": "```python\nprint(2737)\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a JavaScript example: write a function named first that returns the first element of items.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Python: print the numbers from 1 to 13 using a loop.",
+            "```python\nprprprprint(\"0;\n"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfunction first(items) {\n  return items[0];\n}\n```",
+        "expected": "```javascript\nfunction first(items) {\n  return items[0];\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Give me a JavaScript example: create a list named limit containing 1, 2, 3 and print it.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Could you store 18 in a variable named item and print it? Use Python.",
+            "```python\nitem = 18\nprint(item)\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nconst lim2, 2, 3];\nconsole.log(licript\n```",
+        "expected": "```javascript\nconst limit = [1, 2, 3];\nconsole.log(limit);\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "In Python, how do I write a function named length that returns the length of text?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Using JavaScript, store 11 in a variable named result and print it.",
+            "```javascript\nconst result = 11;\nconsole.log(result);\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\ndef length(text):\n    return len(text)\n```",
+        "expected": "```python\ndef length(text):\n    return len(text)\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "I am learning Python. Help me write a function named maximum that returns the larger of a and b.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Please store 4 in a variable named value and print it.",
+            "console.log(console.log(console.log("
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\ndef maximum(a, b):\n    return max(a, b)\n```",
+        "expected": "```python\ndef maximum(a, b):\n    return max(a, b)\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a JavaScript example: write a function named last that returns the last element of items.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Show me Python code to store 19 in a variable named size and print it.",
+            "I am not sure."
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfunction last(items) {\n  return items[items.length - 1];\n}\n```",
+        "expected": "```javascript\nfunction last(items) {\n  return items[items.length - 1];\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Help me print 7417. The language is Python.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Write only the JavaScript code: store 4 in a variable named value and print it.",
+            "```javascript\nconst value = 4;\nconsole.log(value);\n```"
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 8,
+        "answer": "Python variable lets a program refer to a value by a name.",
+        "expected": "```python\nprint(7417)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "chat"
+      },
+      {
+        "question": "I am learning JavaScript. Help me write a function named minimum that returns the smaller of a and b.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Write only the JavaScript code: write a function named multiply that multiplies a and b.",
+            "```javascript\nfunction multiply(a, b) {\n  return a * b;\n}\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfunction minimum(a, b) {\n   return Math.min(a, b)\n}\n```",
+        "expected": "```javascript\nfunction minimum(a, b) {\n  return Math.min(a, b);\n}\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Make a JavaScript snippet displaying \"happy three\".",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Show me JavaScript code to store 7 in a variable named total and print it.",
+            "console.log(console.log(console.log("
+          ]
+        ],
+        "group": "print",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nconsole.log(\"happy three\");\n```",
+        "expected": "```javascript\nconsole.log(\"happy three\");\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "In Python, how do I write a function named minimum that returns the smaller of a and b?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Show me Python code to print the numbers from 1 to 1 using a loop.",
+            "```python\nfor i in range(1, 1 + 1):\n    print(i)\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\ndef minimum(a, b):\n    return min(a, b)\n```",
+        "expected": "```python\ndef minimum(a, b):\n    return min(a, b)\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In py, show the code needed to output 3395.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Please print the numbers from 1 to 13 using a loop in Python.",
+            "```python\nfor i in range(1, 13 + 1):\n    print(i)\n```"
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nprint(395)\n```",
+        "expected": "```python\nprint(3395)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In Python, how do I write a square function that returns x squared?",
+        "history": [],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\ndef square(x):\n    return x * x\n```",
+        "expected": "```python\ndef square(x):\n    return x * x\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a program using JS.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Using Python, store 6 in a variable named item and print it.",
+            "```python\nitem = 6\nprint(item)\n```"
+          ]
+        ],
+        "group": "clarification",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "What should the code do? Please describe the task.",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "In JavaScript, how do I create a list named amount containing 1, 2, 3 and print it?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Please print the numbers from 1 to 15 using a loop.",
+            "```python\nfor i in range(1, 15 + 1):\n    print(i)\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nconst ount1, 2, 3];\nconsole.log(ount c);\n```",
+        "expected": "```javascript\nconst amount = [1, 2, 3];\nconsole.log(amount);\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Give me a JavaScript example: write a function named double that doubles every number in items.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Code to store 4 in a variable named item and print it.",
+            "```python\nprprprprint(\"0;\n"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfunction double(items) {\n  return items.map(x => x * 2);\n}\n```",
+        "expected": "```javascript\nfunction double(items) {\n  return items.map(x => x * 2);\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "I am learning Python. Help me create a list named limit containing 1, 2, 3 and print it.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Could you store 3 in a variable named item and print it? Use JavaScript.",
+            "console.log(console.log(console.log("
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nliff liitive(items):)    return [x for x in items if x > 0]\n```",
+        "expected": "```python\nlimit = [1, 2, 3]\nprint(limit)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a program using JS.",
+        "history": [],
+        "group": "clarification",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nconsole.log(\"Hello, World!\");\n```",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": false,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "I am learning JavaScript. Help me write a function named last that returns the last element of items.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Please store 9 in a variable named value and print it in Python.",
+            "```python\nvalue = 9\nprint(value)\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfunction last(items) {\n  return items[items.length - 1];\n}\n```",
+        "expected": "```javascript\nfunction last(items) {\n  return items[items.length - 1];\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "I am learning JavaScript. Help me store 21 in a variable named limit and print it.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "I need JavaScript code: store 18 in a variable named size and print it.",
+            "```javascript\nconst size = 18;\nconsole.log(size);\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nconst 21;\nconsole.log(21it(e);\n```",
+        "expected": "```javascript\nconst limit = 21;\nconsole.log(limit);\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Give me a Python example: write an is_even function that checks whether n is even.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\ndef is_even(n):\n    return n % 2 == 0\n```",
+        "expected": "```python\ndef is_even(n):\n    return n % 2 == 0\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Help me print \"Ada morning done Lambda!3\". The language is py.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "print",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nprint(\"Ada morning done Lambda!3\")\n```",
+        "expected": "```python\nprint(\"Ada morning done Lambda!3\")\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In Python, how do I write an is_even function that checks whether n is even?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\ndef is_even(n):\n    return n % 2 == 0\n```",
+        "expected": "```python\ndef is_even(n):\n    return n % 2 == 0\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "I am learning JavaScript. Help me write a function named add that returns the sum of a and b.",
+        "history": [],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfunction add(a, b) {\n  return a + b;\n}\n```",
+        "expected": "```javascript\nfunction add(a, b) {\n  return a + b;\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "I am learning Python. Help me write a function named multiply that multiplies a and b.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "JavaScript: store 6 in a variable named value and print it.",
+            "```javascript\nconst value = 6;\nconsole.log(value);\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\ndef multiply(a, b):\n    return a * b\n```",
+        "expected": "```python\ndef multiply(a, b):\n    return a * b\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Give me a program using py.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "clarification",
+        "language": "python",
+        "top_k": 8,
+        "answer": "What should the code do? Please describe the task.",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "Help me print 1019. The language is py.",
+        "history": [],
+        "group": "print",
+        "language": "python",
+        "top_k": 8,
+        "answer": "I am ready to help. What would you like to discuss?",
+        "expected": "```python\nprint(1019)\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "chat"
+      },
+      {
+        "question": "Please create something in python.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "clarification",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\ndef reverse(text):\n    return text[::-1]\n```",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": false,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In JavaScript, how do I write a function named multiply that multiplies a and b?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfunction multiply(a, b) {\n  return a * b;\n}\n```",
+        "expected": "```javascript\nfunction multiply(a, b) {\n  return a * b;\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Give me a program using python.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "clarification",
+        "language": "python",
+        "top_k": 8,
+        "answer": "What should the code do? Please describe the task.",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "In javascript, show the code needed to output 5483.",
+        "history": [],
+        "group": "print",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nconsole.log(5483);\n```",
+        "expected": "```javascript\nconsole.log(5483);\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "In JavaScript, how do I write a function named first that returns the first element of items?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfunction first(items) {\n  return items[0];\n}\n```",
+        "expected": "```javascript\nfunction first(items) {\n  return items[0];\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      },
+      {
+        "question": "Help me print 5790. The language is JS.",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "Write only the JavaScript code: write a function named reverse that reverses text.",
+            "console.log(console.log(console.log("
+          ]
+        ],
+        "group": "print",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "40.",
+        "expected": "```javascript\nconsole.log(5790);\n```",
+        "correct": false,
+        "finish": "stop",
+        "intent": "chat"
+      },
+      {
+        "question": "In JavaScript, how do I write a greet function that returns a greeting for name?",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Janek.",
+            "Nice to meet you, Janek."
+          ],
+          [
+            "Can you store 14 in a variable named item and print it?",
+            "```python\nitem = 14\nprint(item)\n```"
+          ]
+        ],
+        "group": "retention",
+        "language": "javascript",
+        "top_k": 8,
+        "answer": "```javascript\nfunction greet(name) {\n  return \"Hello, \" + name;\n}\n```",
+        "expected": "```javascript\nfunction greet(name) {\n  return \"Hello, \" + name;\n}\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "javascript"
+      }
+    ],
+    "published": false,
+    "note": "Group-macro score, greedy and default sampling, with varied histories. Exposed screenshot checks are separate and never count as unseen tests."
+  },
+  "exposed_regression": {
+    "step": 11500,
+    "split": "exposed_regression",
+    "score": 1.0,
+    "metrics": {
+      "exposed_regression/top1": {
+        "correct": 6,
+        "total": 6,
+        "accuracy": 1.0
+      },
+      "exposed_regression/top8": {
+        "correct": 6,
+        "total": 6,
+        "accuracy": 1.0
+      }
+    },
+    "outputs": [
+      {
+        "question": "make a code in python printing hello",
+        "history": [],
+        "group": "exposed_regression",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nprint(\"hello\")\n```",
+        "expected": "```python\nprint(\"hello\")\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "make a code in python printing hello",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "exposed_regression",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nprint(\"hello\")\n```",
+        "expected": "```python\nprint(\"hello\")\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "make a code in python printing hello",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "make a code in python printing hello",
+            "prprprint(0;;; make make"
+          ]
+        ],
+        "group": "exposed_regression",
+        "language": "python",
+        "top_k": 1,
+        "answer": "```python\nprint(\"hello\")\n```",
+        "expected": "```python\nprint(\"hello\")\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "write a python code",
+        "history": [],
+        "group": "exposed_regression",
+        "language": "python",
+        "top_k": 1,
+        "answer": "What should the code do? Please describe the task.",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "write a python code",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "exposed_regression",
+        "language": "python",
+        "top_k": 1,
+        "answer": "What should the code do? Please describe the task.",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "write a python code",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "make a code in python printing hello",
+            "prprprint(0;;; make make"
+          ]
+        ],
+        "group": "exposed_regression",
+        "language": "python",
+        "top_k": 1,
+        "answer": "What should the code do? Please describe the task.",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "make a code in python printing hello",
+        "history": [],
+        "group": "exposed_regression",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nprint(\"hello\")\n```",
+        "expected": "```python\nprint(\"hello\")\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "make a code in python printing hello",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "exposed_regression",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nprint(\"hello\")\n```",
+        "expected": "```python\nprint(\"hello\")\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "make a code in python printing hello",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "make a code in python printing hello",
+            "prprprint(0;;; make make"
+          ]
+        ],
+        "group": "exposed_regression",
+        "language": "python",
+        "top_k": 8,
+        "answer": "```python\nprint(\"hello\")\n```",
+        "expected": "```python\nprint(\"hello\")\n```",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "write a python code",
+        "history": [],
+        "group": "exposed_regression",
+        "language": "python",
+        "top_k": 8,
+        "answer": "What should the code do? Please describe the task.",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "write a python code",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "group": "exposed_regression",
+        "language": "python",
+        "top_k": 8,
+        "answer": "What should the code do? Please describe the task.",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      },
+      {
+        "question": "write a python code",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "make a code in python printing hello",
+            "prprprint(0;;; make make"
+          ]
+        ],
+        "group": "exposed_regression",
+        "language": "python",
+        "top_k": 8,
+        "answer": "What should the code do? Please describe the task.",
+        "expected": "What should the code do? Please describe the task.",
+        "correct": true,
+        "finish": "stop",
+        "intent": "python"
+      }
+    ],
+    "published": false,
+    "note": "Group-macro score, greedy and default sampling, with varied histories. Exposed screenshot checks are separate and never count as unseen tests."
+  }
+}
