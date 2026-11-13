@@ -3,7 +3,7 @@
   "models": [
     {
       "id": "lambda-1.0",
-      "name": "lambda 1.0",
+      "name": "lambda mercury 1.0",
       "revision": 1,
       "language": "en",
       "min_app_version": "0.1.0",
@@ -11,11 +11,12 @@
       "sha256": "517c17921be194f00444632e4a8441514b84fe512fc26a1da3f6b48dbb0576b0",
       "bytes": 2783090,
       "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/lambda_cli/assets/model.npz",
-      "description": "Small English language model trained from random weights."
+      "description": "Small English language model trained from random weights.",
+      "family": "mercury"
     },
     {
       "id": "lambda-1.5",
-      "name": "lambda 1.5",
+      "name": "lambda mercury 1.5",
       "revision": 1,
       "language": "en",
       "min_app_version": "0.1.0",
@@ -23,11 +24,12 @@
       "sha256": "40ca86699b5441a2f496dd3029a115ced588eb1e4dfa2cb56c9b8137c7b567da",
       "bytes": 6949456,
       "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-1.5.npz",
-      "description": "Small English language model trained from random weights."
+      "description": "Small English language model trained from random weights.",
+      "family": "mercury"
     },
     {
       "id": "lambda-1.6",
-      "name": "lambda 1.6",
+      "name": "lambda mercury 1.6",
       "revision": 1,
       "language": "en",
       "min_app_version": "0.2.0",
@@ -35,11 +37,12 @@
       "sha256": "1d28cd581756dbdb1a7f2c1ae0f1fcc9ab96b76340503817424bfa003da669eb",
       "bytes": 9724680,
       "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-1.6.npz",
-      "description": "Small English language model trained from random weights."
+      "description": "Small English language model trained from random weights.",
+      "family": "mercury"
     },
     {
       "id": "lambda-2",
-      "name": "lambda 2",
+      "name": "lambda venus 2",
       "revision": 1,
       "language": "en",
       "min_app_version": "0.2.0",
@@ -47,11 +50,12 @@
       "sha256": "d66e73f446ad01eb68c42d17e6003fb3e344a680c1791159863045c01d16dbca",
       "bytes": 16934294,
       "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-2.npz",
-      "description": "English model continued from lambda 1.6, with 4,553,728 parameters and 100,000 additional training steps."
+      "description": "English model continued from lambda 1.6, with 4,553,728 parameters and 100,000 additional training steps.",
+      "family": "venus"
     },
     {
       "id": "lambda-2.1",
-      "name": "lambda 2.1",
+      "name": "lambda venus 2.1",
       "revision": 1,
       "language": "en",
       "min_app_version": "0.4.0",
@@ -59,11 +63,12 @@
       "sha256": "16f6ad25e99c4c38888a08285cf305911739ffb6287686f886f6acf83a96f0a8",
       "bytes": 43901351,
       "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-2.1.npz",
-      "description": "Experimental English conversation model with 11,808,385 parameters and 512-token context. Published at owner request; original quality gates not met. Requires app 0.4.0."
+      "description": "Experimental English conversation model with 11,808,385 parameters and 512-token context. Published at owner request; original quality gates not met. Requires app 0.4.0.",
+      "family": "venus"
     },
     {
       "id": "lambda-2.2",
-      "name": "lambda 2.2",
+      "name": "lambda venus 2.2",
       "revision": 1,
       "language": "en",
       "min_app_version": "0.4.1",
@@ -71,11 +76,12 @@
       "sha256": "0f881ba88982dcd3db50067e181b15c0cf7812ce0dd0a90b1861b6ff62c7f165",
       "bytes": 43902506,
       "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-2.2.npz",
-      "description": "Experimental conversation repair trained from the owner's lambda 2.1 weights. All layers adapted to multi-turn examples. See the model card for measured results and limitations."
+      "description": "Experimental conversation repair trained from the owner's lambda 2.1 weights. All layers adapted to multi-turn examples. See the model card for measured results and limitations.",
+      "family": "venus"
     },
     {
       "id": "lambda-2.4",
-      "name": "lambda 2.4",
+      "name": "lambda venus 2.4",
       "revision": 1,
       "language": "en",
       "min_app_version": "0.5.1",
@@ -83,11 +89,12 @@
       "sha256": "9f279c0a9a74c5d0d79f50a8651fa369ced95d457ce1b2cbaa84602a128e1231",
       "bytes": 57063014,
       "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-2.4.npz",
-      "description": "Experimental 15.35M-parameter English conversation model with improved topic switching. Continued from own lambda 2.2 weights; requires app 0.5.1."
+      "description": "Experimental 15.35M-parameter English conversation model with improved topic switching. Continued from own lambda 2.2 weights; requires app 0.5.1.",
+      "family": "venus"
     },
     {
       "id": "lambda-2.5.1",
-      "name": "lambda 2.5.1",
+      "name": "lambda venus 2.5.1",
       "revision": 1,
       "language": "en",
       "min_app_version": "0.8.1",
@@ -95,11 +102,12 @@
       "sha256": "6e3e089fa2e54ea56dc347ede9ebe335c620746800d24e4266bf42a305e00b5c",
       "bytes": 61087236,
       "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-2.5.1.npz",
-      "description": "Experimental frozen lambda 2.4 base plus a learned automatic research skill. Published at owner request despite failed reading quality gates (final reading test 17/48). Requires app 0.8.1."
+      "description": "Experimental frozen lambda 2.4 base plus a learned automatic research skill. Published at owner request despite failed reading quality gates (final reading test 17/48). Requires app 0.8.1.",
+      "family": "venus"
     },
     {
       "id": "lambda-2.5.2",
-      "name": "lambda 2.5.2",
+      "name": "lambda venus 2.5.2",
       "revision": 1,
       "language": "en",
       "min_app_version": "0.8.2",
@@ -107,7 +115,8 @@
       "sha256": "92f8d7d91c60c219d6e89d1f2724283a861560a2416b928681f01f7770269ef4",
       "bytes": 60349411,
       "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-2.5.2.npz",
-      "description": "Experimental mid-training snapshot at 8500 updates: own generative conversation and source reading model, 16.24M parameters. CC BY-SA 4.0 weights; see model card. Requires app 0.8.2."
+      "description": "Experimental mid-training snapshot at 8500 updates: own generative conversation and source reading model, 16.24M parameters. CC BY-SA 4.0 weights; see model card. Requires app 0.8.2.",
+      "family": "venus"
     },
     {
       "id": "lambda-code-3",
@@ -119,7 +128,22 @@
       "sha256": "3c273e8aec9eee7e6a9f7c6b0b96f8454724f643eb634837b936793c063f01ee",
       "bytes": 63313878,
       "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-code-3.npz",
-      "description": "Experimental beginner Python/JavaScript model with learned code/language routing and frozen own lambda 2.4 chat base. Offline, 17.03M parameters. Authored checks at normal sampling: coding 36/44, new print 12/22, clarification 5/12. See model card; app >=0.8.4."
+      "description": "Experimental beginner Python/JavaScript model with learned code/language routing and frozen own lambda 2.4 chat base. Offline, 17.03M parameters. Authored checks at normal sampling: coding 36/44, new print 12/22, clarification 5/12. See model card; app >=0.8.4.",
+      "family": "code"
+    },
+    {
+      "id": "lambda-terra-4.1",
+      "name": "lambda terra 4.1",
+      "revision": 1,
+      "language": "en",
+      "min_app_version": "0.8.5",
+      "format": "lambda-ai-pointer-transformer-v4",
+      "sha256": "238d004b27d5da6fe86dba75e6406112f795235fa8628f8d2430710f3d56e575",
+      "bytes": 57065597,
+      "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-terra-4.1.npz",
+      "description": "Experimental offline English chatbot continued from own Venus 2.4. Final authored check: 55/64 versus 22/64 for 2.4; a narrow 2.5x correct-answer result, not general intelligence. CC BY-SA 4.0 weights; app >=0.8.5.",
+      "family": "terra",
+      "license": "CC-BY-SA-4.0"
     }
   ]
 }

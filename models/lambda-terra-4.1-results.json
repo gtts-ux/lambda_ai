@@ -1,0 +1,1700 @@
+{
+  "summary": {
+    "model": "lambda terra 4.1",
+    "selected_step": 2000,
+    "baseline_development": 23,
+    "selected_development": 61,
+    "baseline_test": 22,
+    "selected_test": 55,
+    "test_total": 64,
+    "twofold_goal_met": true,
+    "test_ratio": 2.5,
+    "groups": {
+      "facts": {
+        "correct": 31,
+        "total": 32,
+        "accuracy": 0.96875
+      },
+      "chat": {
+        "correct": 8,
+        "total": 8,
+        "accuracy": 1.0
+      },
+      "memory": {
+        "correct": 7,
+        "total": 8,
+        "accuracy": 0.875
+      },
+      "topic_switch": {
+        "correct": 6,
+        "total": 8,
+        "accuracy": 0.75
+      },
+      "instruction": {
+        "correct": 3,
+        "total": 8,
+        "accuracy": 0.375
+      }
+    },
+    "published": false,
+    "note": "At least 2x correct answers on this fixed small authored rubric is a limited measured goal, not twice the intelligence or general chat quality. Final split never selects training checkpoints. Source attribution/share-alike requirements need review before distribution."
+  },
+  "baseline": {
+    "split": "baseline_24_test",
+    "step": 0,
+    "correct": 22,
+    "total": 64,
+    "accuracy": 0.34375,
+    "groups": {
+      "facts": {
+        "correct": 12,
+        "total": 32,
+        "accuracy": 0.375
+      },
+      "chat": {
+        "correct": 2,
+        "total": 8,
+        "accuracy": 0.25
+      },
+      "memory": {
+        "correct": 4,
+        "total": 8,
+        "accuracy": 0.5
+      },
+      "topic_switch": {
+        "correct": 4,
+        "total": 8,
+        "accuracy": 0.5
+      },
+      "instruction": {
+        "correct": 0,
+        "total": 8,
+        "accuracy": 0.0
+      }
+    },
+    "outputs": [
+      {
+        "question": "I would like a short explanation. Why do plants need sunlight?",
+        "history": [],
+        "expected": "Plants use sunlight to make food through photosynthesis.",
+        "answer": "I am Lambda, a small AI language model.",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How does rain form?",
+        "history": [],
+        "expected": "Water vapor cools and condenses into droplets in clouds. When the droplets become heavy enough, they fall as rain.",
+        "answer": "Rain is liquid water that falls from clouds in drops.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is gravity?",
+        "history": [],
+        "expected": "Gravity is the attraction between objects with mass. It keeps us on the ground and planets in orbit.",
+        "answer": "Gravity is the attraction associated with mass and energy.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Is the Sun a star?",
+        "history": [],
+        "expected": "Yes. The Sun is a star at the center of our solar system.",
+        "answer": "A star is a large celestial body that releases energy from processes in its interior.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is the Moon?",
+        "history": [],
+        "expected": "The Moon is Earth's natural satellite. It orbits Earth.",
+        "answer": "The Moon is Earth's natural satellite. It reflects sunlight.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Why do we have seasons?",
+        "history": [],
+        "expected": "Earth's tilted axis changes how much sunlight different places receive as Earth orbits the Sun.",
+        "answer": "You have not told me your your your your color is Gam.",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is evaporation?",
+        "history": [],
+        "expected": "Evaporation is the change of liquid water into water vapor, a gas.",
+        "answer": "Energy is a physical quantity associated with work and changes in a system.",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Why is ocean water salty?",
+        "history": [],
+        "expected": "Ocean water contains dissolved salts carried from rocks and rivers.",
+        "answer": "Water is a substance made of hydrogen and oxygen.",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How do fish breathe underwater?",
+        "history": [],
+        "expected": "Most fish use gills to take oxygen from the water.",
+        "answer": "Water is a substance made of hydrogen and oxygen.",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Is a whale a fish?",
+        "history": [],
+        "expected": "A whale is a mammal. It breathes air with lungs and feeds milk to its young.",
+        "answer": "A fish is an animal that lives in water and usually breathes through gills.",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How many legs does a spider have?",
+        "history": [],
+        "expected": "A spider has eight legs.",
+        "answer": "I am ready to help. What would you like to discuss?",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How many sides does a triangle have?",
+        "history": [],
+        "expected": "A triangle has three sides.",
+        "answer": "A triangle is a polygon with three sides and three angles.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How many sides does a square have?",
+        "history": [],
+        "expected": "A square has four equal sides.",
+        "answer": "A square has four equal sides and four right angles.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How many seconds are in a minute?",
+        "history": [],
+        "expected": "There are 60 seconds in one minute.",
+        "answer": "A minute contains sixty seconds.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How many minutes are in an hour?",
+        "history": [],
+        "expected": "There are 60 minutes in one hour.",
+        "answer": "An hour contains sixty minutes.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How many centimeters are in a meter?",
+        "history": [],
+        "expected": "One meter is 100 centimeters.",
+        "answer": "A meter is a unit of length. One meter is one hundred centimeters.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How many milliliters are in a liter?",
+        "history": [],
+        "expected": "One liter contains 1000 milliliters.",
+        "answer": "A lib ! How can I help you?",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What does RAM do?",
+        "history": [],
+        "expected": "RAM temporarily stores data that a computer is currently using. Its contents are normally lost when power is turned off.",
+        "answer": "RAM is memory that stores data used by running programs.",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What does a CPU do?",
+        "history": [],
+        "expected": "The CPU executes instructions and performs calculations for a computer.",
+        "answer": "Green.",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is a web browser?",
+        "history": [],
+        "expected": "A web browser is an application used to open and view websites.",
+        "answer": "A browser is an application used to view web pages.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is the internet?",
+        "history": [],
+        "expected": "The internet is a global network of connected computer networks that exchange information.",
+        "answer": "The internet is a worldwide system of connected computer networks.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is recycling?",
+        "history": [],
+        "expected": "Recycling turns used materials into materials or products that can be used again.",
+        "answer": "Green.",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is renewable energy?",
+        "history": [],
+        "expected": "Renewable energy comes from sources that are naturally replenished, such as sunlight and wind.",
+        "answer": "Energy is a physical quantity associated with work and changes in a system.",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is a compass used for?",
+        "history": [],
+        "expected": "A compass helps you find directions by pointing toward magnetic north.",
+        "answer": "Goodbold.",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Why do people sleep?",
+        "history": [],
+        "expected": "Sleep helps the body rest and recover and supports memory and learning.",
+        "answer": "Goodb!",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is ice?",
+        "history": [],
+        "expected": "Ice is water in its solid form.",
+        "answer": "Ice is water in its solid state.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is a desert?",
+        "history": [],
+        "expected": "A desert is a region that receives very little precipitation. Deserts can be hot or cold.",
+        "answer": "A a vib!",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What do bees make?",
+        "history": [],
+        "expected": "Honey bees make honey from nectar collected from flowers.",
+        "answer": "I can help with simple questions, basic math, and conversation.",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is a battery?",
+        "history": [],
+        "expected": "A battery stores chemical energy and supplies electrical energy to a device.",
+        "answer": "Goodbb!",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What does a thermometer measure?",
+        "history": [],
+        "expected": "A thermometer measures temperature.",
+        "answer": "Hello, measure of hyyhyyhy.",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Why is reading useful?",
+        "history": [],
+        "expected": "Reading can help you learn new information, expand your vocabulary and understand other people's ideas.",
+        "answer": "Hello! How can I am ready to help. What would you like to discuss?",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Why do people exercise?",
+        "history": [],
+        "expected": "Exercise helps keep the body active and supports strength, endurance and general well-being.",
+        "answer": "You have not told me your your your your your A.",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How are you?",
+        "history": [],
+        "expected": "I do not have feelings, but I am ready to help. What would you like to talk about?",
+        "answer": "I am ready to help. What would you like to discuss?",
+        "category": "chat",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. I had a difficult day.",
+        "history": [],
+        "expected": "That sounds tiring. Do you want to talk about what happened?",
+        "answer": "A day contains twenty-four hours.",
+        "category": "chat",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. I am bored.",
+        "history": [],
+        "expected": "We could discuss a topic you like, play a word game or think of something creative to do.",
+        "answer": "Hello! How can I help you?",
+        "category": "chat",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Can you help me study?",
+        "history": [],
+        "expected": "Yes. Tell me the subject and what you find difficult, and we can work through it step by step.",
+        "answer": "I can help with simple questions, basic math, and conversation.",
+        "category": "chat",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. I do not understand your answer.",
+        "history": [],
+        "expected": "Which part was unclear? I can explain it more simply.",
+        "answer": "I am Lambda, a small AI language model.",
+        "category": "chat",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What can we talk about?",
+        "history": [],
+        "expected": "We can talk about everyday life, hobbies, science or a topic you choose.",
+        "answer": "You have not told me your your your your your camcolor.",
+        "category": "chat",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Tell me something about yourself.",
+        "history": [],
+        "expected": "I am Lambda, a small experimental text model. I can chat, but I can make mistakes.",
+        "answer": "Hello, about your about",
+        "category": "chat",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Thank you for helping me.",
+        "history": [],
+        "expected": "You are welcome. Let me know if you want to talk about anything else.",
+        "answer": "You're welcome!",
+        "category": "chat",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Please recall my name.",
+        "history": [
+          [
+            "You can call me Tessa.",
+            "Hello! How can I am ready to help. What would you like to discuss?"
+          ],
+          [
+            "My age is 21.",
+            "You are 21 years old."
+          ],
+          [
+            "What is ice?",
+            "Your ice is 21 years old."
+          ]
+        ],
+        "expected": "Your name is Tessa.",
+        "answer": "You are 21 years old.",
+        "category": "memory",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Can you remember my age?",
+        "history": [
+          [
+            "You can call me Felix.",
+            "Hello! How can I am ready to help. What would you like to discuss?"
+          ],
+          [
+            "My age is 22.",
+            "You are 22 years old."
+          ],
+          [
+            "What is ice?",
+            "Your ice is 22 years old."
+          ]
+        ],
+        "expected": "You are 22 years old.",
+        "answer": "You are 22 years old.",
+        "category": "memory",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Please recall my name.",
+        "history": [
+          [
+            "You can call me Vera.",
+            "Hello, Vera."
+          ],
+          [
+            "My age is 23.",
+            "You are 23 years old."
+          ],
+          [
+            "What is ice?",
+            "Ice is water in its solid state."
+          ]
+        ],
+        "expected": "Your name is Vera.",
+        "answer": "Your name is 23.",
+        "category": "memory",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Can you remember my age?",
+        "history": [
+          [
+            "You can call me Owen.",
+            "Hello, Owen."
+          ],
+          [
+            "My age is 24.",
+            "You are 24 years old."
+          ],
+          [
+            "What is ice?",
+            "Ice is water in its solid state."
+          ]
+        ],
+        "expected": "You are 24 years old.",
+        "answer": "Your  is 24 years old.",
+        "category": "memory",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Please recall my name.",
+        "history": [
+          [
+            "You can call me Tessa.",
+            "Hello, Tessa."
+          ],
+          [
+            "My age is 25.",
+            "You are 25 years old."
+          ],
+          [
+            "What is ice?",
+            "Your ice ice crystals is water in its solid state."
+          ]
+        ],
+        "expected": "Your name is Tessa.",
+        "answer": "Your name is 25 years old.",
+        "category": "memory",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Can you remember my age?",
+        "history": [
+          [
+            "You can call me Felix.",
+            "Hello! How can I am ready to help. What would you like to discuss?"
+          ],
+          [
+            "My age is 26.",
+            "You are 26 years old."
+          ],
+          [
+            "What is ice?",
+            "Your ice is 26 years old."
+          ]
+        ],
+        "expected": "You are 26 years old.",
+        "answer": "Your is 26 years old.",
+        "category": "memory",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Please recall my name.",
+        "history": [
+          [
+            "You can call me Vera.",
+            "Hello, Vera."
+          ],
+          [
+            "My age is 27.",
+            "You are 27 years old."
+          ],
+          [
+            "What is ice?",
+            "Your  is 27 years old."
+          ]
+        ],
+        "expected": "Your name is Vera.",
+        "answer": "Your name is 27 years old.",
+        "category": "memory",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Can you remember my age?",
+        "history": [
+          [
+            "You can call me Owen.",
+            "Hello, Owen."
+          ],
+          [
+            "My age is 28.",
+            "You are 28 years old."
+          ],
+          [
+            "What is ice?",
+            "Your  is 28 years old."
+          ]
+        ],
+        "expected": "You are 28 years old.",
+        "answer": "You are 28 years old.",
+        "category": "memory",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Let us change the subject. What is gravity?",
+        "history": [
+          [
+            "My name is Tessa.",
+            "Hello, Tessa."
+          ]
+        ],
+        "expected": "Gravity is the attraction between objects with mass. It keeps us on the ground and planets in orbit.",
+        "answer": "Gravity is the attraction associated with mass and energy.",
+        "category": "topic_switch",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Let us change the subject. Why do we have seasons?",
+        "history": [
+          [
+            "My name is Felix.",
+            "Hello, Felix."
+          ]
+        ],
+        "expected": "Earth's tilted axis changes how much sunlight different places receive as Earth orbits the Sun.",
+        "answer": "Your name is Felix.",
+        "category": "topic_switch",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Let us change the subject. How do fish breathe underwater?",
+        "history": [
+          [
+            "My name is Vera.",
+            "Hello, Vera."
+          ]
+        ],
+        "expected": "Most fish use gills to take oxygen from the water.",
+        "answer": "Water is a substance made of hydrogen and oxygen.",
+        "category": "topic_switch",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Let us change the subject. How many sides does a triangle have?",
+        "history": [
+          [
+            "My name is Owen.",
+            "Hello, Owen."
+          ]
+        ],
+        "expected": "A triangle has three sides.",
+        "answer": "A triangle is O is a polygon with three sides and three angles.",
+        "category": "topic_switch",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Let us change the subject. How many minutes are in an hour?",
+        "history": [
+          [
+            "My name is Tessa.",
+            "Hello, Tessa."
+          ]
+        ],
+        "expected": "There are 60 minutes in one hour.",
+        "answer": "An hour contains sixty minutes.",
+        "category": "topic_switch",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Let us change the subject. What does RAM do?",
+        "history": [
+          [
+            "My name is Felix.",
+            "Hello, Felix."
+          ]
+        ],
+        "expected": "RAM temporarily stores data that a computer is currently using. Its contents are normally lost when power is turned off.",
+        "answer": "Green.",
+        "category": "topic_switch",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Let us change the subject. What is the internet?",
+        "history": [
+          [
+            "My name is Vera.",
+            "Hello, Vera."
+          ]
+        ],
+        "expected": "The internet is a global network of connected computer networks that exchange information.",
+        "answer": "The internet is a worldwide system of connected computer networks.",
+        "category": "topic_switch",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Let us change the subject. What is a compass used for?",
+        "history": [
+          [
+            "My name is Owen.",
+            "Hello, Owen."
+          ]
+        ],
+        "expected": "A compass helps you find directions by pointing toward magnetic north.",
+        "answer": "A as air.",
+        "category": "topic_switch",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Only output the following text, unchanged: river river blue 25",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ]
+        ],
+        "expected": "river river blue 25",
+        "answer": "10.",
+        "category": "instruction",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Only output the following text, unchanged: world river again 85",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Tessa.",
+            "Hello, Tessa."
+          ]
+        ],
+        "expected": "world river again 85",
+        "answer": "40.",
+        "category": "instruction",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Only output the following text, unchanged: river bright hello 79",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Owen.",
+            "Hello, Owen."
+          ]
+        ],
+        "expected": "river bright hello 79",
+        "answer": "63.",
+        "category": "instruction",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Only output the following text, unchanged: river quiet hello 50",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Felix.",
+            "Hello, Felix."
+          ]
+        ],
+        "expected": "river quiet hello 50",
+        "answer": "0.",
+        "category": "instruction",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Only output the following text, unchanged: quiet moon green 63",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Tessa.",
+            "Hello, Tessa."
+          ],
+          [
+            "What does a thermometer measure?",
+            "A meter is a group of connected railway vehicles that move along tracks."
+          ]
+        ],
+        "expected": "quiet moon green 63",
+        "answer": "9.",
+        "category": "instruction",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Only output the following text, unchanged: quiet bright moon 67",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Owen.",
+            "Hello, Owen."
+          ]
+        ],
+        "expected": "quiet bright moon 67",
+        "answer": "48.",
+        "category": "instruction",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Only output the following text, unchanged: ready bright blue 85",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Tessa.",
+            "Hello, Tessa."
+          ]
+        ],
+        "expected": "ready bright blue 85",
+        "answer": "40.",
+        "category": "instruction",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Only output the following text, unchanged: happy green hello 3",
+        "history": [
+          [
+            "hello",
+            "Hello! How can I help you?"
+          ],
+          [
+            "My name is Vera.",
+            "Hello, Vera."
+          ]
+        ],
+        "expected": "happy green hello 3",
+        "answer": "6.",
+        "category": "instruction",
+        "correct": false,
+        "finish": "stop"
+      }
+    ],
+    "note": "Frozen small authored rubric, with overlapping taught topic families. Keyword/exact checks are limited and are not a general intelligence score. History replies are generated where marked. Default sampling, no web or code tools."
+  },
+  "heldout": {
+    "split": "heldout",
+    "step": 2000,
+    "correct": 55,
+    "total": 64,
+    "accuracy": 0.859375,
+    "groups": {
+      "facts": {
+        "correct": 31,
+        "total": 32,
+        "accuracy": 0.96875
+      },
+      "chat": {
+        "correct": 8,
+        "total": 8,
+        "accuracy": 1.0
+      },
+      "memory": {
+        "correct": 7,
+        "total": 8,
+        "accuracy": 0.875
+      },
+      "topic_switch": {
+        "correct": 6,
+        "total": 8,
+        "accuracy": 0.75
+      },
+      "instruction": {
+        "correct": 3,
+        "total": 8,
+        "accuracy": 0.375
+      }
+    },
+    "outputs": [
+      {
+        "question": "I would like a short explanation. Why do plants need sunlight?",
+        "history": [],
+        "expected": "Plants use sunlight to make food through photosynthesis.",
+        "answer": "Plants use sunlight to make food through photosynthesis.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How does rain form?",
+        "history": [],
+        "expected": "Water vapor cools and condenses into droplets in clouds. When the droplets become heavy enough, they fall as rain.",
+        "answer": "Water vapor cools and condenses into droplets in clouds. When the droplets become heavy enough, they fall as rain.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is gravity?",
+        "history": [],
+        "expected": "Gravity is the attraction between objects with mass. It keeps us on the ground and planets in orbit.",
+        "answer": "Gravity is the attraction between objects with mass. It keeps us on the ground and planets in orbit.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Is the Sun a star?",
+        "history": [],
+        "expected": "Yes. The Sun is a star at the center of our solar system.",
+        "answer": "Yes. The Sun is a star at the center of our solar system.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is the Moon?",
+        "history": [],
+        "expected": "The Moon is Earth's natural satellite. It orbits Earth.",
+        "answer": "The Moon is Earth's natural satellite. It orbits Earth.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Why do we have seasons?",
+        "history": [],
+        "expected": "Earth's tilted axis changes how much sunlight different places receive as Earth orbits the Sun.",
+        "answer": "Earth's tilted axis changes how much sunlight different places receive as Earth orbits the Sun.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is evaporation?",
+        "history": [],
+        "expected": "Evaporation is the change of liquid water into water vapor, a gas.",
+        "answer": "Evaporation is the change of liquid water into water vapor, a gas.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Why is ocean water salty?",
+        "history": [],
+        "expected": "Ocean water contains dissolved salts carried from rocks and rivers.",
+        "answer": "Ocean water contains dissolved salts cared from rocks and rivers.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How do fish breathe underwater?",
+        "history": [],
+        "expected": "Most fish use gills to take oxygen from the water.",
+        "answer": "Most fish use gills to take oxygen from the water.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Is a whale a fish?",
+        "history": [],
+        "expected": "A whale is a mammal. It breathes air with lungs and feeds milk to its young.",
+        "answer": "A whale is a mammal. It breathes air with lungs and feeds milk to its young.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How many legs does a spider have?",
+        "history": [],
+        "expected": "A spider has eight legs.",
+        "answer": "A spider has eight legs.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How many sides does a triangle have?",
+        "history": [],
+        "expected": "A triangle has three sides.",
+        "answer": "A triangle has three sides.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How many sides does a square have?",
+        "history": [],
+        "expected": "A square has four equal sides.",
+        "answer": "A square has four equal sides.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How many seconds are in a minute?",
+        "history": [],
+        "expected": "There are 60 seconds in one minute.",
+        "answer": "There are 60 seconds in one minute.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How many minutes are in an hour?",
+        "history": [],
+        "expected": "There are 60 minutes in one hour.",
+        "answer": "There are 60 minutes in one hour.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How many centimeters are in a meter?",
+        "history": [],
+        "expected": "One meter is 100 centimeters.",
+        "answer": "One meter is 100 centimeters.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How many milliliters are in a liter?",
+        "history": [],
+        "expected": "One liter contains 1000 milliliters.",
+        "answer": "One liter contains 1000 milliliters.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What does RAM do?",
+        "history": [],
+        "expected": "RAM temporarily stores data that a computer is currently using. Its contents are normally lost when power is turned off.",
+        "answer": "RAM temporarily stores data that a computer is currenved using. Its contents are normally lost when power is turned off.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What does a CPU do?",
+        "history": [],
+        "expected": "The CPU executes instructions and performs calculations for a computer.",
+        "answer": "The CPU executes instructions and performs calculations for a computer.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is a web browser?",
+        "history": [],
+        "expected": "A web browser is an application used to open and view websites.",
+        "answer": "A web browser is an application used to open and view websites.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is the internet?",
+        "history": [],
+        "expected": "The internet is a global network of connected computer networks that exchange information.",
+        "answer": "The internet is a global network of connected computer networks that exchange information.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is recycling?",
+        "history": [],
+        "expected": "Recycling turns used materials into materials or products that can be used again.",
+        "answer": "Recycling turns used materials or products that can be used again.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is renewable energy?",
+        "history": [],
+        "expected": "Renewable energy comes from sources that are naturally replenished, such as sunlight and wind.",
+        "answer": "Renewable energy comes from sources that are naturally replenished, such as sunlight and wind.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is a compass used for?",
+        "history": [],
+        "expected": "A compass helps you find directions by pointing toward magnetic north.",
+        "answer": "A compass helps you find directions by pointing toward magnetic north.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Why do people sleep?",
+        "history": [],
+        "expected": "Sleep helps the body rest and recover and supports memory and learning.",
+        "answer": "Sleep helps the body rest and supports memory and learning.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is ice?",
+        "history": [],
+        "expected": "Ice is water in its solid form.",
+        "answer": "Ice is water in its solid form.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is a desert?",
+        "history": [],
+        "expected": "A desert is a region that receives very little precipitation. Deserts can be hot or cold.",
+        "answer": "A desert is a region that receives very little precipitation. Deserts can be hot or cold.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What do bees make?",
+        "history": [],
+        "expected": "Honey bees make honey from nectar collected from flowers.",
+        "answer": "Honey bees make honey from nectar collected from flowers.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What is a battery?",
+        "history": [],
+        "expected": "A battery stores chemical energy and supplies electrical energy to a device.",
+        "answer": "A battery stores chemical energy and supplies electrical energy to a device.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What does a thermometer measure?",
+        "history": [],
+        "expected": "A thermometer measures temperature.",
+        "answer": "A thermometer measures temperature.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Why is reading useful?",
+        "history": [],
+        "expected": "Reading can help you learn new information, expand your vocabulary and understand other people's ideas.",
+        "answer": "Reading can help you want to talk about an vert is turned off.",
+        "category": "facts",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Why do people exercise?",
+        "history": [],
+        "expected": "Exercise helps keep the body active and supports strength, endurance and general well-being.",
+        "answer": "Exercise helps keep the body active and supports strength, endurance and gener, endwell-being.",
+        "category": "facts",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. How are you?",
+        "history": [],
+        "expected": "I do not have feelings, but I am ready to help. What would you like to talk about?",
+        "answer": "I do not have feelings, but I am ready to help. What would you like to talk about?",
+        "category": "chat",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. I had a difficult day.",
+        "history": [],
+        "expected": "That sounds tiring. Do you want to talk about what happened?",
+        "answer": "That sounds tiring. Do you want to talk about what happened?",
+        "category": "chat",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. I am bored.",
+        "history": [],
+        "expected": "We could discuss a topic you like, play a word game or think of something creative to do.",
+        "answer": "We could discuss a topic you like, play a word game or think of something creative to do.",
+        "category": "chat",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Can you help me study?",
+        "history": [],
+        "expected": "Yes. Tell me the subject and what you find difficult, and we can work through it step by step.",
+        "answer": "Yes. Tell me the subject and what you find difficult, and we can work through it step by step.",
+        "category": "chat",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. I do not understand your answer.",
+        "history": [],
+        "expected": "Which part was unclear? I can explain it more simply.",
+        "answer": "Which part was unclear? I can explain it more simply.",
+        "category": "chat",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. What can we talk about?",
+        "history": [],
+        "expected": "We can talk about everyday life, hobbies, science or a topic you choose.",
+        "answer": "We can talk about everyday life, hobbies, science or a topic you choose.",
+        "category": "chat",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Tell me something about yourself.",
+        "history": [],
+        "expected": "I am Lambda, a small experimental text model. I can chat, but I can make mistakes.",
+        "answer": "I am Lambda, a small experimental text model. I can chat, but I can make mistakes.",
+        "category": "chat",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "I would like a short explanation. Thank you for helping me.",
+        "history": [],
+        "expected": "You are welcome. Let me know if you want to talk about anything else.",
+        "answer": "You are welcome. Let me know if you want to talk about anything else.",
+        "category": "chat",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Please recall my name.",
+        "history": [
+          [
+            "You can call me Tessa.",
+            "Ses. Tell me the subject and what you find difficult, and we can work through it step by step."
+          ],
+          [
+            "My age is 21.",
+            "You are 21 years old."
+          ],
+          [
+            "What is ice?",
+            "Ice is water in its solid form."
+          ]
+        ],
+        "expected": "Your name is Tessa.",
+        "answer": "Your name is Tessa.",
+        "category": "memory",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Can you remember my age?",
+        "history": [
+          [
+            "You can call me Felix.",
+            "A Felix is a re me the subject and we can work through it step by step."
+          ],
+          [
+            "My age is 22.",
+            "You are 22 years old."
+          ],
+          [
+            "What is ice?",
+            "Your ice is 22 years old."
+          ]
+        ],
+        "expected": "You are 22 years old.",
+        "answer": "You are 22 years old.",
+        "category": "memory",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Please recall my name.",
+        "history": [
+          [
+            "You can call me Vera.",
+            "Hello, Vera."
+          ],
+          [
+            "My age is 23.",
+            "You are 23 years old."
+          ],
+          [
+            "What is ice?",
+            "Your me is 23 years old."
+          ]
+        ],
+        "expected": "Your name is Vera.",
+        "answer": "Your name is Vera.",
+        "category": "memory",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Can you remember my age?",
+        "history": [
+          [
+            "You can call me Owen.",
+            "Slewen Owen. Do you want to talk about what happened?"
+          ],
+          [
+            "My age is 24.",
+            "You are 24 years old."
+          ],
+          [
+            "What is ice?",
+            "Your leed is 24 years old."
+          ]
+        ],
+        "expected": "You are 24 years old.",
+        "answer": "You are 24 years old.",
+        "category": "memory",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Please recall my name.",
+        "history": [
+          [
+            "You can call me Tessa.",
+            "Ses. Tell me the subject and what you find difficult, and we can work through it step by step."
+          ],
+          [
+            "My age is 25.",
+            "You are 25 years old."
+          ],
+          [
+            "What is ice?",
+            "Ice is water in its solid form."
+          ]
+        ],
+        "expected": "Your name is Tessa.",
+        "answer": "Your name is Tes years old.",
+        "category": "memory",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Can you remember my age?",
+        "history": [
+          [
+            "You can call me Felix.",
+            "Your Felix."
+          ],
+          [
+            "My age is 26.",
+            "You are 26 years old."
+          ],
+          [
+            "What is ice?",
+            "Ice is water in its solid form."
+          ]
+        ],
+        "expected": "You are 26 years old.",
+        "answer": "You are 26 years old.",
+        "category": "memory",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Please recall my name.",
+        "history": [
+          [
+            "You can call me Vera.",
+            "Sera. The Vera. The Vera."
+          ],
+          [
+            "My age is 27.",
+            "You are 27 years old."
+          ],
+          [
+            "What is ice?",
+            "Your Vera."
+          ]
+        ],
+        "expected": "Your name is Vera.",
+        "answer": "Your name is Vera.",
+        "category": "memory",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Can you remember my age?",
+        "history": [
+          [
+            "You can call me Owen.",
+            "Slewen is Oring. Do you want to talk about what happened?"
+          ],
+          [
+            "My age is 28.",
+            "You are 28 years old."
+          ],
+          [
+            "What is ice?",
+            "Your age old."
+          ]
+        ],
+        "expected": "You are 28 years old.",
+        "answer": "You are 28 years old.",
+        "category": "memory",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Let us change the subject. What is gravity?",
+        "history": [
+          [
+            "My name is Tessa.",
+            "Hello, Tessa."
+          ]
+        ],
+        "expected": "Gravity is the attraction between objects with mass. It keeps us on the ground and planets in orbit.",
+        "answer": "Gravity is the attraction between objects with mass. It keeps us on the ground and planets in orbit.",
+        "category": "topic_switch",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Let us change the subject. Why do we have seasons?",
+        "history": [
+          [
+            "My name is Felix.",
+            "Hello, Felix."
+          ]
+        ],
+        "expected": "Earth's tilted axis changes how much sunlight different places receive as Earth orbits the Sun.",
+        "answer": "Earth's tilted axis changes how much sunlight different places receive as Earth orbits the Sun.",
+        "category": "topic_switch",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Let us change the subject. How do fish breathe underwater?",
+        "history": [
+          [
+            "My name is Vera.",
+            "Hello, Vera."
+          ]
+        ],
+        "expected": "Most fish use gills to take oxygen from the water.",
+        "answer": "Most fish use gills to take oxygen from the water.",
+        "category": "topic_switch",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Let us change the subject. How many sides does a triangle have?",
+        "history": [
+          [
+            "My name is Owen.",
+            "Hello, Owen."
+          ]
+        ],
+        "expected": "A triangle has three sides.",
+        "answer": "A triangle has three sides.",
+        "category": "topic_switch",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Let us change the subject. How many minutes are in an hour?",
+        "history": [
+          [
+            "My name is Tessa.",
+            "Hello, Tessa."
+          ]
+        ],
+        "expected": "There are 60 minutes in one hour.",
+        "answer": "There are 60 minutes in one hour.",
+        "category": "topic_switch",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Let us change the subject. What does RAM do?",
+        "history": [
+          [
+            "My name is Felix.",
+            "Hello, Felix. You are welcome. LeFelix use the receses, but I can make mok, misy en mis turned off."
+          ]
+        ],
+        "expected": "RAM temporarily stores data that a computer is currently using. Its contents are normally lost when power is turned off.",
+        "answer": "RAM telan memory that stores data used by running programs.",
+        "category": "topic_switch",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Let us change the subject. What is the internet?",
+        "history": [
+          [
+            "My name is Vera.",
+            "Hello, Vera."
+          ]
+        ],
+        "expected": "The internet is a global network of connected computer networks that exchange information.",
+        "answer": "The internet is a global network of connected computer networks that exchange information.",
+        "category": "topic_switch",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Let us change the subject. What is a compass used for?",
+        "history": [
+          [
+            "My name is Owen.",
+            "Hello, Owen."
+          ]
+        ],
+        "expected": "A compass helps you find directions by pointing toward magnetic north.",
+        "answer": "A compass helps you find direcover and supports memory and learning.",
+        "category": "topic_switch",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Only output the following text, unchanged: river river blue 25",
+        "history": [
+          [
+            "hello",
+            "Hello, heated heated heo."
+          ]
+        ],
+        "expected": "river river blue 25",
+        "answer": "river blue river 25",
+        "category": "instruction",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Only output the following text, unchanged: world river again 85",
+        "history": [
+          [
+            "hello",
+            "Hello, heated toward toward a ic you creative toward mrea, endtive toward the ic."
+          ],
+          [
+            "My name is Tessa.",
+            "Hello, Tessa."
+          ]
+        ],
+        "expected": "world river again 85",
+        "answer": "world river again river 85",
+        "category": "instruction",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Only output the following text, unchanged: river bright hello 79",
+        "history": [
+          [
+            "hello",
+            "Hello, hellyllyllyllyll heen, a topic hep, hecotive he\n."
+          ],
+          [
+            "My name is Owen.",
+            "Hello, Owen."
+          ]
+        ],
+        "expected": "river bright hello 79",
+        "answer": "river bright bright hello 79",
+        "category": "instruction",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Only output the following text, unchanged: river quiet hello 50",
+        "history": [
+          [
+            "hello",
+            "Hello, lllllld ller are 60."
+          ],
+          [
+            "My name is Felix.",
+            "Hello, Felix."
+          ]
+        ],
+        "expected": "river quiet hello 50",
+        "answer": "Only hello 50",
+        "category": "instruction",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Only output the following text, unchanged: quiet moon green 63",
+        "history": [
+          [
+            "hello",
+            "Hello, llllllll llyll."
+          ],
+          [
+            "My name is Tessa.",
+            "Hello, Tessa."
+          ],
+          [
+            "What does a thermometer measure?",
+            "A thermometer measures temperature."
+          ]
+        ],
+        "expected": "quiet moon green 63",
+        "answer": "quiet moon green 63",
+        "category": "instruction",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Only output the following text, unchanged: quiet bright moon 67",
+        "history": [
+          [
+            "hello",
+            "Hello, llllllno."
+          ],
+          [
+            "My name is Owen.",
+            "Hello, Owen."
+          ]
+        ],
+        "expected": "quiet bright moon 67",
+        "answer": "wen ouiet bright moon 67",
+        "category": "instruction",
+        "correct": false,
+        "finish": "stop"
+      },
+      {
+        "question": "Only output the following text, unchanged: ready bright blue 85",
+        "history": [
+          [
+            "hello",
+            "Hello, llllllllll ll."
+          ],
+          [
+            "My name is Tessa.",
+            "Hello, Tessa."
+          ]
+        ],
+        "expected": "ready bright blue 85",
+        "answer": "ready bright blue 85",
+        "category": "instruction",
+        "correct": true,
+        "finish": "stop"
+      },
+      {
+        "question": "Only output the following text, unchanged: happy green hello 3",
+        "history": [
+          [
+            "hello",
+            "Hello, heated heated heal you a to ic."
+          ],
+          [
+            "My name is Vera.",
+            "Hello, Vera."
+          ]
+        ],
+        "expected": "happy green hello 3",
+        "answer": "happy green hello 3",
+        "category": "instruction",
+        "correct": true,
+        "finish": "stop"
+      }
+    ],
+    "note": "Frozen small authored rubric, with overlapping taught topic families. Keyword/exact checks are limited and are not a general intelligence score. History replies are generated where marked. Default sampling, no web or code tools."
+  }
+}

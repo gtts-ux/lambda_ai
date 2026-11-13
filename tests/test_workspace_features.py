@@ -54,7 +54,7 @@ class WorkspaceTests(unittest.TestCase):
         self.assertEqual(len(self.session.turns),1)
     def test_families_and_versions_use_catalog_ids(self):
         menu=ModelBrowser(self.manager)
-        self.assertEqual([x['name'] for x in menu.rows()],['lambda 1','lambda 2','lambda code'])
+        self.assertEqual([x['name'] for x in menu.rows()],['lambda mercury','lambda venus','lambda code','lambda terra'])
         menu.choose(0);self.assertEqual([x['id'] for x in menu.rows()],['lambda-1.0','lambda-1.5','lambda-1.6'])
         self.assertEqual(menu.choose(1),'use:lambda-1.5');self.assertTrue(menu.back())
         menu.choose(1);self.assertEqual(menu.rows()[-1]['id'],'lambda-2.5.2')
@@ -72,8 +72,8 @@ class WorkspaceUITests(unittest.IsolatedAsyncioTestCase):
             try:
                 await asyncio.sleep(.08);pipe.send_text('\x1bOR');await asyncio.sleep(.05)
                 pipe.send_text('\x1b[B\x1b[C');await asyncio.sleep(.08)
-                self.assertIn('LAMBDA 2 VERSIONS',ui.body.text)
-                self.assertIn('lambda 2.5    [installed]',ui.body.text)
+                self.assertIn('LAMBDA VENUS VERSIONS',ui.body.text)
+                self.assertIn('lambda venus 2.5    [installed]',ui.body.text)
                 self.assertIn(f'{local.stat().st_size/1048576:.1f} MiB',ui.body.text)
                 ui.models.move(len(ui.models.rows()));ui.refresh()
                 with patch.object(session,'model_action',return_value='Using local model') as action:
@@ -93,7 +93,7 @@ class WorkspaceUITests(unittest.IsolatedAsyncioTestCase):
                 await asyncio.sleep(.08);pipe.send_text('\x1bOR');await asyncio.sleep(.05) # F3
                 self.assertIn('MODELS / FAMILIES',ui.body.text)
                 pipe.send_text('\r');await asyncio.sleep(.05)
-                self.assertIn('LAMBDA 1 VERSIONS',ui.body.text)
+                self.assertIn('LAMBDA MERCURY VERSIONS',ui.body.text)
                 with patch.object(session,'model_action',return_value='Using test model') as action:
                     pipe.send_text('\x1b[B\r');await asyncio.sleep(.12)
                     self.assertEqual(action.call_args.args[0],'use:lambda-1.5')

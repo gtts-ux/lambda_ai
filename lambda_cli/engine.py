@@ -112,6 +112,8 @@ class Engine:
             with np.load(self.path, allow_pickle=False) as data:
                 self.metadata = json.loads(str(data["metadata"].item()))
                 format_name = self.metadata.get("format")
+                from .families import display_name
+                self.metadata['name']=display_name(self.metadata.get('model_id'),self.metadata.get('name'))
                 if format_name not in ("lambda-ai-inference-v1", "lambda-ai-inference-v2"):
                     raise ValueError("Expected a supported Lambda inference model (v1 or v2).")
                 info = self.metadata

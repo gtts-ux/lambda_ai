@@ -24,7 +24,7 @@ class Lambda2ReleaseTests(unittest.TestCase):
     def test_release_is_the_trained_checkpoint_with_expected_dimensions(self):
         info=self.engine.info()
         self.assertEqual(self.engine.metadata['model_id'],'lambda-2')
-        self.assertEqual(self.engine.metadata['name'],'lambda 2')
+        self.assertEqual(self.engine.metadata['name'],'lambda venus 2')
         self.assertEqual(info['training_step'],100000)
         self.assertEqual(info['parameters'],4553728)
         self.assertEqual((info['hidden'],info['context'],info['embedding'],info['vocabulary']),(1024,80,24,1462))

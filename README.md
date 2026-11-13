@@ -2,7 +2,7 @@
 
 **A local English AI chat application for your terminal.**
 Type `lambda` to open a full-screen chat, inspect actual BPE tokens, explore
-model parameters, and check your allowance. The bundled **lambda 1.0** model
+model parameters, and check your allowance. The bundled **lambda mercury 1.0** model
 was trained from random weights with a locally learned tokenizer.
 
 ```text
@@ -28,6 +28,11 @@ Use `/memory` to check the current model. Interactive conversations are saved lo
 and resume after restart. `/new` creates another chat; `/chats` reopens a saved one.
 The model still sees only its recent context window. Optional conversation,
 research and beginner coding models are available.
+
+The model families are **Mercury (1.x)**, **Venus (2.x)**, **Code (3)** and
+**Terra (4.x)**. Previous IDs and downloads remain compatible: for example,
+`lambda-2.4` and the alias `lambda-venus-2.4` both select Venus 2.4. Older
+inference files keep their original bytes; app 0.8.5 presents the new names.
 
 ## Install
 
@@ -267,6 +272,8 @@ The model checksum and checkpoint step are included in
 `lambda_cli/assets/model.json`. Code and included inference weights are
 licensed under [MIT](LICENSE), except separately licensed optional models such as
 [lambda 2.5.2](models/lambda-2.5.2.md), whose weights use CC BY-SA 4.0.
+The new [lambda terra 4.1](models/lambda-terra-4.1.md) weights also use CC BY-SA
+4.0 with Dolly dataset attribution. The application's MIT license is unchanged.
 
 ## Development
 
@@ -520,3 +527,20 @@ See the [model card](models/lambda-code-3.md) and
 the completed repair's selected update 11500, not the older local demo.
 Existing models, chats and allowance are preserved. Installers derive paths on
 each machine; release code contains no maintainer checkout path.
+
+## lambda terra 4.1: offline conversation
+
+Terra 4.1 continues the own Venus 2.4 weights for chat, with no web or programming
+branch. Its small authored final check improved from 22/64 to 55/64 correct
+responses. This is a limited 2.5x result on that rubric, not a general intelligence
+claim; exact-instruction following remains weak (3/8). See the
+[model card and attribution](models/lambda-terra-4.1.md).
+
+Run `/update`, restart after app **0.8.5**, then:
+
+```text
+/model use lambda-terra-4.1
+```
+
+CLI: `lambda model use lambda-terra-4.1`. F3 shows Mercury, Venus, Code and Terra
+as separate families. Existing model IDs, chats and usage remain compatible.

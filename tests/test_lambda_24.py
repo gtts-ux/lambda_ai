@@ -13,7 +13,7 @@ class Lambda24ReleaseTests(unittest.TestCase):
         catalog=json.loads((ROOT/'models/catalog.json').read_text());validate_catalog(catalog)
         entry=next(x for x in catalog['models'] if x['id']=='lambda-2.4')
         self.assertFalse(any(x['id']=='lambda-2.3' for x in catalog['models']))
-        self.assertEqual(e.metadata['name'],'lambda 2.4');self.assertEqual(e.metadata['model_id'],'lambda-2.4')
+        self.assertEqual(e.metadata['name'],'lambda venus 2.4');self.assertEqual(e.metadata['model_id'],'lambda-2.4')
         self.assertEqual(e.parameter_count,15350401);self.assertEqual(e.layers,8);self.assertEqual(e.context,512)
         self.assertEqual(e.metadata['training_step'],31650)
         self.assertEqual(e.metadata['training_lineage']['selected_additional_steps'],7000)

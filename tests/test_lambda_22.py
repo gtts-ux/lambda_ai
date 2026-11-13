@@ -11,7 +11,7 @@ class Lambda22Tests(unittest.TestCase):
  def test_release_identity_checksums_and_measured_comparison(self):
   path=ROOT/'models/lambda-2.2.npz';e=Engine(path);manifest=json.loads(path.with_suffix('.json').read_text())
   catalog=json.loads((ROOT/'models/catalog.json').read_text());entry=next(x for x in catalog['models'] if x['id']=='lambda-2.2')
-  self.assertEqual(e.metadata['name'],'lambda 2.2');self.assertEqual(e.metadata['model_id'],'lambda-2.2')
+  self.assertEqual(e.metadata['name'],'lambda venus 2.2');self.assertEqual(e.metadata['model_id'],'lambda-2.2')
   self.assertEqual(e.parameter_count,11808385);self.assertEqual(e.context,512);self.assertIsNone(e.router)
   self.assertEqual(entry['min_app_version'],'0.4.1');self.assertEqual(e.metadata['min_app_version'],'0.4.1')
   self.assertEqual(entry['sha256'],hashlib.sha256(path.read_bytes()).hexdigest());self.assertEqual(entry['sha256'],manifest['sha256'])

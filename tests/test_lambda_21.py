@@ -14,7 +14,7 @@ class Lambda21ReleaseTests(unittest.TestCase):
         manifest=json.loads(path.with_suffix('.json').read_text())
         catalog=json.loads((ROOT/'models/catalog.json').read_text())
         entry=next(r for r in catalog['models'] if r['id']=='lambda-2.1')
-        self.assertEqual(engine.metadata['name'],'lambda 2.1')
+        self.assertEqual(engine.metadata['name'],'lambda venus 2.1')
         self.assertEqual(engine.metadata['model_id'],'lambda-2.1')
         self.assertEqual(engine.metadata['training_step'],23250)
         self.assertEqual(engine.parameter_count,11808385)

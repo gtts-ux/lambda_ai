@@ -1,0 +1,27 @@
+{
+  "context": 512,
+  "width": 384,
+  "layers": 8,
+  "heads": 6,
+  "vocabulary": 2048,
+  "format": "lambda-ai-pointer-transformer-v4",
+  "name": "lambda terra 4.1",
+  "model_id": "lambda-terra-4.1",
+  "language": "en",
+  "training_step": 33650,
+  "data_sha256": "2e526d1924dc70ed2abd1e5e3e51de8e5091b2c8cb534cd3511a0b0495f14a96b044205562fd0dcc74df3b370224e83d0c6d1919199ce97e6eaa6b6e7c999709397fd0bfd9c793722bc0b52c68cfa3c0f6f6614b68d0548eb6abaa80ae9739b62df9083338b4abd6bceb5635764dab5d833b393b55759dffb0959b6fcbf794ec",
+  "initialization": "Own lambda 2.4 continued for conversation only; no external pretrained weights.",
+  "min_app_version": "0.8.5",
+  "pointer_width": 128,
+  "training_lineage": {
+    "experiment": "chat_41",
+    "source_step": 31650,
+    "source_sha256": "22cb0f72aaaf66dfca254dc965ff6590a2be0c6285cc2c3c94c02a93975f5020"
+  },
+  "license": "CC-BY-SA-4.0",
+  "bytes": 57065597,
+  "sha256": "238d004b27d5da6fe86dba75e6406112f795235fa8628f8d2430710f3d56e575",
+  "parameters": 15350401,
+  "selected_update": 2000,
+  "status": "Experimental release at owner request"
+}

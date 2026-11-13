@@ -243,3 +243,29 @@
   and trained-on screenshot regressions. Do not ship private training files or
   machine-specific launcher paths. This explicit publication request supersedes
   the earlier no-automatic-publication instruction for this selected artifact.
+- Owner request (2026-11-13): **lambda 4.1** (`lambda-4.1`) is a chat-only own
+  2.4 continuation; no research tools or coding branch. Train toward twice as
+  many correct responses on frozen authored checks, not a claim of twice the
+  intelligence. Private ../conversation_training/chat_41 uses full-weight low-LR
+  continuation, authored multi-turn lessons, old replay and a small Dolly subset.
+  Keep data attribution/share-alike requirements for any future distribution.
+  Require matched before/after default-sampling answers, two consecutive development
+  successes and a separate final check; preserve all prior weights and user data.
+  Bound each audited session to 8 hours / 30000 updates. Budget exhaustion without
+  the result is not success and does not authorize silent indefinite extensions.
+  No automatic publication or installation. Existing v4 runtime suffices.
+- Latest owner request: publish the selected chat_41 update-2000 weights (total
+  33650) as **lambda terra 4.1** (`lambda-terra-4.1`) and organize model families
+  as Mercury (1), Venus (2), Code (3), Terra (4). Preserve legacy IDs, artifact
+  bytes, download hashes and chat bindings; provide Mercury/Venus aliases and
+  display the renamed families in app 0.8.5. Terra 4.1 weights use CC BY-SA 4.0
+  with Dolly CC BY-SA 3.0 attribution; software and old model licenses remain.
+  Actual final comparison is 55/64 versus Venus 2.4's 22/64 on a narrow authored
+  rubric, not general intelligence. The owner explicitly authorized publication.
+- Also start **lambda terra 4.2** (`lambda-terra-4.2`) from own selected 4.1.
+  Because 55/64 cannot be doubled, the stated new target is at least 2x fewer
+  errors on new frozen development/final checks with retention guards. Private
+  terra_42 adds exact instruction copying, corrected/multiple-person memory and
+  old training replay; no old evaluation inputs as labels. Bound the audited
+  session to 8 hours / 30000 updates, retain all checkpoints, default-sampling
+  generated replies and final reports. No automatic publication or installation.

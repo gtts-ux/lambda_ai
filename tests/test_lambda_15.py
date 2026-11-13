@@ -37,7 +37,7 @@ class Lambda15Tests(unittest.TestCase):
         checksum=hashlib.sha256(MODEL.read_bytes()).hexdigest()
         self.assertEqual(checksum,manifest['sha256'])
         self.assertEqual(self.engine.metadata['model_id'],'lambda-1.5')
-        self.assertEqual(self.engine.metadata['name'],'lambda 1.5')
+        self.assertEqual(self.engine.metadata['name'],'lambda mercury 1.5')
         first=json.loads((ROOT/'models/catalog.json').read_text())
         second=json.loads((ROOT/'lambda_cli/assets/catalog.json').read_text())
         self.assertEqual(first,second)

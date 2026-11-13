@@ -12,6 +12,7 @@ from urllib.request import Request, urlopen
 from . import __version__
 from .engine import DEFAULT_MODEL, Engine
 from .paths import data_dir
+from .families import canonical_id,display_name
 
 CATALOG_URL = "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/catalog.json"
 BUNDLED_CATALOG = Path(__file__).resolve().parent/"assets/catalog.json"
@@ -111,6 +112,8 @@ class ModelManager:
                                min_app_version=installed.get('min_app_version', __version__),
                                local_only=True, installed_revision=installed['revision'] if exists else None,
                                active=identifier == state['active'], update_available=False))
+        for entry in result:
+            entry['name']=display_name(entry['id'],entry['name'])
         return result
 
     def installed_path(self, item):
@@ -120,6 +123,7 @@ class ModelManager:
         return self.directory/"models"/filename
 
     def resolve(self, identifier=None):
+        identifier=canonical_id(identifier)
         state = self.state()
         identifier = identifier or state["active"]
         if identifier in state["installed"]:
@@ -133,6 +137,7 @@ class ModelManager:
         raise ValueError(f"Model '{identifier}' is not installed. Use /model install {identifier}.")
 
     def activate(self, identifier):
+        identifier=canonical_id(identifier)
         engine = Engine(self.resolve(identifier))
         state = self.state()
         state["active"] = identifier
@@ -150,6 +155,7 @@ class ModelManager:
         return catalog
 
     def install(self, identifier, progress=None, cancel=None):
+        identifier=canonical_id(identifier)
         entry = next((e for e in self.entries() if e["id"] == identifier), None)
         if entry is None:
             raise ValueError(f"Unknown model '{identifier}'. Use /update to refresh the list.")

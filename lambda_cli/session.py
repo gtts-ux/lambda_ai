@@ -379,6 +379,8 @@ class Session:
                         self.reload_model(model_id)
             return '\n'.join(results) or 'Update cancelled.'
         verb, identifier = action.split(":", 1)
+        from .families import canonical_id
+        identifier=canonical_id(identifier)
         self.manager.install(identifier, progress, cancel)
         if verb == "use":
             engine = self.manager.activate(identifier)

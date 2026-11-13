@@ -1,0 +1,16 @@
+lambda terra 4.1 inference weights: Creative Commons Attribution-ShareAlike 4.0 International.
+License: https://creativecommons.org/licenses/by-sa/4.0/
+Legal text: https://creativecommons.org/licenses/by-sa/4.0/legalcode
+
+Model development: lambda_ai project contributors / gtts-ux.
+Adapted from the project's own MIT-licensed lambda venus 2.4 (legacy lambda-2.4).
+The original MIT notice is retained in the repository LICENSE.
+
+Training-data attribution: Databricks, databricks-dolly-15k,
+https://huggingface.co/datasets/databricks/databricks-dolly-15k
+CC BY-SA 3.0: https://creativecommons.org/licenses/by-sa/3.0/
+Changes: selected short context-free human-authored instruction/response pairs
+used alongside authored conversation lessons for model fine-tuning.
+
+Preserve attribution and applicable share-alike terms on redistribution/adaptation.
+The software application remains MIT. Older releases retain their own licenses.

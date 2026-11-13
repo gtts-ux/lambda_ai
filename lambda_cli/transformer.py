@@ -66,6 +66,8 @@ class TransformerEngine:
         try:
             with np.load(self.path, allow_pickle=False) as data:
                 self.metadata = json.loads(str(data["metadata"].item()))
+                from .families import display_name
+                self.metadata['name']=display_name(self.metadata.get('model_id'),self.metadata.get('name'))
                 if self.metadata.get("format") != self.supported_format:
                     raise ValueError("Expected a supported Transformer model.")
                 shapes = weight_shapes(self.metadata)

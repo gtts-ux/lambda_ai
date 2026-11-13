@@ -155,3 +155,14 @@ are not unseen performance. Publish inference weights, manifests and results,
 never the private training kit. App 0.8.4 adds code-family navigation, fenced-code
 colors and local-model menu support. Keep the maintainer's repaired launcher out
 of the repository; installers/wheels use their own installation environments.
+
+Terra naming release: app 0.8.5 presents Mercury (1), Venus (2), Code (3) and
+Terra (4) in order. Preserve legacy model IDs, files and checksums. Mercury/Venus
+prefix aliases canonicalize to existing IDs; saved chat bindings remain valid.
+The owner requested publication of lambda terra 4.1 (lambda-terra-4.1), chat_41
+selected update 2000 / total step 33650, 15,350,401 parameters. Final authored
+comparison: 55/64 versus own Venus 2.4's 22/64. Weights are CC BY-SA 4.0 with
+Dolly CC BY-SA 3.0 attribution; earlier licenses and software MIT are unchanged.
+Private terra_42 continues that selected parent toward at least half as many
+errors on fresh frozen checks, since the parent's existing score cannot be
+doubled. It is bounded, resumable and not automatically published or installed.

@@ -1,5 +1,6 @@
 """Family/version navigation using catalog IDs, without loading model weights."""
 import re
+from .families import ORDER,family_for
 
 class ModelBrowser:
     def __init__(self,manager):
@@ -8,18 +9,15 @@ class ModelBrowser:
     def families(self):
         groups={}
         for entry in self.manager.entries():
-            if entry['id'].startswith('lambda-code-'):
-                groups.setdefault('code',[]).append(entry);continue
-            match=re.match(r'lambda-(\d+)',entry['id'])
-            family=match.group(1) if match else 'other'
+            family=entry.get('family') or family_for(entry['id'])
             groups.setdefault(family,[]).append(entry)
         return groups
 
     def rows(self):
         groups=self.families()
         if self.family is None:
-            return [{'id':key,'name':'lambda code' if key=='code' else 'lambda '+key if key!='other' else 'Other models','versions':versions}
-                    for key,versions in sorted(groups.items(),key=lambda p:int(p[0]) if p[0].isdigit() else 100000)]
+            return [{'id':key,'name':'lambda '+key if key!='other' else 'Other models','versions':versions}
+                    for key,versions in sorted(groups.items(),key=lambda p:ORDER.get(p[0],99))]
         return groups.get(self.family,[])
 
     def move(self,delta):
