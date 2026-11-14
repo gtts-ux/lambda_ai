@@ -5,7 +5,7 @@ existing Lambda inference engine. The interface is English.
 
 ## Using the app
 
-Download the package for your system from [Desktop app 1.1.2](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.1.2). Open `Lambda.app` on macOS, run the installer on Windows, or make the Linux AppImage executable and launch it. The standalone build includes its own Python runtime,
+Download the package for your system from [Desktop app 1.1.3](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.1.3). Open `Lambda.app` on macOS, run the installer on Windows, or make the Linux AppImage executable and launch it. The standalone build includes its own Python runtime,
 the inference engine and the small Mercury 1.0 starter model. It does not need a
 terminal, a checkout or a separately installed Python to run.
 
@@ -35,7 +35,7 @@ terminal, a checkout or a separately installed Python to run.
 
 **Settings → Updates → Check for updates** checks only desktop releases and offers
 the matching download for your operating system. It never sends your profile or
-conversation content. Install the downloaded package to update the desktop app.
+conversation content. Click **Update & restart** to download and verify the matching package. Lambda closes, applies the update in its existing location, and opens again. Chats, models, profile and usage stay in the shared data directory. On Linux, run the AppImage to enable this action. An unwritable installation must first be moved to a location your user can update.
 
 Desktop and CLI share the existing Lambda data directory, including downloaded
 models, chats and allowance. Desktop preferences are in `desktop.json` there.
@@ -82,14 +82,16 @@ it contains exactly the starter NPZ and no chat database or training checkpoint.
 Downloaded models and private training files are not packaged. All generated
 build trees, environments, test profiles and installers are excluded from Git.
 
-Desktop version 1.1.2 and terminal package versions are separate. CLI `/update`
-updates the CLI package. Desktop Settings → Updates finds a new package; install it
-to update the bundled desktop engine. It does not silently overwrite the terminal launcher.
+Desktop version 1.1.3 and terminal package versions are separate. CLI `/update`
+updates the CLI package. Desktop Settings → Updates → Update & restart updates
+the bundled desktop engine in place. It does not overwrite the terminal launcher.
+Versions 1.1.2 and earlier need one package installation to gain the new updater;
+subsequent desktop updates use the in-app action.
 
 ## Verification
 
 ```sh
-.build-venv/bin/python -m unittest discover -s tests -p 'test_backend.py' -v
+.build-venv/bin/python -m unittest discover -s tests -p 'test_*.py' -v
 npm run test:desktop
 npm run test:updates
 # Test the standalone macOS build instead of development Electron:

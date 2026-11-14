@@ -125,6 +125,17 @@ async function launch(){
   await page.locator('#settings-button').click();await page.locator('[data-tab="updates"]').click();
   await page.locator('#check-updates').click();await expect(page.locator('#check-updates')).toBeEnabled({timeout:20000});
   await expect(page.locator('.update-status')).not.toHaveText('Checking GitHub for desktop updates…');
+  await page.evaluate(()=>{window.previousUpdateResult=updateResult;updateResult={status:'available',latest:'9.0.0',current:desktopInfo.version,direct:true,installable:true};renderSettings();});
+  await expect(page.locator('#install-update')).toHaveText('Update & restart');
+  await expect(page.locator('#install-update')).toBeEnabled();
+  await app.evaluate(({BrowserWindow})=>BrowserWindow.getAllWindows()[0].webContents.send('lambda:event',{event:'application-update',data:{phase:'downloading',version:'9.0.0',percent:25}}));
+  await expect(page.locator('.application-update-progress')).toHaveAttribute('value','25');
+  await expect(page.locator('#install-update')).toBeDisabled();
+  await expect(page.locator('#check-updates')).toBeDisabled();
+  await app.evaluate(({BrowserWindow})=>BrowserWindow.getAllWindows()[0].webContents.send('lambda:event',{event:'application-update',data:{phase:'error',message:'The update is incomplete. Your application was not changed.'}}));
+  await expect(page.locator('.update-status')).toContainText('Your application was not changed.');
+  await expect(page.locator('#install-update')).toBeEnabled();
+  await page.evaluate(()=>{applicationUpdate=null;updateResult=window.previousUpdateResult;delete window.previousUpdateResult;updateComposer();renderSettings();});
   await page.screenshot({path:path.join(artifacts,'updates-dark.png')});
   await page.locator('#close-settings').click();
   // Exercise sidebar scrolling with additional valid empty saved conversations.

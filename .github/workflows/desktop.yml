@@ -11,7 +11,7 @@ on:
         default: false
       version:
         description: Desktop version in package.json
-        default: '1.1.2'
+        default: '1.1.3'
         required: true
 
 permissions:
@@ -78,7 +78,7 @@ jobs:
       - name: Test bridge and terminal engine
         run: |
           if [[ "$RUNNER_OS" == Windows ]]; then PY=.build-venv/Scripts/python; else PY=.build-venv/bin/python; fi
-          "$PY" -m unittest discover -s tests -p 'test_backend.py' -v
+          "$PY" -m unittest discover -s tests -p 'test_*.py' -v
           PYTHONPATH=.. "$PY" -m unittest discover -s ../tests -v
           npm run test:updates
       - name: Package native desktop app
@@ -95,6 +95,20 @@ jobs:
           else
             export LAMBDA_PACKAGED_EXECUTABLE="$PWD/release/linux-unpacked/lambda-desktop"
             xvfb-run -a npm run test:desktop
+          fi
+      - name: Test native update and restart
+        run: |
+          if [[ "$RUNNER_OS" == Windows ]]; then PY=.build-venv/Scripts/python; else PY=.build-venv/bin/python; fi
+          if [[ "$RUNNER_OS" == macOS ]]; then
+            if [[ "${{ matrix.arch }}" == arm64 ]]; then APP=release/mac-arm64/Lambda.app/Contents/MacOS/Lambda; else APP=release/mac/Lambda.app/Contents/MacOS/Lambda; fi
+            export LAMBDA_PACKAGED_EXECUTABLE="$PWD/$APP"
+            "$PY" tests/native_update.py
+          elif [[ "$RUNNER_OS" == Windows ]]; then
+            export LAMBDA_PACKAGED_EXECUTABLE="$PWD/release/win-unpacked/Lambda.exe"
+            "$PY" tests/native_update.py
+          else
+            export LAMBDA_PACKAGED_EXECUTABLE="$PWD/release/linux-unpacked/lambda-desktop"
+            xvfb-run -a "$PY" tests/native_update.py
           fi
       - uses: actions/upload-artifact@v6
         with:

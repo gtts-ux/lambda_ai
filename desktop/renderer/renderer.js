@@ -21,7 +21,7 @@ const size=bytes=>`${((bytes||0)/1048576).toFixed(1)} MB`;
 const command=window.lambda.platform==='darwin'?'⌘':'Ctrl';
 const familyNames={mercury:'Mercury',venus:'Venus',code:'Code',terra:'Terra',other:'Local models'};
 const familyCopy={mercury:'Compact English models for simple conversations.',venus:'Conversation models for questions and short exchanges.',code:'Experimental Python and JavaScript assistance.',terra:'Experimental English conversation models.',other:'A model installed on this device.'};
-let desktopInfo={version:'1.1.2'},updateResult=null,checkingUpdates=false,deleteId=null;
+let desktopInfo={version:'1.1.3'},updateResult=null,checkingUpdates=false,applicationUpdate=null,deleteId=null;
 let S=null,tab='appearance',modelFilter='all',archived=false,query='',searchTimer,toastTimer,renameId=null,stream=null,lastMessages='',popoverAnchor=null;
 const media=matchMedia('(prefers-color-scheme: dark)');
 function decorate(root=document){root.querySelectorAll('[data-icon]').forEach(el=>{el.innerHTML=icon(el.dataset.icon);});}
@@ -126,15 +126,15 @@ function streamNode(){
 }
 function scrollLatest(){const el=$('#conversation-scroll');el.scrollTop=el.scrollHeight;$('#scroll-bottom').hidden=true;}
 function updateComposer(){
-  const busy=S?.generating;const input=$('#message-input');
+  const busy=S?.generating;const updating=applicationUpdate&&applicationUpdate.phase!=='error';const input=$('#message-input');
   $('#send-button').innerHTML=icon(busy?'stop':'up');$('#send-button').type=busy?'button':'submit';
   $('#send-button').setAttribute('aria-label',busy?'Stop response':'Send message');$('#send-button').title=busy?'Stop response':'Send message';
-  $('#send-button').disabled=!S||(!busy&&(!input.value.trim()||S.quota.remaining<=0));
-  $('#new-chat').disabled=!!busy;$('#model-button').disabled=!!busy;
+  $('#send-button').disabled=!!updating||!S||(!busy&&(!input.value.trim()||S.quota.remaining<=0));
+  $('#new-chat').disabled=!!busy||!!updating;$('#model-button').disabled=!!busy||!!updating;
 }
 function resizeInput(){const input=$('#message-input');input.style.height='auto';input.style.height=Math.min(170,input.scrollHeight)+'px';updateComposer();}
 async function startGeneration(retry=false){
-  if(!S||S.generating)return;
+  if(!S||S.generating||(applicationUpdate&&applicationUpdate.phase!=='error'))return;
   const text=$('#message-input').value.trim();if(!retry&&!text)return;
   closePopover();if(!retry){$('#message-input').value='';resizeInput();}
   // The backend reserves usage and persists the user's real message before emitting start.
@@ -300,6 +300,7 @@ window.lambda.onEvent(({event,data})=>{
   else if(event==='download-end'){applyState(data);if($('#settings-dialog').open&&tab==='models')renderSettings();}
   else if(event==='navigate'){if(data.view==='new')$('#new-chat').click();else openSettings();}
   else if(event==='engine-error'){toast(data.message);$('#generation-status').textContent='Engine disconnected';$('#send-button').disabled=true;}
+  else if(event==='application-update'){applicationUpdate=data;updateComposer();if($('#settings-dialog').open&&tab==='updates')renderSettings();}
 });
 setInterval(liveUsage,1000);
 setInterval(()=>{if(S&&!S.generating)act('state');},30000);
@@ -310,13 +311,21 @@ function confirmDelete(row){
 }
 function renderUpdates(root){
   let message='Check for a new desktop release for this device. Models are managed separately in Settings → Models.';
+  const updating=applicationUpdate&&applicationUpdate.phase!=='error';
   if(checkingUpdates)message='Checking GitHub for desktop updates…';
+  else if(applicationUpdate?.phase==='error')message=applicationUpdate.message;
+  else if(applicationUpdate?.phase==='downloading')message=`Downloading Desktop ${applicationUpdate.version} · ${applicationUpdate.percent}%`;
+  else if(applicationUpdate?.phase==='preparing')message='Download verified. Preparing the application update…';
+  else if(applicationUpdate?.phase==='restarting')message='Updating and restarting Lambda…';
   else if(updateResult?.error)message=updateResult.error;
   else if(updateResult?.status==='available')message=`Desktop ${updateResult.latest} is available. You are using ${updateResult.current}.`;
   else if(updateResult?.status==='current')message=`You’re up to date. Desktop ${updateResult.current} is the latest available version.`;
   else if(updateResult?.status==='unpublished')message='This preview has no published desktop release yet. You can view all Lambda releases.';
-  root.innerHTML=`<h2>Keep Lambda up to date.</h2><p class="section-copy">Desktop app updates, separate from your downloaded models.</p><div class="setting-row"><span>Installed desktop version</span><strong>${esc(desktopInfo.version)}</strong></div><div class="update-status" role="status">${esc(message)}</div><div class="updates-actions"><button id="check-updates" class="primary-button" ${checkingUpdates?'disabled':''}>${icon('refresh')}Check for updates</button>${updateResult&&!updateResult.error?`<button id="open-update" class="secondary-button">${updateResult.status==='available'&&updateResult.direct?'Download update':'View desktop release'}</button>`:''}</div><p class="subtle-note">Checking uses GitHub’s release list. Your chats, profile and token allowance stay on your device. Download and install the new desktop package to update; your local data is preserved.</p>`;
+  else if(desktopInfo.lastUpdate?.status==='error')message='The previous update could not finish: '+desktopInfo.lastUpdate.message;
+  const canUpdate=updateResult?.status==='available'&&updateResult.direct&&updateResult.installable;
+  root.innerHTML=`<h2>Keep Lambda up to date.</h2><p class="section-copy">Download an update, then Lambda closes and opens again automatically.</p><div class="setting-row"><span>Installed desktop version</span><strong>${esc(desktopInfo.version)}</strong></div><div class="update-status" role="status">${esc(message)}${updating?`<progress class="application-update-progress" max="100" value="${Number(applicationUpdate.percent)||0}" aria-label="Application update progress"></progress>`:''}</div><div class="updates-actions"><button id="check-updates" class="${canUpdate?'secondary-button':'primary-button'}" ${checkingUpdates||updating?'disabled':''}>${icon('refresh')}Check for updates</button>${canUpdate?`<button id="install-update" class="primary-button" ${updating||S?.generating||S?.downloading?'disabled':''}>${icon('download')}${updating?'Updating…':'Update & restart'}</button>`:updateResult&&!updateResult.error?'<button id="open-update" class="secondary-button">View desktop release</button>':''}</div><p class="subtle-note">Your chats, downloaded models, profile and token allowance stay on this device. ${updateResult?.installable===false?esc(updateResult.reason):'Finish any active reply or model download before updating.'}</p>`;
   $('#check-updates').onclick=async()=>{checkingUpdates=true;renderSettings();try{updateResult=await window.lambda.request('check_updates');}catch(error){updateResult={error:error.message};}finally{checkingUpdates=false;if(tab==='updates')renderSettings();}};
   if($('#open-update'))$('#open-update').onclick=()=>window.lambda.openExternal(updateResult.url).catch(error=>toast(error.message));
+  if($('#install-update'))$('#install-update').onclick=async()=>{applicationUpdate={phase:'downloading',percent:0,version:updateResult.latest};updateComposer();renderSettings();try{await window.lambda.request('install_update');}catch(error){applicationUpdate={phase:'error',message:error.message};updateComposer();if(tab==='updates')renderSettings();}};
 }
 window.lambda.request('desktop_info').then(info=>{desktopInfo=info;$('.settings-nav-footer span').textContent='Version '+info.version;}).catch(()=>{});

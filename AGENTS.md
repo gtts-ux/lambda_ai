@@ -442,3 +442,14 @@
   Expand/collapse must not select, download or generate. Preserve the transparent
   logo, profile fixes, local data and shared allowance. Publish native packages
   through the existing desktop workflow; keep earlier releases immutable.
+
+- The owner now requires one-click desktop updates with automatic close/install/
+  reopen, superseding the previous manual-download-only restriction. Desktop
+  1.1.3 uses trusted native release assets, exact length and SHA-256 verification,
+  a copied detached bundled helper and graceful engine shutdown before replacement.
+  macOS/ Linux retain rollback copies until the new app confirms startup; Windows
+  uses NSIS silent --updated mode at the current installation path. Keep user data,
+  shared quota, optional models, portable paths and the terminal launcher intact.
+  Never close the current app after a failed download/preparation. Test actual
+  native replacement and restart on all four platform/architecture builds before
+  publication. Older desktop versions need one installation to acquire this updater.

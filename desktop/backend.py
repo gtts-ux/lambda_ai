@@ -9,6 +9,10 @@ import sys
 import threading
 import time
 
+if __name__ == '__main__' and len(sys.argv) == 3 and sys.argv[1] == '--apply-desktop-update':
+    from desktop_update import main as apply_desktop_update
+    sys.exit(apply_desktop_update(sys.argv[2]))
+
 if not getattr(sys, 'frozen', False):
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 

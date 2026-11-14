@@ -3,14 +3,34 @@ const { spawn } = require('node:child_process');
 const { createInterface } = require('node:readline');
 const fs = require('node:fs');
 const path = require('node:path');
-const { checkForUpdates } = require('./updates.cjs');
+const { checkForUpdates, installTarget, prepareUpdate } = require('./updates.cjs');
 
-const METHODS = new Set(['state','send','stop','regenerate','new_chat','open_chat','rename_chat','pin_chat','archive_chat','restore_chat','delete_chat','list_chats','select_model','download','cancel_download','refresh_catalog','preferences','desktop_info','check_updates']);
-let window, backend, ready, sequence = 0, quitting = false;
+const METHODS = new Set(['state','send','stop','regenerate','new_chat','open_chat','rename_chat','pin_chat','archive_chat','restore_chat','delete_chat','list_chats','select_model','download','cancel_download','refresh_catalog','preferences','desktop_info','check_updates','install_update']);
+let window, backend, ready, sequence = 0, quitting = false, updating = false;
 const pending = new Map();
 if (process.env.LAMBDA_DATA_HOME) {
   const stateDir = path.join(process.env.LAMBDA_DATA_HOME,'desktop-shell');
   fs.mkdirSync(stateDir,{recursive:true}); app.setPath('userData',stateDir);
+}
+const updateReceipt=process.env.LAMBDA_UPDATE_RECEIPT,updateToken=process.env.LAMBDA_UPDATE_TOKEN;
+delete process.env.LAMBDA_UPDATE_RECEIPT;delete process.env.LAMBDA_UPDATE_TOKEN;
+function confirmUpdate(){
+  if(updateReceipt&&/^[a-f0-9]{64}$/.test(updateToken||'')){
+    fs.writeFileSync(updateReceipt,JSON.stringify({token:updateToken,version:app.getVersion()}),{mode:0o600});
+  }
+}
+function updateSupport(){
+  try{if(!app.isPackaged)throw new Error('In-app updates are available in the installed application.');installTarget(process.platform,app.getPath('exe'));return {installable:true};}
+  catch(error){return {installable:false,reason:error.message};}
+}
+function lastUpdate(){try{return JSON.parse(fs.readFileSync(path.join(app.getPath('userData'),'desktop-update-result.json'),'utf8'));}catch{return null;}}
+async function cleanUpdateCache(){
+  const cache=path.join(app.getPath('userData'),'updates-cache');
+  for(const entry of await fs.promises.readdir(cache,{withFileTypes:true}).catch(()=>[])){
+    if(!entry.isDirectory()||!entry.name.startsWith('update-'))continue;
+    const directory=path.join(cache,entry.name),info=await fs.promises.stat(directory).catch(()=>null);
+    if(info&&Date.now()-info.mtimeMs>86400000)await fs.promises.rm(directory,{recursive:true,force:true}).catch(()=>{});
+  }
 }
 
 function engineCommand() {
@@ -78,6 +98,9 @@ if (!app.requestSingleInstanceLock()) app.quit();
 else {
   app.on('second-instance',() => { if (window) { if (window.isMinimized()) window.restore(); window.show(); window.focus(); } });
   app.whenReady().then(async () => {
+    // Native-update CI launches the actual replacement binary without inference.
+    if(process.env.LAMBDA_UPDATE_TEST==='1'&&updateReceipt){confirmUpdate();app.quit();return;}
+    cleanUpdateCache().catch(()=>{});
     const menu = [{label:'Lambda',submenu:[{role:'about'},{type:'separator'},
       {label:'Settings…',accelerator:'CmdOrCtrl+,',click:() => window?.webContents.send('lambda:event',{event:'navigate',data:{view:'settings'}})},
       {type:'separator'},{role:'hide'},{role:'hideOthers'},{role:'unhide'},{type:'separator'},{role:'quit'}]},
@@ -87,8 +110,25 @@ else {
     ipcMain.handle('lambda:request',async (event,method,params) => {
       if (event.sender !== window?.webContents || !METHODS.has(method)) throw new Error('Unsupported desktop operation.');
       if (JSON.stringify(params||{}).length > 100000) throw new Error('Request too large.');
-      if (method==='desktop_info') return {version:app.getVersion(),platform:process.platform,arch:process.arch};
-      if (method==='check_updates') return checkForUpdates(app.getVersion(),process.platform,process.arch);
+      if (method==='desktop_info') return {version:app.getVersion(),platform:process.platform,arch:process.arch,lastUpdate:lastUpdate()};
+      if (method==='check_updates') return {...await checkForUpdates(app.getVersion(),process.platform,process.arch),...updateSupport()};
+      if (method==='install_update') {
+        if(updating)throw new Error('An application update is already running.');
+        const support=updateSupport();if(!support.installable)throw new Error(support.reason);
+        updating=true;
+        try{
+          const state=await request('state');if(state.generating||state.downloading)throw new Error('Finish or stop the current reply or model download before updating.');
+          const release=await checkForUpdates(app.getVersion(),process.platform,process.arch);
+          if(release.status!=='available'||!release.direct)throw new Error('No newer application package is available for this device.');
+          const [engine,args]=engineCommand();if(args.length)throw new Error('Run the installed application to update it.');
+          await prepareUpdate({release,platform:process.platform,executable:app.getPath('exe'),engine,
+            cache:path.join(app.getPath('userData'),'updates-cache'),result:path.join(app.getPath('userData'),'desktop-update-result.json'),
+            onProgress:data=>window?.webContents.send('lambda:event',{event:'application-update',data})});
+          window?.webContents.send('lambda:event',{event:'application-update',data:{phase:'restarting',version:release.latest,percent:100}});
+          setTimeout(()=>app.quit(),350);return {restarting:true};
+        }catch(error){updating=false;window?.webContents.send('lambda:event',{event:'application-update',data:{phase:'error',message:error.message}});throw error;}
+      }
+      if(updating&&['send','regenerate','download'].includes(method))throw new Error('The application is preparing an update. Please wait for the restart.');
       return request(method,params);
     });
     ipcMain.handle('lambda:external',async (event,url) => {
@@ -97,7 +137,7 @@ else {
       if (!['http:','https:'].includes(parsed.protocol) || parsed.username || parsed.password) throw new Error('Only web links can be opened.');
       await shell.openExternal(parsed.href);
     });
-    startBackend(); await createWindow();
+    startBackend(); await createWindow();ready.then(confirmUpdate).catch(()=>{});
     app.on('activate',() => { if (!window) createWindow(); else window.show(); });
   });
   app.on('before-quit',event => {
