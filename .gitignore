@@ -10,3 +10,10 @@ dist/
 rozmowa-*.json
 conversation-*.json
 *.sqlite3*
+desktop/node_modules/
+desktop/.build-venv/
+desktop/backend-build/
+desktop/backend-dist/
+desktop/release/
+desktop/test-artifacts/
+desktop/assets/icon.iconset/

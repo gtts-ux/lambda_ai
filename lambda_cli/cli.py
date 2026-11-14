@@ -32,6 +32,7 @@ def parser():
     usage = sub.add_parser("usage", help="Show remaining tokens and the 10-hour reset")
     usage.add_argument("--json", action="store_true")
     sub.add_parser("update", help="Update the application, model catalog and installed models")
+    sub.add_parser("desktop", help="Show the desktop app download link for macOS, Windows and Linux")
     model = sub.add_parser("model", help="List, install or select models")
     model.add_argument("action", choices=["list", "install", "use"], nargs="?", default="list")
     model.add_argument("identifier", nargs="?")
@@ -85,6 +86,10 @@ def plain_chat(session):
 
 def main(argv=None):
     args = parser().parse_args(argv)
+    if args.command == 'desktop':
+        from .desktop_links import DESKTOP_INFO
+        print(DESKTOP_INFO)
+        return 0
     try:
         import os
         from .engine import Engine, Settings

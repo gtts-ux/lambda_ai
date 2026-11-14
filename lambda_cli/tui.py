@@ -89,7 +89,7 @@ class TerminalApp:
             height=2, prompt=" › ", multiline=False, wrap_lines=False, style="class:input",
             history=InMemoryHistory(), accept_handler=self.submit,
             completer=WordCompleter(["/chat", "/chats", "/rename", "/search", "/pin", "/edit", "/retry", "/tokens", "/model", "/stats", "/temperature",
-                                     "/limit", "/topk", "/new", "/memory", "/save", "/update", "/updates", "/intent", "/help", "/exit"]),
+                                     "/limit", "/topk", "/new", "/memory", "/save", "/update", "/updates", "/desktop", "/intent", "/help", "/exit"]),
             complete_while_typing=True,
         )
         self.input.buffer.on_text_changed += self.input_changed
@@ -345,6 +345,7 @@ class TerminalApp:
                     "  /update    Update the app and installed models\n\n"
                     "  /chats     Open a saved local conversation\n"
                     "  /new starts another saved conversation.\n"
+                    "  /desktop   Get the desktop app for macOS, Windows or Linux\n"
                     "  Experimental model · answers can be incorrect.")
         blocks = []
         reply = 0

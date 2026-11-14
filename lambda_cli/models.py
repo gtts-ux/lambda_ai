@@ -17,7 +17,7 @@ from .families import canonical_id,display_name
 CATALOG_URL = "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/catalog.json"
 BUNDLED_CATALOG = Path(__file__).resolve().parent/"assets/catalog.json"
 DEFAULT_ID = "lambda-1.0"
-MAX_MODEL_BYTES = 64 * 1024 * 1024
+MAX_MODEL_BYTES = 160 * 1024 * 1024
 
 
 def atomic_json(path, data):

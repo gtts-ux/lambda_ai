@@ -1,0 +1,81 @@
+{
+  "name": "lambda-desktop",
+  "productName": "Lambda",
+  "version": "1.1.0",
+  "private": true,
+  "description": "A local desktop home for Lambda conversations and models.",
+  "main": "main.cjs",
+  "author": "Lambda AI",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "build:backend": "node tools/build-backend.cjs",
+    "build:mac": "npm run build:backend && electron tools/icon.cjs && electron-builder --mac zip --publish never",
+    "build:win": "npm run build:backend && electron tools/icon.cjs && electron-builder --win nsis --x64 --publish never",
+    "build:linux": "npm run build:backend && electron tools/icon.cjs && electron-builder --linux AppImage --x64 --publish never",
+    "test:desktop": "node tests/desktop.cjs",
+    "test:updates": "node --test tests/updates.cjs"
+  },
+  "dependencies": {
+    "dompurify": "^3.3.0",
+    "prismjs": "^1.30.0",
+    "marked": "^16.4.0"
+  },
+  "devDependencies": {
+    "electron": "^39.0.0",
+    "electron-builder": "^26.18.0",
+    "playwright": "^1.56.0"
+  },
+  "build": {
+    "appId": "ai.lambda.desktop",
+    "electronDist": "node_modules/electron/dist",
+    "productName": "Lambda",
+    "directories": {
+      "output": "release",
+      "buildResources": "assets"
+    },
+    "files": [
+      "main.cjs",
+      "preload.cjs",
+      "renderer/**/*",
+      "package.json",
+      "node_modules/marked/**/*",
+      "node_modules/dompurify/**/*",
+      "node_modules/prismjs/**/*",
+      "updates.cjs",
+      "assets/icon.png",
+      "assets/logo.jpg"
+    ],
+    "extraResources": [
+      {
+        "from": "backend-dist/lambda-backend",
+        "to": "backend"
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "identity": null,
+      "target": "zip",
+      "icon": "assets/icon.icns",
+      "minimumSystemVersion": "14.0.0",
+      "artifactName": "Lambda-${version}-macos-${arch}.${ext}"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico",
+      "artifactName": "Lambda-${version}-windows-${arch}.${ext}"
+    },
+    "linux": {
+      "target": "AppImage",
+      "category": "Utility",
+      "icon": "assets/icon.png",
+      "artifactName": "Lambda-${version}-linux-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "asar": true,
+    "artifactName": "Lambda-${version}-${os}-${arch}.${ext}"
+  }
+}

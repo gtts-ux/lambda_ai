@@ -28,7 +28,7 @@ class Lambda24ReleaseTests(unittest.TestCase):
 
     def test_large_model_download_budget_still_has_a_bound(self):
         catalog=json.loads((ROOT/'models/catalog.json').read_text());entry=catalog['models'][-1]
-        entry['bytes']=64*1024*1024;validate_catalog(catalog)
+        entry['bytes']=MAX_MODEL_BYTES;validate_catalog(catalog)
         entry['bytes']+=1
         with self.assertRaisesRegex(ValueError,'model size'):validate_catalog(catalog)
 

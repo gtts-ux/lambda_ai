@@ -34,6 +34,20 @@ The model families are **Mercury (1.x)**, **Venus (2.x)**, **Code (3)** and
 `lambda-2.4` and the alias `lambda-venus-2.4` both select Venus 2.4. Older
 inference files keep their original bytes; app 0.8.5 presents the new names.
 
+## Desktop app
+
+[Download Desktop app 1.1.0 for macOS, Windows or Linux](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.1.0).
+Run `lambda desktop` or `/desktop` in terminal app 0.8.6+ to get this link.
+
+The optional [Lambda Desktop](desktop/README.md) provides a separate window with
+saved chats, streaming replies, colored code blocks, appearance settings and a
+profile showing the shared token allowance and reset time. Download models
+individually in Settings; only available models appear in the chat picker.
+It uses the same local engine, conversations and allowance as the terminal app.
+It uses the supplied orange logo and offers optional profile context, chat deletion
+and Settings → Updates → Check for updates. See the desktop guide for installation
+and source builds.
+
 ## Install
 
 Requires **Python 3.11+**. On macOS or Linux:

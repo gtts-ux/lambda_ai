@@ -16,7 +16,7 @@ CODE_FORMAT = "lambda-ai-code-transformer-v6"
 def weight_shapes(config):
     d, n, v, t = (int(config[k]) for k in ("width", "layers", "vocabulary", "context"))
     h = int(config["heads"])
-    if not (1 <= n <= 16 and 8 <= d <= 1024 and 1 <= h <= 32 and d % h == 0
+    if not (1 <= n <= 24 and 8 <= d <= 1024 and 1 <= h <= 32 and d % h == 0
             and 16 <= t <= 2048 and 261 <= v <= 16384):
         raise ValueError("Invalid Transformer dimensions.")
     shapes = {"token": (v, d), "position": (t, d), "norm_w": (d,), "norm_b": (d,)}
@@ -43,7 +43,7 @@ def weight_shapes(config):
             shapes['evidence_'+key+'_a']=(a,rank);shapes['evidence_'+key+'_b']=(rank,b)
         if config.get('span_reader'):
             shapes.update(span_end_q=(2*d,p),span_end_k=(2*d,p),span_answerable_w=(d,2),span_answerable_b=(2,))
-    if sum(np.prod(s) for s in shapes.values()) > 30000000:
+    if sum(np.prod(s) for s in shapes.values()) > 40000000:
         raise ValueError("Transformer exceeds the supported parameter budget.")
     return shapes
 

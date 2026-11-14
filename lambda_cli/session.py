@@ -56,6 +56,7 @@ COMMANDS
 /memory                   Show whether this model uses conversation context
 /save [filename.json]     Export this conversation
 /help                     Show this help
+/desktop                  Desktop app downloads for macOS, Windows and Linux
 /exit                     Exit
 
 Allowance: 1,000,000 input + generated tokens per OS user every 10 hours,
@@ -402,6 +403,8 @@ class Session:
                  '  App downloads are verified before installation.',
                  '  Restart Lambda after an app upgrade. Your models and allowance stay.', '',
                  'UPDATE ACTIVITY', '']
+        from .desktop_links import DESKTOP_URL
+        lines[0:0] = ['DESKTOP APP / macOS · Windows · Linux', '  '+DESKTOP_URL, '']
         lines.extend('  '+line for line in self.update_log)
         if not self.update_log:
             lines.append('  No update check in this session. Enter /update to begin.')
@@ -499,6 +502,9 @@ class Session:
         command, _, value = text.partition(" ")
         command, value = command.lower(), value.strip()
         command = {"/quit":"/exit", "/clear":"/new", "/usage":"/stats"}.get(command, command)
+        if command == '/desktop':
+            from .desktop_links import DESKTOP_INFO
+            return '', DESKTOP_INFO
         if command == "/update":
             return "update", ""
         if command == '/search':

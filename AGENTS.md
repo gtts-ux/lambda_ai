@@ -269,3 +269,144 @@
   old training replay; no old evaluation inputs as labels. Bound the audited
   session to 8 hours / 30000 updates, retain all checkpoints, default-sampling
   generated replies and final reports. No automatic publication or installation.
+- The owner then demonstrated Terra 4.1 corrupting ordinary `hello`/`hi` replies.
+  This regression was reproduced in 4.1 and the ongoing 4.2's selected snapshot;
+  the earlier authored 61/64 quiz omitted these basic conversation guards and
+  does not establish superior general chat. Original terra_42 was safely paused
+  at step 757; preserve its checkpoints and published 4.1 artifact bytes.
+  The owner requested fixing Terra's actual conversation, not canned app replies.
+  Private `terra_42_repair` continues own 4.1 with frozen embeddings/first four
+  blocks, guaranteed fresh/contextual old-chat replay in every update and KL
+  distillation from own frozen Venus 2.4 on old-chat rows. Broader generated guards
+  check actual default sampling, multiple seeds, greetings, identity, old facts,
+  math, repeated characters and model-generated multi-turn histories. Known
+  exposed cases are regression guards, never unseen benchmark claims. The
+  separate challenge final split and full final dialogue rollout do not select
+  checkpoints. Keep the 8-hour/30000-update cap, resumable optimizer/RNG saves,
+  honest raw-answer reports and no automatic publication/installation.
+- Latest owner naming instruction (2026-11-13): the ongoing `terra_42_repair`
+  candidate is intended as a corrected **lambda terra 4.1** (`lambda-terra-4.1`),
+  replacing the current 4.1 offering, not a new public 4.2. This supersedes the
+  intended release name above. Keep the running trainer/config/fingerprint and
+  historical paths unchanged so resumability is preserved. At release preparation
+  rename inference metadata and publish a new catalog revision of the same model
+  ID with a new immutable artifact filename/hash; preserve the old revision,
+  checkpoints and chat bindings. Do not overwrite the previously published NPZ
+  in place or silently install/release unreviewed weights. This message records
+  the future replacement instruction; it does not request interrupting training.
+- The owner subsequently requested continuing from the selected repair update
+  2000, concentrating on memory/topic errors while protecting ALL existing skills.
+  Private `terra_41_retention` pins that own checkpoint/NPZ and retains the name
+  **lambda terra 4.1**. Only the last two blocks, norm and pointer may train;
+  embeddings/positions/first six blocks and an identical retention teacher are
+  frozen. Replay/distillation covers chat, facts, math, memory and instructions;
+  training-only attention/gate labels point to the appropriate user's personal
+  fact, including distractors, corrections, third parties and wrong prior bot
+  echoes. No application-side factual parsing or response substitution.
+  Selection is casewise: reject ANY lost previously correct regression/focus
+  case or newly degenerate output, even when totals improve. This protects only
+  the finite measured cases and must never be described as guaranteed zero loss
+  on all prompts. All inspected old final cases are now exposed regressions;
+  new final identities/wording are separate from checkpoint selection. Keep the
+  pinned source if no qualified improvement survives. Bound this separate run
+  to 240 minutes / 12000 updates plus final checks, save model/optimizer/RNG,
+  and do not automatically install or publish the result.
+- On 2026-11-14 the owner requested ten different real conversations comparing
+  Venus 2.4 and the preserved repair update-2000 Terra 4.1 candidate. Private
+  `../diagnostics/chat_comparison_2026_11_14` records 120 raw replies, frozen
+  prompts/rubrics, identical UI sampling and each model's own generated history.
+  Manual 0/1/2 scoring gave Venus 50/120 and Terra 56/120; conversation wins were
+  Venus 3, Terra 4, ties 3. Both still fail arithmetic, relation-aware memory,
+  follow-ups and object tracking, and can produce semantic gibberish. Do not
+  claim reliable ordinary chat or general superiority from earlier keyword-only
+  counts: 'Your name is green' is wrong even when 'green' matches a memory key.
+  These inspected conversations are now exposed diagnostics, not future unseen
+  evaluation cases. Full English transcript/report is also on the Desktop.
+- The owner then requested substantially training Terra 4.1 toward a 2x
+  improvement over Venus 2.4 after the small real-conversation advantage. The
+  new private `terra_41_dialogue` preserves own repaired update 2000 and adds one
+  identity-initialized residual block (9 blocks, 17,121,409 parameters). Verify
+  unchanged initial source probabilities/arrays and v4 runtime/export parity;
+  keep exports within the existing 64 MiB app download limit. First six original
+  blocks and embeddings remain frozen; the new block and slow last-two/pointer
+  adaptation learn complete conversations, including each acknowledgement,
+  relational recall, corrected/friend identities, object tracking, arithmetic,
+  exact instructions, natural follow-ups and study planning. Some training-only
+  prior assistant replies are corrupted while USER facts stay intact.
+  Short human OASST1 English dialogues supplement language learning; official
+  revision/checksum/Apache 2.0 notice and human/synthetic filtering are documented
+  in its SOURCES.md. No external pretrained weights or app-side answer rules.
+  New generated dev/final conversations use full-response conservative grading,
+  not keyword hits; source retention remains casewise. The stated target is at
+  least 2x fewer errors vs 2.4, twice the correct replies where reachable and
+  >=80% on that limited rubric, never twice general intelligence. Retain human
+  language outputs for review. Bound this separate resumable run to 480 minutes
+  / 24000 updates plus final checks; no silent extension or automatic release.
+  The approved future identity remains **lambda terra 4.1**, replacing the
+  offering only through a reviewed new immutable artifact/catalog revision.
+- `terra_41_dialogue` completed 24000 updates in ~355 minutes with NO qualified
+  candidate and no installation/publication. Development peaked at 37/60
+  (updates 11000/15000/16000) vs Venus 22/60 and repaired source 25/60; the last
+  update fell to 33/60. Update 16000 reached 6/6 on simple attribute recall,
+  literal instructions and object tracking, but still had real arithmetic,
+  name-binding and fluency failures plus old-skill regressions. No independent
+  final conversation score exists because retention gates never passed.
+  Important checkpoint limitation: only QUALIFIED best weights were archived,
+  so update-16000 response logs exist but its exact weights do NOT. Keep the
+  source-2000 and final-24000 artifacts unchanged. A future experiment should
+  archive developmental progress separately from release qualification, while
+  never representing rejected progress as an approved model. Do not claim the
+  16000 model can be installed from the logs. Post-training cached NumPy/full
+  Torch parity passed on inspected prompts (<2e-6 probability difference);
+  the examined malformed replies are in the model, not explained by a cache
+  mismatch. See ../conversation_training/runs/terra_41_dialogue/completion_audit.md.
+- Latest owner instruction: fix checkpoint retention, continue from the best
+  available 4.1 weights, and increase capacity to approximately 35M parameters.
+  Private `terra_41_35m` compares four actual available repaired checkpoints:
+  repair-2000 25/60, repair-4000 28/60, retention-4000 23/60, dialogue-24000 33/60;
+  all scored 9/9 on the separate sampled core checks. It pins dialogue-24000
+  (total step 59650), while explicitly retaining its known failures. Missing
+  update-16000 weights cannot be recovered from logs or represented as available.
+  The new model has 35,028,097 parameters, 19 blocks, pointer width 256, 512
+  context. Identity residual blocks and Q/K rescaling preserve source behavior
+  initially; preflight verifies full/cached probabilities and actual learning.
+  EVERY evaluated update must be atomically archived with inference weights,
+  optimizer/RNG checkpoint and checksums BEFORE quality gating. Keep independent
+  progress_best and qualified_best pointers: release rejection never discards
+  a developmental record. Snapshot restore/immutability/interrupted-export tests
+  passed. End-of-run review evaluates preserved progress even if unqualified,
+  without installing/publishing it. Run cap: 480 minutes / 24000 new updates.
+  Local runtime preparation raises limits to 24 layers / 40M parameters and
+  160 MiB downloads; 118 app tests passed. No app release was made. Public 35M
+  weights require the matching future app update (min 0.8.6), with portable
+  launchers unchanged. Preserve current artifacts/chats/quota and keep the
+  approved future model identity **lambda terra 4.1**.
+- The owner requested a desktop chat app while the 35M trainer continues. The
+  separate `desktop/` Electron UI and packaged Python bridge use the existing
+  engine, ChatStore, ModelManager and Quota. Keep all text English, real neural
+  streaming replies, shared token settlement and portable resource paths. Do not
+  embed personal launchers, private training files or the user's downloaded models.
+  The standalone bundle includes only the small Mercury 1.0 starter. Additional
+  model downloads must be explicit, individual, validated and cancellable; catalog
+  refresh is metadata-only, and the chat picker lists available models only.
+  Preserve archived chats in the existing DB, appearance preferences and CLI data.
+  Desktop 1.0.0 is separate from the terminal package version and is not a published
+  CLI update. Only Intel macOS packaging has been tested; do not claim verified
+  Windows/Linux packages. GUI tests must use isolated temporary data and quota.
+  No GitHub/model publication or training interruption was requested for this UI.
+- Latest desktop request supersedes the preview-only publication rule: publish
+  **Desktop app 1.1.0** as a separate `desktop-v1.1.0` GitHub release in this repo,
+  with native Windows/Linux and Intel/Apple Silicon macOS packages. The provided
+  orange Lambda image is the approved logo. Models live under Settings; remove
+  the Explore models sidebar shortcut. Orange is the default accent and dark
+  surfaces use warm charcoal. Profile name/age/location/interests may be supplied
+  as bounded neural input context, with an off switch; never fabricate model
+  answers from these fields. Keep profile information local and out of update
+  requests. Deletion requires an explicit UI action and confirmation, removes
+  only the selected chat and must not reset quota or delete models. Keep sidebar
+  chats independently scrollable. Settings → Updates checks only `desktop-v*`
+  releases and offers a matching native download; do not claim silent installation.
+  Terminal 0.8.6 adds `lambda desktop`, `/desktop` and download information. It
+  includes the already-tested large-model runtime bounds without changing the
+  currently running 35M training fingerprint. Keep personal launchers portable,
+  preserve old public artifacts and publish no new model in this app release.

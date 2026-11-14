@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-accent="orange" data-density="comfortable">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'">
+  <title>Lambda</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <aside class="sidebar" aria-label="Conversations">
+      <div class="sidebar-drag"></div>
+      <button class="brand" id="brand-new" title="New chat"><img class="brand-logo" src="../assets/logo.jpg" alt=""><span>Lambda</span><span class="brand-dot"></span></button>
+      <button class="new-chat" id="new-chat"><span data-icon="plus"></span>New chat<span class="shortcut">⌘ N</span></button>
+      <div class="search-box"><span data-icon="search"></span><input id="chat-search" aria-label="Search chats" placeholder="Search your chats"><kbd>⌘ K</kbd></div>
+      <div class="sidebar-label"><span id="chat-list-label">YOUR CHATS</span><button class="icon-button tiny" id="archive-view" title="Show archived chats" aria-label="Show archived chats"><span data-icon="archive"></span></button></div>
+      <div id="chat-list" class="chat-list" role="list" aria-label="Saved chats"></div>
+      <div class="sidebar-bottom">
+        
+        <div class="profile-row"><button id="profile-button" class="profile-button"><span class="avatar" id="profile-avatar">L</span><span class="profile-label"><strong id="profile-name">Local profile</strong><span id="sidebar-allowance">Your space, on your device</span></span></button><button class="icon-button" id="settings-button" aria-label="Settings" title="Settings"><span data-icon="settings"></span></button></div>
+      </div>
+    </aside>
+    <main class="workspace">
+      <header class="topbar"><div class="topbar-left"><button id="sidebar-toggle" class="icon-button" aria-label="Toggle sidebar" title="Toggle sidebar"><span data-icon="panel"></span></button><span class="topbar-divider"></span><button id="chat-title" class="chat-title" title="Rename conversation">New chat</button></div><div class="topbar-right"><span class="local-status"><span></span>On your device</span><button id="chat-actions" class="icon-button" title="Conversation actions" aria-label="Conversation actions"><span data-icon="more"></span></button></div></header>
+      <div id="conversation-scroll" class="conversation-scroll">
+        <section id="empty-state" class="empty-state">
+          <div class="welcome-mark"><img src="../assets/logo.jpg" alt="Lambda"></div><p class="eyebrow">A LITTLE ROOM TO THINK</p><h1>What’s on your mind?</h1><p class="welcome-copy">A question, an idea, a fresh start.<br>Your conversations stay on this device.</p>
+          <div class="starter-grid"><button class="starter" data-prompt="Hello! Who are you?"><span data-icon="spark"></span><strong>Say hello</strong><span>Meet your local assistant</span></button><button class="starter" data-prompt="What is gravity?"><span data-icon="orbit"></span><strong>Get curious</strong><span>Explore a simple question</span></button><button class="starter" data-prompt="My name is Alex. Can you remember it?"><span data-icon="message"></span><strong>Start a conversation</strong><span>Pick up a new thread</span></button></div>
+        </section>
+        <section id="messages" class="messages" aria-label="Conversation" aria-live="polite" aria-relevant="additions"></section>
+      </div>
+      <button id="scroll-bottom" class="scroll-bottom icon-button" title="Jump to latest message" aria-label="Jump to latest message" hidden><span data-icon="down"></span></button>
+      <div class="composer-area">
+        <div id="chat-notice" class="chat-notice" role="status" hidden></div>
+        <form id="composer" class="composer"><textarea id="message-input" rows="1" maxlength="20000" placeholder="Message Lambda…" aria-label="Message Lambda"></textarea><div class="composer-bottom"><button id="model-button" type="button" class="model-button" aria-expanded="false"><span class="model-mini-mark">λ</span><span id="selected-model">Choose a model</span><span data-icon="chevron"></span></button><div class="composer-right"><span id="generation-status" class="generation-status"></span><button id="send-button" class="send-button" type="submit" aria-label="Send message" title="Send message"><span data-icon="up"></span></button></div></div></form>
+        <div class="composer-caption"><span>Local models can make mistakes.</span><span id="composer-hint">Enter to send <span class="caption-dot">·</span> Shift + Enter for a new line</span></div>
+      </div>
+    </main>
+  </div>
+  <div id="popover" class="popover" hidden></div>
+  <dialog id="settings-dialog" class="settings-dialog" aria-labelledby="settings-title"><div class="settings-shell"><nav class="settings-nav" aria-label="Settings"><div class="settings-heading"><img class="brand-logo" src="../assets/logo.jpg" alt=""><h2 id="settings-title">Settings</h2></div><button data-tab="appearance"><span data-icon="palette"></span>Appearance</button><button data-tab="models"><span data-icon="layers"></span>Models</button><button data-tab="chat"><span data-icon="message"></span>Conversations</button><button data-tab="profile"><span data-icon="user"></span>Profile & usage</button><button data-tab="updates"><span data-icon="refresh"></span>Updates</button><div class="settings-nav-footer">LAMBDA DESKTOP<span>Version 1.1.0</span></div></nav><div class="settings-body"><button id="close-settings" class="icon-button close-settings" aria-label="Close settings"><span data-icon="close"></span></button><div id="settings-content"></div></div></div></dialog>
+  <dialog id="rename-dialog" class="rename-dialog"><form id="rename-form"><h2>Rename conversation</h2><p>Give this thread a name that’s easy to find.</p><input id="rename-input" maxlength="100" aria-label="Conversation name" required><div class="dialog-actions"><button id="rename-cancel" type="button" class="secondary-button">Cancel</button><button class="primary-button" type="submit">Save name</button></div></form></dialog>
+  <dialog id="delete-dialog" class="rename-dialog"><form id="delete-form"><h2>Delete conversation?</h2><p id="delete-description">This removes the conversation from this device. Your models and token allowance stay the same.</p><div class="dialog-actions"><button id="delete-cancel" type="button" class="secondary-button">Keep chat</button><button class="danger-button" type="submit">Delete chat</button></div></form></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <script src="../node_modules/marked/lib/marked.umd.js"></script>
+  <script src="../node_modules/dompurify/dist/purify.min.js"></script>
+  <script src="../node_modules/prismjs/prism.js" data-manual></script>
+  <script src="../node_modules/prismjs/components/prism-python.min.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>
