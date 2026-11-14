@@ -178,7 +178,7 @@ function profileMenu(){
 function openSettings(view='appearance'){
   closePopover();tab=view;renderSettings();if(!$('#settings-dialog').open)$('#settings-dialog').showModal();
 }
-async function preference(values){const result=await act('preferences',{values});if(result)renderSettings();}
+async function preference(values){const result=await act('preferences',{values});if(!result)return;if(tab!=='profile')renderSettings();else{const name=$('.profile-heading strong');if(name)name.textContent=S.preferences.displayName;}}
 function renderSettings(){
   if(!S)return;
   document.querySelectorAll('.settings-nav [data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));

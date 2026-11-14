@@ -62,6 +62,8 @@ async function launch(){
   await expect(page.locator('#profile-age')).toHaveValue('24');
   await page.locator('#profile-location').fill('Warsaw');await page.locator('#profile-location').press('Tab');
   await expect(page.locator('#profile-location')).toHaveValue('Warsaw');
+  await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(data,'desktop.json'),'utf8')).location).toBe('Warsaw');
+  assert.equal(JSON.parse(fs.readFileSync(path.join(data,'desktop.json'),'utf8')).age,'24');
   await page.screenshot({path:path.join(artifacts,'profile-dark.png')});
   await page.locator('[data-tab="models"]').click();
   await page.screenshot({path:path.join(artifacts,'models-dark.png')});
