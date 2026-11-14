@@ -16,3 +16,9 @@ test('current version stays current; foreign asset links are never used',async()
 test('network failures are reported rather than claiming up-to-date',async()=>{
   await assert.rejects(checkForUpdates('1.1.0','linux','x64',async()=>{throw new Error('Offline');}),/Offline/);
 });
+test('Linux x64 checks use the native x86_64 AppImage filename',async()=>{
+  const filename='Lambda-1.2.0-linux-x86_64.AppImage';
+  const url=`https://github.com/gtts-ux/lambda_ai/releases/download/desktop-v1.2.0/${filename}`;
+  const result=await checkForUpdates('1.1.1','linux','x64',async()=>[{tag_name:'desktop-v1.2.0',assets:[{name:filename,browser_download_url:url}]}]);
+  assert.equal(result.url,url);assert.equal(result.direct,true);
+});

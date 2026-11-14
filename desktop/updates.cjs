@@ -38,7 +38,8 @@ async function checkForUpdates(current, platform, arch, fetcher=fetchReleases) {
   const release=choices[0], latest=release.tag_name.slice(9);
   const os={darwin:'macos',win32:'windows',linux:'linux'}[platform];
   const ext={darwin:'zip',win32:'exe',linux:'AppImage'}[platform];
-  const filename=`Lambda-${latest}-${os}-${arch}.${ext}`;
+  const nativeArch=platform==='linux'&&arch==='x64'?'x86_64':arch;
+  const filename=`Lambda-${latest}-${os}-${nativeArch}.${ext}`;
   const asset=(release.assets||[]).find(a=>a.name===filename&&a.browser_download_url===`${RELEASES}/download/${release.tag_name}/${filename}`);
   return {status:compare(latest,current)>0?'available':'current',current,latest,
     url:asset?.browser_download_url||`${RELEASES}/tag/${release.tag_name}`,direct:!!asset};

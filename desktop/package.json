@@ -1,7 +1,7 @@
 {
   "name": "lambda-desktop",
   "productName": "Lambda",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "description": "A local desktop home for Lambda conversations and models.",
   "main": "main.cjs",
@@ -44,7 +44,8 @@
       "node_modules/prismjs/**/*",
       "updates.cjs",
       "assets/icon.png",
-      "assets/logo.jpg"
+      "assets/logo.jpg",
+      "assets/logo.svg"
     ],
     "extraResources": [
       {

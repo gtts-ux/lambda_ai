@@ -410,3 +410,12 @@
   includes the already-tested large-model runtime bounds without changing the
   currently running 35M training fingerprint. Keep personal launchers portable,
   preserve old public artifacts and publish no new model in this app release.
+
+- After Desktop app 1.1.0 passed all four native builds and was published, the
+  owner requested removing the logo's white exterior corners. Desktop 1.1.1
+  preserves the supplied raster inside an SVG corner mask; icon generation
+  must verify fully transparent exterior and fully opaque orange interior.
+  Do not ship background-removal attempts with holes in the orange tile. Keep
+  1.1.0 release assets immutable. The patch also recognizes electron-builder's
+  Linux x86_64 filename in desktop update checks. Terminal 0.8.7 updates its
+  desktop release link; retain its previous wheel and all model artifacts.

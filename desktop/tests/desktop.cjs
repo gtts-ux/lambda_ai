@@ -28,7 +28,17 @@ async function launch(){
 (async()=>{
   let page=await launch();
   await expect(page.locator('#models-shortcut')).toHaveCount(0);
-  await expect(page.locator('#brand-new .brand-logo')).toHaveAttribute('src','../assets/logo.jpg');
+  await expect(page.locator('#brand-new .brand-logo')).toHaveAttribute('src','../assets/logo.svg');
+  const alpha=await page.locator('#brand-new .brand-logo').evaluate(async image=>{
+    await image.decode();const canvas=document.createElement('canvas');canvas.width=canvas.height=128;
+    const c=canvas.getContext('2d');c.drawImage(image,0,0,128,128);
+    const pixel=(x,y)=>Array.from(c.getImageData(x,y,1,1).data);
+    return {corner:pixel(0,0),orange:pixel(18,64),glyph:pixel(64,64)};
+  });
+  assert.equal(alpha.corner[3],0,'Logo corners must be transparent');
+  assert.equal(alpha.orange[3],255,'The orange tile must stay opaque');
+  assert(alpha.orange[0]>180&&alpha.orange[1]>65&&alpha.orange[2]<60,'The supplied orange must remain');
+  assert.equal(alpha.glyph[3],255,'The white lambda must stay opaque');
   await expect(page.locator('.chat-item')).toHaveCount(3);
   assert.equal(fs.readdirSync(path.join(data,'models')).filter(f=>f.endsWith('.npz')).length,2,'Startup must not download models');
   await expect(page.locator('.message-content pre code')).toHaveCount(1);
