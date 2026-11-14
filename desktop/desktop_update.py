@@ -86,6 +86,9 @@ def prepare(job):
             raise ValueError('The downloaded application has the wrong identity or version.')
         if not (candidate/'Contents/MacOS/Lambda').is_file():
             raise ValueError('The update executable is missing.')
+        # Validate the sealed bundle before closing/replacing a working install.
+        subprocess.run(['/usr/bin/codesign', '--verify', '--deep', '--strict', str(candidate)],
+                       check=True, timeout=90, capture_output=True)
         job['candidate'] = str(candidate)
     elif sys.platform == 'linux':
         with payload.open('rb') as stream:

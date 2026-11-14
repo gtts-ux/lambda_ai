@@ -11,7 +11,7 @@ on:
         default: false
       version:
         description: Desktop version in package.json
-        default: '1.1.3'
+        default: '1.1.4'
         required: true
 
 permissions:
@@ -83,6 +83,9 @@ jobs:
           npm run test:updates
       - name: Package native desktop app
         run: ${{ matrix.command }}
+      - name: Verify macOS distributed ZIP signatures
+        if: runner.os == 'macOS'
+        run: npm run test:macos-signature
       - name: Test packaged desktop app
         run: |
           if [[ "$RUNNER_OS" == macOS ]]; then

@@ -1,12 +1,25 @@
-# Desktop app 1.1.3
+# Desktop app 1.1.4
 
-Settings → Updates now offers **Update & restart**. Lambda downloads the native package, verifies its SHA-256 and exact size, closes safely, updates the existing installation, and opens again. Downloading and preparation show progress. Chats, installed models, profile, token allowance and the terminal launcher are preserved.
+Fixes a macOS packaging error that could report Lambda as damaged on Apple Silicon.
+The previous ARM64 app retained an invalid resource signature. macOS packages now
+receive a complete ad-hoc signature after packaging, including the bundled Python
+engine, Electron helpers and native libraries. CI validates the final extracted
+ZIP on native Intel and Apple Silicon, checks relocation/quarantine metadata, and
+confirms that changing app.asar is detected. The updater also validates the macOS
+bundle before replacing a working application.
 
-- macOS: replaces the application bundle in its current writable location; restores the previous bundle if the new application fails to start.
-- Windows: applies the native installer in silent update mode in the existing installation directory, then starts Lambda.
-- Linux: replaces the running AppImage at its original path; restores the previous AppImage if startup fails.
-- The chat model picker keeps its expandable families and keyboard navigation.
+Chat families, one-click updates, local conversations, downloaded models, settings
+and token allowance are preserved. No model or training changes are included.
 
-The installed application must be writable by your user. On Linux, launch the AppImage rather than an extracted executable to use in-app updates. Versions 1.1.2 and earlier need one installation of this release to gain the updater; later updates can be applied from the app.
+For M1/M2/M3/M4 Macs, download **Lambda-1.1.4-macos-arm64.zip**. Extract Lambda.app
+and replace the previous app in Applications or another writable location. Do not
+merge the contents of the old and new app bundles.
 
-Download the package for your device: macOS Intel (`macos-x64.zip`), macOS Apple Silicon (`macos-arm64.zip`), Windows (`windows-x64.exe`), or Linux (`linux-x86_64.AppImage`). For a first macOS installation, extract Lambda.app and move it to Applications or another writable folder. Linux: make the AppImage executable and launch it. These community builds are unsigned; the operating system may request confirmation on first launch.
+These community packages have an ad-hoc signature, not an Apple Developer ID or
+notarization ticket. If macOS asks for approval, try opening Lambda, then go to
+System Settings → Privacy & Security → Open Anyway. This approval is specific to
+the application. Apple instructions: https://support.apple.com/guide/mac-help/mh40617/mac .
+
+Users whose old application opens can use Settings → Updates → Update & restart.
+A blocked old installation needs this replacement once to acquire the fix.
+Windows and Linux retain their existing native installers and in-app updater.

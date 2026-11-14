@@ -453,3 +453,30 @@
   Never close the current app after a failed download/preparation. Test actual
   native replacement and restart on all four platform/architecture builds before
   publication. Older desktop versions need one installation to acquire this updater.
+
+- On 2026-11-14 the owner approved a new bounded Terra 4.1 continuation focused
+  on natural English, topic switching/returns and longer replies. Private
+  `../conversation_training/terra_41_language` starts from the immutable 35M
+  update-4000 snapshot (total 63650), extends positions to 1024 and trains all
+  35,224,705 parameters at separate learning rates. Own weights only; OASST2,
+  existing Dolly, authored dialogue recombinations and replay are documented
+  separately. Session cap 480 minutes / 12000 updates plus bounded final checks;
+  save/resume includes optimizer and RNG, every evaluated artifact is retained.
+  Public identity remains lambda terra 4.1, but no installation/publication is
+  authorized automatically. Keep current public demo unchanged. During this
+  run do not edit fingerprinted `lambda_cli/engine.py`, `pointer.py`,
+  `transformer.py` or `byte_tokenizer.py`; UI-only work is independent. Broader
+  quality must be reviewed from generated conversations and raw longer replies.
+
+- Owner reported macOS "damaged" on an M3 after downloading Desktop 1.1.3.
+  The published ARM64 ZIP matched its SHA-256 but failed codesign verification
+  ("code has no resources but signature indicates they must be present").
+  Desktop 1.1.4 replaces mac.identity=null with explicit ad-hoc signing,
+  hardenedRuntime=false and strict verification. This is integrity signing,
+  NOT Apple Developer ID/notarization. Verify the final extracted ZIP and every
+  nested native binary on both Mac architectures, plus relocation/quarantine
+  metadata and tamper rejection. Verify an update's signature before replacing
+  the current Mac app. Keep previous releases immutable, models/data intact and
+  ongoing training/fingerprinted inference source untouched. Public documentation
+  must explain Apple's per-app Open Anyway approval honestly; do not claim that
+  ad-hoc signing alone grants Gatekeeper trust or disable protection globally.

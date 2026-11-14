@@ -36,7 +36,7 @@ inference files keep their original bytes; app 0.8.5 presents the new names.
 
 ## Desktop app
 
-[Download Desktop app 1.1.3 for macOS, Windows or Linux](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.1.3).
+[Download Desktop app 1.1.4 for macOS, Windows or Linux](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.1.4).
 Run `lambda desktop` or `/desktop` in terminal app 0.8.6+ to get this link.
 
 The optional [Lambda Desktop](desktop/README.md) provides a separate window with
