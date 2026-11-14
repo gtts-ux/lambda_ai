@@ -11,7 +11,7 @@ on:
         default: false
       version:
         description: Desktop version in package.json
-        default: '1.1.1'
+        default: '1.1.2'
         required: true
 
 permissions:

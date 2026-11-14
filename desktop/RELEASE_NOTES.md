@@ -1,35 +1,21 @@
-Lambda Desktop app 1.1.1 fixes the logo’s exterior white corners with a transparent SVG mask and native icons. The original orange face and white lambda are retained. Linux update checks also recognize the native x86_64 package name.
+Desktop app 1.1.2 improves the model picker beside the chat input.
 
-Includes the features introduced in Desktop app 1.1.0:
+- The picker starts with collapsed model families: Mercury, Venus, Code and Terra, as available on the device.
+- Expand a family to reveal its downloaded versions. Opening another family collapses the previous one.
+- The current family and selected version are marked clearly; selection still uses the same neural engine.
+- Arrow keys navigate, Right/Left expand and collapse, Enter selects, Escape closes.
+- Model downloads remain in Settings → Models. Opening or expanding the chat picker never downloads a model.
+- The expanded popup stays within the window, including at the minimum layout size.
 
-- Supplied orange Lambda logo, orange accent and warm charcoal dark theme.
-- Local saved chats with search, pinning, archives, a scrollable sidebar and delete controls.
-- Settings for appearance, individually downloaded models, response length and profile.
-- Optional name, age, location and interests supplied as neural input context.
-- Shared 1,000,000-token allowance with the terminal app, including reset countdown.
-- Streaming real model replies, stop, saved regeneration branches and colored code blocks.
-- Settings → Updates → Check for updates checks desktop releases separately from models.
+Includes the transparent orange logo, warm dark theme, local saved chats, profile context, usage counter and desktop update checker from previous releases. The bundled catalog now offers Terra 4.1 demo instead of the retired non-demo Terra 4.1. Previously installed files remain usable by old saved chats.
 
-Download the package for your device:
+| System | Package |
+| --- | --- |
+| macOS, Intel | `Lambda-1.1.2-macos-x64.zip` |
+| macOS, Apple Silicon | `Lambda-1.1.2-macos-arm64.zip` |
+| Windows x64 | `Lambda-1.1.2-windows-x64.exe` |
+| Linux x64 | `Lambda-1.1.2-linux-x86_64.AppImage` |
 
-| System | Package | Installation |
-| --- | --- | --- |
-| macOS, Intel | `Lambda-1.1.1-macos-x64.zip` | Extract, then drag Lambda.app to Applications. |
-| macOS, Apple Silicon | `Lambda-1.1.1-macos-arm64.zip` | Extract, then drag Lambda.app to Applications. |
-| Windows x64 | `Lambda-1.1.1-windows-x64.exe` | Run the installer. |
-| Linux x64 | `Lambda-1.1.1-linux-x86_64.AppImage` | Make executable with `chmod +x`, then run it. |
+macOS: extract and drag Lambda.app to Applications. Windows: run the installer. Linux: make the AppImage executable, then run it; FUSE 2 is required, or use `--appimage-extract-and-run`. Packages are unsigned; macOS may require Open Anyway in Privacy & Security, and Windows may show an unrecognized-publisher prompt.
 
-The app includes its Python runtime and one small starter model. Download other
-models individually in Settings → Models. Existing terminal chats, models and
-allowance remain available. Profile context requires a memory-capable model;
-answer quality still depends on the selected weights. This is an app release,
-not a new model or a claim of improved intelligence.
-
-Packages are currently unsigned. macOS may require Open Anyway in Privacy & Security;
-Windows may show an unrecognized-publisher prompt. Linux requires a graphical desktop
-and FUSE 2, or run the AppImage with `--appimage-extract-and-run`.
-
-Each package is built and tested on its target operating system in GitHub Actions.
-SHA256SUMS.txt contains download checksums. Use `lambda desktop` or `/desktop` in the
-terminal app (0.8.6+; the current link is in 0.8.7+) to find this desktop release. Update the desktop by installing
-the newer package; model refresh does not replace application code.
+All native packages are tested in GitHub Actions before publication. SHA256SUMS.txt contains download checksums. Chats, models, profile and shared allowance stay on the device. The app includes its runtime and one small starter; other models are individual optional downloads. This update does not change model weights or claim improved intelligence.

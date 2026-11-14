@@ -5,7 +5,7 @@ existing Lambda inference engine. The interface is English.
 
 ## Using the app
 
-Download the package for your system from [Desktop app 1.1.1](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.1.1). Open `Lambda.app` on macOS, run the installer on Windows, or make the Linux AppImage executable and launch it. The standalone build includes its own Python runtime,
+Download the package for your system from [Desktop app 1.1.2](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.1.2). Open `Lambda.app` on macOS, run the installer on Windows, or make the Linux AppImage executable and launch it. The standalone build includes its own Python runtime,
 the inference engine and the small Mercury 1.0 starter model. It does not need a
 terminal, a checkout or a separately installed Python to run.
 
@@ -17,7 +17,10 @@ terminal, a checkout or a separately installed Python to run.
   its progress or cancel. Refresh list retrieves catalog metadata only. Downloads
   use the existing size, SHA-256 and format validation before installation.
 - The chat's **model picker** lists models available on the device, grouped by
-  Mercury, Venus, Code and Terra. Selecting a model does not download other models.
+  Mercury, Venus, Code and Terra. Expand a family to reveal its versions; only
+  one family opens at a time. Arrow keys navigate/open/close sections; Enter
+  selects, and Escape returns to the chat. Selecting a model does not download
+  other models.
 - **Appearance** offers light, dark and system themes, five accent colors, with orange as the default, text
   size and comfortable or compact spacing. Settings persist after restart.
 - **Profile & usage** lets you optionally share your name, age, location and interests as model input context. You can disable this without deleting your profile. It also shows the exact remaining tokens, percentage, used tokens,
@@ -79,7 +82,7 @@ it contains exactly the starter NPZ and no chat database or training checkpoint.
 Downloaded models and private training files are not packaged. All generated
 build trees, environments, test profiles and installers are excluded from Git.
 
-Desktop version 1.1.1 and terminal package versions are separate. CLI `/update`
+Desktop version 1.1.2 and terminal package versions are separate. CLI `/update`
 updates the CLI package. Desktop Settings → Updates finds a new package; install it
 to update the bundled desktop engine. It does not silently overwrite the terminal launcher.
 

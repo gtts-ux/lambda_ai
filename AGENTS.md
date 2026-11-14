@@ -434,3 +434,11 @@
   the model list; terminal 0.8.8 bundles the new catalog. No desktop rebuild is
   needed for this data-only catalog change. Future final-model publication
   still requires a separate instruction or the applicable quality policy.
+
+- The owner's next UI request is limited to the chat composer model picker:
+  Desktop 1.1.2 presents collapsed installed-model families, revealing versions
+  when expanded. Keep Settings → Models management intact, installed-only
+  choices, current-model markers, keyboard arrows/Enter/Escape and popup bounds.
+  Expand/collapse must not select, download or generate. Preserve the transparent
+  logo, profile fixes, local data and shared allowance. Publish native packages
+  through the existing desktop workflow; keep earlier releases immutable.

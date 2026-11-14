@@ -21,7 +21,7 @@ const size=bytes=>`${((bytes||0)/1048576).toFixed(1)} MB`;
 const command=window.lambda.platform==='darwin'?'⌘':'Ctrl';
 const familyNames={mercury:'Mercury',venus:'Venus',code:'Code',terra:'Terra',other:'Local models'};
 const familyCopy={mercury:'Compact English models for simple conversations.',venus:'Conversation models for questions and short exchanges.',code:'Experimental Python and JavaScript assistance.',terra:'Experimental English conversation models.',other:'A model installed on this device.'};
-let desktopInfo={version:'1.1.1'},updateResult=null,checkingUpdates=false,deleteId=null;
+let desktopInfo={version:'1.1.2'},updateResult=null,checkingUpdates=false,deleteId=null;
 let S=null,tab='appearance',modelFilter='all',archived=false,query='',searchTimer,toastTimer,renameId=null,stream=null,lastMessages='',popoverAnchor=null;
 const media=matchMedia('(prefers-color-scheme: dark)');
 function decorate(root=document){root.querySelectorAll('[data-icon]').forEach(el=>{el.innerHTML=icon(el.dataset.icon);});}
@@ -142,12 +142,16 @@ async function startGeneration(retry=false){
   if(!result){const state=await act('state');if(state)applyState(state);}
   $('#message-input').focus();
 }
-function closePopover(){const node=$('#popover');node.hidden=true;node.replaceChildren();$('#model-button').setAttribute('aria-expanded','false');popoverAnchor=null;}
-function popover(anchor,content,up=false){
-  const node=$('#popover');node.innerHTML=content;node.hidden=false;popoverAnchor=anchor;
+function closePopover(){const node=$('#popover');node.hidden=true;node.replaceChildren();node.classList.remove('model-picker');node.removeAttribute('role');node.removeAttribute('aria-label');node.onkeydown=null;$('#model-button').setAttribute('aria-expanded','false');popoverAnchor=null;}
+function positionPopover(anchor,up=false){
+  const node=$('#popover');
   const r=anchor.getBoundingClientRect();const h=Math.min(node.scrollHeight,420),w=Math.min(340,Math.max(240,node.offsetWidth));
   node.style.width=w+'px';node.style.left=Math.min(innerWidth-w-12,Math.max(12,r.left))+'px';
   node.style.top=Math.min(innerHeight-h-12,Math.max(12,up?r.top-h-9:r.bottom+7))+'px';
+}
+function popover(anchor,content,up=false){
+  const node=$('#popover');node.classList.remove('model-picker');node.removeAttribute('role');node.removeAttribute('aria-label');node.onkeydown=null;node.style.width='';
+  node.innerHTML=content;node.hidden=false;popoverAnchor=anchor;positionPopover(anchor,up);
   return node;
 }
 function chatMenu(anchor,row){
@@ -159,16 +163,37 @@ function chatMenu(anchor,row){
 }
 function modelMenu(){
   if(popoverAnchor===$('#model-button')){closePopover();return;}
-  let content='<div class="popover-title">ON THIS DEVICE</div>';
+  if(!S||S.generating)return;
+  let content='<div class="model-picker-heading">Choose a model<span>On this device</span></div>';
   for(const family of ['mercury','venus','code','terra','other']){
     const rows=S.models.filter(m=>m.installed_revision!=null&&m.family===family);if(!rows.length)continue;
-    content+=`<div class="popover-title">${esc(familyNames[family])}</div>`;
-    for(const m of rows)content+=`<button data-select-model="${esc(m.id)}"><span class="model-mini-mark">λ</span><span class="model-entry-label">${esc(pretty(m.name))}<small>${size(m.bytes)} · ready to use</small></span>${S.chat.modelId===m.id?'<span class="tick">✓</span>':''}</button>`;
+    const current=rows.find(m=>m.id===S.chat.modelId),label=familyNames[family],panel='model-family-'+family;
+    content+=`<section class="model-family-section" data-model-family-section="${family}"><button id="${panel}-toggle" class="model-family-row ${current?'current-family':''}" data-model-family="${family}" aria-expanded="false" aria-controls="${panel}"><span class="model-family-emblem" aria-hidden="true">${label.charAt(0)}</span><span class="model-family-label"><strong>${esc(label)}</strong><small>${rows.length} ${rows.length===1?'model':'models'}${current?' · selected':''}</small></span><span class="family-chevron">${icon('chevron')}</span></button><div id="${panel}" class="model-family-versions" role="group" aria-labelledby="${panel}-toggle" hidden>`;
+    for(const m of rows){
+      const name=pretty(m.name),version=name.startsWith(label+' ')?name.slice(label.length+1):name,selected=S.chat.modelId===m.id;
+      content+=`<button class="model-version-option" data-select-model="${esc(m.id)}" aria-label="Use ${esc(name)}" aria-pressed="${selected}" title="${esc(name)}"><span class="model-entry-label"><strong>${esc(version)}</strong><small>${size(m.bytes)}</small></span>${selected?'<span class="tick">'+icon('check')+'</span>':''}</button>`;
+    }
+    content+='</div></section>';
   }
-  content+=`<div class="separator"></div><button id="browse-more-models">${icon('download')}Download more models</button>`;
-  const root=popover($('#model-button'),content,true);$('#model-button').setAttribute('aria-expanded','true');
-  root.querySelectorAll('[data-select-model]').forEach(b=>{b.onclick=async()=>{closePopover();const state=await act('select_model',{id:b.dataset.selectModel});if(state)toast(`Using ${pretty(state.chat.modelName)}.`);};});
+  content+=`<div class="separator"></div><button id="browse-more-models">${icon('download')}Manage models in Settings</button>`;
+  const trigger=$('#model-button'),root=popover(trigger,content,true);root.classList.add('model-picker');root.style.width='310px';root.setAttribute('role','dialog');root.setAttribute('aria-label','Choose a model');trigger.setAttribute('aria-expanded','true');
+  const expand=(button,open)=>{
+    root.querySelectorAll('[data-model-family]').forEach(b=>{const expanded=b===button&&open;b.setAttribute('aria-expanded',String(expanded));$('#'+b.getAttribute('aria-controls')).hidden=!expanded;});
+    positionPopover(trigger,true);button.scrollIntoView({block:'nearest'});
+  };
+  root.querySelectorAll('[data-model-family]').forEach(button=>button.onclick=()=>expand(button,button.getAttribute('aria-expanded')!=='true'));
+  root.querySelectorAll('[data-select-model]').forEach(b=>{b.onclick=async()=>{closePopover();const state=await act('select_model',{id:b.dataset.selectModel});if(state){toast(`Using ${pretty(state.chat.modelName)}.`);$('#message-input').focus();}};});
+  root.onkeydown=e=>{
+    const button=e.target.closest('button');if(!button)return;
+    if(['ArrowDown','ArrowUp','Home','End'].includes(e.key)){
+      e.preventDefault();const buttons=Array.from(root.querySelectorAll('button')).filter(b=>!b.disabled&&b.getClientRects().length);
+      const index=buttons.indexOf(button),next=e.key==='Home'?0:e.key==='End'?buttons.length-1:(index+(e.key==='ArrowDown'?1:-1)+buttons.length)%buttons.length;buttons[next]?.focus();
+    }else if(e.key==='ArrowRight'&&button.dataset.modelFamily){e.preventDefault();if(button.getAttribute('aria-expanded')==='true')$('#'+button.getAttribute('aria-controls')).querySelector('button')?.focus();else expand(button,true);}
+    else if(e.key==='ArrowLeft'){const family=button.closest('[data-model-family-section]')?.querySelector('[data-model-family]');if(family){e.preventDefault();expand(family,false);family.focus();}}
+    else if(e.key==='Escape'){e.preventDefault();e.stopPropagation();closePopover();trigger.focus();}
+  };
   $('#browse-more-models').onclick=()=>openSettings('models');
+  positionPopover(trigger,true);root.querySelector('[data-model-family]')?.focus();
 }
 function profileMenu(){
   if(popoverAnchor===$('#profile-button')){closePopover();return;}
