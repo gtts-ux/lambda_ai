@@ -419,3 +419,18 @@
   1.1.0 release assets immutable. The patch also recognizes electron-builder's
   Linux x86_64 filename in desktop update checks. Terminal 0.8.7 updates its
   desktop release link; retain its previous wheel and all model artifacts.
+
+- Latest owner instruction: publish the existing step-4000 **lambda terra 4.1
+  demo** (`lambda-terra-4.1-demo`) publicly and remove non-demo Terra 4.1 from
+  model choices. This explicitly supersedes the private-only rule and quality
+  gate for this demo release only. Preserve its exact numerical update-4000
+  weights (35,028,097 parameters, total step 63650), failed development/retention
+  results, inherited CC BY-SA 4.0/Dolly and OASST1 Apache attribution. Public
+  revision 2 follows the owner's private revision 1. Its ~130 MB NPZ belongs in
+  GitHub release assets, not Git blobs or app wheels. Both catalogs replace the
+  old offering with the demo; preserve immutable old NPZ files/IDs for existing
+  saved chats. Do not rename or interrupt the running trainer or change its
+  fingerprinted models.py/transformer.py. Existing Desktop 1.1.0+ can refresh
+  the model list; terminal 0.8.8 bundles the new catalog. No desktop rebuild is
+  needed for this data-only catalog change. Future final-model publication
+  still requires a separate instruction or the applicable quality policy.

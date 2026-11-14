@@ -132,18 +132,25 @@
       "family": "code"
     },
     {
-      "id": "lambda-terra-4.1",
-      "name": "lambda terra 4.1",
-      "revision": 1,
+      "id": "lambda-terra-4.1-demo",
+      "name": "lambda terra 4.1 demo",
+      "revision": 2,
       "language": "en",
-      "min_app_version": "0.8.5",
+      "min_app_version": "0.8.6",
       "format": "lambda-ai-pointer-transformer-v4",
-      "sha256": "238d004b27d5da6fe86dba75e6406112f795235fa8628f8d2430710f3d56e575",
-      "bytes": 57065597,
-      "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/lambda-terra-4.1.npz",
-      "description": "Experimental offline English chatbot continued from own Venus 2.4. Final authored check: 55/64 versus 22/64 for 2.4; a narrow 2.5x correct-answer result, not general intelligence. CC BY-SA 4.0 weights; app >=0.8.5.",
+      "sha256": "9b5cf99f2814769234186265d22ffcfd949f46894ec661af0188af2be9c86cf6",
+      "bytes": 130165985,
+      "url": "https://github.com/gtts-ux/lambda_ai/releases/download/model-terra-4.1-demo-r2/lambda-terra-4.1-demo-r2.npz",
+      "description": "Experimental 35.03M-parameter English chat demo, selected update 4000. Development 43/60 versus Venus 2.4 22/60; retention gates not met. No web search or coding branch. See the model card.",
       "family": "terra",
       "license": "CC-BY-SA-4.0"
+    }
+  ],
+  "retired": [
+    {
+      "id": "lambda-terra-4.1",
+      "replaced_by": "lambda-terra-4.1-demo",
+      "reason": "Withdrawn from model choices at owner request. Immutable legacy files remain for existing saved chats."
     }
   ]
 }

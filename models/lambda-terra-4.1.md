@@ -1,5 +1,10 @@
 # lambda terra 4.1
 
+**Retired from model choices.** The owner replaced this offering with
+[lambda terra 4.1 demo](lambda-terra-4.1-demo.md), a separate 35M update-4000
+snapshot. The old inference file and its original checksum are preserved for
+existing saved chats. The historical results below do not describe the new demo.
+
 Experimental English chat-only continuation of the owner's own **lambda venus
 2.4** (legacy ID `lambda-2.4`). No external pretrained model weights, search tools
 or programming branch. Published at the owner's explicit request.
@@ -58,7 +63,8 @@ license; this does not relicense earlier model files. See
 
 ## Use
 
-Run `/update`, restart the app, then `/model use lambda-terra-4.1`.
+This model is no longer offered for new installation through `/model`.
+Use `/update`, restart the app and select `/model use lambda-terra-4.1-demo`.
 F3 lists it under **lambda terra**. The shared token allowance and saved local
 chats are preserved. Replies come from the neural model; the application does
 not substitute factual answers or conversation templates.

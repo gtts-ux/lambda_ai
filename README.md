@@ -286,8 +286,8 @@ The model checksum and checkpoint step are included in
 `lambda_cli/assets/model.json`. Code and included inference weights are
 licensed under [MIT](LICENSE), except separately licensed optional models such as
 [lambda 2.5.2](models/lambda-2.5.2.md), whose weights use CC BY-SA 4.0.
-The new [lambda terra 4.1](models/lambda-terra-4.1.md) weights also use CC BY-SA
-4.0 with Dolly dataset attribution. The application's MIT license is unchanged.
+The [lambda terra 4.1 demo](models/lambda-terra-4.1-demo.md) weights use CC BY-SA
+4.0 with inherited Dolly and additional OASST1 attribution. The application's MIT license is unchanged.
 
 ## Development
 
@@ -542,19 +542,27 @@ the completed repair's selected update 11500, not the older local demo.
 Existing models, chats and allowance are preserved. Installers derive paths on
 each machine; release code contains no maintainer checkout path.
 
-## lambda terra 4.1: offline conversation
+## lambda terra 4.1 demo: experimental offline conversation
 
-Terra 4.1 continues the own Venus 2.4 weights for chat, with no web or programming
-branch. Its small authored final check improved from 22/64 to 55/64 correct
-responses. This is a limited 2.5x result on that rubric, not a general intelligence
-claim; exact-instruction following remains weak (3/8). See the
-[model card and attribution](models/lambda-terra-4.1.md).
+The public Terra offering is now **lambda terra 4.1 demo**, a preserved 35,028,097-
+parameter snapshot at update 4000 of the ongoing own-weight continuation. It uses
+19 Transformer blocks and 512-token context, with no web search or coding branch.
+The selected snapshot scored 43/60 on exposed development replies versus Venus
+2.4's 22/60, but lost 19 previously correct retention cases and failed release
+quality gates. It is an owner-requested public demo, not a claim of reliable
+ordinary conversation or twice general intelligence.
 
-Run `/update`, restart after app **0.8.5**, then:
+Desktop: **Settings → Models → Refresh list**, download **Terra 4.1 demo**, then
+choose it in the chat model picker. Desktop app 1.1.0+ already supports it.
+Terminal: use app 0.8.6+ (current 0.8.8), refresh with `/update` and select:
 
-```text
-/model use lambda-terra-4.1
+```sh
+lambda model use lambda-terra-4.1-demo
 ```
 
-CLI: `lambda model use lambda-terra-4.1`. F3 shows Mercury, Venus, Code and Terra
-as separate families. Existing model IDs, chats and usage remain compatible.
+Or `/model use lambda-terra-4.1-demo` inside chat. The ~130 MB inference file is
+hosted as a [GitHub release asset](https://github.com/gtts-ux/lambda_ai/releases/tag/model-terra-4.1-demo-r2).
+See the [model card, results and attribution](models/lambda-terra-4.1-demo.md).
+The previous non-demo Terra 4.1 is withdrawn from model choices. Its immutable
+files remain available to reopen existing chats; saved conversations and the
+shared token allowance are preserved. The running trainer is not interrupted.

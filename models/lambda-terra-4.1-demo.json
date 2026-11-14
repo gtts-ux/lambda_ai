@@ -1,0 +1,53 @@
+{
+  "context": 512,
+  "width": 384,
+  "layers": 19,
+  "heads": 6,
+  "vocabulary": 2048,
+  "format": "lambda-ai-pointer-transformer-v4",
+  "name": "lambda terra 4.1 demo",
+  "model_id": "lambda-terra-4.1-demo",
+  "language": "en",
+  "training_step": 63650,
+  "data_sha256": "9a9ef5fe85096e0be8c64f42b8529c8be8398c09d253cd6b5d34b994dcec9261f91f3850823d9a8c304c3ee235f84fbb10f69f6a8cabe2abe6b37cab711e9d86",
+  "initialization": "Own lambda 2.4 continued for conversation only; no external pretrained weights.",
+  "min_app_version": "0.8.6",
+  "pointer_width": 256,
+  "training_lineage": {
+    "experiment": "terra_41_35m",
+    "source_step": 59650,
+    "source_sha256": "77b09c28d7f1749f2895f8da38b3271db5016587af2ee6b0ca36ebf19ee534a7",
+    "selected_source": "dialogue24000",
+    "added_identity_blocks": 10,
+    "expanded_pointer": "128 to 256 with probability-preserving rescaling",
+    "external_pretrained_weights": false
+  },
+  "automatic_search": false,
+  "license": "CC-BY-SA-4.0",
+  "release_status": "Public experimental demo explicitly requested by owner; original release gates not met.",
+  "public_demo": {
+    "revision": 2,
+    "selected_update": 4000,
+    "source_snapshot_sha256": "3a0224eb6d9514a4d7e0aff3b120da4f53bc80b62f7e807e6992858e4dc89e7f",
+    "tag": "model-terra-4.1-demo-r2",
+    "qualified": false,
+    "external_pretrained_weights": false
+  },
+  "revision": 2,
+  "parameters": 35028097,
+  "bytes": 130165985,
+  "sha256": "9b5cf99f2814769234186265d22ffcfd949f46894ec661af0188af2be9c86cf6",
+  "selected_update": 4000,
+  "source_snapshot_sha256": "3a0224eb6d9514a4d7e0aff3b120da4f53bc80b62f7e807e6992858e4dc89e7f",
+  "development": {
+    "correct": 43,
+    "total": 60,
+    "venus24_correct": 22,
+    "starting_source_correct": 33,
+    "lost_previously_correct_retention_cases": 19,
+    "new_degenerate_cases": 7,
+    "original_release_gates_passed": false,
+    "twofold_goal_passed": false,
+    "independent_final_evaluation": false
+  }
+}
