@@ -1,0 +1,79 @@
+import base64
+import io
+import json
+import os
+from pathlib import Path
+import tempfile
+import threading
+import unittest
+from unittest.mock import patch
+import numpy as np
+from PIL import Image
+from lambda_cli.image_generation import plan,References,ImageGenerator
+from lambda_cli.image_intent import ImageIntent
+from lambda_cli.image_network import resize,grid_sample,OrionNetwork
+from lambda_cli.image_store import ImageStore
+from lambda_cli.image_models import ImageModels
+
+class ImageTests(unittest.TestCase):
+    def test_learned_terra_requests_and_hard_negatives(self):
+        head=ImageIntent()
+        for text in ['Generate a photo of Saturn V in space','Draw a cat for me.','Create an image showing a red car.']:
+            self.assertTrue(head.predict(text)['image'],text)
+        for text in ['hello','what is my name?','Do not generate a photo of a cat.',
+                     'Write Python code to generate a photo of a cat.', 'Explain how to generate an image of a cat.',
+                     'How would an AI generate a picture of Saturn V?']:
+            self.assertFalse(head.predict(text)['image'],text)
+
+    def test_plan_preserves_entity_and_validates_size(self):
+        self.assertEqual(plan('Generate a photo of Saturn V in space')['queries'],['Saturn V','space'])
+        self.assertEqual(plan('Please generate an image, a cat in a forest.')['queries'],['cat','forest'])
+        with self.assertRaises(ValueError):plan('x'*501)
+        self.assertEqual(plan('Draw a cat in a forest on the left')['position'],'left')
+
+    def test_reference_hosts_and_ranking(self):
+        for url in ['http://images-api.nasa.gov/search','https://localhost/file','file:///tmp/file']:
+            with self.assertRaises(ValueError):References.fetch(url)
+        bad=References.relevance(dict(title='Saturn V factory assembly',description='Saturn V'), 'Saturn V','subject')
+        good=References.relevance(dict(title='Saturn V launch',description='Saturn V launch pad'),'Saturn V','subject')
+        self.assertGreater(good,bad)
+
+    def test_history_png_delete_and_no_path_traversal(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            store=ImageStore(tmp);identifier=store.add('test',42,np.zeros((256,256,3),np.uint8),dict(model='orion-image-1'))
+            self.assertEqual(ImageStore(tmp).history()[0]['id'],identifier)
+            raw=base64.b64decode(store.get(identifier)['dataUrl'].split(',')[1])
+            with Image.open(io.BytesIO(raw)) as im:self.assertEqual(im.size,(256,256))
+            with self.assertRaises(ValueError):store.file('../private')
+            store.delete(identifier);self.assertEqual(store.history(),[])
+
+    def test_no_automatic_model_download_or_chat_model_activation(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            manager=ImageModels(tmp)
+            with patch('lambda_cli.image_models.urlopen',side_effect=AssertionError('Network')):
+                self.assertIsNone(manager.entries()[0]['installed_revision'])
+                with self.assertRaises(ValueError):manager.resolve()
+            self.assertFalse((Path(tmp)/'models.json').exists())
+
+    def test_download_validation_keeps_previous_state(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            manager=ImageModels(tmp);before=manager.state()
+            response=io.BytesIO(b'bad');response.__enter__=lambda:self
+            with patch('lambda_cli.image_models.urlopen',return_value=response):
+                with self.assertRaisesRegex(ValueError,'checksum or size'):manager.install('orion-image-1')
+            self.assertEqual(manager.state(),before)
+
+    def test_numpy_resize_and_identity_spatial_transform(self):
+        x=np.arange(48,dtype=np.float32).reshape(1,3,4,4)
+        np.testing.assert_allclose(grid_sample(x,np.asarray([[[1,0,0],[0,1,0]]],np.float32)),x,atol=1e-5)
+        self.assertEqual(resize(x,8).shape,(1,3,8,8));self.assertEqual(resize(x,8,nearest=True).shape,(1,3,8,8))
+
+    @unittest.skipUnless(os.environ.get('LAMBDA_ORION_MODEL'),'Optional real Orion artifact')
+    def test_real_native_neural_pixels_without_external_runtime(self):
+        model=OrionNetwork(os.environ['LAMBDA_ORION_MODEL'])
+        refs=np.zeros((1,2,3,256,256),np.float32);matte=np.ones((1,1,256,256),np.float32)
+        coarse=model.sample(np.zeros((1,2,3,64,64),np.float32),resize(matte,64),'a cat in space',steps=2)
+        out=model.detail(coarse,refs,matte)
+        self.assertEqual(out.shape,(1,3,256,256));self.assertTrue(np.isfinite(out).all())
+
+if __name__=='__main__':unittest.main()

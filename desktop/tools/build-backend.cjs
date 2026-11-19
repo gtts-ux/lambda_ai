@@ -18,6 +18,6 @@ if(result.status!==0)process.exit(result.status||1);
 const bundle=path.join(root,'backend-dist','lambda-backend');
 function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(dir,e.name)):[path.join(dir,e.name)]);}
 const models=walk(bundle).filter(p=>p.endsWith('.npz'));
-if(models.length!==1||path.basename(models[0])!=='model.npz')throw new Error('Unexpected model files in desktop engine bundle.');
+if(JSON.stringify(models.map(p=>path.basename(p)).sort())!==JSON.stringify(['image_intent.npz','model.npz']))throw new Error('Unexpected model files in desktop engine bundle.');
 if(walk(bundle).some(p=>p.endsWith('.pt')||p.endsWith('.sqlite3')))throw new Error('Private training/user data found in application bundle.');
-console.log('Desktop engine ready. Exactly one small starter model bundled; additional models stay optional.');
+console.log('Desktop engine ready. Small chat starter and learned tool head bundled; image models stay optional.');

@@ -149,6 +149,35 @@ async function launch(){
   await page.locator('#model-button').click();await page.locator('[data-model-family="mercury"]').click();
   assert(await page.locator('#popover').evaluate(e=>{const r=e.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&r.top>=0&&r.bottom<=innerHeight;}),'Expanded model picker must stay inside the window');
   await page.screenshot({path:path.join(artifacts,'model-picker-dark.png')});
+  await page.locator('#image-playground-nav').click();
+  await expect(page.locator('#image-playground')).toBeVisible();
+  await expect(page.locator('.composer-area')).toBeHidden();
+  if(process.env.LAMBDA_ORION_MODEL){
+    await page.locator('#image-prompt').fill('test subject in test background');
+    await page.locator('#image-generate').click();
+    await expect(page.locator('#image-result')).toBeVisible({timeout:90000});
+    assert.deepEqual(await page.locator('#image-result').evaluate(im=>[im.naturalWidth,im.naturalHeight]),[256,256]);
+    await expect(page.locator('.image-history-item')).toHaveCount(1);
+    await page.screenshot({path:path.join(artifacts,'image-playground-dark.png')});
+    const exported=path.join(data,'exported-image.png');
+    await app.evaluate(({dialog},file)=>{dialog.showSaveDialog=async()=>({canceled:false,filePath:file});},exported);
+    await page.locator('#image-save').click();
+    await expect.poll(()=>fs.existsSync(exported)).toBe(true);
+    assert(fs.readFileSync(exported).subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])));
+    if(process.argv.includes('--live-images')){
+      await page.locator('#image-prompt').fill('Generate a photo of Saturn V in space');
+      await page.locator('#image-generate').click();
+      await expect.poll(async()=>{
+        const state=await page.evaluate(()=>window.lambda.request('state'));
+        if(state.imageJob?.state==='failed')throw new Error(state.imageJob.phase);
+        return state.images.length;
+      },{timeout:180000}).toBe(2);
+      await page.screenshot({path:path.join(artifacts,'image-playground-live.png')});
+    }
+    await app.close();page=await launch();await page.locator('#image-playground-nav').click();
+    await expect(page.locator('.image-history-item')).toHaveCount(process.argv.includes('--live-images')?2:1);
+    await expect(page.locator('#image-result')).toBeVisible();
+  }else await expect(page.locator('#image-model-settings')).toBeVisible();
   await app.close();app=null;
   assert.deepEqual(errors,[],'Renderer must not have errors');
   fs.writeFileSync(path.join(artifacts,'result.json'),JSON.stringify({passed:true,packaged:!!process.env.LAMBDA_PACKAGED_EXECUTABLE,tests:['real generated code highlighting','no automatic downloads','installed-only picker','appearance persistence','shared quota/reset','single real model download','saved chats/search/rename/archive','actual inference','XSS sanitation','restart persistence','compact layout','profile fields','confirmed deletion','sidebar scrolling','desktop update check','collapsible model families','picker keyboard navigation','picker viewport bounds'],dataDirectory:data},null,2));

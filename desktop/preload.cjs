@@ -7,5 +7,6 @@ contextBridge.exposeInMainWorld('lambda', {
     return () => ipcRenderer.removeListener('lambda:event',handler);
   },
   openExternal:url => ipcRenderer.invoke('lambda:external',url),
+  saveImage:id => ipcRenderer.invoke('lambda:image-save',id),
   platform:process.platform
 });

@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "models": [{
+    "id": "orion-image-1",
+    "name": "orion image 1",
+    "family": "orion",
+    "kind": "image",
+    "revision": 1,
+    "bytes": 5365641,
+    "sha256": "1756742c2d2a0978b8ac1ffed768cac5fa04de96d5b2c4709f11633bf3181530",
+    "url": "https://github.com/gtts-ux/lambda_ai/releases/download/model-orion-image-1-r1/orion-image-1-r1.npz",
+    "min_app_version": "0.9.0",
+    "native_size": 256,
+    "description": "Experimental reference-guided image generation at 256 × 256. Object shapes may be distorted."
+  }]
+}

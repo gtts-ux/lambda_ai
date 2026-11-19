@@ -24,6 +24,9 @@ from lambda_cli.models import ModelManager, atomic_json
 from lambda_cli.paths import data_dir
 from lambda_cli.quota import Quota
 from lambda_cli.session import Session
+from lambda_cli.image_models import ImageModels
+from lambda_cli.image_store import ImageStore
+from lambda_cli.image_intent import ImageIntent
 
 WRITE_LOCK = threading.Lock()
 
@@ -59,6 +62,11 @@ class Desktop:
         self.emit = emit
         self.lock = threading.RLock()
         self.manager = ModelManager()
+        self.image_models = ImageModels()
+        self.image_store = ImageStore()
+        self.image_router = ImageIntent()
+        self.image_engine = None
+        self.image_job = dict(state='idle', phase='', percent=0)
         self.store = ChatStore()
         self.quota = Quota()
         self.cancel = threading.Event()
@@ -127,6 +135,7 @@ class Desktop:
         with self.lock:
             self.revision += 1
             return dict(revision=self.revision, chat=self.chat(), chats=self.chats(), models=self.models(), quota=self.quota.status(),
+                        imageModels=self.image_models.entries(), images=self.image_store.history(), imageJob=dict(self.image_job),
                         preferences=dict(self.preferences), generating=self.generating,
                         downloading=self.downloading, engineVersion=__version__)
 
@@ -142,6 +151,17 @@ class Desktop:
         self.notice = ''
 
     def send(self, question, retry=False):
+        if not retry and isinstance(question,str) and family_for(self.session.engine.metadata.get('model_id',''))=='terra':
+            intent=self.image_router.predict(question)
+            if intent['image']:
+                with self.lock:
+                    self.idle()
+                    if not 1<=len(question.strip())<=500:raise ValueError('Use an image description of 1–500 characters.')
+                    self.session.add_user(question.strip())
+                self.emit('image-request',dict(prompt=question.strip(),probability=intent['probability']))
+                try:self.image_models.resolve()
+                except ValueError:return self.state()
+                return self.generate_image(question.strip(),42)
         with self.lock:
             self.idle()
             if retry:
@@ -190,16 +210,56 @@ class Desktop:
         try:
             # Explicit single-model request; NEVER manager.update(), which
             # intentionally updates more than one installed model in the CLI.
-            self.manager.install(identifier, progress, self.download_cancel)
+            manager=self.image_models if identifier=='orion-image-1' else self.manager
+            manager.install(identifier, progress, self.download_cancel)
         finally:
             with self.lock:
                 self.downloading = None
             self.emit('download-end', self.state())
         return self.state()
 
+    def generate_image(self,prompt,seed=42):
+        from lambda_cli.image_generation import ImageGenerator,plan
+        plan(prompt)
+        if type(seed) is not int or not 0<=seed<=2**32-1:raise ValueError('Use a seed between 0 and 4294967295.')
+        with self.lock:
+            self.idle();path=self.image_models.resolve()
+            self.generating=True;self.cancel.clear()
+            self.image_job=dict(state='running',prompt=prompt,phase='Preparing image model',percent=0)
+            tokens=len(self.session.engine.tokenizer.encode(prompt))
+        reservation=None;started=time.monotonic()
+        self.emit('image-start',self.state())
+        def progress(phase,percent):
+            with self.lock:self.image_job.update(phase=phase,percent=percent)
+            self.emit('image-progress',dict(self.image_job))
+        try:
+            reservation=self.quota.reserve(tokens,1)
+            if self.image_engine is None or self.image_engine[0]!=path:
+                self.image_engine=(path,ImageGenerator(path,self.image_store.directory/'references'))
+            pixels,metadata=self.image_engine[1].generate(prompt,seed,progress,self.cancel)
+            metadata['seconds']=time.monotonic()-started
+            identifier=self.image_store.add(prompt,seed,pixels,metadata)
+            with self.lock:self.image_job.update(state='completed',phase='Finished',percent=100,id=identifier)
+        except Exception as error:
+            with self.lock:self.image_job.update(state='cancelled' if self.cancel.is_set() else 'failed',phase=str(error))
+            raise
+        finally:
+            if reservation is not None:self.quota.complete(reservation,tokens)
+            with self.lock:self.generating=False
+            self.emit('image-end',self.state())
+        return self.state()
+
     def dispatch(self, method, params):
         if method == 'state': return self.state()
         if method == 'send': return self.send(params.get('text'))
+        if method == 'generate_image':return self.generate_image(params.get('prompt'),params.get('seed',42))
+        if method == 'image_png':
+            row=self.image_store.get(params.get('id'))
+            return dict(base64=row['dataUrl'].split(',',1)[1],filename='orion-'+row['id'][:8]+'.png')
+        if method == 'delete_image':
+            with self.lock:self.idle();self.image_store.delete(params.get('id'))
+            return self.state()
+        if method == 'refresh_image_catalog':self.image_models.refresh();return self.state()
         if method == 'regenerate': return self.send('', retry=True)
         if method == 'stop':
             self.cancel.set()

@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, shell, Menu, nativeTheme } = require('electron');
+const { app, BrowserWindow, ipcMain, shell, Menu, nativeTheme, dialog } = require('electron');
 const { spawn } = require('node:child_process');
 const { createInterface } = require('node:readline');
 const fs = require('node:fs');
@@ -6,6 +6,7 @@ const path = require('node:path');
 const { checkForUpdates, installTarget, prepareUpdate } = require('./updates.cjs');
 
 const METHODS = new Set(['state','send','stop','regenerate','new_chat','open_chat','rename_chat','pin_chat','archive_chat','restore_chat','delete_chat','list_chats','select_model','download','cancel_download','refresh_catalog','preferences','desktop_info','check_updates','install_update']);
+for(const method of ['generate_image','delete_image','refresh_image_catalog'])METHODS.add(method);
 let window, backend, ready, sequence = 0, quitting = false, updating = false;
 const pending = new Map();
 if (process.env.LAMBDA_DATA_HOME) {
@@ -128,7 +129,7 @@ else {
           setTimeout(()=>app.quit(),350);return {restarting:true};
         }catch(error){updating=false;window?.webContents.send('lambda:event',{event:'application-update',data:{phase:'error',message:error.message}});throw error;}
       }
-      if(updating&&['send','regenerate','download'].includes(method))throw new Error('The application is preparing an update. Please wait for the restart.');
+      if(updating&&['send','regenerate','download','generate_image'].includes(method))throw new Error('The application is preparing an update. Please wait for the restart.');
       return request(method,params);
     });
     ipcMain.handle('lambda:external',async (event,url) => {
@@ -136,6 +137,14 @@ else {
       const parsed = new URL(url);
       if (!['http:','https:'].includes(parsed.protocol) || parsed.username || parsed.password) throw new Error('Only web links can be opened.');
       await shell.openExternal(parsed.href);
+    });
+    ipcMain.handle('lambda:image-save',async(event,id)=>{
+      if(event.sender!==window?.webContents||typeof id!=='string'||! /^[a-f0-9]{32}$/.test(id))throw new Error('Invalid image.');
+      const image=await request('image_png',{id});const raw=Buffer.from(image.base64,'base64');
+      if(raw.length>1048576||!raw.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])))throw new Error('Invalid PNG.');
+      const target=await dialog.showSaveDialog(window,{defaultPath:path.join(app.getPath('downloads'),image.filename),filters:[{name:'PNG image',extensions:['png']}]});
+      if(!target.canceled&&target.filePath)await fs.promises.writeFile(target.filePath,raw);
+      return {saved:!target.canceled};
     });
     startBackend(); await createWindow();ready.then(confirmUpdate).catch(()=>{});
     app.on('activate',() => { if (!window) createWindow(); else window.show(); });

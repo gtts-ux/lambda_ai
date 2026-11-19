@@ -5,7 +5,7 @@ existing Lambda inference engine. The interface is English.
 
 ## Using the app
 
-Download the package for your system from [Desktop app 1.1.4](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.1.4). Open `Lambda.app` on macOS, run the installer on Windows, or make the Linux AppImage executable and launch it. The standalone build includes its own Python runtime,
+Download the package for your system from [Desktop app 1.2.0](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.2.0). Open `Lambda.app` on macOS, run the installer on Windows, or make the Linux AppImage executable and launch it. The standalone build includes its own Python runtime,
 the inference engine and the small Mercury 1.0 starter model. It does not need a
 terminal, a checkout or a separately installed Python to run.
 
@@ -29,6 +29,17 @@ terminal, a checkout or a separately installed Python to run.
 - Replies stream from the selected neural model. Stop cancels generation.
   Try again creates a saved conversation branch, preserving the original reply.
   Markdown code blocks use syntax colors and have a Copy code button.
+- **Image Playground** creates experimental 256×256 images with **orion image 1**.
+  Download this one optional model in Settings → Models. Describe one subject and
+  an optional background, such as “Generate a photo of Saturn V in space”.
+  Reference search needs an internet connection; neural image generation runs on
+  your device. Progress, Stop, seed, local image history and Save PNG are included.
+  Reference credits are available under the preview. Objects can be blurred,
+  distorted or misplaced; this first model is not a reliable photorealistic generator.
+- In a **Terra** chat, an independently trained local intent head can recognize
+  direct image requests and open Image Playground. It does not replace chat weights
+  or improve general conversation. Ambiguous requests may be missed; the sidebar
+  mode is always available. Other chat families do not automatically generate images.
 
 `Enter` sends, `Shift+Enter` inserts a line, `Cmd/Ctrl+N` starts a chat,
 `Cmd/Ctrl+K` searches and `Cmd/Ctrl+,` opens settings.
@@ -73,16 +84,18 @@ npm run build:linux  # Linux x64 AppImage
 The release workflow builds and tests native packages on Windows x64, Linux x64,
 macOS Intel and macOS Apple Silicon before publishing the desktop release.
 See its Actions run for platform-specific verification results.
-Packages are unsigned; no store upload or signing identity is configured.
+Windows/Linux packages are unsigned; macOS uses an ad-hoc integrity signature,
+without Apple Developer ID/notarization. No store upload is configured.
 The `desktop-v*` tag workflow publishes a separate desktop release only after
 every native build and its tests pass.
 
 PyInstaller packages the engine into the app's resources. The build verifies that
-it contains exactly the starter NPZ and no chat database or training checkpoint.
+it contains only the starter chat NPZ and the small learned image-intent NPZ,
+with no chat database or training checkpoint. Orion image weights are optional.
 Downloaded models and private training files are not packaged. All generated
 build trees, environments, test profiles and installers are excluded from Git.
 
-Desktop version 1.1.4 and terminal package versions are separate. CLI `/update`
+Desktop version 1.2.0 and terminal package versions are separate. CLI `/update`
 updates the CLI package. Desktop Settings → Updates → Update & restart updates
 the bundled desktop engine in place. It does not overwrite the terminal launcher.
 Versions 1.1.2 and earlier need one package installation to gain the new updater;

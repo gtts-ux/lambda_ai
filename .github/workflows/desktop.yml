@@ -11,7 +11,7 @@ on:
         default: false
       version:
         description: Desktop version in package.json
-        default: '1.1.4'
+        default: '1.2.0'
         required: true
 
 permissions:
@@ -81,6 +81,11 @@ jobs:
           "$PY" -m unittest discover -s tests -p 'test_*.py' -v
           PYTHONPATH=.. "$PY" -m unittest discover -s ../tests -v
           npm run test:updates
+      - name: Fetch the explicitly selected Orion test model
+        run: |
+          if [[ "$RUNNER_OS" == Windows ]]; then PY=.build-venv/Scripts/python; else PY=.build-venv/bin/python; fi
+          "$PY" ../tools/fetch_orion_test.py test-artifacts/orion-image-1.npz
+          echo "LAMBDA_ORION_MODEL=$PWD/test-artifacts/orion-image-1.npz" >> "$GITHUB_ENV"
       - name: Package native desktop app
         run: ${{ matrix.command }}
       - name: Verify macOS distributed ZIP signatures

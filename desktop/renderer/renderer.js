@@ -11,6 +11,7 @@ const icons={
   palette:'<circle cx="12" cy="12" r="9"/><path d="M14 21c-4 0-1-6 3-6h3"/><circle cx="8" cy="9" r=".7"/><circle cx="12" cy="6" r=".7"/><circle cx="16" cy="9" r=".7"/><circle cx="6" cy="13" r=".7"/>',
   user:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',copy:'<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M15 8V4H4v11h4"/>',
   refresh:'<path d="M20 7v5h-5M4 17v-5h5M19 11a7 7 0 0 0-12-5L4 9m16 6-3 3a7 7 0 0 1-12-5"/>',
+  image:'<rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 16 5-5 4 4 4-6 5 7"/>',
   pin:'<path d="m9 3 12 12-3 1-3-3-6 2-3-3 2-6zM8 15l-5 6"/>',edit:'<path d="m15 4 5 5L8 21H3v-5zM12 7l5 5"/>',stop:'<rect x="6" y="6" width="12" height="12" rx="2"/>',check:'<path d="m5 12 4 4L19 6"/>',download:'<path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/>'
 };
 const icon=name=>`<svg viewBox="0 0 24 24" aria-hidden="true">${icons[name]||icons.message}</svg>`;
@@ -21,7 +22,7 @@ const size=bytes=>`${((bytes||0)/1048576).toFixed(1)} MB`;
 const command=window.lambda.platform==='darwin'?'⌘':'Ctrl';
 const familyNames={mercury:'Mercury',venus:'Venus',code:'Code',terra:'Terra',other:'Local models'};
 const familyCopy={mercury:'Compact English models for simple conversations.',venus:'Conversation models for questions and short exchanges.',code:'Experimental Python and JavaScript assistance.',terra:'Experimental English conversation models.',other:'A model installed on this device.'};
-let desktopInfo={version:'1.1.4'},updateResult=null,checkingUpdates=false,applicationUpdate=null,deleteId=null;
+let desktopInfo={version:'1.2.0'},updateResult=null,checkingUpdates=false,applicationUpdate=null,deleteId=null;
 let S=null,tab='appearance',modelFilter='all',archived=false,query='',searchTimer,toastTimer,renameId=null,stream=null,lastMessages='',popoverAnchor=null;
 const media=matchMedia('(prefers-color-scheme: dark)');
 function decorate(root=document){root.querySelectorAll('[data-icon]').forEach(el=>{el.innerHTML=icon(el.dataset.icon);});}
@@ -67,7 +68,7 @@ function applyState(next){
   const fingerprint=JSON.stringify([S.chat.id,S.chat.messages]);
   if(fingerprint!==lastMessages){lastMessages=fingerprint;renderMessages();}
   if(!S.generating){stream=null;$('#streaming-message')?.remove();$('#generation-status').textContent='';}
-  updateComposer();liveUsage();
+  updateComposer();liveUsage();if(typeof renderPlayground==='function')renderPlayground();
 }
 function renderChats(rows){
   $('#chat-list-label').textContent=archived?'ARCHIVED CHATS':'YOUR CHATS';
@@ -77,7 +78,7 @@ function renderChats(rows){
   for(const row of rows){
     const item=document.createElement('div');item.className='chat-item'+(S?.chat.id===row.id?' active':'');item.setAttribute('role','listitem');
     item.innerHTML=`<button class="chat-open" title="${esc(row.title)}">${icon('message')}<span class="chat-name">${esc(row.title)}</span>${row.pinned?'<span class="pin-dot">•</span>':''}</button><button class="chat-more icon-button tiny" aria-label="Options for ${esc(row.title)}" title="Chat options">${icon('more')}</button><button class="chat-delete icon-button tiny" aria-label="Delete ${esc(row.title)}" title="Delete conversation">${icon('trash')}</button>`;
-    item.querySelector('.chat-open').onclick=async()=>{closePopover();if(archived){await act('restore_chat',{id:row.id});archived=false;}await act('open_chat',{id:row.id});$('#message-input').focus();};
+    item.querySelector('.chat-open').onclick=async()=>{closePopover();showWorkspace('chat');if(archived){await act('restore_chat',{id:row.id});archived=false;}await act('open_chat',{id:row.id});$('#message-input').focus();};
     item.querySelector('.chat-delete').onclick=()=>confirmDelete(row);
     item.querySelector('.chat-more').onclick=e=>{e.stopPropagation();chatMenu(e.currentTarget,row);};root.append(item);
   }
@@ -245,7 +246,14 @@ function renderModels(root){
     }
   }
   root.querySelectorAll('[data-model-filter]').forEach(b=>b.onclick=()=>{modelFilter=b.dataset.modelFilter;renderSettings();});
-  $('#refresh-models').onclick=async e=>{const b=e.currentTarget;b.disabled=true;b.textContent='Refreshing…';const state=await act('refresh_catalog');if(state)toast('Model list refreshed. No models were downloaded.');renderSettings();};
+  $('#refresh-models').onclick=async e=>{const b=e.currentTarget;b.disabled=true;b.textContent='Refreshing…';const state=await act('refresh_catalog');await act('refresh_image_catalog');if(state)toast('Model list refreshed. No models were downloaded.');renderSettings();};
+  const heading=document.createElement('h3');heading.className='model-family-title';heading.textContent='Image models';list.append(heading);
+  for(const m of S.imageModels||[]){
+    if(modelFilter==='installed'&&m.installed_revision==null)continue;
+    const installed=m.installed_revision!=null,card=document.createElement('article');card.className='model-card';card.dataset.model=m.id;
+    card.innerHTML=`<div class="model-emblem">✦</div><div class="model-description"><h3>${esc(pretty(m.name))}${installed?'<span class="installed-tag">On device</span>':''}</h3><div class="model-details">Experimental image generation<br><span>${size(m.bytes)}</span><span>256 × 256</span></div><div class="download-state" data-download-id="${esc(m.id)}" hidden><span class="download-label"></span><div class="usage-track"><div class="usage-fill"></div></div></div></div><button class="${installed?'secondary-button':'primary-button'}" data-model-action="${esc(m.id)}" ${S.generating?'disabled':''}>${installed?'Open playground':'Download'}</button>`;
+    card.querySelector('button').onclick=async()=>{if(S.downloading?.id===m.id){await act('cancel_download');return;}if(installed){$('#settings-dialog').close();showWorkspace('image');}else{await act('download',{id:m.id});renderSettings();}};list.append(card);
+  }
   updateDownload();
 }
 function updateDownload(){
@@ -266,7 +274,7 @@ $('#composer').onsubmit=e=>{e.preventDefault();startGeneration();};
 $('#send-button').onclick=e=>{if(S?.generating){e.preventDefault();act('stop');$('#generation-status').textContent='Stopping…';}};
 $('#message-input').oninput=resizeInput;
 $('#message-input').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();if(!S?.generating)startGeneration();}};
-$('#new-chat').onclick=$('#brand-new').onclick=async()=>{closePopover();await act('new_chat');$('#message-input').focus();};
+$('#new-chat').onclick=$('#brand-new').onclick=async()=>{closePopover();showWorkspace('chat');await act('new_chat');$('#message-input').focus();};
 $('#chat-search').oninput=e=>{query=e.target.value;clearTimeout(searchTimer);searchTimer=setTimeout(searchChats,180);};
 $('#archive-view').onclick=()=>{archived=!archived;searchChats();};
 $('#sidebar-toggle').onclick=()=>document.body.classList.toggle('sidebar-hidden');

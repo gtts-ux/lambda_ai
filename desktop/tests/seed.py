@@ -36,3 +36,29 @@ store.set_active(identifiers[-1])
 with quota.connect() as db:db.execute('UPDATE allowance SET used=?, started=? WHERE id=1',(250000,time.time()-7200))
 atomic_json(directory/'desktop.json',dict(theme='light',accent='orange',density='comfortable',fontSize=16,displayName='Alex',responseTokens=192))
 print('Seeded three isolated conversations using actual model-generated replies.')
+
+# Optional actual published image weights; synthetic reference fixtures are ONLY
+# isolated test inputs, never screenshots presented as successful real photographs.
+if os.environ.get('LAMBDA_ORION_MODEL'):
+    import json
+    from urllib.parse import urlencode
+    from PIL import Image,ImageDraw
+    from lambda_cli.image_models import ImageModels
+    from lambda_cli.image_generation import References
+    image_models=ImageModels(directory);entry=image_models.entries()[0]
+    source=Path(os.environ['LAMBDA_ORION_MODEL']);assert hashlib.sha256(source.read_bytes()).hexdigest()==entry['sha256']
+    folder=directory/'image-models';folder.mkdir(exist_ok=True);filename='orion-image-1-r1.npz';shutil.copyfile(source,folder/filename)
+    atomic_json(directory/'image-models.json',{'installed':{'orion-image-1':dict(filename=filename,revision=1,sha256=entry['sha256'])}})
+    cache=directory/'image-playground/references';cache.mkdir(parents=True,exist_ok=True)
+    for query,ident,color in [('test subject','FIXTURE_SUBJECT',(190,100,50)),('test background','FIXTURE_BACKGROUND',(20,40,80))]:
+        url='https://images-api.nasa.gov/search?'+urlencode(dict(q=query,media_type='image',page_size=100))
+        photo='https://images-assets.nasa.gov/image/'+ident+'/'+ident+'~small.jpg'
+        raw=dict(collection=dict(items=[dict(data=[dict(nasa_id=ident,title='Synthetic '+query,description='Synthetic test fixture',center='Test fixture')],links=[dict(render='image',width=640,href=photo)])]))
+        atomic_json(cache/(hashlib.sha256(url.encode()).hexdigest()+'.json'),raw)
+        title_url='https://images-api.nasa.gov/search?'+urlencode(dict(title=query,media_type='image',page_size=100))
+        atomic_json(cache/(hashlib.sha256(title_url.encode()).hexdigest()+'.json'),raw)
+        wiki='https://commons.wikimedia.org/w/api.php?'+urlencode(dict(action='query',format='json',generator='search',gsrnamespace=6,gsrsearch=query,gsrlimit=20,prop='imageinfo',iiprop='url|extmetadata',iiurlwidth=512))
+        atomic_json(cache/(hashlib.sha256(wiki.encode()).hexdigest()+'.json'),{'query':{'pages':{}}})
+        image=Image.new('RGB',(256,256),color)
+        if query=='test subject':ImageDraw.Draw(image).ellipse((70,40,190,220),fill=(230,210,160))
+        image.save(cache/(hashlib.sha256(('nasa:'+ident).encode()).hexdigest()+'.png'))
