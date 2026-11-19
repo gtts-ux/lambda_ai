@@ -24,13 +24,18 @@ class DesktopImages(unittest.TestCase):
         self.assertIn('image-request',[name for name,data in self.events]);self.assertEqual(d.session.turns,before)
         self.assertEqual(d.session.messages[-1][0],'You')
 
-    def test_image_result_persists_and_only_actual_prompt_tokens_are_charged(self):
-        d=self.d;prompt='A cat in a forest';expected=len(d.session.engine.tokenizer.encode(prompt))
+    def test_image_batch_size_price_and_persistence(self):
+        d=self.d;prompt='A cat in a forest';expected=20000
         with patch.object(d.image_models,'resolve',return_value=Path('test.npz')),patch('lambda_cli.image_generation.ImageGenerator') as klass:
             klass.return_value.generate.return_value=(np.zeros((256,256,3),np.uint8),dict(model='orion-image-1',selectedReferences=[]))
-            result=d.generate_image(prompt)
-        self.assertEqual(result['quota']['used'],expected);self.assertEqual(len(result['images']),1)
-        self.assertEqual(len(Desktop().state()['images']),1);self.assertEqual(result['chat']['messages'],[])
+            result=d.generate_image(prompt,seed=40,size=512,count=2)
+            self.assertEqual([call.args[1] for call in klass.return_value.generate.call_args_list],[40,41])
+        self.assertEqual(result['quota']['used'],expected);self.assertEqual(len(result['images']),2)
+        self.assertEqual(len(Desktop().state()['images']),2);self.assertEqual(result['chat']['messages'],[])
+        self.assertEqual(result['images'][0]['tokenCost'],10000)
+        from PIL import Image
+        with Image.open(d.image_store.file(result['images'][0]['id'])) as image:self.assertEqual(image.size,(512,512))
+        self.assertEqual(result['images'][0]['nativeWidth'],256)
         self.assertFalse(d.generating)
         with d.quota.connect() as db:self.assertEqual(db.execute('SELECT COUNT(*) FROM reservations').fetchone()[0],0)
 
@@ -41,6 +46,31 @@ class DesktopImages(unittest.TestCase):
             klass.return_value.generate.side_effect=failure
             with self.assertRaises(ValueError):d.generate_image('A cat in a forest')
         self.assertEqual(d.image_store.history(),[]);self.assertFalse(d.generating);self.assertEqual(d.image_job['state'],'cancelled')
+        self.assertEqual(d.quota.status()['used'],0)
+        with d.quota.connect() as db:self.assertEqual(db.execute('SELECT COUNT(*) FROM reservations').fetchone()[0],0)
+
+    def test_cancel_after_one_image_refunds_only_unfinished_images(self):
+        d=self.d;calls=[]
+        def generate(*args):
+            calls.append(1)
+            if len(calls)==1:return np.zeros((256,256,3),np.uint8),dict(model='orion-image-1')
+            d.cancel.set();raise ValueError('Image generation cancelled.')
+        with patch.object(d.image_models,'resolve',return_value=Path('test.npz')),patch('lambda_cli.image_generation.ImageGenerator') as klass:
+            klass.return_value.generate.side_effect=generate
+            with self.assertRaises(ValueError):d.generate_image('cat',size=1024,count=3)
+        self.assertEqual(d.quota.status()['used'],4000)
+        self.assertEqual(len(d.image_store.history()),1)
+        self.assertEqual(d.image_job['chargedTokens'],4000)
+        self.assertEqual(d.image_job['state'],'cancelled')
+        self.assertFalse(d.generating)
+
+    def test_insufficient_batch_balance_never_generates_or_partially_reserves(self):
+        d=self.d
+        with d.quota.connect() as db:db.execute('UPDATE allowance SET used=999000 WHERE id=1')
+        with patch.object(d.image_models,'resolve',return_value=Path('test.npz')),patch('lambda_cli.image_generation.ImageGenerator') as klass:
+            with self.assertRaisesRegex(ValueError,'needs 4,000 tokens'):d.generate_image('two cats',count=2)
+            klass.assert_not_called()
+        self.assertEqual(d.quota.status()['used'],999000);self.assertEqual(d.image_store.history(),[])
         with d.quota.connect() as db:self.assertEqual(db.execute('SELECT COUNT(*) FROM reservations').fetchone()[0],0)
 
 if __name__=='__main__':unittest.main()

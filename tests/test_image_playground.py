@@ -32,28 +32,38 @@ class ImageTests(unittest.TestCase):
         with self.assertRaises(ValueError):plan('x'*501)
         self.assertEqual(plan('Draw a cat in a forest on the left')['position'],'left')
 
-    def test_reference_hosts_and_ranking(self):
+    def test_reference_hosts_reject_arbitrary_original_websites(self):
         for url in ['http://images-api.nasa.gov/search','https://localhost/file','file:///tmp/file']:
             with self.assertRaises(ValueError):References.fetch(url)
-        bad=References.relevance(dict(title='Saturn V factory assembly',description='Saturn V'), 'Saturn V','subject')
-        good=References.relevance(dict(title='Saturn V launch',description='Saturn V launch pad'),'Saturn V','subject')
-        self.assertGreater(good,bad)
+        with self.assertRaises(ValueError):References.fetch('https://unknown-original-website.example/photo.jpg')
 
     def test_comma_tags_recover_a_real_raster_reference_without_all_synonyms(self):
         photo=io.BytesIO();Image.new('RGB',(128,128),(90,80,70)).save(photo,format='JPEG');calls=[]
         def fetch(url,cancel):
             calls.append(url);parts=urlparse(url);query=parse_qs(parts.query)
-            if parts.hostname=='images-assets.nasa.gov':return photo.getvalue()
-            if parts.hostname=='commons.wikimedia.org':return b'{"query":{"pages":{}}}'
-            subject=query.get('title',query.get('q',['']))[0]
-            items=[]
-            if subject=='person':items=[dict(data=[dict(title='Person portrait',nasa_id='PERSON',description='A person standing outdoors')],links=[dict(render='image',href='https://images-assets.nasa.gov/image/person.jpg')])]
-            return json.dumps(dict(collection=dict(items=items))).encode()
+            if parts.hostname=='tse1.mm.bing.net':return photo.getvalue()
+            self.assertEqual(query['kp'],['1'])
+            if parts.hostname=='safe.duckduckgo.com':return b'vqd="test-token";'
+            self.assertEqual(query['p'],['1']);items=[]
+            if query['q']==['person']:items=[dict(title='Person portrait',thumbnail='https://tse1.mm.bing.net/th/id/person.jpg',url='https://example.org/person')]
+            return json.dumps(dict(results=items)).encode()
         with tempfile.TemporaryDirectory() as tmp:
             refs=References(tmp,fetch).search('person, face, human','subject',threading.Event())
             self.assertEqual(len(refs),1);self.assertEqual(refs[0]['title'],'Person portrait')
             self.assertTrue(Path(refs[0]['path']).is_file())
-            self.assertTrue(any('title=person&' in url for url in calls))
+            self.assertEqual(refs[0]['safeSearch'],'strict')
+            self.assertTrue(any(parse_qs(urlparse(url).query).get('q')==['person'] for url in calls))
+
+    def test_safe_search_failure_never_retries_unfiltered_providers(self):
+        calls=[]
+        def fetch(url,cancel):calls.append(url);raise OSError('service unavailable')
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaisesRegex(ValueError,'Safe Search is temporarily unavailable'):
+                References(tmp,fetch).search('purple sailboat','subject',None)
+        self.assertEqual(len(calls),1);self.assertEqual(urlparse(calls[0]).hostname,'safe.duckduckgo.com')
+
+    def test_complex_descriptions_keep_the_remaining_scene_in_the_request(self):
+        self.assertEqual(plan('A cat in a forest beside a lake')['queries'],['cat','forest beside a lake'])
 
     def test_history_png_delete_and_no_path_traversal(self):
         with tempfile.TemporaryDirectory() as tmp:

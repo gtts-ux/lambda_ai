@@ -153,6 +153,14 @@ async function launch(){
   await expect(page.locator('#image-playground')).toBeVisible();
   await expect(page.locator('.composer-area')).toBeHidden();
   if(process.env.LAMBDA_ORION_MODEL){
+    const beforeQuote=await page.evaluate(()=>S.quota.used);
+    await expect(page.locator('#image-seed')).toHaveCount(0);
+    await page.locator('#image-prompt').fill('cat in the green park');
+    await page.locator('#image-size').selectOption('512');await page.locator('#image-count').fill('2');
+    await expect(page.locator('#image-price-total')).toHaveText('20,000 tokens · 2 images');
+    await expect(page.locator('#image-native-notice')).toBeVisible();
+    assert.equal(await page.evaluate(()=>S.quota.used),beforeQuote,'A price preview must not charge tokens');
+    await page.locator('#image-size').selectOption('256');await page.locator('#image-count').fill('1');
     await page.locator('#image-prompt').fill('test subject in test background');
     await page.locator('#image-generate').click();
     await expect(page.locator('#image-result')).toBeVisible({timeout:90000});
@@ -168,27 +176,41 @@ async function launch(){
       try{return fs.readFileSync(exported).subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]));}
       catch{return false;}
     }).toBe(true);
+    await page.locator('#image-size').selectOption('512');await page.locator('#image-count').fill('2');
     await page.locator('#image-prompt').fill('test subject, face, human in test background');
+    await expect(page.locator('#image-price-total')).toHaveText('28,000 tokens · 2 images');
     await page.locator('#image-generate').click();
-    await expect(page.locator('.image-history-item')).toHaveCount(2,{timeout:90000});
+    await expect(page.locator('.image-history-item')).toHaveCount(3,{timeout:90000});
+    await expect(page.locator('#image-generate')).toBeEnabled();
+    assert.deepEqual(await page.locator('#image-result').evaluate(im=>[im.naturalWidth,im.naturalHeight]),[512,512]);
+    assert.equal(await page.evaluate(()=>S.quota.used),beforeQuote+33000,'Completed images must charge the displayed total');
+    await page.locator('#image-save').click();
+    await expect.poll(()=>{try{return fs.readFileSync(exported).readUInt32BE(16);}catch{return 0;}}).toBe(512);
+    await page.screenshot({path:path.join(artifacts,'image-batch-512.png')});
+    await page.locator('#image-size').selectOption('1024');await page.locator('#image-count').fill('1');
+    await expect(page.locator('#image-price-total')).toHaveText('28,000 tokens');
+    await page.locator('#image-size').selectOption('256');
     await page.locator('#image-prompt').fill('missing reference');
     await page.locator('#image-generate').click();
     await expect(page.locator('#image-phase')).toContainText('No reference photos could be downloaded');
     await expect(page.locator('#image-generate')).toBeEnabled();
-    await expect(page.locator('.image-history-item')).toHaveCount(2);
+    await expect(page.locator('.image-history-item')).toHaveCount(3);
+    assert.equal(await page.evaluate(()=>S.quota.used),beforeQuote+33000,'Failed generation must refund its reservation');
     await expect(page.locator('#toast')).not.toContainText('Error invoking remote method');
     if(process.argv.includes('--live-images')){
-      await page.locator('#image-prompt').fill('person, face, human');
-      await page.locator('#image-generate').click();
-      await expect.poll(async()=>{
-        const state=await page.evaluate(()=>window.lambda.request('state'));
-        if(state.imageJob?.state==='failed')throw new Error(state.imageJob.phase);
-        return state.images.length;
-      },{timeout:180000}).toBe(3);
+      for(const [index,prompt] of ['human','person','face'].entries()){
+        await page.locator('#image-prompt').fill(prompt);await page.locator('#image-generate').click();
+        await expect.poll(async()=>{
+          const state=await page.evaluate(()=>window.lambda.request('state'));
+          if(state.imageJob?.state==='failed')throw new Error(state.imageJob.phase);
+          return state.images.length;
+        },{timeout:180000}).toBe(4+index);
+        await expect(page.locator('#image-generate')).toBeEnabled();
+      }
       await page.screenshot({path:path.join(artifacts,'image-playground-live.png')});
     }
     await app.close();page=await launch();await page.locator('#image-playground-nav').click();
-    await expect(page.locator('.image-history-item')).toHaveCount(process.argv.includes('--live-images')?3:2);
+    await expect(page.locator('.image-history-item')).toHaveCount(process.argv.includes('--live-images')?6:3);
     await expect(page.locator('#image-result')).toBeVisible();
   }else await expect(page.locator('#image-model-settings')).toBeVisible();
   await app.close();app=null;

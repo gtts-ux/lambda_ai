@@ -9,6 +9,7 @@ from . import __version__
 from .models import atomic_json,validate_catalog
 from .paths import data_dir
 from .image_network import OrionNetwork
+from .tls import https_context
 
 BUNDLED=Path(__file__).resolve().parent/'assets/image_catalog.json'
 URL='https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/image_catalog.json'
@@ -40,7 +41,7 @@ class ImageModels:
         if not item or not self.path(item).is_file():raise ValueError('Download Orion Image 1 in Settings → Models first.')
         return self.path(item)
     def refresh(self):
-        with urlopen(Request(URL,headers={'User-Agent':'LambdaAI/'+__version__}),timeout=15) as response:
+        with urlopen(Request(URL,headers={'User-Agent':'LambdaAI/'+__version__}),timeout=15,context=https_context()) as response:
             raw=response.read(1_048_577)
         if len(raw)>1_048_576:raise ValueError('Image catalog is too large')
         data=validate_catalog(json.loads(raw));atomic_json(self.directory/'image-catalog.json',data)
@@ -54,7 +55,7 @@ class ImageModels:
         folder=self.directory/'image-models';folder.mkdir(parents=True,exist_ok=True)
         fd,temp=tempfile.mkstemp(dir=folder,prefix='download-',suffix='.tmp');received=0;checksum=hashlib.sha256()
         try:
-            with os.fdopen(fd,'wb') as out,urlopen(Request(row['url'],headers={'User-Agent':'LambdaAI/'+__version__}),timeout=20) as source:
+            with os.fdopen(fd,'wb') as out,urlopen(Request(row['url'],headers={'User-Agent':'LambdaAI/'+__version__}),timeout=20,context=https_context()) as source:
                 while True:
                     if cancel is not None and cancel.is_set():raise ValueError('Download cancelled.')
                     chunk=source.read(65536)

@@ -141,7 +141,7 @@ else {
     ipcMain.handle('lambda:image-save',async(event,id)=>{
       if(event.sender!==window?.webContents||typeof id!=='string'||! /^[a-f0-9]{32}$/.test(id))throw new Error('Invalid image.');
       const image=await request('image_png',{id});const raw=Buffer.from(image.base64,'base64');
-      if(raw.length>1048576||!raw.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])))throw new Error('Invalid PNG.');
+      if(raw.length>4194304||!raw.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])))throw new Error('Invalid PNG.');
       const target=await dialog.showSaveDialog(window,{defaultPath:path.join(app.getPath('downloads'),image.filename),filters:[{name:'PNG image',extensions:['png']}]});
       if(!target.canceled&&target.filePath)await fs.promises.writeFile(target.filePath,raw);
       return {saved:!target.canceled};
@@ -154,7 +154,8 @@ else {
     event.preventDefault(); quitting = true; window?.hide();
     // Keep the parent alive briefly so EOF can cancel and settle shared usage.
     if (!backend || backend.exitCode !== null) { app.exit(); return; }
-    const fallback=setTimeout(() => { backend.kill(); app.exit(); },5000);
+    // Let a bounded HTTPS request finish so cancelled image reservations settle.
+    const fallback=setTimeout(() => { backend.kill(); app.exit(); },30000);
     backend.once('exit',() => { clearTimeout(fallback); app.exit(); });
     backend.stdin.end();
   });

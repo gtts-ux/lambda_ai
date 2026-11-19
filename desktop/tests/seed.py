@@ -51,20 +51,13 @@ if os.environ.get('LAMBDA_ORION_MODEL'):
     atomic_json(directory/'image-models.json',{'installed':{'orion-image-1':dict(filename=filename,revision=1,sha256=entry['sha256'])}})
     cache=directory/'image-playground/references';cache.mkdir(parents=True,exist_ok=True)
     for query in ['test subject face human','missing reference']:
-        for key in ['title','q']:
-            url='https://images-api.nasa.gov/search?'+urlencode({key:query,'media_type':'image','page_size':100})
-            atomic_json(cache/(hashlib.sha256(url.encode()).hexdigest()+'.json'),{'collection':{'items':[]}})
-        url='https://commons.wikimedia.org/w/api.php?'+urlencode(dict(action='query',format='json',generator='search',gsrnamespace=6,gsrsearch=query,gsrlimit=20,prop='imageinfo',iiprop='url|extmetadata',iiurlwidth=512))
-        atomic_json(cache/(hashlib.sha256(url.encode()).hexdigest()+'.json'),{'query':{'pages':{}}})
+        key=hashlib.sha256(('safe-images-v1:'+query).encode()).hexdigest()
+        atomic_json(cache/(key+'.json'),dict(safeSearch='strict',results=[]))
     for query,ident,color in [('test subject','FIXTURE_SUBJECT',(190,100,50)),('test background','FIXTURE_BACKGROUND',(20,40,80))]:
-        url='https://images-api.nasa.gov/search?'+urlencode(dict(q=query,media_type='image',page_size=100))
-        photo='https://images-assets.nasa.gov/image/'+ident+'/'+ident+'~small.jpg'
-        raw=dict(collection=dict(items=[dict(data=[dict(nasa_id=ident,title='Synthetic '+query,description='Synthetic test fixture',center='Test fixture')],links=[dict(render='image',width=640,href=photo)])]))
-        atomic_json(cache/(hashlib.sha256(url.encode()).hexdigest()+'.json'),raw)
-        title_url='https://images-api.nasa.gov/search?'+urlencode(dict(title=query,media_type='image',page_size=100))
-        atomic_json(cache/(hashlib.sha256(title_url.encode()).hexdigest()+'.json'),raw)
-        wiki='https://commons.wikimedia.org/w/api.php?'+urlencode(dict(action='query',format='json',generator='search',gsrnamespace=6,gsrsearch=query,gsrlimit=20,prop='imageinfo',iiprop='url|extmetadata',iiurlwidth=512))
-        atomic_json(cache/(hashlib.sha256(wiki.encode()).hexdigest()+'.json'),{'query':{'pages':{}}})
+        photo='https://tse1.mm.bing.net/th/id/'+ident+'.jpg'
+        key=hashlib.sha256(('safe-images-v1:'+query).encode()).hexdigest()
+        atomic_json(cache/(key+'.json'),dict(safeSearch='strict',results=[dict(title='Synthetic '+query,thumbnail=photo,url='https://example.org/fixtures/'+ident)]))
         image=Image.new('RGB',(256,256),color)
         if query=='test subject':ImageDraw.Draw(image).ellipse((70,40,190,220),fill=(230,210,160))
-        image.save(cache/(hashlib.sha256(('nasa:'+ident).encode()).hexdigest()+'.png'))
+        identifier='safe:'+hashlib.sha256(photo.encode()).hexdigest()
+        image.save(cache/(hashlib.sha256(identifier.encode()).hexdigest()+'.png'))

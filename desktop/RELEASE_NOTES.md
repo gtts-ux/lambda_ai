@@ -1,4 +1,20 @@
-# Desktop app 1.2.1 — Image references and Terra 4.1
+# Desktop app 1.3.0 — Reliable HTTPS and image batches
+
+- General image-reference search with strict Safe Search, rather than a closed
+  subject list or NASA-only search. If filtering is unavailable, stop and refund
+  unfinished images; never retry through an unfiltered provider.
+
+- Includes trusted CA certificates in the packaged Python engine. Image/reference
+  downloads and model lists work outside the build machine without disabling TLS
+  verification. Native checks use missing host CA paths and real network requests.
+- Replace Variation with image count (1–8) and 256/512/1024 export size.
+- Show the price before generation: 1,000 tokens per prompt word at 256, ×2 at
+  512, ×4 at 1024, multiplied by image count. Reserve the batch and charge only
+  completed images; failed/cancelled unfinished images are refunded.
+- Orion still renders natively at 256; larger exports are explicitly labelled
+  enlargements, not newly learned detail. Model weights and existing data stay intact.
+
+## Included reference and Terra changes from 1.2.1
 
 - Comma-separated image tags fall back to shorter reference searches instead of
   requiring every synonym in every source caption. Portraits remain eligible.
@@ -36,7 +52,7 @@ bundle before replacing a working application.
 Chat families, one-click updates, local conversations, downloaded models, settings
 and token allowance are preserved.
 
-For M1/M2/M3/M4 Macs, download **Lambda-1.2.1-macos-arm64.zip**. Extract Lambda.app
+For M1/M2/M3/M4 Macs, download **Lambda-1.3.0-macos-arm64.zip**. Extract Lambda.app
 and replace the previous app in Applications or another writable location. Do not
 merge the contents of the old and new app bundles.
 

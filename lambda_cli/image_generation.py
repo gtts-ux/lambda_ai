@@ -1,24 +1,10 @@
 """Online reference photos, own local neural pixels. No hosted image AI or Torch."""
-import hashlib
-import html
-import io
-import json
-from pathlib import Path
 import re
-import time
-from urllib.parse import urlencode,urlparse
-from urllib.request import Request,urlopen
 import numpy as np
 from PIL import Image,ImageOps
-from .models import atomic_json
-from . import __version__
+from .image_references import References
 from .image_network import OrionNetwork,prompt_ids,resize
 
-HOSTS={'images-api.nasa.gov','images-assets.nasa.gov','commons.wikimedia.org','upload.wikimedia.org','thumb.wikimedia.org'}
-BAD=['mockup','mock-up','assembly','production','factory','manufacturing','museum','exhibit','training',
-     'conference','diagram','logo','patch','insignia','blueprint','drawing','painting','tour',
-     'projected','projection','monument','illustration','chart','cutaway','montage','engine',
-     'first stage','second stage','instrument unit','welding','ceremony','wreath','gala','audience','speaker']
 
 def cancelled(cancel):
     if cancel is not None and cancel.is_set():raise ValueError('Image generation cancelled.')
@@ -29,117 +15,12 @@ def plan(prompt):
     text=re.sub(r',?\s*(?:on|to|at) (?:the )?(?:left|right)\b','',prompt,flags=re.I).strip().rstrip('.!?')
     text=re.sub(r'^(?:please\s+)?(?:(?:can|could|would) you\s+)?(?:generate|create|make|draw|render|produce)\s+(?:me\s+)?(?:(?:a|an)\s+)?(?:(?:photo|photograph|picture|image|illustration|artwork)\s*(?:of|showing|featuring)?\s*[, :]?\s*)?','',text,flags=re.I)
     text=re.sub(r'^(?:prosze\s+)?(?:wygeneruj|narysuj|stworz|zrob)\s+(?:mi\s+)?(?:(?:obraz|zdjecie|zdjęcie|ilustracje)\s*)?[:, ]*','',text,flags=re.I)
-    pieces=re.split(r'\s+(?:in|against|with|above|on|beside)\s+(?:a\s+|an\s+|the\s+)?',text,maxsplit=2,flags=re.I)
+    pieces=re.split(r'\s+(?:in|against|with|above|on|beside)\s+(?:a\s+|an\s+|the\s+)?',text,maxsplit=1,flags=re.I)
     queries=[re.sub(r'^(?:a|an|the)\s+','',p.strip(),flags=re.I) for p in pieces]
-    if not all(queries) or len(queries)>2:raise ValueError('Start with one subject and one background, such as “a cat in a forest”.')
+    if not all(queries):raise ValueError('Describe a subject and an optional setting.')
     return dict(prompt=prompt,queries=queries,position=position,
         search_queries=[('star field' if i and q.lower() in {'space','outer space'} else q) for i,q in enumerate(queries)])
 
-class References:
-    def __init__(self,directory,fetcher=None):
-        self.directory=Path(directory);self.directory.mkdir(parents=True,exist_ok=True)
-        self.fetcher=fetcher or self.fetch
-    @staticmethod
-    def fetch(url,cancel=None):
-        parsed=urlparse(url)
-        if parsed.scheme!='https' or parsed.hostname not in HOSTS or parsed.username or parsed.password:
-            raise ValueError('Unsupported image reference host')
-        cancelled(cancel)
-        request=Request(url,headers={'User-Agent':'LambdaAI/'+__version__+' (https://github.com/gtts-ux/lambda_ai; image references)'})
-        with urlopen(request,timeout=15) as response:
-            final=urlparse(response.geturl())
-            if final.scheme!='https' or final.hostname not in HOSTS:raise ValueError('Unsupported reference redirect')
-            chunks=[];total=0
-            while True:
-                cancelled(cancel);part=response.read(65536)
-                if not part:break
-                total+=len(part)
-                if total>8_000_000:raise ValueError('Image reference is too large')
-                chunks.append(part)
-        return b''.join(chunks)
-    def json(self,url,cancel):
-        key=hashlib.sha256(url.encode()).hexdigest();path=self.directory/(key+'.json')
-        if path.exists():return json.loads(path.read_text())
-        value=json.loads(self.fetcher(url,cancel));atomic_json(path,value);return value
-    @staticmethod
-    def relevance(row,query,role):
-        title=row.get('title','').lower();description=row.get('description','').lower();text=title+' '+description
-        words=re.findall('[a-z0-9]+',query.lower())
-        if not words or not all(re.search(r'\b'+re.escape(w)+r'\b',text) for w in words):return -1000
-        score=8*int(query.lower() in title)+sum(3*bool(re.search(r'\b'+re.escape(w)+r'\b',title)) for w in words)
-        bad=[w for w in BAD if w not in query.lower()]
-        score-=sum(14 for w in bad if w in title)+sum(3 for w in bad if w in description)
-        if role=='background':score+=sum(4 for w in ['star field','nebula','galaxy','stars','star cluster','deep space'] if w in title)
-        else:
-            score+=sum(2 for w in ['liftoff','lift-off','launch','flight','full view','standing','orbit'] if w in title)
-            score+=sum(3 for w in ['liftoff','lift-off','launch pad','launchpad','in flight','rocket launch','test flight'] if w in description)
-        return score
-    def search(self,query,role,cancel):
-        # Comma-separated tags are search hints, not a requirement that every
-        # source caption contain every synonym. Preserve the full model prompt.
-        variants=list(dict.fromkeys([re.sub(r'\s*,\s*',' ',query)]+[part.strip() for part in query.split(',') if part.strip()]))[:4]
-        deadline=time.monotonic()+60
-        for variant in variants:
-            cancelled(cancel)
-            if time.monotonic()>deadline:break
-            result=self.search_phrase(variant,role,cancel,deadline)
-            if result:return result
-        cancelled(cancel)
-        raise ValueError(f'No reference photos could be downloaded for “{query}”. Try a simpler subject or try again later.')
-
-    def search_phrase(self,query,role,cancel,deadline):
-        rows=[];errors=[]
-        try:
-            # Title search avoids a page full of unrelated events whose long
-            # descriptions mention the requested subject in passing.
-            raw=self.json('https://images-api.nasa.gov/search?'+urlencode(dict(title=query,media_type='image',page_size=100)),cancel)
-            if not raw.get('collection',{}).get('items'):
-                raw=self.json('https://images-api.nasa.gov/search?'+urlencode(dict(q=query,media_type='image',page_size=100)),cancel)
-            for item in raw.get('collection',{}).get('items',[]):
-                meta=(item.get('data') or [{}])[0]
-                links=[x for x in item.get('links',[]) if x.get('render')=='image' and urlparse(x.get('href','')).hostname=='images-assets.nasa.gov']
-                if not links or not meta.get('nasa_id'):continue
-                link=min(links,key=lambda x:abs((x.get('width') or 640)-640))
-                rows.append(dict(id='nasa:'+meta['nasa_id'],title=meta.get('title',''),description=meta.get('description','')[:3000],
-                    image_url=link['href'],source_url='https://images.nasa.gov/details/'+meta['nasa_id'],
-                    credit=meta.get('photographer') or meta.get('center','NASA'),provider='NASA'))
-        except (OSError,ValueError) as exc:errors.append(str(exc))
-        ranked=[dict(r,relevance=self.relevance(r,query,role)) for r in rows]
-        ranked=[r for r in ranked if r['relevance']>-5]
-        if len(ranked)<5:
-            try:
-                raw=self.json('https://commons.wikimedia.org/w/api.php?'+urlencode(dict(action='query',format='json',generator='search',gsrnamespace=6,gsrsearch=query,gsrlimit=20,prop='imageinfo',iiprop='url|extmetadata',iiurlwidth=512)),cancel)
-                for page in raw.get('query',{}).get('pages',{}).values():
-                    info=(page.get('imageinfo') or [{}])[0];meta=info.get('extmetadata',{});url=info.get('thumburl',info.get('url',''))
-                    # Commons can return a PNG thumbnail of an SVG anatomy
-                    # diagram. Only use original raster photographs as refs.
-                    if re.search(r'\.svg(?:$|\?)',info.get('url',''),re.I):continue
-                    if urlparse(url).hostname not in HOSTS or not re.search(r'\.(jpg|jpeg|png)(?:$|\?)',url,re.I):continue
-                    clean=lambda name:html.unescape(re.sub('<[^>]+>','',meta.get(name,{}).get('value','')))
-                    row=dict(id='commons:'+str(page['pageid']),title=page['title'].removeprefix('File:'),description=clean('ImageDescription')[:3000],
-                        image_url=url,source_url=info.get('descriptionurl'),credit=clean('Artist'),license=clean('LicenseShortName'),provider='Wikimedia Commons')
-                    row['relevance']=self.relevance(row,query,role)
-                    if row['relevance']>-5:ranked.append(row)
-            except (OSError,ValueError) as exc:errors.append(str(exc))
-        ranked.sort(key=lambda r:r['relevance'],reverse=True)
-        result=[];seen=set()
-        for row in ranked[:30]:
-            cancelled(cancel)
-            if time.monotonic()>deadline:break
-            key=hashlib.sha256(row['id'].encode()).hexdigest();path=self.directory/(key+'.png')
-            try:
-                if not path.exists():
-                    with Image.open(io.BytesIO(self.fetcher(row['image_url'],cancel))) as original:
-                        if original.width*original.height>16_000_000 or min(original.size)<64:continue
-                        im=ImageOps.exif_transpose(original).convert('RGB');im.thumbnail((512,512));im.save(path)
-                digest=hashlib.sha256(path.read_bytes()).hexdigest()
-                if digest in seen:continue
-                result.append(dict(row,path=str(path),sha256=digest));seen.add(digest)
-            except (OSError,ValueError) as exc:errors.append(str(exc))
-            if len(result)>=10:break
-        if not result:
-            cancelled(cancel)
-        return result
 
 def tensor(path):
     with Image.open(path) as im:im=ImageOps.pad(im.convert('RGB'),(256,256),method=Image.Resampling.LANCZOS,color=(128,128,128))
@@ -177,5 +58,5 @@ class ImageGenerator:
         cancelled(cancel);progress('Saving image',98)
         pixels=np.rint((pixels.clip(-1,1)+1)*np.float32(127.5)).astype(np.uint8).transpose(1,2,0)
         public=lambda row:{key:row.get(key) for key in ['title','source_url','credit','license','provider','sha256']}
-        return pixels,dict(model='orion-image-1',modelName='orion image 1',width=256,height=256,
+        return pixels,dict(model='orion-image-1',modelName='orion image 1',width=256,height=256,safeSearch='strict',referenceSearch='DuckDuckGo',
             references=[public(row) for group in groups for row in group],selectedReferences=[public(subject)]+([public(background)] if background else []))

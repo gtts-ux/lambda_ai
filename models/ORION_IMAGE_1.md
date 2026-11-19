@@ -17,6 +17,11 @@ Searches NASA and Wikimedia Commons reference photos and generates locally.
 Reference credits/source links are retained locally. It does not fuse all
 retrieved photos into a new 3-D model.
 
+Runtime update: Desktop 1.3.0 uses general DuckDuckGo image results with strict
+Safe Search, without unfiltered provider fallback. The same model weights remain
+native 256px; 512/1024 exports are labelled enlargements. Search can accept a
+broad description, but the model's learned rendering limitations still apply.
+
 ## Actual limitations
 
 The reviewed Saturn V example selects a real flying rocket and star field, but

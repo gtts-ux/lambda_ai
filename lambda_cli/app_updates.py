@@ -17,6 +17,7 @@ import zipfile
 from . import __version__
 from .models import atomic_json
 from .paths import data_dir
+from .tls import https_context
 
 RELEASE_ROOT = 'https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/releases/'
 MANIFEST_URL = RELEASE_ROOT + 'app.json'
@@ -103,7 +104,7 @@ class AppUpdater:
 
     def check(self):
         request = Request(MANIFEST_URL, headers={'User-Agent': f'LambdaAI/{__version__}'})
-        with urlopen(request, timeout=20) as response:
+        with urlopen(request, timeout=20, context=https_context()) as response:
             raw = response.read(65537)
         if len(raw) > 65536:
             raise ValueError('Application update manifest is too large.')
@@ -120,7 +121,7 @@ class AppUpdater:
         try:
             request = Request(release['url'], headers={'User-Agent': f'LambdaAI/{__version__}'})
             last_percent = -1
-            with os.fdopen(fd, 'wb') as target, urlopen(request, timeout=30) as response:
+            with os.fdopen(fd, 'wb') as target, urlopen(request, timeout=30, context=https_context()) as response:
                 received = 0
                 while True:
                     if cancel is not None and cancel.is_set():

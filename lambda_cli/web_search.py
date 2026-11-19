@@ -99,7 +99,8 @@ def fetch_page(url,cancel=None):
         resolved=addresses(p.hostname,port);remaining=min(TIMEOUT,deadline-time.monotonic())
         if remaining<=0:raise ValueError('Source read timed out.')
         cls=http.client.HTTPSConnection if p.scheme=='https' else http.client.HTTPConnection
-        connection=cls(p.hostname,port,timeout=remaining)
+        from .tls import https_context
+        connection=cls(p.hostname,port,timeout=remaining,**({'context':https_context()} if p.scheme=='https' else {}))
         # HTTPS keeps the original hostname for SNI and certificate verification.
         connection._create_connection=lambda address,timeout=remaining,source_address=None,ip=resolved[0]:socket.create_connection((ip,port),timeout,source_address)
         try:

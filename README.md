@@ -36,18 +36,26 @@ inference files keep their original bytes; app 0.8.5 presents the new names.
 
 ## Desktop app
 
-[Download Desktop app 1.2.1 for macOS, Windows or Linux](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.2.1).
+[Download Desktop app 1.3.0 for macOS, Windows or Linux](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.3.0).
 Run `lambda desktop` or `/desktop` in terminal app 0.8.6+ to get this link.
 
 Desktop 1.2.0 adds **Image Playground** and the optional **orion image 1** model.
 Download it individually in Settings → Models, create native 256×256 images,
-stop generation, revisit local image history and export PNGs. NASA/Wikimedia
+stop generation, revisit local image history and export PNGs. Online
 reference search uses the internet; the owner's own neural weights generate pixels
 locally. Terra chats can open this mode using a separately trained image-request
 head. It can miss some requests; use the sidebar mode directly when needed.
 This experimental model can produce blurred or deformed subjects. See the
 [Orion model card](models/ORION_IMAGE_1.md) for provenance and limitations.
 No chat model, history or allowance is replaced by downloading image weights.
+
+Desktop 1.3.0 adds image count, export sizes and an upfront price. Each completed
+image costs 1,000 tokens per prompt word at 256, ×2 at 512 or ×4 at 1024. Multiply
+by image count; failed/unfinished images are refunded. Larger exports upscale
+the native 256px image. Packaged HTTPS trust is included for reference/model downloads.
+Reference search now accepts general descriptions through DuckDuckGo with strict
+Safe Search; there is no unfiltered NASA/Commons fallback. Available references
+do not guarantee that this small model can faithfully depict every subject.
 
 The optional [Lambda Desktop](desktop/README.md) provides a separate window with
 saved chats, streaming replies, colored code blocks, appearance settings and a
@@ -578,7 +586,7 @@ ordinary conversation or twice general intelligence.
 
 Desktop: **Settings → Models → Refresh list**, download **Terra 4.1 demo**, then
 choose it in the chat model picker. Desktop app 1.1.0+ already supports it.
-Terminal: use app 0.8.6+ (current 0.9.1), refresh with `/update` and select:
+Terminal: use app 0.8.6+ (current 0.10.0), refresh with `/update` and select:
 
 ```sh
 lambda model use lambda-terra-4.1-demo

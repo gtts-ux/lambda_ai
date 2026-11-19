@@ -2,6 +2,7 @@
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import asdict
 import getpass
+import secrets
 import json
 from pathlib import Path
 import re
@@ -218,41 +219,57 @@ class Desktop:
             self.emit('download-end', self.state())
         return self.state()
 
-    def generate_image(self,prompt,seed=42):
+    def generate_image(self,prompt,seed=None,size=256,count=1):
         from lambda_cli.image_generation import ImageGenerator,plan
+        from lambda_cli.image_pricing import image_price
+        from PIL import Image
+        import numpy as np
         plan(prompt)
+        price=image_price(prompt,size,count)
+        if seed is None:seed=secrets.randbelow(2**32)
         if type(seed) is not int or not 0<=seed<=2**32-1:raise ValueError('Use a seed between 0 and 4294967295.')
         with self.lock:
             self.idle();path=self.image_models.resolve()
             self.generating=True;self.cancel.clear()
-            self.image_job=dict(state='running',prompt=prompt,phase='Preparing image model',percent=0)
-            tokens=len(self.session.engine.tokenizer.encode(prompt))
-        reservation=None;started=time.monotonic()
+            self.image_job=dict(state='running',prompt=prompt,phase='Preparing image model',percent=0,
+                price=price,count=count,size=size,completed=0,ids=[],chargedTokens=0)
+        reservation=None;completed=[];index=0
         self.emit('image-start',self.state())
         def progress(phase,percent):
-            with self.lock:self.image_job.update(phase=phase,percent=percent)
+            with self.lock:self.image_job.update(phase=f'Image {index+1} of {count} · {phase}',percent=(index*100+percent)//count)
             self.emit('image-progress',dict(self.image_job))
         try:
-            reservation=self.quota.reserve(tokens,1)
+            reservation=self.quota.reserve(0,price['total'],exact=True)
             if self.image_engine is None or self.image_engine[0]!=path:
                 self.image_engine=(path,ImageGenerator(path,self.image_store.directory/'references'))
-            pixels,metadata=self.image_engine[1].generate(prompt,seed,progress,self.cancel)
-            metadata['seconds']=time.monotonic()-started
-            identifier=self.image_store.add(prompt,seed,pixels,metadata)
-            with self.lock:self.image_job.update(state='completed',phase='Finished',percent=100,id=identifier)
+            for index in range(count):
+                if self.cancel.is_set():raise ValueError('Image generation cancelled.')
+                started=time.monotonic();variation=(seed+index)%(2**32)
+                pixels,metadata=self.image_engine[1].generate(prompt,variation,progress,self.cancel)
+                if self.cancel.is_set():raise ValueError('Image generation cancelled.')
+                if size!=256:pixels=np.asarray(Image.fromarray(pixels).resize((size,size),Image.Resampling.LANCZOS))
+                metadata.update(seconds=time.monotonic()-started,width=size,height=size,nativeWidth=256,nativeHeight=256,
+                    upscaled=size!=256,tokenCost=price['perImage'],promptWords=price['words'],sizeMultiplier=price['multiplier'])
+                identifier=self.image_store.add(prompt,variation,pixels,metadata);completed.append(identifier)
+                with self.lock:self.image_job.update(completed=len(completed),ids=list(completed),id=identifier,
+                    chargedTokens=len(completed)*price['perImage'])
+                self.emit('image-result',self.state())
+            with self.lock:self.image_job.update(state='completed',phase=f'Finished · {count} image'+('s' if count!=1 else ''),percent=100)
         except Exception as error:
             with self.lock:self.image_job.update(state='cancelled' if self.cancel.is_set() else 'failed',phase=str(error))
             raise
         finally:
-            if reservation is not None:self.quota.complete(reservation,tokens)
-            with self.lock:self.generating=False
-            self.emit('image-end',self.state())
+            try:
+                if reservation is not None:self.quota.complete(reservation,len(completed)*price['perImage'])
+            finally:
+                with self.lock:self.generating=False
+                self.emit('image-end',self.state())
         return self.state()
 
     def dispatch(self, method, params):
         if method == 'state': return self.state()
         if method == 'send': return self.send(params.get('text'))
-        if method == 'generate_image':return self.generate_image(params.get('prompt'),params.get('seed',42))
+        if method == 'generate_image':return self.generate_image(params.get('prompt'),params.get('seed'),params.get('size',256),params.get('count',1))
         if method == 'image_png':
             row=self.image_store.get(params.get('id'))
             return dict(base64=row['dataUrl'].split(',',1)[1],filename='orion-'+row['id'][:8]+'.png')

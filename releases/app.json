@@ -1,11 +1,11 @@
 {
   "schema": 1,
-  "version": "0.9.1",
+  "version": "0.10.0",
   "minimum_python": [
     3,
     11
   ],
-  "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/releases/lambda_ai_terminal-0.9.1-py3-none-any.whl",
-  "bytes": 3611203,
-  "sha256": "61855d52c6d4e811143fea0477b6826e64b93c3bfab78e2bce7c578ceb77fb88"
+  "url": "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/releases/lambda_ai_terminal-0.10.0-py3-none-any.whl",
+  "bytes": 3613387,
+  "sha256": "a6278700f807c7c0ccb1810278131dbb3e7003bdca844e30890010237a06b560"
 }

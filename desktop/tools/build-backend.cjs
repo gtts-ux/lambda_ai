@@ -8,7 +8,7 @@ const project=path.dirname(root);
 const args=['-m','PyInstaller','--noconfirm','--clean','--onedir','--name','lambda-backend',
   '--distpath',path.join(root,'backend-dist'),'--workpath',path.join(root,'backend-build'),
   '--specpath',path.join(root,'backend-build'),'--paths',project,
-  '--collect-submodules','lambda_cli','--collect-data','lambda_cli',
+  '--collect-submodules','lambda_cli','--collect-data','lambda_cli','--collect-data','certifi',
   '--add-data',path.join(project,'lambda_cli','assets')+path.delimiter+'lambda_cli/assets',
   '--exclude-module','tkinter','--exclude-module','torch','--exclude-module','matplotlib',path.join(root,'backend.py')];
 const result=spawnSync(python,args,{cwd:root,stdio:'inherit'});
@@ -20,4 +20,6 @@ function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.
 const models=walk(bundle).filter(p=>p.endsWith('.npz'));
 if(JSON.stringify(models.map(p=>path.basename(p)).sort())!==JSON.stringify(['image_intent.npz','model.npz']))throw new Error('Unexpected model files in desktop engine bundle.');
 if(walk(bundle).some(p=>p.endsWith('.pt')||p.endsWith('.sqlite3')))throw new Error('Private training/user data found in application bundle.');
+const roots=walk(bundle).find(p=>p.endsWith(path.join('certifi','cacert.pem')));
+if(!roots||(fs.readFileSync(roots,'utf8').match(/BEGIN CERTIFICATE/g)||[]).length<100)throw new Error('Trusted HTTPS certificates missing from desktop engine.');
 console.log('Desktop engine ready. Small chat starter and learned tool head bundled; image models stay optional.');

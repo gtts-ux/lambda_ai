@@ -1,5 +1,5 @@
 """Portable public links shared by terminal help and the desktop release docs."""
-DESKTOP_URL = 'https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.2.1'
+DESKTOP_URL = 'https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.3.0'
 DESKTOP_INFO = ('LAMBDA DESKTOP APP\n\n'
                 '  A separate window for saved chats, model downloads and appearance settings.\n'
                 '  Available for macOS, Windows and Linux.\n'

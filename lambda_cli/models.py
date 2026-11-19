@@ -13,6 +13,7 @@ from . import __version__
 from .engine import DEFAULT_MODEL, Engine
 from .paths import data_dir
 from .families import canonical_id,display_name
+from .tls import https_context
 
 CATALOG_URL = "https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/catalog.json"
 BUNDLED_CATALOG = Path(__file__).resolve().parent/"assets/catalog.json"
@@ -146,7 +147,7 @@ class ModelManager:
 
     def refresh_catalog(self):
         request = Request(self.catalog_url, headers={"User-Agent": f"LambdaAI/{__version__}"})
-        with urlopen(request, timeout=15) as response:
+        with urlopen(request, timeout=15, context=https_context()) as response:
             content = response.read(1024*1024+1)
         if len(content) > 1024*1024:
             raise ValueError("Model catalog is too large.")
@@ -178,7 +179,7 @@ class ModelManager:
         last_percent = -1
         try:
             request = Request(entry["url"], headers={"User-Agent": f"LambdaAI/{__version__}"})
-            with os.fdopen(fd, "wb") as output, urlopen(request, timeout=15) as response:
+            with os.fdopen(fd, "wb") as output, urlopen(request, timeout=15, context=https_context()) as response:
                 while True:
                     if cancel is not None and cancel.is_set():
                         raise ValueError("Download cancelled.")

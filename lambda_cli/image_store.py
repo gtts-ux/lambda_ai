@@ -40,7 +40,7 @@ class ImageStore:
         data=dict(id=row[0],created=row[1],prompt=row[2],seed=row[3],**json.loads(row[4]))
         if include_image:
             raw=self.file(identifier).read_bytes()
-            if len(raw)>1_048_576:raise ValueError('Image file is too large')
+            if len(raw)>4_194_304:raise ValueError('Image file is too large')
             data['dataUrl']='data:image/png;base64,'+base64.b64encode(raw).decode()
         return data
     def history(self):

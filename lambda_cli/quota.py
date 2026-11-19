@@ -69,13 +69,15 @@ class Quota:
                 "approximate_messages": 5000, "assumed_tokens_per_message": 200,
                 "enforcement": "local_per_os_user"}
 
-    def reserve(self, input_tokens, max_output):
+    def reserve(self, input_tokens, max_output, *, exact=False):
         if input_tokens < 0 or max_output < 1:
             raise ValueError("Invalid token reservation.")
         now = self.clock()
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
             started, used = self.refresh(db, now)
+            if exact and input_tokens+max_output>ALLOWANCE-used:
+                raise QuotaExceeded(f'This request needs {input_tokens+max_output:,} tokens; {max(0,ALLOWANCE-used):,} remain.')
             available = ALLOWANCE-used-input_tokens
             if available < 1:
                 reset = (started if started is not None else now) + WINDOW_SECONDS

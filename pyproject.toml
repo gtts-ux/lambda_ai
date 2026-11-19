@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lambda-ai-terminal"
-version = "0.9.1"
+version = "0.10.0"
 description = "English terminal chat with a local model trained from scratch, usage limits and model updates."
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
 license-files = ["LICENSE"]
-dependencies = ["numpy>=2.3,<3", "prompt-toolkit>=3.0.48,<4", "ddgs>=9.16.1,<10", "Pillow>=11.3,<13"]
+dependencies = ["numpy>=2.3,<3", "prompt-toolkit>=3.0.48,<4", "ddgs>=9.16.1,<10", "Pillow>=11.3,<13", "certifi>=2025.1.31"]
 keywords = ["terminal", "chat", "numpy", "english", "language-model"]
 classifiers = [
   "Environment :: Console",
@@ -26,4 +26,4 @@ where = ["."]
 include = ["lambda_cli*"]
 
 [tool.setuptools.package-data]
-lambda_cli = ["assets/*.npz", "assets/*.json"]
+lambda_cli = ["assets/*.npz", "assets/*.json", "assets/*-LICENSE.txt"]

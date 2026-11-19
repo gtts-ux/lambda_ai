@@ -3,3 +3,4 @@ prompt-toolkit>=3.0.48,<4
 ddgs>=9.16.1,<10
 pyinstaller>=6.16,<7
 Pillow>=11.3,<13
+certifi>=2025.1.31
