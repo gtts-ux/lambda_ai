@@ -5,7 +5,7 @@ existing Lambda inference engine. The interface is English.
 
 ## Using the app
 
-Download the package for your system from [Desktop app 1.2.0](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.2.0). Open `Lambda.app` on macOS, run the installer on Windows, or make the Linux AppImage executable and launch it. The standalone build includes its own Python runtime,
+Download the package for your system from [Desktop app 1.2.1](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.2.1). Open `Lambda.app` on macOS, run the installer on Windows, or make the Linux AppImage executable and launch it. The standalone build includes its own Python runtime,
 the inference engine and the small Mercury 1.0 starter model. It does not need a
 terminal, a checkout or a separately installed Python to run.
 
@@ -95,7 +95,7 @@ with no chat database or training checkpoint. Orion image weights are optional.
 Downloaded models and private training files are not packaged. All generated
 build trees, environments, test profiles and installers are excluded from Git.
 
-Desktop version 1.2.0 and terminal package versions are separate. CLI `/update`
+Desktop version 1.2.1 and terminal package versions are separate. CLI `/update`
 updates the CLI package. Desktop Settings → Updates → Update & restart updates
 the bundled desktop engine in place. It does not overwrite the terminal launcher.
 Versions 1.1.2 and earlier need one package installation to gain the new updater;

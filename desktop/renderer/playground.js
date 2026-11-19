@@ -4,6 +4,7 @@ function showWorkspace(mode){
   workspaceMode=mode;const image=mode==='image';
   $('#image-playground').hidden=!image;$('#conversation-scroll').hidden=image;$('.composer-area').hidden=image;
   $('#chat-actions').hidden=image;$('#chat-title').textContent=image?'Image Playground':S?.chat.title||'New chat';
+  $('#chat-title').disabled=image;
   $('#image-playground-nav').classList.toggle('active',image);$('#scroll-bottom').hidden=true;
   if(image){renderPlayground();$('#image-prompt').focus();}
 }
@@ -47,7 +48,12 @@ $('#image-model-settings').onclick=()=>openSettings('models');
 $('#image-stop').onclick=()=>act('stop');
 $('#image-form').onsubmit=async e=>{
   e.preventDefault();if(S?.generating)return;const prompt=$('#image-prompt').value.trim();if(!prompt)return;
-  const state=await act('generate_image',{prompt,seed:Number($('#image-seed').value)});if(!state)await act('state');
+  try{applyState(await window.lambda.request('generate_image',{prompt,seed:Number($('#image-seed').value)}));}
+  catch(error){
+    await act('state');
+    // Failed generation is already explained inline beside the prompt.
+    if(!S?.imageJob?.phase||S.imageJob.state!=='failed')toast(friendlyError(error));
+  }
 };
 $('#image-save').onclick=()=>{if(selectedImage)window.lambda.saveImage(selectedImage).catch(error=>toast(error.message));};
 $('#image-delete').onclick=()=>{pendingImageDelete=selectedImage;$('#delete-image-dialog').showModal();};

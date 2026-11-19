@@ -144,13 +144,21 @@
       "description": "Experimental 35.03M-parameter English chat demo, selected update 4000. Development 43/60 versus Venus 2.4 22/60; retention gates not met. No web search or coding branch. See the model card.",
       "family": "terra",
       "license": "CC-BY-SA-4.0"
-    }
-  ],
-  "retired": [
+    },
     {
       "id": "lambda-terra-4.1",
-      "replaced_by": "lambda-terra-4.1-demo",
-      "reason": "Withdrawn from model choices at owner request. Immutable legacy files remain for existing saved chats."
+      "name": "lambda terra 4.1",
+      "revision": 2,
+      "language": "en",
+      "min_app_version": "0.9.1",
+      "format": "lambda-ai-transformer-v3",
+      "sha256": "810baa43b5a2a10b4643ca5288d0694653b0c3d893f28a5f080c02f3cd5acad5",
+      "bytes": 129449855,
+      "family": "terra",
+      "license": "CC-BY-SA-4.0",
+      "url": "https://github.com/gtts-ux/lambda_ai/releases/download/model-terra-4.1-r2/lambda-terra-4.1-r2.npz",
+      "description": "Experimental 34.82M-parameter English conversation model, 1024-token context. Selected own chat-repair update 7000. Arithmetic remains unreliable (3/51 final); not a claim of twice general ability."
     }
-  ]
+  ],
+  "retired": []
 }

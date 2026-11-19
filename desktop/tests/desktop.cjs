@@ -168,18 +168,27 @@ async function launch(){
       try{return fs.readFileSync(exported).subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]));}
       catch{return false;}
     }).toBe(true);
+    await page.locator('#image-prompt').fill('test subject, face, human in test background');
+    await page.locator('#image-generate').click();
+    await expect(page.locator('.image-history-item')).toHaveCount(2,{timeout:90000});
+    await page.locator('#image-prompt').fill('missing reference');
+    await page.locator('#image-generate').click();
+    await expect(page.locator('#image-phase')).toContainText('No reference photos could be downloaded');
+    await expect(page.locator('#image-generate')).toBeEnabled();
+    await expect(page.locator('.image-history-item')).toHaveCount(2);
+    await expect(page.locator('#toast')).not.toContainText('Error invoking remote method');
     if(process.argv.includes('--live-images')){
-      await page.locator('#image-prompt').fill('Generate a photo of Saturn V in space');
+      await page.locator('#image-prompt').fill('person, face, human');
       await page.locator('#image-generate').click();
       await expect.poll(async()=>{
         const state=await page.evaluate(()=>window.lambda.request('state'));
         if(state.imageJob?.state==='failed')throw new Error(state.imageJob.phase);
         return state.images.length;
-      },{timeout:180000}).toBe(2);
+      },{timeout:180000}).toBe(3);
       await page.screenshot({path:path.join(artifacts,'image-playground-live.png')});
     }
     await app.close();page=await launch();await page.locator('#image-playground-nav').click();
-    await expect(page.locator('.image-history-item')).toHaveCount(process.argv.includes('--live-images')?2:1);
+    await expect(page.locator('.image-history-item')).toHaveCount(process.argv.includes('--live-images')?3:2);
     await expect(page.locator('#image-result')).toBeVisible();
   }else await expect(page.locator('#image-model-settings')).toBeVisible();
   await app.close();app=null;

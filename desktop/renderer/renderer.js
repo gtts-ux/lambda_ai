@@ -22,7 +22,7 @@ const size=bytes=>`${((bytes||0)/1048576).toFixed(1)} MB`;
 const command=window.lambda.platform==='darwin'?'⌘':'Ctrl';
 const familyNames={mercury:'Mercury',venus:'Venus',code:'Code',terra:'Terra',other:'Local models'};
 const familyCopy={mercury:'Compact English models for simple conversations.',venus:'Conversation models for questions and short exchanges.',code:'Experimental Python and JavaScript assistance.',terra:'Experimental English conversation models.',other:'A model installed on this device.'};
-let desktopInfo={version:'1.2.0'},updateResult=null,checkingUpdates=false,applicationUpdate=null,deleteId=null;
+let desktopInfo={version:'1.2.1'},updateResult=null,checkingUpdates=false,applicationUpdate=null,deleteId=null;
 let S=null,tab='appearance',modelFilter='all',archived=false,query='',searchTimer,toastTimer,renameId=null,stream=null,lastMessages='',popoverAnchor=null;
 const media=matchMedia('(prefers-color-scheme: dark)');
 function decorate(root=document){root.querySelectorAll('[data-icon]').forEach(el=>{el.innerHTML=icon(el.dataset.icon);});}
@@ -33,8 +33,9 @@ function toast(message,undo){
 }
 async function act(method,params={}){
   try{const value=await window.lambda.request(method,params);if(value?.chat)applyState(value);return value;}
-  catch(error){toast(error.message);return null;}
+  catch(error){toast(friendlyError(error));return null;}
 }
+function friendlyError(error){return String(error?.message||error).replace(/^Error invoking remote method '[^']+':\s*(?:Error:\s*)?/,'');}
 function applyAppearance(){
   if(!S)return;
   const p=S.preferences;const html=document.documentElement;

@@ -111,7 +111,7 @@ class ModelUpdateTests(unittest.TestCase):
         entries = self.manager.entries()
         self.assertEqual([(e["id"],e["name"]) for e in entries],
                          [("lambda-1.0","lambda mercury 1.0"),("lambda-1.5","lambda mercury 1.5"),
-                      ("lambda-1.6","lambda mercury 1.6"),("lambda-2","lambda venus 2"),("lambda-2.1","lambda venus 2.1"),("lambda-2.2","lambda venus 2.2"),("lambda-2.4","lambda venus 2.4"),("lambda-2.5.1","lambda venus 2.5.1"),("lambda-2.5.2","lambda venus 2.5.2"),("lambda-code-3","lambda code 3"),("lambda-terra-4.1-demo","lambda terra 4.1 demo")])
+                      ("lambda-1.6","lambda mercury 1.6"),("lambda-2","lambda venus 2"),("lambda-2.1","lambda venus 2.1"),("lambda-2.2","lambda venus 2.2"),("lambda-2.4","lambda venus 2.4"),("lambda-2.5.1","lambda venus 2.5.1"),("lambda-2.5.2","lambda venus 2.5.2"),("lambda-code-3","lambda code 3"),("lambda-terra-4.1-demo","lambda terra 4.1 demo"),("lambda-terra-4.1","lambda terra 4.1")])
         self.assertEqual(self.manager.resolve(),DEFAULT_MODEL)
 
     def revision(self):

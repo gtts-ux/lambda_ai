@@ -36,7 +36,7 @@ inference files keep their original bytes; app 0.8.5 presents the new names.
 
 ## Desktop app
 
-[Download Desktop app 1.2.0 for macOS, Windows or Linux](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.2.0).
+[Download Desktop app 1.2.1 for macOS, Windows or Linux](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.2.1).
 Run `lambda desktop` or `/desktop` in terminal app 0.8.6+ to get this link.
 
 Desktop 1.2.0 adds **Image Playground** and the optional **orion image 1** model.
@@ -552,9 +552,23 @@ the completed repair's selected update 11500, not the older local demo.
 Existing models, chats and allowance are preserved. Installers derive paths on
 each machine; release code contains no maintainer checkout path.
 
-## lambda terra 4.1 demo: experimental offline conversation
+## lambda terra 4.1: new own-foundation release
 
-The public Terra offering is now **lambda terra 4.1 demo**, a preserved 35,028,097-
+The owner-requested **lambda terra 4.1**, revision 2, is available without the demo
+suffix in Desktop 1.2.1 / core 0.9.1. It continues the project's own 34.82M random-
+weight foundation and selected chat repair, with 1024-token context. It is still
+experimental: fresh name recall/topic returns can fail and final arithmetic was
+only 3/51. No general twofold improvement is established. See the
+[model card and source attribution](models/lambda-terra-4.1-r2.md).
+
+Refresh Settings → Models, explicitly download **Terra 4.1**, and select it in a
+chat. Terminal: `lambda model use lambda-terra-4.1` after updating. The separate
+Terra 4.1 demo and immutable legacy weights remain available for older chats;
+existing weights are never replaced merely by refreshing the catalog.
+
+## lambda terra 4.1 demo: preserved experimental snapshot
+
+The older **lambda terra 4.1 demo** is a preserved 35,028,097-
 parameter snapshot at update 4000 of the ongoing own-weight continuation. It uses
 19 Transformer blocks and 512-token context, with no web search or coding branch.
 The selected snapshot scored 43/60 on exposed development replies versus Venus
@@ -564,7 +578,7 @@ ordinary conversation or twice general intelligence.
 
 Desktop: **Settings → Models → Refresh list**, download **Terra 4.1 demo**, then
 choose it in the chat model picker. Desktop app 1.1.0+ already supports it.
-Terminal: use app 0.8.6+ (current 0.9.0), refresh with `/update` and select:
+Terminal: use app 0.8.6+ (current 0.9.1), refresh with `/update` and select:
 
 ```sh
 lambda model use lambda-terra-4.1-demo
@@ -573,6 +587,6 @@ lambda model use lambda-terra-4.1-demo
 Or `/model use lambda-terra-4.1-demo` inside chat. The ~130 MB inference file is
 hosted as a [GitHub release asset](https://github.com/gtts-ux/lambda_ai/releases/tag/model-terra-4.1-demo-r2).
 See the [model card, results and attribution](models/lambda-terra-4.1-demo.md).
-The previous non-demo Terra 4.1 is withdrawn from model choices. Its immutable
-files remain available to reopen existing chats; saved conversations and the
-shared token allowance are preserved. The running trainer is not interrupted.
+The previous revision-1 non-demo Terra 4.1 file remains immutable for saved chats.
+The new revision 2 is an explicit optional download. Saved conversations and the
+shared token allowance are preserved.

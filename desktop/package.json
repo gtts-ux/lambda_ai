@@ -1,7 +1,7 @@
 {
   "name": "lambda-desktop",
   "productName": "Lambda",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "description": "A local desktop home for Lambda conversations and models.",
   "main": "main.cjs",

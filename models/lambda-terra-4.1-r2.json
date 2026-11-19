@@ -1,0 +1,49 @@
+{
+  "context": 1024,
+  "width": 576,
+  "layers": 8,
+  "heads": 8,
+  "vocabulary": 4096,
+  "format": "lambda-ai-transformer-v3",
+  "name": "lambda terra 4.1",
+  "model_id": "lambda-terra-4.1",
+  "language": "en",
+  "training_step": 47462,
+  "data_sha256": "e45a48a861da13074fe16583a8a039092f38c6ad4e5a128fe9674d3f1bce8121",
+  "initialization": "own foundation + selected own chat generalization update 17000",
+  "min_app_version": "0.9.1",
+  "training_lineage": {
+    "experiment": "terra_chat_math",
+    "source_total_step": 40462,
+    "source_checkpoint_sha256": "316edb45ba22089db223cc73c038a5bb4926da6599bf14d0522521570e008e68",
+    "external_pretrained_weights": false
+  },
+  "revision": 2,
+  "automatic_search": false,
+  "license": "CC-BY-SA-4.0",
+  "release_status": "Owner-requested experimental release; not a claim of general reliability.",
+  "public_release": {
+    "revision": 2,
+    "selected_update": 7000,
+    "source_inference_sha256": "d327fd536ff1550d85fd50a20872c4b6a296c5ecd7173bd57cd53ceab4ac9c0b",
+    "tag": "model-terra-4.1-r2",
+    "external_pretrained_weights": false
+  },
+  "bytes": 129449855,
+  "sha256": "810baa43b5a2a10b4643ca5288d0694653b0c3d893f28a5f080c02f3cd5acad5",
+  "parameters": 34819200,
+  "selected_update": 7000,
+  "final_math": {
+    "correct": 3,
+    "total": 51
+  },
+  "final_repair": {
+    "correct": 11,
+    "total": 21
+  },
+  "exposed_old_core": {
+    "correct": 23,
+    "total": 26,
+    "lost_previously_correct_cases": 0
+  }
+}

@@ -11,12 +11,13 @@ from urllib.request import Request,urlopen
 import numpy as np
 from PIL import Image,ImageOps
 from .models import atomic_json
+from . import __version__
 from .image_network import OrionNetwork,prompt_ids,resize
 
 HOSTS={'images-api.nasa.gov','images-assets.nasa.gov','commons.wikimedia.org','upload.wikimedia.org','thumb.wikimedia.org'}
 BAD=['mockup','mock-up','assembly','production','factory','manufacturing','museum','exhibit','training',
-     'conference','portrait','diagram','logo','patch','insignia','blueprint','drawing','painting','tour',
-     'projected','projection','monument','illustration','chart','cutaway','montage','close-up','engine',
+     'conference','diagram','logo','patch','insignia','blueprint','drawing','painting','tour',
+     'projected','projection','monument','illustration','chart','cutaway','montage','engine',
      'first stage','second stage','instrument unit','welding','ceremony','wreath','gala','audience','speaker']
 
 def cancelled(cancel):
@@ -44,7 +45,7 @@ class References:
         if parsed.scheme!='https' or parsed.hostname not in HOSTS or parsed.username or parsed.password:
             raise ValueError('Unsupported image reference host')
         cancelled(cancel)
-        request=Request(url,headers={'User-Agent':'LambdaAI/0.9.0 (local image playground)'})
+        request=Request(url,headers={'User-Agent':'LambdaAI/'+__version__+' (https://github.com/gtts-ux/lambda_ai; image references)'})
         with urlopen(request,timeout=15) as response:
             final=urlparse(response.geturl())
             if final.scheme!='https' or final.hostname not in HOSTS:raise ValueError('Unsupported reference redirect')
@@ -74,7 +75,20 @@ class References:
             score+=sum(3 for w in ['liftoff','lift-off','launch pad','launchpad','in flight','rocket launch','test flight'] if w in description)
         return score
     def search(self,query,role,cancel):
-        rows=[];errors=[];deadline=time.monotonic()+60
+        # Comma-separated tags are search hints, not a requirement that every
+        # source caption contain every synonym. Preserve the full model prompt.
+        variants=list(dict.fromkeys([re.sub(r'\s*,\s*',' ',query)]+[part.strip() for part in query.split(',') if part.strip()]))[:4]
+        deadline=time.monotonic()+60
+        for variant in variants:
+            cancelled(cancel)
+            if time.monotonic()>deadline:break
+            result=self.search_phrase(variant,role,cancel,deadline)
+            if result:return result
+        cancelled(cancel)
+        raise ValueError(f'No reference photos could be downloaded for “{query}”. Try a simpler subject or try again later.')
+
+    def search_phrase(self,query,role,cancel,deadline):
+        rows=[];errors=[]
         try:
             # Title search avoids a page full of unrelated events whose long
             # descriptions mention the requested subject in passing.
@@ -97,6 +111,9 @@ class References:
                 raw=self.json('https://commons.wikimedia.org/w/api.php?'+urlencode(dict(action='query',format='json',generator='search',gsrnamespace=6,gsrsearch=query,gsrlimit=20,prop='imageinfo',iiprop='url|extmetadata',iiurlwidth=512)),cancel)
                 for page in raw.get('query',{}).get('pages',{}).values():
                     info=(page.get('imageinfo') or [{}])[0];meta=info.get('extmetadata',{});url=info.get('thumburl',info.get('url',''))
+                    # Commons can return a PNG thumbnail of an SVG anatomy
+                    # diagram. Only use original raster photographs as refs.
+                    if re.search(r'\.svg(?:$|\?)',info.get('url',''),re.I):continue
                     if urlparse(url).hostname not in HOSTS or not re.search(r'\.(jpg|jpeg|png)(?:$|\?)',url,re.I):continue
                     clean=lambda name:html.unescape(re.sub('<[^>]+>','',meta.get(name,{}).get('value','')))
                     row=dict(id='commons:'+str(page['pageid']),title=page['title'].removeprefix('File:'),description=clean('ImageDescription')[:3000],
@@ -122,7 +139,6 @@ class References:
             if len(result)>=10:break
         if not result:
             cancelled(cancel)
-            raise ValueError(f'No usable reference photos for “{query}”. Try a shorter English subject or background, or check your connection.')
         return result
 
 def tensor(path):

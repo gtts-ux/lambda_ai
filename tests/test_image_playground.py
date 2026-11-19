@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import tempfile
 import threading
+from urllib.parse import parse_qs,urlparse
 import unittest
 from unittest.mock import patch
 import numpy as np
@@ -37,6 +38,22 @@ class ImageTests(unittest.TestCase):
         bad=References.relevance(dict(title='Saturn V factory assembly',description='Saturn V'), 'Saturn V','subject')
         good=References.relevance(dict(title='Saturn V launch',description='Saturn V launch pad'),'Saturn V','subject')
         self.assertGreater(good,bad)
+
+    def test_comma_tags_recover_a_real_raster_reference_without_all_synonyms(self):
+        photo=io.BytesIO();Image.new('RGB',(128,128),(90,80,70)).save(photo,format='JPEG');calls=[]
+        def fetch(url,cancel):
+            calls.append(url);parts=urlparse(url);query=parse_qs(parts.query)
+            if parts.hostname=='images-assets.nasa.gov':return photo.getvalue()
+            if parts.hostname=='commons.wikimedia.org':return b'{"query":{"pages":{}}}'
+            subject=query.get('title',query.get('q',['']))[0]
+            items=[]
+            if subject=='person':items=[dict(data=[dict(title='Person portrait',nasa_id='PERSON',description='A person standing outdoors')],links=[dict(render='image',href='https://images-assets.nasa.gov/image/person.jpg')])]
+            return json.dumps(dict(collection=dict(items=items))).encode()
+        with tempfile.TemporaryDirectory() as tmp:
+            refs=References(tmp,fetch).search('person, face, human','subject',threading.Event())
+            self.assertEqual(len(refs),1);self.assertEqual(refs[0]['title'],'Person portrait')
+            self.assertTrue(Path(refs[0]['path']).is_file())
+            self.assertTrue(any('title=person&' in url for url in calls))
 
     def test_history_png_delete_and_no_path_traversal(self):
         with tempfile.TemporaryDirectory() as tmp:

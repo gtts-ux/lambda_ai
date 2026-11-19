@@ -1,4 +1,14 @@
-# Desktop app 1.2.0 — Image Playground
+# Desktop app 1.2.1 — Image references and Terra 4.1
+
+- Comma-separated image tags fall back to shorter reference searches instead of
+  requiring every synonym in every source caption. Portraits remain eligible.
+- Image failures appear beside the prompt without duplicate Electron IPC errors.
+- Terra 4.1 revision 2 is an optional model download under the full requested name.
+  It is a new own-foundation continuation, still experimental with unreliable
+  arithmetic, name recall and topic returns. The older demo remains available.
+- Chats, image history, optional models, quota and update/restart are preserved.
+
+## Included Image Playground features from 1.2.0
 
 - New Image Playground with optional orion image 1 download in Settings.
 - Native 256 × 256 local images, progress, stop, variation seed, persistent image
