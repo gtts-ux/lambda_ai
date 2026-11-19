@@ -36,7 +36,7 @@ bundle before replacing a working application.
 Chat families, one-click updates, local conversations, downloaded models, settings
 and token allowance are preserved.
 
-For M1/M2/M3/M4 Macs, download **Lambda-1.2.0-macos-arm64.zip**. Extract Lambda.app
+For M1/M2/M3/M4 Macs, download **Lambda-1.2.1-macos-arm64.zip**. Extract Lambda.app
 and replace the previous app in Applications or another writable location. Do not
 merge the contents of the old and new app bundles.
 
