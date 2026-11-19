@@ -162,8 +162,12 @@ async function launch(){
     const exported=path.join(data,'exported-image.png');
     await app.evaluate(({dialog},file)=>{dialog.showSaveDialog=async()=>({canceled:false,filePath:file});},exported);
     await page.locator('#image-save').click();
-    await expect.poll(()=>fs.existsSync(exported)).toBe(true);
-    assert(fs.readFileSync(exported).subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])));
+    // An async write can create the file before its first bytes are visible.
+    // Wait for the actual PNG header rather than merely the directory entry.
+    await expect.poll(()=>{
+      try{return fs.readFileSync(exported).subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]));}
+      catch{return false;}
+    }).toBe(true);
     if(process.argv.includes('--live-images')){
       await page.locator('#image-prompt').fill('Generate a photo of Saturn V in space');
       await page.locator('#image-generate').click();
