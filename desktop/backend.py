@@ -380,6 +380,10 @@ class Desktop:
 
 
 def main():
+    # Frozen Python on Windows can ignore PYTHONIOENCODING and use its ANSI
+    # code page for pipes. Electron's JSON bridge always reads and writes UTF-8.
+    sys.stdin.reconfigure(encoding='utf-8')
+    sys.stdout.reconfigure(encoding='utf-8')
     service = Desktop(lambda name, data:output(dict(event=name,data=data)))
     executor = ThreadPoolExecutor(max_workers=3)
     def handle(request):
