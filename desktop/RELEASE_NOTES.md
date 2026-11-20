@@ -11,6 +11,8 @@
   the current generator. Selection is disabled during a running batch.
 - Strict Safe Search, bundled HTTPS trust, native 256 output, labelled 512/1024
   enlargements and the existing per-word image pricing/refunds are preserved.
+- Core 0.11.1 reads cached reference titles explicitly as UTF-8, including on
+  Windows code pages. Repeated generations can reuse non-English search results.
 - Chat history, installed models, profile, allowance and verified update/restart
   remain compatible. Technical tests cover model switching and persistence.
 

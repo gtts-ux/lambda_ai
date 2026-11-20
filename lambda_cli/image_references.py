@@ -55,7 +55,7 @@ class References:
         key=hashlib.sha256(('safe-images-v1:'+query).encode()).hexdigest()
         cache=self.directory/(key+'.json')
         if cache.exists() and time.time()-cache.stat().st_mtime<21600:
-            value=json.loads(cache.read_text())
+            value=json.loads(cache.read_text(encoding='utf-8'))
             if value.get('safeSearch')=='strict' and isinstance(value.get('results'),list):return value['results']
         landing='https://safe.duckduckgo.com/?'+urlencode(dict(q=query,iax='images',ia='images',kp=1))
         page=self.fetcher(landing,cancel).decode('utf-8',errors='replace')

@@ -62,6 +62,21 @@ class ImageTests(unittest.TestCase):
                 References(tmp,fetch).search('purple sailboat','subject',None)
         self.assertEqual(len(calls),1);self.assertEqual(urlparse(calls[0]).hostname,'safe.duckduckgo.com')
 
+    def test_cached_safe_search_titles_are_utf8_on_windows_code_pages(self):
+        title='A bicycle’s wheel — “東京”'
+        def fetch(url,cancel):
+            if urlparse(url).hostname=='safe.duckduckgo.com':return b'vqd="cached-token"'
+            return json.dumps(dict(results=[dict(title=title)])).encode('utf-8')
+        with tempfile.TemporaryDirectory() as tmp:
+            references=References(tmp,fetch)
+            first=references.safe_results('bicycle',None)
+            # Simulate legacy Windows text decoding while keeping actual file
+            # bytes. Explicit UTF-8 must survive without another network call.
+            def read_text(path,encoding=None,errors=None):return path.read_bytes().decode(encoding or 'cp1252',errors or 'strict')
+            with patch.object(Path,'read_text',read_text),patch.object(references,'fetcher',side_effect=AssertionError('Cached results must be reused')):
+                second=references.safe_results('bicycle',None)
+            self.assertEqual(second,first);self.assertEqual(second[0]['title'],title)
+
     def test_complex_descriptions_keep_the_remaining_scene_in_the_request(self):
         self.assertEqual(plan('A cat in a forest beside a lake')['queries'],['cat','forest beside a lake'])
 

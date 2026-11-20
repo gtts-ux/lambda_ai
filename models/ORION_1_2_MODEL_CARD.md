@@ -1,6 +1,6 @@
 # orion 1.2
 
-An optional own-weight image model for Image Playground. Core app 0.11.0 /
+An optional own-weight image model for Image Playground. Core app 0.11.1 /
 Desktop 1.4.0 or newer is required. Download it individually in Settings → Models,
 then choose **Orion 1.2** in Image Playground. Orion Image 1 remains available.
 

@@ -591,7 +591,7 @@ ordinary conversation or twice general intelligence.
 
 Desktop: **Settings → Models → Refresh list**, download **Terra 4.1 demo**, then
 choose it in the chat model picker. Desktop app 1.1.0+ already supports it.
-Terminal: use app 0.8.6+ (current 0.11.0), refresh with `/update` and select:
+Terminal: use app 0.8.6+ (current 0.11.1), refresh with `/update` and select:
 
 ```sh
 lambda model use lambda-terra-4.1-demo
