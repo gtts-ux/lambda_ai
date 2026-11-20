@@ -30,6 +30,8 @@ class ImageGenerator:
     def __init__(self,model_path,cache,fetcher=None):
         self.model=OrionNetwork(model_path);self.references=References(cache,fetcher)
     def generate(self,prompt,seed=42,progress=lambda phase,percent:None,cancel=None):
+        if self.model.generation_mode=='full-scene-reference':
+            return self.generate_full_scene(prompt,seed,progress,cancel)
         request=plan(prompt);groups=[]
         for i,query in enumerate(request['search_queries']):
             role='subject' if not i else 'background';progress('Searching '+role+' references',5+i*5)
@@ -58,5 +60,25 @@ class ImageGenerator:
         cancelled(cancel);progress('Saving image',98)
         pixels=np.rint((pixels.clip(-1,1)+1)*np.float32(127.5)).astype(np.uint8).transpose(1,2,0)
         public=lambda row:{key:row.get(key) for key in ['title','source_url','credit','license','provider','sha256']}
-        return pixels,dict(model='orion-image-1',modelName='orion image 1',width=256,height=256,safeSearch='strict',referenceSearch='DuckDuckGo',
+        return pixels,dict(model=self.model.metadata['model_id'],modelName=self.model.metadata['name'],width=256,height=256,safeSearch='strict',referenceSearch='DuckDuckGo',
             references=[public(row) for group in groups for row in group],selectedReferences=[public(subject)]+([public(background)] if background else []))
+
+    def generate_full_scene(self,prompt,seed,progress,cancel):
+        if not isinstance(prompt,str) or not 1<=len(prompt.strip())<=500:raise ValueError('Use an image description of 1–500 characters.')
+        progress('Searching scene references',5)
+        # Search the whole description: clothing, attributes and prepositions
+        # remain together. This mode was trained on full photos, without crops.
+        rows=self.references.search(prompt.strip(),'scene',cancel)
+        cancelled(cancel);progress('Selecting reference',15)
+        selected=rows[0];im=tensor(selected['path'])[None]
+        refs=np.stack([im,np.zeros_like(im)],1);matte=np.ones((1,1,256,256),np.float32)
+        low=resize(refs.reshape(2,3,256,256),64).reshape(1,2,3,64,64)
+        coarse=self.model.sample(low,resize(matte,64),'full scene: '+prompt,seed=seed,steps=32,progress=progress,cancel=cancel)
+        cancelled(cancel);progress('Rendering 256 × 256',85)
+        pixels=self.model.detail(coarse,refs,matte)[0]
+        cancelled(cancel);progress('Saving image',98)
+        pixels=np.rint((pixels.clip(-1,1)+1)*np.float32(127.5)).astype(np.uint8).transpose(1,2,0)
+        public=lambda row:{key:row.get(key) for key in ['title','source_url','credit','license','provider','sha256']}
+        return pixels,dict(model=self.model.metadata['model_id'],modelName=self.model.metadata['name'],width=256,height=256,
+            generationMode='full-scene-reference',safeSearch='strict',referenceSearch='DuckDuckGo',
+            references=[public(row) for row in rows],selectedReferences=[public(selected)])

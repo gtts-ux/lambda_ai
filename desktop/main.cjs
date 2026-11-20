@@ -6,7 +6,7 @@ const path = require('node:path');
 const { checkForUpdates, installTarget, prepareUpdate } = require('./updates.cjs');
 
 const METHODS = new Set(['state','send','stop','regenerate','new_chat','open_chat','rename_chat','pin_chat','archive_chat','restore_chat','delete_chat','list_chats','select_model','download','cancel_download','refresh_catalog','preferences','desktop_info','check_updates','install_update']);
-for(const method of ['generate_image','delete_image','refresh_image_catalog'])METHODS.add(method);
+for(const method of ['generate_image','delete_image','refresh_image_catalog','select_image_model'])METHODS.add(method);
 let window, backend, ready, sequence = 0, quitting = false, updating = false;
 const pending = new Map();
 if (process.env.LAMBDA_DATA_HOME) {

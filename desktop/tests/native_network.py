@@ -39,17 +39,20 @@ def main():
                 return row['result']
             raise RuntimeError('Packaged network request timed out.')
         try:
-            ask('refresh_catalog');ask('refresh_image_catalog');ask('download',dict(id='orion-image-1'))
-            records=[]
-            for index,prompt in enumerate(args.prompts):
-                result=ask('generate_image',dict(prompt=prompt,size=256,count=1,seed=42))
-                row=result['images'][0];raw=base64.b64decode(row['dataUrl'].split(',',1)[1])
-                assert row['safeSearch']=='strict' and all(ref['provider']=='DuckDuckGo Safe Search' for ref in row['references'])
-                with Image.open(io.BytesIO(raw)) as image:assert image.size==(256,256)
-                assert len(result['images'])==index+1
-                assert result['quota']['used']==sum(len(p.split())*1000 for p in args.prompts[:index+1])
-                records.append(dict(prompt=prompt,width=256,height=256,charged=row['tokenCost'],references=len(row['references'])))
-                print(json.dumps(records[-1]),flush=True)
+            ask('refresh_catalog');ask('refresh_image_catalog');records=[];charged=0
+            for identifier in ['orion-image-1','orion-1.2']:
+                ask('download',dict(id=identifier));ask('select_image_model',dict(id=identifier))
+                for prompt in args.prompts:
+                    result=ask('generate_image',dict(prompt=prompt,size=256,count=1,seed=42,modelId=identifier))
+                    row=result['images'][0];raw=base64.b64decode(row['dataUrl'].split(',',1)[1])
+                    assert row['model']==identifier and result['selectedImageModel']==identifier
+                    assert row['safeSearch']=='strict' and all(ref['provider']=='DuckDuckGo Safe Search' for ref in row['references'])
+                    with Image.open(io.BytesIO(raw)) as image:assert image.size==(256,256)
+                    assert len(result['images'])==len(records)+1
+                    charged+=len(prompt.split())*1000
+                    assert result['quota']['used']==charged
+                    records.append(dict(model=identifier,prompt=prompt,width=256,height=256,charged=row['tokenCost'],references=len(row['references'])))
+                    print(json.dumps(records[-1]),flush=True)
             report=dict(passed=True,engine_version=result['engineVersion'],empty_host_ca_paths=True,model_catalog_https=True,image_catalog_https=True,optional_model_download=True,images=records)
             target=ROOT/'test-artifacts/network.json';target.parent.mkdir(exist_ok=True);target.write_text(json.dumps(report,indent=2)+'\n')
         finally:

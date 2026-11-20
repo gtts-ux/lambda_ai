@@ -136,7 +136,7 @@ class Desktop:
         with self.lock:
             self.revision += 1
             return dict(revision=self.revision, chat=self.chat(), chats=self.chats(), models=self.models(), quota=self.quota.status(),
-                        imageModels=self.image_models.entries(), images=self.image_store.history(), imageJob=dict(self.image_job),
+                        imageModels=self.image_models.entries(), selectedImageModel=self.image_models.selected(), images=self.image_store.history(), imageJob=dict(self.image_job),
                         preferences=dict(self.preferences), generating=self.generating,
                         downloading=self.downloading, engineVersion=__version__)
 
@@ -211,7 +211,7 @@ class Desktop:
         try:
             # Explicit single-model request; NEVER manager.update(), which
             # intentionally updates more than one installed model in the CLI.
-            manager=self.image_models if identifier=='orion-image-1' else self.manager
+            manager=self.image_models if any(row['id']==identifier for row in self.image_models.entries()) else self.manager
             manager.install(identifier, progress, self.download_cancel)
         finally:
             with self.lock:
@@ -219,20 +219,19 @@ class Desktop:
             self.emit('download-end', self.state())
         return self.state()
 
-    def generate_image(self,prompt,seed=None,size=256,count=1):
-        from lambda_cli.image_generation import ImageGenerator,plan
+    def generate_image(self,prompt,seed=None,size=256,count=1,model_id=None):
+        from lambda_cli.image_generation import ImageGenerator
         from lambda_cli.image_pricing import image_price
         from PIL import Image
         import numpy as np
-        plan(prompt)
         price=image_price(prompt,size,count)
         if seed is None:seed=secrets.randbelow(2**32)
         if type(seed) is not int or not 0<=seed<=2**32-1:raise ValueError('Use a seed between 0 and 4294967295.')
         with self.lock:
-            self.idle();path=self.image_models.resolve()
+            self.idle();identifier=model_id or self.image_models.selected();path=self.image_models.resolve(identifier)
             self.generating=True;self.cancel.clear()
             self.image_job=dict(state='running',prompt=prompt,phase='Preparing image model',percent=0,
-                price=price,count=count,size=size,completed=0,ids=[],chargedTokens=0)
+                modelId=identifier,price=price,count=count,size=size,completed=0,ids=[],chargedTokens=0)
         reservation=None;completed=[];index=0
         self.emit('image-start',self.state())
         def progress(phase,percent):
@@ -269,7 +268,11 @@ class Desktop:
     def dispatch(self, method, params):
         if method == 'state': return self.state()
         if method == 'send': return self.send(params.get('text'))
-        if method == 'generate_image':return self.generate_image(params.get('prompt'),params.get('seed'),params.get('size',256),params.get('count',1))
+        if method == 'generate_image':return self.generate_image(params.get('prompt'),params.get('seed'),params.get('size',256),params.get('count',1),params.get('modelId'))
+        if method == 'select_image_model':
+            with self.lock:
+                self.idle();self.image_models.select(params.get('id'));self.image_engine=None
+            return self.state()
         if method == 'image_png':
             row=self.image_store.get(params.get('id'))
             return dict(base64=row['dataUrl'].split(',',1)[1],filename='orion-'+row['id'][:8]+'.png')

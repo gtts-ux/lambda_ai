@@ -80,8 +80,12 @@ class OrionNetwork:
         expected=expected_shapes()
         with np.load(path,allow_pickle=False) as data:
             self.metadata=json.loads(str(data['metadata']))
-            if self.metadata.get('format')!='orion-image-v1' or self.metadata.get('model_id')!='orion-image-1':
+            modes={'orion-image-1':'object-composition','orion-1.2':'full-scene-reference'}
+            identifier=self.metadata.get('model_id')
+            if self.metadata.get('format')!='orion-image-v1' or identifier not in modes:
                 raise ValueError('Unsupported Orion model format')
+            self.generation_mode=self.metadata.get('generation_mode','object-composition')
+            if self.generation_mode!=modes[identifier]:raise ValueError('Unsupported Orion generation mode')
             if set(data.files)!=set(expected)|{'metadata'}:raise ValueError('Invalid Orion tensors')
             self.p={}
             for name,shape in expected.items():

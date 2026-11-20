@@ -48,12 +48,18 @@ if os.environ.get('LAMBDA_ORION_MODEL'):
     image_models=ImageModels(directory);entry=image_models.entries()[0]
     source=Path(os.environ['LAMBDA_ORION_MODEL']);assert hashlib.sha256(source.read_bytes()).hexdigest()==entry['sha256']
     folder=directory/'image-models';folder.mkdir(exist_ok=True);filename='orion-image-1-r1.npz';shutil.copyfile(source,folder/filename)
-    atomic_json(directory/'image-models.json',{'installed':{'orion-image-1':dict(filename=filename,revision=1,sha256=entry['sha256'])}})
+    installed={'orion-image-1':dict(filename=filename,revision=1,sha256=entry['sha256'])}
+    if os.environ.get('LAMBDA_ORION_12_MODEL'):
+        entry=next(m for m in image_models.entries() if m['id']=='orion-1.2')
+        source=Path(os.environ['LAMBDA_ORION_12_MODEL']);assert hashlib.sha256(source.read_bytes()).hexdigest()==entry['sha256']
+        filename='orion-1.2-r1.npz';shutil.copyfile(source,folder/filename)
+        installed['orion-1.2']=dict(filename=filename,revision=1,sha256=entry['sha256'])
+    atomic_json(directory/'image-models.json',dict(installed=installed,active='orion-image-1'))
     cache=directory/'image-playground/references';cache.mkdir(parents=True,exist_ok=True)
     for query in ['test subject face human','missing reference']:
         key=hashlib.sha256(('safe-images-v1:'+query).encode()).hexdigest()
         atomic_json(cache/(key+'.json'),dict(safeSearch='strict',results=[]))
-    for query,ident,color in [('test subject','FIXTURE_SUBJECT',(190,100,50)),('test background','FIXTURE_BACKGROUND',(20,40,80))]:
+    for query,ident,color in [('test subject','FIXTURE_SUBJECT',(190,100,50)),('test background','FIXTURE_BACKGROUND',(20,40,80)),('person in suit','FIXTURE_SCENE',(70,110,170))]:
         photo='https://tse1.mm.bing.net/th/id/'+ident+'.jpg'
         key=hashlib.sha256(('safe-images-v1:'+query).encode()).hexdigest()
         atomic_json(cache/(key+'.json'),dict(safeSearch='strict',results=[dict(title='Synthetic '+query,thumbnail=photo,url='https://example.org/fixtures/'+ident)]))

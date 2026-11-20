@@ -17,12 +17,19 @@ URL='https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/image_catal
 class ImageModels:
     def __init__(self,directory=None):
         self.directory=Path(directory) if directory is not None else data_dir()
-        self.bundled=validate_catalog(json.loads(BUNDLED.read_text()))
+        self.bundled=validate_catalog(json.loads(BUNDLED.read_text(encoding='utf-8')))
     def state(self):
-        try:return json.loads((self.directory/'image-models.json').read_text())
+        try:return json.loads((self.directory/'image-models.json').read_text(encoding='utf-8'))
         except FileNotFoundError:return {'installed':{}}
     def catalog(self):
-        try:return validate_catalog(json.loads((self.directory/'image-catalog.json').read_text()))
+        try:
+            cached=validate_catalog(json.loads((self.directory/'image-catalog.json').read_text(encoding='utf-8')))
+            # A cached catalog from the previous app must not hide newly bundled
+            # releases. Keep newer remote revisions while preserving old models.
+            merged={row['id']:row for row in self.bundled['models']}
+            for row in cached['models']:
+                if row['id'] not in merged or row['revision']>=merged[row['id']]['revision']:merged[row['id']]=row
+            return dict(schema=1,models=list(merged.values()))
         except (OSError,ValueError):return self.bundled
     def path(self,item):
         name=item.get('filename','')
@@ -36,9 +43,21 @@ class ImageModels:
             row.update(installed_revision=revision,update_available=revision is not None and revision<row['revision'])
             result.append(row)
         return result
-    def resolve(self,identifier='orion-image-1'):
+    def selected(self):
+        state=self.state();identifier=state.get('active')
+        installed=state.get('installed',{})
+        if identifier in installed and self.path(installed[identifier]).is_file():return identifier
+        for row in reversed(self.entries()):
+            if row['installed_revision'] is not None:return row['id']
+        return None
+    def select(self,identifier):
+        self.resolve(identifier)
+        state=self.state();state['active']=identifier
+        atomic_json(self.directory/'image-models.json',state)
+    def resolve(self,identifier=None):
+        identifier=identifier or self.selected()
         item=self.state()['installed'].get(identifier)
-        if not item or not self.path(item).is_file():raise ValueError('Download Orion Image 1 in Settings → Models first.')
+        if not item or not self.path(item).is_file():raise ValueError('Download this image model in Settings → Models first.')
         return self.path(item)
     def refresh(self):
         with urlopen(Request(URL,headers={'User-Agent':'LambdaAI/'+__version__}),timeout=15,context=https_context()) as response:
@@ -66,7 +85,8 @@ class ImageModels:
                     if progress:progress(f'Downloading {row["name"]}: {received*100//row["bytes"]}%')
             if received!=row['bytes'] or checksum.hexdigest()!=row['sha256']:
                 raise ValueError('Image model checksum or size mismatch. Previous weights were kept.')
-            OrionNetwork(temp)
+            network=OrionNetwork(temp)
+            if network.metadata['model_id']!=identifier:raise ValueError('Image model identity mismatch. Previous weights were kept.')
             filename=f'{identifier}-r{row["revision"]}.npz';target=folder/filename;os.replace(temp,target)
             state=self.state();state['installed'][identifier]=dict(filename=filename,revision=row['revision'],sha256=row['sha256'])
             atomic_json(self.directory/'image-models.json',state);return target

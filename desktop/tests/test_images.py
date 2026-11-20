@@ -16,6 +16,31 @@ class DesktopImages(unittest.TestCase):
         p=patch.dict(os.environ,LAMBDA_DATA_HOME=self.temp.name);p.start();self.addCleanup(p.stop)
         self.events=[];self.d=Desktop(lambda name,data:self.events.append((name,data)))
 
+    def test_selected_image_model_is_used_and_switching_is_blocked_during_generation(self):
+        from lambda_cli.models import atomic_json
+        d=self.d;folder=Path(self.temp.name)/'image-models';folder.mkdir()
+        installed={}
+        for identifier in ['orion-image-1','orion-1.2']:
+            name=identifier+'-r1.npz';(folder/name).write_bytes(b'fixture')
+            installed[identifier]=dict(filename=name,revision=1)
+        atomic_json(Path(self.temp.name)/'image-models.json',dict(installed=installed,active='orion-image-1'))
+        chat_id=d.state()['chat']['modelId'];before=d.quota.status()['used']
+        d.dispatch('select_image_model',dict(id='orion-1.2'))
+        self.assertEqual(Desktop().state()['selectedImageModel'],'orion-1.2')
+        with patch('lambda_cli.image_generation.ImageGenerator') as klass:
+            klass.return_value.generate.return_value=(np.zeros((256,256,3),np.uint8),dict(model='orion-1.2',modelName='orion 1.2'))
+            result=d.generate_image('red car')
+            self.assertEqual(klass.call_args.args[0].name,'orion-1.2-r1.npz')
+        self.assertEqual(result['images'][0]['model'],'orion-1.2')
+        self.assertEqual(result['chat']['modelId'],chat_id);self.assertEqual(result['quota']['used']-before,2000)
+        d.generating=True
+        with self.assertRaises(ValueError):d.dispatch('select_image_model',dict(id='orion-image-1'))
+        self.assertEqual(d.image_models.selected(),'orion-1.2')
+
+    def test_new_image_download_does_not_route_to_chat_manager(self):
+        with patch.object(self.d.image_models,'install') as image_install,patch.object(self.d.manager,'install',side_effect=AssertionError('Wrong download manager')):
+            self.d.download('orion-1.2');image_install.assert_called_once()
+
     def test_real_tool_head_routes_terra_without_canned_chat_answer(self):
         d=self.d;d.session.engine.metadata['model_id']='lambda-terra-test'
         before=list(d.session.turns)

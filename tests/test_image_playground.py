@@ -90,6 +90,58 @@ class ImageTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError,'checksum or size'):manager.install('orion-image-1')
             self.assertEqual(manager.state(),before)
 
+    def test_image_selection_persists_without_changing_chat_state(self):
+        from lambda_cli.models import atomic_json
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);folder=root/'image-models';folder.mkdir()
+            installed={}
+            for identifier in ['orion-image-1','orion-1.2']:
+                filename=identifier+'-r1.npz';(folder/filename).write_bytes(b'installed fixture')
+                installed[identifier]=dict(filename=filename,revision=1)
+            atomic_json(root/'image-models.json',dict(installed=installed,active='orion-image-1'))
+            manager=ImageModels(root);manager.select('orion-1.2')
+            self.assertEqual(ImageModels(root).selected(),'orion-1.2')
+            self.assertEqual(manager.resolve().name,'orion-1.2-r1.npz')
+            before=manager.state()
+            with self.assertRaises(ValueError):manager.select('uninstalled')
+            self.assertEqual(manager.state(),before)
+            manager.select('orion-image-1');self.assertEqual(manager.selected(),'orion-image-1')
+            self.assertFalse((root/'models.json').exists());self.assertFalse((root/'usage.sqlite3').exists())
+
+    def test_old_cached_catalog_does_not_hide_new_bundled_model(self):
+        from lambda_cli.models import atomic_json
+        with tempfile.TemporaryDirectory() as tmp:
+            manager=ImageModels(tmp)
+            atomic_json(Path(tmp)/'image-catalog.json',dict(schema=1,models=[manager.bundled['models'][0]]))
+            self.assertIn('orion-1.2',[row['id'] for row in manager.entries()])
+
+    def test_full_scene_keeps_clothing_description_and_never_masks_or_crops(self):
+        class Network:
+            generation_mode='full-scene-reference'
+            metadata=dict(model_id='orion-1.2',name='orion 1.2')
+            def mask(*args):raise AssertionError('Full-frame model must not mask/crop an object')
+            def sample(self,refs,matte,caption,**kwargs):
+                self.caption=caption
+                np.testing.assert_array_equal(matte,np.ones_like(matte))
+                return np.zeros((1,3,64,64),np.float32)
+            def detail(self,coarse,refs,matte):return np.zeros((1,3,256,256),np.float32)
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/'reference.png';Image.new('RGB',(120,200),'red').save(path)
+            row=dict(path=str(path),title='fixture',provider='DuckDuckGo Safe Search')
+            with patch('lambda_cli.image_generation.OrionNetwork',return_value=Network()):
+                generator=ImageGenerator('fixture',tmp)
+            with patch.object(generator.references,'search',return_value=[row]) as search:
+                pixels,metadata=generator.generate('person in suit')
+            self.assertEqual(search.call_args.args[:2],('person in suit','scene'))
+            self.assertEqual(generator.model.caption,'full scene: person in suit')
+            self.assertEqual(metadata['model'],'orion-1.2');self.assertEqual(pixels.shape,(256,256,3))
+
+    def test_generation_mode_must_match_model_identity(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/'invalid.npz'
+            np.savez(path,metadata=np.asarray(json.dumps(dict(format='orion-image-v1',model_id='orion-1.2'))))
+            with self.assertRaisesRegex(ValueError,'generation mode'):OrionNetwork(path)
+
     def test_numpy_resize_and_identity_spatial_transform(self):
         x=np.arange(48,dtype=np.float32).reshape(1,3,4,4)
         np.testing.assert_allclose(grid_sample(x,np.asarray([[[1,0,0],[0,1,0]]],np.float32)),x,atol=1e-5)

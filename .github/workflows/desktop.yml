@@ -11,7 +11,7 @@ on:
         default: false
       version:
         description: Desktop version in package.json
-        default: '1.3.0'
+        default: '1.4.0'
         required: true
 
 permissions:
@@ -85,7 +85,9 @@ jobs:
         run: |
           if [[ "$RUNNER_OS" == Windows ]]; then PY=.build-venv/Scripts/python; else PY=.build-venv/bin/python; fi
           "$PY" ../tools/fetch_orion_test.py test-artifacts/orion-image-1.npz
+          "$PY" ../tools/fetch_orion_test.py test-artifacts/orion-1.2.npz --id orion-1.2
           echo "LAMBDA_ORION_MODEL=$PWD/test-artifacts/orion-image-1.npz" >> "$GITHUB_ENV"
+          echo "LAMBDA_ORION_12_MODEL=$PWD/test-artifacts/orion-1.2.npz" >> "$GITHUB_ENV"
       - name: Package native desktop app
         run: ${{ matrix.command }}
       - name: Verify macOS distributed ZIP signatures

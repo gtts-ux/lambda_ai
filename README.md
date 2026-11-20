@@ -36,7 +36,7 @@ inference files keep their original bytes; app 0.8.5 presents the new names.
 
 ## Desktop app
 
-[Download Desktop app 1.3.0 for macOS, Windows or Linux](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.3.0).
+[Download Desktop app 1.4.0 for macOS, Windows or Linux](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.4.0).
 Run `lambda desktop` or `/desktop` in terminal app 0.8.6+ to get this link.
 
 Desktop 1.2.0 adds **Image Playground** and the optional **orion image 1** model.
@@ -49,7 +49,12 @@ This experimental model can produce blurred or deformed subjects. See the
 [Orion model card](models/ORION_IMAGE_1.md) for provenance and limitations.
 No chat model, history or allowance is replaced by downloading image weights.
 
-Desktop 1.3.0 adds image count, export sizes and an upfront price. Each completed
+Desktop 1.4.0 adds a persistent image model selector in Image Playground. Download
+individual models in Settings → Models. **orion 1.2** preserves whole references
+and searches the full description; results can closely resemble the source photo.
+The older Orion Image 1 remains available. See [Orion 1.2 model card](models/ORION_1_2_MODEL_CARD.md).
+
+Desktop 1.3.0 added image count, export sizes and an upfront price. Each completed
 image costs 1,000 tokens per prompt word at 256, ×2 at 512 or ×4 at 1024. Multiply
 by image count; failed/unfinished images are refunded. Larger exports upscale
 the native 256px image. Packaged HTTPS trust is included for reference/model downloads.
@@ -586,7 +591,7 @@ ordinary conversation or twice general intelligence.
 
 Desktop: **Settings → Models → Refresh list**, download **Terra 4.1 demo**, then
 choose it in the chat model picker. Desktop app 1.1.0+ already supports it.
-Terminal: use app 0.8.6+ (current 0.10.0), refresh with `/update` and select:
+Terminal: use app 0.8.6+ (current 0.11.0), refresh with `/update` and select:
 
 ```sh
 lambda model use lambda-terra-4.1-demo

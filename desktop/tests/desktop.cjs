@@ -163,6 +163,7 @@ async function launch(){
     await page.locator('#image-size').selectOption('256');await page.locator('#image-count').fill('1');
     await page.locator('#image-prompt').fill('test subject in test background');
     await page.locator('#image-generate').click();
+    await expect(page.locator('#image-model')).toBeDisabled();
     await expect(page.locator('#image-result')).toBeVisible({timeout:90000});
     assert.deepEqual(await page.locator('#image-result').evaluate(im=>[im.naturalWidth,im.naturalHeight]),[256,256]);
     await expect(page.locator('.image-history-item')).toHaveCount(1);
@@ -197,6 +198,26 @@ async function launch(){
     await expect(page.locator('.image-history-item')).toHaveCount(3);
     assert.equal(await page.evaluate(()=>S.quota.used),beforeQuote+33000,'Failed generation must refund its reservation');
     await expect(page.locator('#toast')).not.toContainText('Error invoking remote method');
+    if(process.env.LAMBDA_ORION_12_MODEL){
+      await page.locator('#image-model').selectOption('orion-1.2');
+      await expect.poll(()=>page.evaluate(()=>S.selectedImageModel)).toBe('orion-1.2');
+      await page.locator('#image-model').selectOption('orion-image-1');
+      await expect.poll(()=>page.evaluate(()=>S.selectedImageModel)).toBe('orion-image-1');
+      await page.locator('#image-model').selectOption('orion-1.2');
+      await expect.poll(()=>page.evaluate(()=>S.selectedImageModel)).toBe('orion-1.2');
+      await page.locator('#image-prompt').fill('person in suit');
+      await page.locator('#image-generate').click();
+      await expect(page.locator('.image-history-item')).toHaveCount(4,{timeout:90000});
+      await expect(page.locator('#image-generate')).toBeEnabled();
+      await expect(page.locator('#image-result-model')).toHaveText('Orion 1.2');
+      assert.equal(await page.evaluate(()=>S.images[0].model),'orion-1.2');
+      await page.locator('.image-history-item').nth(1).click();
+      await expect(page.locator('#image-result-model')).toHaveText('Orion Image 1');
+      await expect(page.locator('#image-model')).toHaveValue('orion-1.2');
+      await page.setViewportSize({width:1280,height:850});
+      await page.locator('#image-model').scrollIntoViewIfNeeded();
+      await page.screenshot({path:path.join(artifacts,'image-model-selector.png')});
+    }
     if(process.argv.includes('--live-images')){
       for(const [index,prompt] of ['human','person','face'].entries()){
         await page.locator('#image-prompt').fill(prompt);await page.locator('#image-generate').click();
@@ -204,13 +225,14 @@ async function launch(){
           const state=await page.evaluate(()=>window.lambda.request('state'));
           if(state.imageJob?.state==='failed')throw new Error(state.imageJob.phase);
           return state.images.length;
-        },{timeout:180000}).toBe(4+index);
+        },{timeout:180000}).toBe(4+index+(process.env.LAMBDA_ORION_12_MODEL?1:0));
         await expect(page.locator('#image-generate')).toBeEnabled();
       }
       await page.screenshot({path:path.join(artifacts,'image-playground-live.png')});
     }
     await app.close();page=await launch();await page.locator('#image-playground-nav').click();
-    await expect(page.locator('.image-history-item')).toHaveCount(process.argv.includes('--live-images')?6:3);
+    await expect(page.locator('.image-history-item')).toHaveCount((process.argv.includes('--live-images')?6:3)+(process.env.LAMBDA_ORION_12_MODEL?1:0));
+    if(process.env.LAMBDA_ORION_12_MODEL)await expect(page.locator('#image-model')).toHaveValue('orion-1.2');
     await expect(page.locator('#image-result')).toBeVisible();
   }else await expect(page.locator('#image-model-settings')).toBeVisible();
   await app.close();app=null;

@@ -1,4 +1,20 @@
-# Desktop app 1.3.0 — Reliable HTTPS and image batches
+# Desktop app 1.4.0 — Orion 1.2 and image model selection
+
+- Choose an individually downloaded image model directly in Image Playground.
+  The choice persists after restart and is separate from the chat model. Settings
+  still controls optional downloads; startup never downloads every model.
+- Optional **orion 1.2** uses full descriptions and whole-reference conditioning
+  to reduce destructive object crops and affine distortions. Outputs can closely
+  resemble the source photo: this is reference-guided reconstruction/variation,
+  not a general text-to-image foundation. The previous Orion Image 1 is retained.
+- Each saved image keeps its own model name. Browsing older images does not switch
+  the current generator. Selection is disabled during a running batch.
+- Strict Safe Search, bundled HTTPS trust, native 256 output, labelled 512/1024
+  enlargements and the existing per-word image pricing/refunds are preserved.
+- Chat history, installed models, profile, allowance and verified update/restart
+  remain compatible. Technical tests cover model switching and persistence.
+
+## Included 1.3.0 improvements — Reliable HTTPS and image batches
 
 - General image-reference search with strict Safe Search, rather than a closed
   subject list or NASA-only search. If filtering is unavailable, stop and refund

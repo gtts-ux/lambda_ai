@@ -22,7 +22,7 @@ const size=bytes=>`${((bytes||0)/1048576).toFixed(1)} MB`;
 const command=window.lambda.platform==='darwin'?'⌘':'Ctrl';
 const familyNames={mercury:'Mercury',venus:'Venus',code:'Code',terra:'Terra',other:'Local models'};
 const familyCopy={mercury:'Compact English models for simple conversations.',venus:'Conversation models for questions and short exchanges.',code:'Experimental Python and JavaScript assistance.',terra:'Experimental English conversation models.',other:'A model installed on this device.'};
-let desktopInfo={version:'1.3.0'},updateResult=null,checkingUpdates=false,applicationUpdate=null,deleteId=null;
+let desktopInfo={version:'1.4.0'},updateResult=null,checkingUpdates=false,applicationUpdate=null,deleteId=null;
 let S=null,tab='appearance',modelFilter='all',archived=false,query='',searchTimer,toastTimer,renameId=null,stream=null,lastMessages='',popoverAnchor=null;
 const media=matchMedia('(prefers-color-scheme: dark)');
 function decorate(root=document){root.querySelectorAll('[data-icon]').forEach(el=>{el.innerHTML=icon(el.dataset.icon);});}
@@ -253,7 +253,7 @@ function renderModels(root){
     if(modelFilter==='installed'&&m.installed_revision==null)continue;
     const installed=m.installed_revision!=null,card=document.createElement('article');card.className='model-card';card.dataset.model=m.id;
     card.innerHTML=`<div class="model-emblem">✦</div><div class="model-description"><h3>${esc(pretty(m.name))}${installed?'<span class="installed-tag">On device</span>':''}</h3><div class="model-details">Experimental image generation<br><span>${size(m.bytes)}</span><span>256 × 256</span></div><div class="download-state" data-download-id="${esc(m.id)}" hidden><span class="download-label"></span><div class="usage-track"><div class="usage-fill"></div></div></div></div><button class="${installed?'secondary-button':'primary-button'}" data-model-action="${esc(m.id)}" ${S.generating?'disabled':''}>${installed?'Open playground':'Download'}</button>`;
-    card.querySelector('button').onclick=async()=>{if(S.downloading?.id===m.id){await act('cancel_download');return;}if(installed){$('#settings-dialog').close();showWorkspace('image');}else{await act('download',{id:m.id});renderSettings();}};list.append(card);
+    card.querySelector('button').onclick=async()=>{if(S.downloading?.id===m.id){await act('cancel_download');return;}if(installed){const value=await act('select_image_model',{id:m.id});if(value){$('#settings-dialog').close();showWorkspace('image');}}else{await act('download',{id:m.id});renderSettings();}};list.append(card);
   }
   updateDownload();
 }
