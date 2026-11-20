@@ -1,4 +1,12 @@
-# Desktop app 1.4.0 — Orion 1.2 and image model selection
+# Desktop app 1.4.1 — Orion 1.2 token price
+
+- Orion 1.2 costs 1.5× Orion Image 1: 1500 versus 1000 tokens per prompt word at
+  256px. The same ×2 / ×4 size multipliers and per-image count apply.
+- The Playground quote updates when switching models. The backend reserves and
+  settles that exact model's price; unfinished images are refunded at the same rate.
+- Model weights, prior image costs, chats and the shared allowance are preserved.
+
+## Included 1.4.0 improvements — Orion 1.2 and image model selection
 
 - Choose an individually downloaded image model directly in Image Playground.
   The choice persists after restart and is separate from the chat model. Settings

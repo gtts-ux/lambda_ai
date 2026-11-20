@@ -10,7 +10,7 @@ existing Lambda inference engine. The interface is English.
 
 ## Using the app
 
-Download the package for your system from [Desktop app 1.4.0](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.4.0). Open `Lambda.app` on macOS, run the installer on Windows, or make the Linux AppImage executable and launch it. The standalone build includes its own Python runtime,
+Download the package for your system from [Desktop app 1.4.1](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.4.1). Open `Lambda.app` on macOS, run the installer on Windows, or make the Linux AppImage executable and launch it. The standalone build includes its own Python runtime,
 the inference engine and the small Mercury 1.0 starter model. It does not need a
 terminal, a checkout or a separately installed Python to run.
 
@@ -44,8 +44,9 @@ terminal, a checkout or a separately installed Python to run.
   your device. Choose 1–8 images and 256/512/1024 export size. Progress, Stop,
   local image history and Save PNG are included. Larger sizes enlarge the model's
   native 256px output; they do not add newly learned detail.
-  The price is shown before generation: 1,000 tokens per prompt word per image
-  at 256, ×2 at 512, ×4 at 1024. Five words at 512 cost 10,000 tokens per image.
+  The price is shown before generation: Orion Image 1 costs 1,000 tokens per
+  prompt word at 256; Orion 1.2 costs 1,500 (1.5×). Both use ×2 at 512 and ×4 at
+  1024. Five words at 512 cost 10,000 / 15,000 tokens per image respectively.
   The full batch is reserved against the shared allowance; only completed saved
   images are charged. Cancelled/failed unfinished images are refunded.
   Reference credits are available under the preview. Objects can be blurred,
@@ -114,7 +115,7 @@ with no chat database or training checkpoint. Orion image weights are optional.
 Downloaded models and private training files are not packaged. All generated
 build trees, environments, test profiles and installers are excluded from Git.
 
-Desktop version 1.4.0 and terminal package versions are separate. CLI `/update`
+Desktop version 1.4.1 and terminal package versions are separate. CLI `/update`
 updates the CLI package. Desktop Settings → Updates → Update & restart updates
 the bundled desktop engine in place. It does not overwrite the terminal launcher.
 Versions 1.1.2 and earlier need one package installation to gain the new updater;

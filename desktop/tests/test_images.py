@@ -32,7 +32,7 @@ class DesktopImages(unittest.TestCase):
             result=d.generate_image('red car')
             self.assertEqual(klass.call_args.args[0].name,'orion-1.2-r1.npz')
         self.assertEqual(result['images'][0]['model'],'orion-1.2')
-        self.assertEqual(result['chat']['modelId'],chat_id);self.assertEqual(result['quota']['used']-before,2000)
+        self.assertEqual(result['chat']['modelId'],chat_id);self.assertEqual(result['quota']['used']-before,3000)
         d.generating=True
         with self.assertRaises(ValueError):d.dispatch('select_image_model',dict(id='orion-image-1'))
         self.assertEqual(d.image_models.selected(),'orion-1.2')
@@ -40,6 +40,20 @@ class DesktopImages(unittest.TestCase):
     def test_new_image_download_does_not_route_to_chat_manager(self):
         with patch.object(self.d.image_models,'install') as image_install,patch.object(self.d.manager,'install',side_effect=AssertionError('Wrong download manager')):
             self.d.download('orion-1.2');image_install.assert_called_once()
+
+    def test_premium_batch_only_charges_completed_images(self):
+        d=self.d;calls=[]
+        def generate(*args):
+            calls.append(1)
+            if len(calls)==1:return np.zeros((256,256,3),np.uint8),dict(model='orion-1.2')
+            d.cancel.set();raise ValueError('Image generation cancelled.')
+        with patch.object(d.image_models,'resolve',return_value=Path('premium.npz')),patch('lambda_cli.image_generation.ImageGenerator') as klass:
+            klass.return_value.generate.side_effect=generate
+            with self.assertRaises(ValueError):d.generate_image('car',size=1024,count=3,model_id='orion-1.2')
+        self.assertEqual(d.image_job['price']['total'],18000)
+        self.assertEqual(d.quota.status()['used'],6000)
+        self.assertEqual(d.image_store.history()[0]['tokenCost'],6000)
+        with d.quota.connect() as db:self.assertEqual(db.execute('SELECT COUNT(*) FROM reservations').fetchone()[0],0)
 
     def test_real_tool_head_routes_terra_without_canned_chat_answer(self):
         d=self.d;d.session.engine.metadata['model_id']='lambda-terra-test'

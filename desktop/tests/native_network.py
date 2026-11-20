@@ -49,7 +49,7 @@ def main():
                     assert row['safeSearch']=='strict' and all(ref['provider']=='DuckDuckGo Safe Search' for ref in row['references'])
                     with Image.open(io.BytesIO(raw)) as image:assert image.size==(256,256)
                     assert len(result['images'])==len(records)+1
-                    charged+=len(prompt.split())*1000
+                    charged+=len(prompt.split())*(1500 if identifier=='orion-1.2' else 1000)
                     assert result['quota']['used']==charged
                     records.append(dict(model=identifier,prompt=prompt,width=256,height=256,charged=row['tokenCost'],references=len(row['references'])))
                     print(json.dumps(records[-1]),flush=True)

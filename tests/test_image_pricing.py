@@ -17,4 +17,15 @@ class ImagePricingTests(unittest.TestCase):
             with self.assertRaises(ValueError):image_price('cat',**kwargs)
         with self.assertRaises(ValueError):image_price('!!!')
 
+    def test_orion_12_costs_exactly_one_and_a_half_times_at_every_size_and_count(self):
+        for size in [256,512,1024]:
+            for count in [1,2,8]:
+                old=image_price('cat in the green park',size,count)
+                new=image_price('cat in the green park',size,count,model_id='orion-1.2')
+                self.assertEqual(new['total']*2,old['total']*3)
+                self.assertEqual(new['tokensPerWord'],1500)
+                self.assertIs(type(new['total']),int)
+        self.assertEqual(image_price('cat',model_id='orion-image-1')['total'],1000)
+        with self.assertRaises(ValueError):image_price('cat',model_id='unknown')
+
 if __name__=='__main__':unittest.main()

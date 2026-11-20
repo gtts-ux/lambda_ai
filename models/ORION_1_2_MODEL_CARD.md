@@ -1,7 +1,7 @@
 # orion 1.2
 
-An optional own-weight image model for Image Playground. Core app 0.11.1 /
-Desktop 1.4.0 or newer is required. Download it individually in Settings → Models,
+An optional own-weight image model for Image Playground. Core app 0.11.2 /
+Desktop 1.4.1 or newer is required. Download it individually in Settings → Models,
 then choose **Orion 1.2** in Image Playground. Orion Image 1 remains available.
 
 The complete description is searched with strict Safe Search. Up to ten reference
@@ -36,7 +36,7 @@ can still fail the prompt. Safe Search is enabled, but filtering is not perfect.
 Source credits and links remain attached to saved images; consult original terms.
 512/1024 exports enlarge the native 256 image and do not add newly learned detail.
 
-Price remains 1000 tokens per Unicode prompt word per image at 256, ×2 at 512 or
+Price is 1500 tokens per Unicode prompt word per image at 256 (1.5× Orion Image 1), ×2 at 512 or
 ×4 at 1024, multiplied by count. Only completed saved images are charged. The shared
 allowance, chat models, previous images and chats remain compatible.
 

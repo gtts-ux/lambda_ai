@@ -24,12 +24,13 @@ function showImage(row){
 function imageQuote(){
   const words=($('#image-prompt').value.normalize('NFKC').match(/[\p{L}\p{N}_]+(?:['’\-][\p{L}\p{N}_]+)*/gu)||[]).length;
   const size=Number($('#image-size').value),count=Number($('#image-count').value),multiplier=size/256;
+  const model=S?.imageModels?.find(m=>m.id===S.selectedImageModel),rate=model?.tokens_per_word||1000;
   if(![256,512,1024].includes(size)||!Number.isInteger(count)||count<1||count>8)return null;
-  const perImage=words*1000*multiplier;return {words,size,count,multiplier,perImage,total:perImage*count};
+  const perImage=words*rate*multiplier;return {words,size,count,multiplier,rate,perImage,total:perImage*count};
 }
 function renderImagePrice(){
   const quote=imageQuote(),busy=!!S?.generating;
-  $('#image-price-breakdown').textContent=!quote?'Choose 1–8 images.':!quote.words?'Add a description to see the cost.':`${quote.words} word${quote.words===1?'':'s'} × 1,000 × ${quote.multiplier} = ${number(quote.perImage)} tokens per image`;
+  $('#image-price-breakdown').textContent=!quote?'Choose 1–8 images.':!quote.words?'Add a description to see the cost.':`${quote.words} word${quote.words===1?'':'s'} × ${number(quote.rate)} × ${quote.multiplier} = ${number(quote.perImage)} tokens per image`;
   const insufficient=quote&&S&&!busy&&quote.total>S.quota.remaining;
   $('#image-price-total').textContent=quote?`${number(quote.total)} tokens${quote.count>1?' · '+quote.count+' images':''}${insufficient?' · not enough remaining':''}`:'—';
   $('#image-native-notice').hidden=!quote||quote.size===256;

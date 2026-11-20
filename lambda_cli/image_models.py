@@ -10,6 +10,7 @@ from .models import atomic_json,validate_catalog
 from .paths import data_dir
 from .image_network import OrionNetwork
 from .tls import https_context
+from .image_pricing import TOKENS_PER_WORD
 
 BUNDLED=Path(__file__).resolve().parent/'assets/image_catalog.json'
 URL='https://raw.githubusercontent.com/gtts-ux/lambda_ai/main/models/image_catalog.json'
@@ -40,7 +41,8 @@ class ImageModels:
         for entry in self.catalog()['models']:
             row=dict(entry);local=installed.get(row['id'])
             revision=local['revision'] if local and self.path(local).is_file() else None
-            row.update(installed_revision=revision,update_available=revision is not None and revision<row['revision'])
+            row.update(installed_revision=revision,update_available=revision is not None and revision<row['revision'],
+                       tokens_per_word=TOKENS_PER_WORD.get(row['id'],1000))
             result.append(row)
         return result
     def selected(self):

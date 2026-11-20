@@ -224,11 +224,11 @@ class Desktop:
         from lambda_cli.image_pricing import image_price
         from PIL import Image
         import numpy as np
-        price=image_price(prompt,size,count)
         if seed is None:seed=secrets.randbelow(2**32)
         if type(seed) is not int or not 0<=seed<=2**32-1:raise ValueError('Use a seed between 0 and 4294967295.')
         with self.lock:
             self.idle();identifier=model_id or self.image_models.selected();path=self.image_models.resolve(identifier)
+            price=image_price(prompt,size,count,model_id=identifier or 'orion-image-1')
             self.generating=True;self.cancel.clear()
             self.image_job=dict(state='running',prompt=prompt,phase='Preparing image model',percent=0,
                 modelId=identifier,price=price,count=count,size=size,completed=0,ids=[],chargedTokens=0)

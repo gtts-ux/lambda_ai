@@ -36,7 +36,7 @@ inference files keep their original bytes; app 0.8.5 presents the new names.
 
 ## Desktop app
 
-[Download Desktop app 1.4.0 for macOS, Windows or Linux](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.4.0).
+[Download Desktop app 1.4.1 for macOS, Windows or Linux](https://github.com/gtts-ux/lambda_ai/releases/tag/desktop-v1.4.1).
 Run `lambda desktop` or `/desktop` in terminal app 0.8.6+ to get this link.
 
 Desktop 1.2.0 adds **Image Playground** and the optional **orion image 1** model.
@@ -54,8 +54,12 @@ individual models in Settings → Models. **orion 1.2** preserves whole referenc
 and searches the full description; results can closely resemble the source photo.
 The older Orion Image 1 remains available. See [Orion 1.2 model card](models/ORION_1_2_MODEL_CARD.md).
 
-Desktop 1.3.0 added image count, export sizes and an upfront price. Each completed
-image costs 1,000 tokens per prompt word at 256, ×2 at 512 or ×4 at 1024. Multiply
+Desktop 1.4.1 prices Orion 1.2 at **1500 tokens per prompt word** at 256px, exactly
+1.5× Orion Image 1's 1000. Size and image-count multipliers apply to that model's
+rate; the quote and actual charge use the same price.
+
+Desktop 1.3.0 added image count, export sizes and an upfront price. Orion Image 1
+costs 1,000 tokens per prompt word at 256, ×2 at 512 or ×4 at 1024. Multiply
 by image count; failed/unfinished images are refunded. Larger exports upscale
 the native 256px image. Packaged HTTPS trust is included for reference/model downloads.
 Reference search now accepts general descriptions through DuckDuckGo with strict
@@ -591,7 +595,7 @@ ordinary conversation or twice general intelligence.
 
 Desktop: **Settings → Models → Refresh list**, download **Terra 4.1 demo**, then
 choose it in the chat model picker. Desktop app 1.1.0+ already supports it.
-Terminal: use app 0.8.6+ (current 0.11.1), refresh with `/update` and select:
+Terminal: use app 0.8.6+ (current 0.11.2), refresh with `/update` and select:
 
 ```sh
 lambda model use lambda-terra-4.1-demo

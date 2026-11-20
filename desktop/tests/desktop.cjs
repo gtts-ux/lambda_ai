@@ -201,16 +201,20 @@ async function launch(){
     if(process.env.LAMBDA_ORION_12_MODEL){
       await page.locator('#image-model').selectOption('orion-1.2');
       await expect.poll(()=>page.evaluate(()=>S.selectedImageModel)).toBe('orion-1.2');
+      await expect(page.locator('#image-price-total')).toHaveText('3,000 tokens');
       await page.locator('#image-model').selectOption('orion-image-1');
       await expect.poll(()=>page.evaluate(()=>S.selectedImageModel)).toBe('orion-image-1');
+      await expect(page.locator('#image-price-total')).toHaveText('2,000 tokens');
       await page.locator('#image-model').selectOption('orion-1.2');
       await expect.poll(()=>page.evaluate(()=>S.selectedImageModel)).toBe('orion-1.2');
       await page.locator('#image-prompt').fill('person in suit');
+      await expect(page.locator('#image-price-total')).toHaveText('4,500 tokens');
       await page.locator('#image-generate').click();
       await expect(page.locator('.image-history-item')).toHaveCount(4,{timeout:90000});
       await expect(page.locator('#image-generate')).toBeEnabled();
       await expect(page.locator('#image-result-model')).toHaveText('Orion 1.2');
       assert.equal(await page.evaluate(()=>S.images[0].model),'orion-1.2');
+      assert.equal(await page.evaluate(()=>S.quota.used),beforeQuote+37500,'Orion 1.2 must charge exactly 1.5 times its displayed base price');
       await page.locator('.image-history-item').nth(1).click();
       await expect(page.locator('#image-result-model')).toHaveText('Orion Image 1');
       await expect(page.locator('#image-model')).toHaveValue('orion-1.2');
